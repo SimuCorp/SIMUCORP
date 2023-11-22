@@ -8,16 +8,16 @@ public class Money_count : MonoBehaviour
 
     public static int moneyValues = 0;
 
-    Text money;
+    Text MoneyInformation;
     // Start is called before the first frame update
     void Start()
     {
-        money = GetComponent<Text> ();
+        MoneyInformation = GetComponent<Text> ();
     }
 
     // Update is called once per frame
     void Update()
     {
-        money.text = $" : {moneyValues}";
+        MoneyInformation.text = $"Money : {moneyValues}";
     }
 }
