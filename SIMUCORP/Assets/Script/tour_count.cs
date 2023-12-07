@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 
-public class tour_count : MonoBehaviour
+public class TourCount : MonoBehaviour
 {
     
     public static int TurnValues = 1;
@@ -19,4 +20,9 @@ public class tour_count : MonoBehaviour
     {
         NB_tour.text = $"Turn : {TurnValues}";
     }
+
+	public static void AddTurn(string Button)
+	{
+		++TurnValues;
+	}
 }

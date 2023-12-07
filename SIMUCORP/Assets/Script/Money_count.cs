@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Money_count : MonoBehaviour
+public class MoneyCount : MonoBehaviour
 {
-
     public static int moneyValues = 0;
-
     Text MoneyInformation;
     // Start is called before the first frame update
     void Start()
@@ -20,4 +18,5 @@ public class Money_count : MonoBehaviour
     {
         MoneyInformation.text = $"Money : {moneyValues}";
     }
+    
 }
