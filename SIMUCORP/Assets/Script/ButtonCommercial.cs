@@ -3,22 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static MoneyCount;
-
-public class ButtonPass : MonoBehaviour
+public class ButtonCommercial : MonoBehaviour
 {
-
-	[SerializeField]
     // Start is called before the first frame update
+    [SerializeField]
     void Start()
     {
         string temp = gameObject.name;
         gameObject.GetComponent<Button>().onClick.AddListener(() => CalCulus(Gamer1, temp));
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-		string temp = gameObject.name;
-        gameObject.GetComponent<Button>().onClick.AddListener(() => CalCulus(Gamer1, temp));
-    }
+    
 }
