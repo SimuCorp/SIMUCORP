@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static TourCount;
 using static MoneyCount;
 
 public class CountdownScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float TimeLeft;
+    public float TimeLeft = 101;
     public bool TimerOn = false;
     Text Countdown;
+	public int tour = 1;
+
     void Start()
     {
         TimerOn = true;
@@ -21,6 +24,11 @@ public class CountdownScript : MonoBehaviour
     {
         if (TimerOn)
         {
+			if (tour != TourCount.TurnValues)
+			{
+				TimeLeft = 101;
+				++tour;
+			}
             if (TimeLeft > 0)
             {
                 TimeLeft -= Time.deltaTime;
@@ -28,8 +36,8 @@ public class CountdownScript : MonoBehaviour
             }
             else
             {
-                TimeLeft = 0;
-                TimerOn = false;
+                TimeLeft = 101;
+                MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
             }
         }
     }
@@ -37,6 +45,6 @@ public class CountdownScript : MonoBehaviour
     void UpdateTimer(float currentTime)
     {
         currentTime -= 1;
-        Countdown.text = $"{currentTime}";
+        Countdown.text = $"{(int)currentTime}";
     }
 }

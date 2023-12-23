@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class MoneyCount : MonoBehaviour
 {
     public static Primeur Gamer1 = new Primeur("Primeur");
-    
     Text MoneyInformation;
     // Start is called before the first frame update
     void Start()
