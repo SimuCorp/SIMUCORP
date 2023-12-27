@@ -27,11 +27,14 @@ public class Primeur : PlayerClass
             { "Attracivité", 20 },
             { "Clientèle", 5000 },
             { "Panier", 15 },
-			{ "Employer", 0},
+			{ "Employé", 0},
 			{ "Magasin", 0},
         };
 		_items = new List<string> {"Tomate", "Pomme", "Salade", "Carotte", "Oignon"};
 		_turn = true;
+		_commercial = new List<string> { "Promotion", "Publicité", "Carte de fidélité", "Cadeau" };
+		_rh = new List<string> { "Employé", "Salaire", "Magasin", "Prime",};
+		_gestion = new List<string> { "Prix", "Approvisionnement", "Qualité", "Matériels" };
 	}
 }
 

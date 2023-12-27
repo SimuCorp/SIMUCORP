@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class MoneyCount : MonoBehaviour
 {
     public static Primeur Gamer1 = new Primeur("Primeur");
