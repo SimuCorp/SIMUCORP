@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static MoneyCount;
+using static CountdownScript;
 
 public class Action1 : MonoBehaviour
 {
-    Text TextAction1;
+    static Text TextAction1;
 
     private static string over;
     // Start is called before the first frame update
@@ -34,5 +35,31 @@ public class Action1 : MonoBehaviour
             over = gamer._gestion[0];
         else
             over = "";
+    }
+
+    public static void DoButtonAction1(string str, PlayerClass gamer)
+    {
+        if (gamer._button)
+        {
+			System.Random aleatoire = new System.Random();
+			int key = aleatoire.Next(0, gamer._items.Count);
+            (int Quantity, double price, bool possible, double promo, int tour) = gamer._marchandise[gamer._items[key]];
+            switch (TextAction1.text)
+            {
+                case "Promotion":
+                    gamer._marchandise[gamer._items[key]] = (Quantity, price, possible, promo-0.3, 3);
+					break;
+                case "Employé":
+                    ++gamer._stat["Employé"];
+					break;
+                case "Prix":
+					gamer._marchandise[gamer._items[key]] = (Quantity, ++price, possible, promo, tour);
+                    break;
+                default:
+                    break; 
+            }
+
+            CountdownScript.UpdateTimeButton(gamer);
+        }
     }
 }

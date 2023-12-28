@@ -9,6 +9,7 @@ public class CountdownScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public float TimeLeft = 101;
+    public static float ButtonLeft = 3;
     public bool TimerOn = false;
     Text Countdown;
 	public int tour = 1;
@@ -46,5 +47,17 @@ public class CountdownScript : MonoBehaviour
     {
         currentTime -= 1;
         Countdown.text = $"{(int)currentTime}";
+    }
+
+    public static void UpdateTimeButton(PlayerClass gamer)
+    {
+        gamer._button = false;
+        while (ButtonLeft > 0)
+        {
+            ButtonLeft -= Time.deltaTime;
+            ButtonLeft -= 1;
+        }
+        ButtonLeft = 3;
+        gamer._button = true;
     }
 }

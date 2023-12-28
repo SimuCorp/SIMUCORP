@@ -37,15 +37,25 @@ public class MoneyCount : MonoBehaviour
                 if (aleatoire.Next(0, 101) < attractive)
                 {
                     key = aleatoire.Next(0, gamer._items.Count);
-                    (int Quantity, double price, bool possible) = gamer._marchandise[gamer._items[key]];
-                    gamer._marchandise[gamer._items[key]] = (--Quantity, price, possible);
+                    (int Quantity, double price, bool possible, double promo, int tour) = gamer._marchandise[gamer._items[key]];
+                    gamer._marchandise[gamer._items[key]] = (--Quantity, price, possible, promo, tour);
                     sum += price;
                 }
             }
+			for (int i = 0; i < gamer._items.Count; ++i)
+			{
+				(int Quantity, double price, bool possible, double promo, int tour) = gamer._marchandise[gamer._items[i]];
+				tour -= 1;
+				if (tour <= 0)
+					gamer._marchandise[gamer._items[i]] = (Quantity, price, possible, 1, 0);
+			}
 
             gamer.AddMoney(sum);
+			gamer._mounth += sum;
             TourCount.AddTurn(Button);
             gamer._turn = false;
+			if (TourCount.TurnValues % 4 == 1)
+				gamer.AddMoney(-Math.Round((gamer._mounth/4), 2));
         }
     }
 }

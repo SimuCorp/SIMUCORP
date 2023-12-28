@@ -13,6 +13,7 @@ public class ButtonPass : MonoBehaviour
         Action3.ChangeAction3(str, gamer);
         Action4.ChangeAction4(str, gamer);
         CalCulus(gamer, str);
+		CountdownScript.UpdateTimeButton(gamer);
     }
 	[SerializeField]
     // Start is called before the first frame update
