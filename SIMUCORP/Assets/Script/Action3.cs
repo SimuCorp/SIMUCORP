@@ -7,7 +7,7 @@ using static MoneyCount;
 
 public class Action3 : MonoBehaviour
 {
-    Text TextAction3;
+    static Text TextAction3;
 	private static string over;
     // Start is called before the first frame update
     void Start()
@@ -32,5 +32,32 @@ public class Action3 : MonoBehaviour
             over = gamer._gestion[2];
         else
             over = "";
+    }
+
+    public static void DoButtonAction3(string str, PlayerClass gamer)
+    {
+        if (gamer._button)
+        {
+            System.Random aleatoire = new System.Random();
+            int key = aleatoire.Next(0, gamer._items.Count);
+            (int Quantity, double price, bool possible, double promo, int tour) = gamer._marchandise[gamer._items[key]];
+            switch (TextAction3.text)
+            {
+                case "Carte de fidélité":
+                    gamer._stat["Attracivité"] += 10;
+                    break;
+                case "Magasin":
+                    gamer._stat["Magasin"] += 1;
+                    break;
+                case "Qualité":
+                    gamer._stat["Attracivité"] += 10;
+                    gamer.AddMoney(-1000);
+                    break;
+                default:
+                    break;
+            }
+
+            CountdownScript.UpdateTimeButton(gamer);
+        }
     }
 }

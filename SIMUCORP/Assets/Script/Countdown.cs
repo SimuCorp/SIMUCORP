@@ -8,7 +8,6 @@ using static MoneyCount;
 public class CountdownScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float TimeLeft = 101;
     public static float ButtonLeft = 3;
     public bool TimerOn = false;
     Text Countdown;
@@ -27,17 +26,17 @@ public class CountdownScript : MonoBehaviour
         {
 			if (tour != TourCount.TurnValues)
 			{
-				TimeLeft = 101;
+                MoneyCount.TimeLeft = 101;
 				++tour;
 			}
             if (TimeLeft > 0)
             {
-                TimeLeft -= Time.deltaTime;
+                MoneyCount.TimeLeft -= Time.deltaTime;
                 UpdateTimer(TimeLeft);
             }
             else
             {
-                TimeLeft = 101;
+                MoneyCount.TimeLeft = 101;
                 MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
             }
         }

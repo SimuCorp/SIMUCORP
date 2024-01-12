@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerClass
 {
     public string _name { get; }
-    public Dictionary<string, (int, double, bool, double, int)> _marchandise { get; set; } // Quantity; price; possible
-    public Dictionary<string, int> _stat { get; set; } // Name, Number
+    public Dictionary<string, (int, double, bool, double, int)> _marchandise { get; set; } // Quantity; price; possible; ...; level
+    public Dictionary<string, double> _stat { get; set; } // Name, Number
     public double _money { get; set; }
     
     public double _mounth { get; set; } // turnover
@@ -17,20 +17,29 @@ public class PlayerClass
     public List<string> _commercial { get; set; }
     public List<string> _rh { get; set; }
     public List<string> _gestion { get; set; }
+	public List<string> materiel { get; set; }
     public PlayerClass(string name)
     {
         _name = name;
         _mounth = 0;
-        _commercial = new List<string>();
-        _rh = new List<string>() { "", "", "", "" };
-        _gestion = new List<string>();
+		_button = true;
+        _commercial = new List<string> { "Promotion", "Publicité", "Carte de fidélité", "Cadeau" };
+		_rh = new List<string> { "Employé", "Salaire", "Magasin", "Prime",};
+		_gestion = new List<string> { "Prix", "Approvisionnement", "Qualité", "Matériels" };
 
     }
     
-    public void AddMoney(double sum)
+    public bool AddMoney(double sum)
     {
-        _money += sum;
-        _mounth += sum;
+        if (_money + sum >= 0)
+        {
+            _money += sum;
+            _mounth += sum;
+            return true;
+        }
+
+        return false;
+
     }
     
 }

@@ -10,6 +10,7 @@ public class ButtonAction1 : MonoBehaviour
 {
     
     // Start is called before the first frame update
+	[SerializeField]
     void Start()
     {
         string temp = gameObject.name;
