@@ -29,5 +29,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ActionPrix4.unity
     guid: dfbac6d4f07b18a45aec48557fd24c84
+  - enabled: 1
+    path: Assets/Scenes/ActionApro1.unity
+    guid: 68d6cfae28e195a47b22c4d236653c64
+  - enabled: 1
+    path: Assets/Scenes/ActionApro2.unity
+    guid: d4f12baf4dac19a4bb69500edbf5e45a
+  - enabled: 1
+    path: Assets/Scenes/ActionApro3.unity
+    guid: b3243bfb8001ae04d82059cc416bed56
+  - enabled: 1
+    path: Assets/Scenes/ActionApro4.unity
+    guid: 1e6902f2fba868f43a7ff5d97479b626
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9eed0b7dfdc720e42b584fd635d534e5, type: 2}

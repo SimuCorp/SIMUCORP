@@ -36,4 +36,24 @@ public class ButtonExitCommercial : MonoBehaviour
     {
         SceneManager.LoadScene("ActionPrix1");
     }
+	
+	public void ExitApro1()
+	{
+		SceneManager.LoadScene("ActionApro2");
+	}
+
+	public void ExitApro2()
+	{
+		SceneManager.LoadScene("ActionApro3");
+	}
+
+	public void ExitApro3()
+	{
+		SceneManager.LoadScene("ActionApro4");
+	}
+
+	public void ExitApro4()
+	{
+		SceneManager.LoadScene("ActionApro1");
+	}
 }

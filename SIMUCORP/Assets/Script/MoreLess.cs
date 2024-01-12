@@ -533,5 +533,257 @@ public class MoreLess : MonoBehaviour
 			j += 0.01;
 		Gamer1._marchandise[res] = (i, Math.Round(j-0.01, 2), b, d, k);
 	}
+
+	public void MoreApro1()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 1)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[0]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro2()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 2)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[1]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro3()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 3)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[2]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro4()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 4)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[3]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro5()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 5)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[4]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro6()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 6)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[5]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro7()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 7)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[6]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro8()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 8)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[7]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro9()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 9)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[8]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro10()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 10)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[9]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro11()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 11)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[10]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
+
+	public void MoreApro12()
+	{
+		int i1 = 1;
+        string res = "";
+        foreach (string s in Gamer1._marchandise.Keys)
+        {
+            if (i1 == 12)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-Gamer1.prix[11]))
+		{
+			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+		}
+	}
 		
 }

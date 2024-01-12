@@ -18,6 +18,8 @@ public class PlayerClass
     public List<string> _rh { get; set; }
     public List<string> _gestion { get; set; }
 	public List<string> materiel { get; set; }
+    public List<double> prix { get; set; }
+    
     public PlayerClass(string name)
     {
         _name = name;

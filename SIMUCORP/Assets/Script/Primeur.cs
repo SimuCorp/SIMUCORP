@@ -38,6 +38,7 @@ public class Primeur : PlayerClass
 		_rh = new List<string> { "Employé", "Salaire", "Magasin", "Prime", };
 		_gestion = new List<string> { "Prix", "Approvisionnement", "Qualité", "Matériels" };
 		materiel = new List<string> { "tableau de promotion", "étalage fruit", "étalage légume", "nouveau fruit" };
+		prix = new List<double> {0.22, 1.0, 0.81, 1.42, 1.13, 1.22, 2.19, 0.80, 1.32, 2.61, 7.33, 3.85};
 	}
 }
 
