@@ -6,7 +6,7 @@ public class Primeur : PlayerClass
 {
 	public Primeur(string name) : base(name)
 	{
-		_money = 2_500;
+		_money = 1_500;
 		_marchandise = new Dictionary<string, (int, double, bool, double, int)>()
 		{
 			{ "Tomate", (500, 0.33, true, 1, 3) },
@@ -14,7 +14,7 @@ public class Primeur : PlayerClass
 			{ "Salade", (500, 1.22, true, 1, 3) },
 			{ "Carotte", (500, 2.13, true, 1, 3) },
 			{ "Oignon", (500, 1.69, true, 1, 3) },
-			{ "betterave", (500, 1.83, true, 1, 3) },
+			{ "Betterave", (500, 1.83, true, 1, 3) },
 			{ "Petits Pois", (0, 3.29, false, 1, 3) },
 			{ "Pomme de terre", (0, 1.20, false, 1, 3) },
 			{ "Navet", (0, 1.98, false, 1, 3) },
@@ -32,7 +32,8 @@ public class Primeur : PlayerClass
 			{ "Salaire", 1399 },
 			{ "Magasin", 1 },
 		};
-		_items = new List<string> { "Tomate", "Pomme", "Salade", "Carotte", "Oignon" };
+		_items = new List<string> { "Tomate", "Pomme", "Salade", "Carotte", "Oignon", "Betterave" };
+		_missingitems = new List<string> { "Petits Pois", "Pomme de terre", "Navet", "Abricot", "Fraise", "Pasteque"};
 		_turn = true;
 		_commercial = new List<string> { "Promotion", "Publicité", "Carte de fidélité", "Cadeau" };
 		_rh = new List<string> { "Employé", "Salaire", "Magasin", "Prime", };

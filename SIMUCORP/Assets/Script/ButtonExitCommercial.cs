@@ -56,4 +56,68 @@ public class ButtonExitCommercial : MonoBehaviour
 	{
 		SceneManager.LoadScene("ActionApro1");
 	}
+	
+	public void ExitQuali1()
+	{
+		SceneManager.LoadScene("ActionQuali2");
+	}
+
+	public void ExitQuali2()
+	{
+		SceneManager.LoadScene("ActionQuali3");
+	}
+
+	public void ExitQuali3()
+	{
+		SceneManager.LoadScene("ActionQuali4");
+	}
+
+	public void ExitQuali4()
+	{
+		SceneManager.LoadScene("ActionQuali1");
+	}
+	
+	public void ExitMateriel1()
+	{
+		int i = 0;
+		int length = Gamer1._items.Count;
+
+		while (i < length && Gamer1._items[i] == "done")
+			++i;
+		if (i < length)
+			SceneManager.LoadScene("ActionMateriel2");
+	}
+
+	public void ExitMateriel2()
+	{
+		SceneManager.LoadScene("ActionMateriel3");
+	}
+
+	public void ExitMateriel3()
+	{
+		SceneManager.LoadScene("ActionMateriel1");
+	}
+
+	public void ExitAccueil()
+	{
+		SceneManager.LoadScene("ChoixTour");
+	}
+
+	public void Simple()
+	{
+		SceneManager.LoadScene("NonPerissable");
+	}
+
+	public void Difficile()
+	{
+		SceneManager.LoadScene("Perissable");
+	}
+
+	public void ExitPrimeur()
+	{
+		Gamer1 = new Primeur("Primeur");
+		SceneManager.LoadScene("ScenePrincipale");
+	}
+		
+
 }

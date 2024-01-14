@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MoneyCount : MonoBehaviour
 {
-    public static Primeur Gamer1 = new Primeur("Primeur");
+    public static PlayerClass Gamer1 = new Primeur("Primeur");
     public static float TimeLeft = 101;
     Text MoneyInformation;
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class MoneyCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoneyInformation.text = $"Money : {Gamer1._money}";
+        MoneyInformation.text = $"{Math.Round(Gamer1._money, 2)} $";
     }
 
     public static void CalCulus(PlayerClass gamer, string Button)

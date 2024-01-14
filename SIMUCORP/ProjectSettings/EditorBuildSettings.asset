@@ -41,5 +41,38 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ActionApro4.unity
     guid: 1e6902f2fba868f43a7ff5d97479b626
+  - enabled: 1
+    path: Assets/Scenes/ActionQuali1.unity
+    guid: 1c5dbf6aaeeebe84da870c7f555e2328
+  - enabled: 1
+    path: Assets/Scenes/ActionQuali2.unity
+    guid: 3bec6be22a4795f478efe711422aa2bb
+  - enabled: 1
+    path: Assets/Scenes/ActionQuali3.unity
+    guid: 1a9c4fe5a282e9b4886d2b1f0800b888
+  - enabled: 1
+    path: Assets/Scenes/ActionQuali4.unity
+    guid: d1d03abc731270d4e8c1049b5f7b5c63
+  - enabled: 1
+    path: Assets/Scenes/ActionMateriel1.unity
+    guid: 2f68f694451fba3459db42f75e29fdfd
+  - enabled: 1
+    path: Assets/Scenes/ActionMateriel2.unity
+    guid: c87497e5edb7ed1478f2e79c9cb551bd
+  - enabled: 1
+    path: Assets/Scenes/ActionMateriel3.unity
+    guid: c05bc6d055fba72439a55362d2a36f02
+  - enabled: 1
+    path: Assets/Scenes/EcranAccueil.unity
+    guid: aa05aaa3c39ebba459c70d7a9b7d5c5e
+  - enabled: 1
+    path: Assets/Scenes/ChoixTour.unity
+    guid: 66d36618f95b6a1489ee3952b600ea9a
+  - enabled: 1
+    path: Assets/Scenes/NonPerissable.unity
+    guid: cfe8c032dcaed1745a301bf6d1eb06df
+  - enabled: 1
+    path: Assets/Scenes/Perissable.unity
+    guid: 3f0b9551425407746af8c00caecbb96f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9eed0b7dfdc720e42b584fd635d534e5, type: 2}

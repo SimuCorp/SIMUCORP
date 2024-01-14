@@ -549,9 +549,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[0]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[0]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -570,9 +570,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[1]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[1]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -591,9 +591,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[2]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[2]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -612,9 +612,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[3]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[3]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -633,9 +633,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[4]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[4]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -654,9 +654,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[5]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[5]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -675,9 +675,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[6]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[6]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -696,9 +696,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[7]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[7]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -717,9 +717,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[8]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[8]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -738,9 +738,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[9]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[9]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -759,9 +759,9 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[10]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[10]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
 
@@ -780,10 +780,261 @@ public class MoreLess : MonoBehaviour
             ++i1;
         }
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
-		if (b && Gamer1.AddMoney(-Gamer1.prix[11]))
+		if (b && Gamer1.AddMoney(-Gamer1.prix[11]*20))
 		{
-			Gamer1._marchandise[res] = (i+1, j, b, d, k);
+			Gamer1._marchandise[res] = (i+20, j, b, d, k);
 		}
 	}
-		
+
+	public void MoreQuali1()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 1)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+
+	public void MoreQuali2()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 2)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+	
+	public void MoreQuali3()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 3)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+
+	public void MoreQuali4()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 4)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+
+	public void MoreQuali5()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 5)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+
+	public void MoreQuali6()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 6)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+
+	public void MoreQuali7()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 7)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+
+	public void MoreQuali8()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 8)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+
+	public void MoreQuali9()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 9)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+
+	public void MoreQuali10()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 10)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+
+	public void MoreQuali11()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 11)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+
+	public void MoreQuali12()
+	{
+		int i1 = 1;
+		string res = "";
+		foreach (string s in Gamer1._marchandise.Keys)
+		{
+			if (i1 == 12)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
+		if (b && Gamer1.AddMoney(-50*Math.Pow(d, 2)))
+		{
+			Gamer1._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
 }

@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerClass
 {
     public string _name { get; }
-    public Dictionary<string, (int, double, bool, double, int)> _marchandise { get; set; } // Quantity; price; possible; ...; level
+    public Dictionary<string, (int, double, bool, double, int)> _marchandise { get; set; } // Quantity; price; possible; stat; turn
     public Dictionary<string, double> _stat { get; set; } // Name, Number
     public double _money { get; set; }
     
     public double _mounth { get; set; } // turnover
 
 	public List<string> _items {get; set; }
+    public List<string> _missingitems {get; set; }
 	public bool _turn {get; set;}
     public bool _button {get; set;}
     public List<string> _commercial { get; set; }
