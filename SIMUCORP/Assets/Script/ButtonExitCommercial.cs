@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static MoneyCount;
+using static TourCount;
 public class ButtonExitCommercial : MonoBehaviour
 {
 
@@ -116,8 +117,26 @@ public class ButtonExitCommercial : MonoBehaviour
 	public void ExitPrimeur()
 	{
 		Gamer1 = new Primeur("Primeur");
+		TimeLeft = 101;
+		TurnValues = 1;
 		SceneManager.LoadScene("ScenePrincipale");
 	}
-		
 
+	public void ExitCourte()
+	{
+		MaxTurn = 13;
+		SceneManager.LoadScene("ChoixDifficulté");
+	}
+
+	public void ExitMoyenne()
+	{
+		MaxTurn = 26;
+		SceneManager.LoadScene("ChoixDifficulté");
+	}
+		
+	public void ExitLongue()
+	{
+		MaxTurn = 52;
+		SceneManager.LoadScene("ChoixDifficulté");
+	}
 }

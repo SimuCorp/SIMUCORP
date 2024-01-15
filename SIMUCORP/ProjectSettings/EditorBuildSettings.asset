@@ -66,7 +66,7 @@ EditorBuildSettings:
     path: Assets/Scenes/EcranAccueil.unity
     guid: aa05aaa3c39ebba459c70d7a9b7d5c5e
   - enabled: 1
-    path: Assets/Scenes/ChoixTour.unity
+    path: "Assets/Scenes/ChoixDifficult\xE9.unity"
     guid: 66d36618f95b6a1489ee3952b600ea9a
   - enabled: 1
     path: Assets/Scenes/NonPerissable.unity
@@ -74,5 +74,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Perissable.unity
     guid: 3f0b9551425407746af8c00caecbb96f
+  - enabled: 1
+    path: Assets/Scenes/ChoixTour.unity
+    guid: 7c91a0e87d13d6346b28c876cbc2fd62
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9eed0b7dfdc720e42b584fd635d534e5, type: 2}

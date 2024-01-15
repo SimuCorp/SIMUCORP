@@ -8,6 +8,8 @@ public class TourCount : MonoBehaviour
 {
     
     public static int TurnValues = 1;
+
+    public static int MaxTurn = 13;
     // Start is called before the first frame update
     Text NB_tour;
     void Start()
