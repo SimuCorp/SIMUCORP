@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerClass
 {
     public string _name { get; }
-    public Dictionary<string, (int, double, bool, double, int)> _marchandise { get; set; } // Quantity; price; possible; stat; turn
+    public Dictionary<string, (int, double, bool, double, int)> _marchandise { get; set; } // Quantity; price; possible; level; turn
     public Dictionary<string, double> _stat { get; set; } // Name, Number
     public double _money { get; set; }
     
@@ -26,6 +26,8 @@ public class PlayerClass
         _name = name;
         _mounth = 0;
 		_button = true;
+		_turn = true;
+		_money = 1_500;
         _commercial = new List<string> { "Promotion", "Publicité", "Carte de fidélité", "Cadeau" };
 		_rh = new List<string> { "Employé", "Salaire", "Magasin", "Prime",};
 		_gestion = new List<string> { "Prix", "Approvisionnement", "Qualité", "Matériels" };

@@ -122,6 +122,22 @@ public class ButtonExitCommercial : MonoBehaviour
 		SceneManager.LoadScene("ScenePrincipale");
 	}
 
+	public void ExitBoucherie()
+	{
+		Gamer1 = new Boucherie("Boucher");
+		TimeLeft = 101;
+		TurnValues = 1;
+		SceneManager.LoadScene("ScenePrincipale");
+	}
+
+	public void ExitLibraire()
+	{
+		Gamer1 = new Libraire("Libraire");
+		TimeLeft = 101;
+		TurnValues = 1;
+		SceneManager.LoadScene("ScenePrincipale");
+	}
+
 	public void ExitCourte()
 	{
 		MaxTurn = 13;
