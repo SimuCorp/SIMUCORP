@@ -16,9 +16,9 @@ public class ButtonAct1 : MonoBehaviour
         int key = aleatoire.Next(0, gamer._items.Count);
         gamer.promo = !gamer.promo;
 		if (gamer.promo)
-			gamer._stat["Attractivité"] += 25;
+			gamer._stat["Attracivité"] += 25;
 		else
-			gamer._stat["Attractivité"] -= 25;
+			gamer._stat["Attracivité"] -= 25;
     }
 
     public void DoAct12()
