@@ -57,7 +57,7 @@ public class ButtonMateriel : MonoBehaviour
 			}
 			Gamer1._marchandise[s] = (a, b, true, d, e);
 			Gamer1._missingitems[0] = "done";
-			Gamer1._items.Add(s);
+			Gamer1._items[6] = s;
 		}
 	}
 
@@ -83,7 +83,7 @@ public class ButtonMateriel : MonoBehaviour
 			}
 			Gamer1._marchandise[s] = (a, b, true, d, e);
 			Gamer1._missingitems[1] = "done";
-			Gamer1._items.Add(s);
+			Gamer1._items[7] = s;
 		}
 	}
 
@@ -109,7 +109,7 @@ public class ButtonMateriel : MonoBehaviour
 			}
 			Gamer1._marchandise[s] = (a, b, true, d, e);
 			Gamer1._missingitems[2] = "done";
-			Gamer1._items.Add(s);
+			Gamer1._items[8] = s;
 		}
 	}
 
@@ -135,7 +135,7 @@ public class ButtonMateriel : MonoBehaviour
 			}
 			Gamer1._marchandise[s] = (a, b, true, d, e);
 			Gamer1._missingitems[3] = "done";
-			Gamer1._items.Add(s);
+			Gamer1._items[9] = s;
 		}
 	}
 
@@ -161,7 +161,7 @@ public class ButtonMateriel : MonoBehaviour
 			}
 			Gamer1._marchandise[s] = (a, b, true, d, e);
 			Gamer1._missingitems[4] = "done";
-			Gamer1._items.Add(s);
+			Gamer1._items[10] = s;
 		}
 	}
 
@@ -187,7 +187,7 @@ public class ButtonMateriel : MonoBehaviour
 			}
 			Gamer1._marchandise[s] = (a, b, true, d, e);
 			Gamer1._missingitems[5] = "done";
-			Gamer1._items.Add(s);
+			Gamer1._items[11] = s;
 		}
 	}
    

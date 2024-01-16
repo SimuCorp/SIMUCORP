@@ -26,17 +26,17 @@ public class CountdownScript : MonoBehaviour
         {
 			if (tour != TourCount.TurnValues)
 			{
-                MoneyCount.TimeLeft = 101;
+                Gamer1.TimeLeft = 100;
 				++tour;
 			}
-            if (TimeLeft > 0)
+            if (Gamer1.TimeLeft > 0)
             {
-                MoneyCount.TimeLeft -= Time.deltaTime;
-                UpdateTimer(TimeLeft);
+                Gamer1.TimeLeft -= Time.deltaTime;
+                UpdateTimer(Gamer1.TimeLeft);
             }
             else
             {
-                MoneyCount.TimeLeft = 101;
+                Gamer1.TimeLeft = 100;
                 MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
             }
         }
@@ -45,7 +45,7 @@ public class CountdownScript : MonoBehaviour
     void UpdateTimer(float currentTime)
     {
         currentTime -= 1;
-        Countdown.text = $"{(int)currentTime}";
+        Countdown.text = $"{(int)Gamer1.TimeLeft}";
     }
 
     public static void UpdateTimeButton(PlayerClass gamer)

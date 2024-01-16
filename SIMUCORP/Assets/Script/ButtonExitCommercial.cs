@@ -117,7 +117,6 @@ public class ButtonExitCommercial : MonoBehaviour
 	public void ExitPrimeur()
 	{
 		Gamer1 = new Primeur("Primeur");
-		TimeLeft = 101;
 		TurnValues = 1;
 		SceneManager.LoadScene("ScenePrincipale");
 	}
@@ -125,7 +124,6 @@ public class ButtonExitCommercial : MonoBehaviour
 	public void ExitBoucherie()
 	{
 		Gamer1 = new Boucherie("Boucher");
-		TimeLeft = 101;
 		TurnValues = 1;
 		SceneManager.LoadScene("ScenePrincipale");
 	}
@@ -133,7 +131,13 @@ public class ButtonExitCommercial : MonoBehaviour
 	public void ExitLibraire()
 	{
 		Gamer1 = new Libraire("Libraire");
-		TimeLeft = 101;
+		TurnValues = 1;
+		SceneManager.LoadScene("ScenePrincipale");
+	}
+
+	public void ExitCoiffeur()
+	{
+		Gamer1 = new Coiffeur("Coiffeur");
 		TurnValues = 1;
 		SceneManager.LoadScene("ScenePrincipale");
 	}

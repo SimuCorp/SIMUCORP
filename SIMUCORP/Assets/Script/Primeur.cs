@@ -32,9 +32,23 @@ public class Primeur : PlayerClass
 			{ "Magasin", 1 },
 		};
 		_items = new List<string> { "Tomate", "Pomme", "Salade", "Carotte", "Oignon", "Betterave" };
+		for (int i = 0; i < 6; ++i)
+			_items.Add("NaN");
 		_missingitems = new List<string> { "Petits Pois", "Pomme de terre", "Navet", "Abricot", "Fraise", "Pasteque"};
 		materiel = new List<string> { "tableau de promotion", "étalage fruit", "étalage légume", "nouveaux fruits et légumes" };
 		prix = new List<double> {0.22, 1.0, 0.81, 1.42, 1.13, 1.22, 2.19, 0.80, 1.32, 2.61, 7.33, 3.85};
+		Perime1 = new List<int> {500};
+		Perime2 = new List<int> {500};
+		Perime3 = new List<int> {500};
+		Perime4 = new List<int> {500};
+		Perime5 = new List<int> {500};
+		Perime6 = new List<int> {500};
+		Perime7 = new List<int> {0};
+		Perime8 = new List<int> {0};
+		Perime9 = new List<int> {0};
+		Perime10 = new List<int> {0};
+		Perime11 = new List<int> {0};
+		Perime12 = new List<int> {0};
 	}
 }
 

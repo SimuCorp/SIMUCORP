@@ -14,8 +14,11 @@ public class ButtonAct1 : MonoBehaviour
         PlayerClass gamer = Gamer1;
         System.Random aleatoire = new System.Random();
         int key = aleatoire.Next(0, gamer._items.Count);
-        (int Quantity, double price, bool possible, double promo, int tour) = gamer._marchandise[gamer._items[key]];
-        gamer._marchandise[gamer._items[key]] = (Quantity, price, possible, promo-0.3, 3);
+        gamer.promo = !gamer.promo;
+		if (gamer.promo)
+			gamer._stat["Attractivité"] += 25;
+		else
+			gamer._stat["Attractivité"] -= 25;
     }
 
     public void DoAct12()
