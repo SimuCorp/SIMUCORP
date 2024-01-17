@@ -12,10 +12,12 @@ public class MoneyCount : MonoBehaviour
 {
     public static PlayerClass Gamer1 = new Primeur("Primeur");
 	public static PlayerClass Gamer2 = new Boucherie("Boucher");
+	public static Evenement evenement;
     Text MoneyInformation;
     // Start is called before the first frame update
     void Start()
     {
+		evenement = new Evenement();
         MoneyInformation = GetComponent<Text> ();
     }
 
@@ -306,6 +308,14 @@ public class MoneyCount : MonoBehaviour
 					}
                 }
             }
+			if (TourCount.TurnValues % 4 == 0)
+          	{
+             (double benef, double attract, double chance) =
+                evenement._event[evenement._eventComing[TourCount.TurnValues/4 - 1]];
+             gamer._stat["Attracivité"] *= attract;
+             sum *= benef;
+          	}
+
 			for (int i = 0; i < 12; ++i)
 				Perime(gamer, i);
             gamer.AddMoney(sum);
