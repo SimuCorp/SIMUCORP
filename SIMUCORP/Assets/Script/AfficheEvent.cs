@@ -32,7 +32,7 @@ public class AfficheEvent : MonoBehaviour
         {
             if (rentre)
             {
-                texte.text = evenement._eventComing[TourCount.TurnValues-1];
+                texte.text = evenement._eventComing[TourCount.TurnValues/4-1];
                 rentre = false;
                 StartCoroutine("attend");
             }

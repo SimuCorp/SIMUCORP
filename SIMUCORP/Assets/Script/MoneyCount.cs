@@ -12,12 +12,11 @@ public class MoneyCount : MonoBehaviour
 {
     public static PlayerClass Gamer1 = new Primeur("Primeur");
 	public static PlayerClass Gamer2 = new Boucherie("Boucher");
-	public static Evenement evenement;
+	public static Evenement evenement = new Evenement();
     Text MoneyInformation;
     // Start is called before the first frame update
     void Start()
     {
-		evenement = new Evenement();
         MoneyInformation = GetComponent<Text> ();
     }
 

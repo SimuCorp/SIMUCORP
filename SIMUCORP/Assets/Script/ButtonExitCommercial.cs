@@ -142,6 +142,27 @@ public class ButtonExitCommercial : MonoBehaviour
 		SceneManager.LoadScene("ScenePrincipale");
 	}
 
+	public void ExitPoisson()
+	{
+		Gamer1 = new Poissonier("Poissonier");
+		TurnValues = 1;
+		SceneManager.LoadScene("ScenePrincipale");
+	}
+
+	public void ExitBijouterie()
+	{
+		Gamer1 = new Bijouterie("Bijoutier");
+		TurnValues = 1;
+		SceneManager.LoadScene("ScenePrincipale");
+	}
+
+	public void ExitVetement()
+	{
+		Gamer1 = new Pret_a_porter("Prêt à porter");
+		TurnValues = 1;
+		SceneManager.LoadScene("ScenePrincipale");
+	}
+
 	public void ExitCourte()
 	{
 		MaxTurn = 13;

@@ -551,8 +551,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[0]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More1 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More1 += 5;
 		}
 	}
 
@@ -573,8 +573,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[1]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More2 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More2 += 5;
 		}
 	}
 
@@ -595,8 +595,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[2]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More3 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More3 += 5;
 		}
 	}
 
@@ -617,8 +617,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[3]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More4 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More4 += 5;
 		}
 	}
 
@@ -639,8 +639,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[4]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More5 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More5 += 5;
 		}
 	}
 
@@ -661,8 +661,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[5]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More6 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More6 += 5;
 		}
 	}
 
@@ -683,8 +683,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[6]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More7 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More7 += 5;
 		}
 	}
 
@@ -705,8 +705,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[7]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More8 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More8 += 5;
 		}
 	}
 
@@ -727,8 +727,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[8]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More9 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More9 += 5;
 		}
 	}
 
@@ -749,8 +749,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[9]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More10 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More10 += 5;
 		}
 	}
 
@@ -771,8 +771,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[10]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More11 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More11 += 5;
 		}
 	}
 
@@ -793,8 +793,8 @@ public class MoreLess : MonoBehaviour
 		(int i, double j, bool b, double d, int k)= Gamer1._marchandise[res];
 		if (b && Gamer1.AddMoney(-Gamer1.prix[11]*20))
 		{
-			Gamer1._marchandise[res] = (i+20, j, b, d, k);
-			Gamer1.More12 += 20;
+			Gamer1._marchandise[res] = (i+5, j, b, d, k);
+			Gamer1.More12 += 5;
 		}
 	}
 
