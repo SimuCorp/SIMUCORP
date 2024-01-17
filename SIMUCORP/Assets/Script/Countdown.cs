@@ -24,11 +24,6 @@ public class CountdownScript : MonoBehaviour
     {
         if (TimerOn)
         {
-			if (tour != TourCount.TurnValues)
-			{
-                Gamer1.TimeLeft = 100;
-				++tour;
-			}
             if (Gamer1.TimeLeft > 0)
             {
                 Gamer1.TimeLeft -= Time.deltaTime;
@@ -36,7 +31,6 @@ public class CountdownScript : MonoBehaviour
             }
             else
             {
-                Gamer1.TimeLeft = 100;
                 MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
             }
         }

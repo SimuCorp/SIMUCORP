@@ -1,13 +1,17 @@
 using System;
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using static TextGameOver;
 
 
 public class MoneyCount : MonoBehaviour
 {
     public static PlayerClass Gamer1 = new Primeur("Primeur");
+	public static PlayerClass Gamer2 = new Boucherie("Boucher");
     Text MoneyInformation;
     // Start is called before the first frame update
     void Start()
@@ -270,6 +274,7 @@ public class MoneyCount : MonoBehaviour
 			}
 	}
 
+
     public static void CalCulus(PlayerClass gamer, string Button)
     {
         System.Random aleatoire = new System.Random();
@@ -288,15 +293,15 @@ public class MoneyCount : MonoBehaviour
                     key = aleatoire.Next(0, gamer._items.Count);
 					if (gamer._items[key] != "NaN")
 					{
-                    	(int Quantity, double price, bool possible, double promo, int tour) = gamer._marchandise[gamer._items[key]];
+                    	(int Quantity, double price, bool possible, double quali, int tour) = gamer._marchandise[gamer._items[key]];
 						if (Quantity > 0)
 						{
-                    		gamer._marchandise[gamer._items[key]] = (--Quantity, price, possible, promo, tour);
+                    		gamer._marchandise[gamer._items[key]] = (--Quantity, price, possible, quali, tour);
 							RemovePerime(gamer, key);
 							if (gamer.promo)
-								sum += price*0.8;
+								sum += price*0.8 + 0.1*price*(quali-1);
 							else
-                    			sum += price;
+                    			sum += price + 0.1*price*(quali-1);
 						}
 					}
                 }
@@ -305,13 +310,26 @@ public class MoneyCount : MonoBehaviour
 				Perime(gamer, i);
             gamer.AddMoney(sum);
 			gamer._mounth += sum;
-            TourCount.AddTurn(Button);
             gamer._turn = true;
-			if (TourCount.TurnValues % 4 == 1)
+			bool b = false;
+			if (TourCount.TurnValues % 4 == 0)
 			{
-				gamer.AddMoney(-gamer._mounth/4);
-				gamer._mounth = 0;
+				b = (!gamer.AddMoney(-gamer._mounth/4) || !gamer.AddMoney(-gamer._stat["Employé"]*gamer._stat["Salaire"]));
+				if (b)
+				{
+					SceneManager.LoadScene("GameOver");
+				}
+				else
+					gamer._mounth = 0;
 			}
+			TourCount.AddTurn(Button);
+			gamer.TimeLeft = 100;
+			if (TourCount.TurnValues > TourCount.MaxTurn || b)
+			{
+				SceneManager.LoadScene("GameOver");
+			}
+			else
+				SceneManager.LoadScene("ScenePrincipale");
         }
     }
 }

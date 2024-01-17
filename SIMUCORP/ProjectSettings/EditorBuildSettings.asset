@@ -77,5 +77,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ChoixTour.unity
     guid: 7c91a0e87d13d6346b28c876cbc2fd62
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: c6dc414a04976be458da0d43eb269771
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9eed0b7dfdc720e42b584fd635d534e5, type: 2}
