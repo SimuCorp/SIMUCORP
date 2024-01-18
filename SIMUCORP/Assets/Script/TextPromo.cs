@@ -20,5 +20,6 @@ public class TextPromo : MonoBehaviour
             TextPro.text = "Promotion\n\nEn cours";
         else
             TextPro.text = "Promotion\n\nEn attente";
+
     }
 }

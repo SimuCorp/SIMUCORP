@@ -286,7 +286,7 @@ public class MoneyCount : MonoBehaviour
         double sum = 0;
         if (gamer._turn)
         {
-            for (int i = 0; i < nb_client; ++i)
+            for (int i = 0; i < nb_client*(1+gamer._stat["Magasin"]); ++i)
             {
 
                 if (aleatoire.Next(0, 101) < attractive)

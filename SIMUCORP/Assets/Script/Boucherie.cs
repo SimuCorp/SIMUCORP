@@ -8,12 +8,12 @@ public class Boucherie : PlayerClass
     {
         _marchandise = new Dictionary<string, (int, double, bool, double, int)>()
         {
-            { "Steak Haché", (500, 3.30, true, 1, 3) },
-            { "Saucisson", (500, 6.65, true, 1, 3) },
-            { "Ailes de poulet", (500, 2.95, true, 1, 3) },
-            { "Saucisses", (500, 6.81, true, 1, 3) },
-            { "Echine de porc", (500, 10.97, true, 1, 3) },
-            { "Brechet de poulet", (500, 2.08, true, 1, 3) },
+            { "Steak Haché", (300, 3.30, true, 1, 3) },
+            { "Saucisson", (300, 6.65, true, 1, 3) },
+            { "Ailes de poulet", (300, 2.95, true, 1, 3) },
+            { "Saucisses", (300, 6.81, true, 1, 3) },
+            { "Echine de porc", (300, 10.97, true, 1, 3) },
+            { "Brechet de poulet", (300, 2.08, true, 1, 3) },
             { "Rôti de boeuf", (0, 14.66, false, 1, 3) },
             { "Poulet Rôti", (0, 12.50, false, 1, 3) },
             { "Merguez", (0, 4.16, false, 1, 3) },
@@ -24,8 +24,8 @@ public class Boucherie : PlayerClass
         _stat = new Dictionary<string, double>()
         {
             { "Qualité", 60 },
-            { "Attracivité", 30 },
-            { "Clientèle", 3000 },
+            { "Attracivité", 20 },
+            { "Clientèle", 1700 },
             { "Panier", 25 },
             { "Employé", 0 },
             { "Salaire", 1399 },
@@ -37,12 +37,12 @@ public class Boucherie : PlayerClass
         _missingitems = new List<string> { "Rôti de boeuf", "Poulet Rôti", "Merguez", "Lapin", "Sanglier", "Popiette"};
         materiel = new List<string> { "tableau de promotion", "rotissoire", "couteaux", "nouvelles viandes" };
         prix = new List<double> {2.20, 4.43, 1.97, 4.54, 7.31, 1.39, 9.77, 8.33, 2.77, 4.33, 4.44, 3.85};
-		Perime1 = new List<int> {500};
-		Perime2 = new List<int> {500};
-		Perime3 = new List<int> {500};
-		Perime4 = new List<int> {500};
-		Perime5 = new List<int> {500};
-		Perime6 = new List<int> {500};
+		Perime1 = new List<int> {300};
+		Perime2 = new List<int> {300};
+		Perime3 = new List<int> {300};
+		Perime4 = new List<int> {300};
+		Perime5 = new List<int> {300};
+		Perime6 = new List<int> {300};
 		Perime7 = new List<int> {0};
 		Perime8 = new List<int> {0};
 		Perime9 = new List<int> {0};

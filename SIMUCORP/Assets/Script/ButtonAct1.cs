@@ -11,18 +11,23 @@ public class ButtonAct1 : MonoBehaviour
     
     public void DoAct1()
     {
-        PlayerClass gamer = Gamer1;
-        System.Random aleatoire = new System.Random();
-        int key = aleatoire.Next(0, gamer._items.Count);
-        gamer.promo = !gamer.promo;
-		if (gamer.promo)
-			gamer._stat["Attracivité"] += 25;
-		else
-			gamer._stat["Attracivité"] -= 25;
+		if (Gamer1.materiel[0] == "done")
+        {
+			Gamer1.promo = !Gamer1.promo;
+			if (Gamer1.promo)
+				Gamer1._stat["Attracivité"] *= 1.33;
+			else
+				Gamer1._stat["Attracivité"] /= 1.33;
+		}
     }
 
     public void DoAct12()
     {
+		if (Gamer1._stat["Employé"] > TextEmploye.n)
+		{
+			if (!Gamer1.AddMoney(-700*(Gamer1._stat["Employé"] - TextEmploye.n)))
+				SceneManager.LoadScene("GameOver");
+		}
         Gamer1._stat["Employé"] = TextEmploye.n;
     }
 	

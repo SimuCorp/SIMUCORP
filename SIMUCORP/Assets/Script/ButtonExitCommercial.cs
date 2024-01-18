@@ -163,6 +163,13 @@ public class ButtonExitCommercial : MonoBehaviour
 		SceneManager.LoadScene("ScenePrincipale");
 	}
 
+	public void ExitFleur()
+	{
+		Gamer1 = new Fleuriste("Fleuriste");
+		TurnValues = 1;
+		SceneManager.LoadScene("ScenePrincipale");
+	}
+
 	public void ExitCourte()
 	{
 		MaxTurn = 13;

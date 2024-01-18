@@ -8,12 +8,12 @@ public class Libraire : PlayerClass
     {
         _marchandise = new Dictionary<string, (int, double, bool, double, int)>()
         {
-            { "Livre de Fantaisie", (500, 7.70, true, 1, 500) },
-            { "Manga", (500, 6.66, true, 1, 500) },
-            { "Livre de Poche", (500, 1.80, true, 1, 500) },
-            { "Roman Policier", (500, 6.81, true, 1, 500) },
-            { "Roman Science Fiction", (500, 8.32, true, 1, 500) },
-            { "Nouvelle", (500, 2.08, true, 1, 500) },
+            { "Livre de Fantaisie", (200, 7.70, true, 1, 500) },
+            { "Manga", (200, 6.66, true, 1, 500) },
+            { "Livre de Poche", (200, 1.80, true, 1, 500) },
+            { "Roman Policier", (200, 6.81, true, 1, 500) },
+            { "Roman Science Fiction", (200, 8.32, true, 1, 500) },
+            { "Nouvelle", (200, 2.08, true, 1, 500) },
             { "Encyclopédie", (0, 15.54, false, 1, 0) },
             { "Livre Dédicacé", (0, 12.50, false, 1, 0) },
             { "Bande Dessinée", (0, 6.54, false, 1, 0) },
@@ -37,12 +37,12 @@ public class Libraire : PlayerClass
         _missingitems = new List<string> { "Encyclopédie", "Livre Dédicacé", "Bande Dessinée", "Saga Fantastique", "Roman Horreur", "Edition Collector"};
         materiel = new List<string> { "tableau de promotion", "Etagère verticale", "Etagère horizontale", "nouveaux livres" };
         prix = new List<double> {5.13, 4.44, 1.20, 4.54, 5.55, 1.39, 10.36, 8.33, 4.36, 16.66, 4.44, 8.43};
-		Perime1 = new List<int> {500};
-		Perime2 = new List<int> {500};
-		Perime3 = new List<int> {500};
-		Perime4 = new List<int> {500};
-		Perime5 = new List<int> {500};
-		Perime6 = new List<int> {500};
+		Perime1 = new List<int> {200};
+		Perime2 = new List<int> {200};
+		Perime3 = new List<int> {200};
+		Perime4 = new List<int> {200};
+		Perime5 = new List<int> {200};
+		Perime6 = new List<int> {200};
 		Perime7 = new List<int> {0};
 		Perime8 = new List<int> {0};
 		Perime9 = new List<int> {0};

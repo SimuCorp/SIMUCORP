@@ -8,12 +8,12 @@ public class Primeur : PlayerClass
 	{
 		_marchandise = new Dictionary<string, (int, double, bool, double, int)>()
 		{
-			{ "Tomate", (500, 0.33, true, 1, 3) },
-			{ "Pomme", (500, 1.49, true, 1, 3) },
-			{ "Salade", (500, 1.22, true, 1, 3) },
-			{ "Carotte", (500, 2.13, true, 1, 3) },
-			{ "Oignon", (500, 1.69, true, 1, 3) },
-			{ "Betterave", (500, 1.83, true, 1, 3) },
+			{ "Tomate", (300, 0.33, true, 1, 3) },
+			{ "Pomme", (300, 1.49, true, 1, 3) },
+			{ "Salade", (300, 1.22, true, 1, 3) },
+			{ "Carotte", (300, 2.13, true, 1, 3) },
+			{ "Oignon", (300, 1.69, true, 1, 3) },
+			{ "Betterave", (300, 1.83, true, 1, 3) },
 			{ "Petits Pois", (0, 3.29, false, 1, 3) },
 			{ "Pomme de terre", (0, 1.20, false, 1, 3) },
 			{ "Navet", (0, 1.98, false, 1, 3) },
@@ -37,12 +37,12 @@ public class Primeur : PlayerClass
 		_missingitems = new List<string> { "Petits Pois", "Pomme de terre", "Navet", "Abricot", "Fraise", "Pasteque"};
 		materiel = new List<string> { "tableau de promotion", "étalage fruit", "étalage légume", "nouveaux fruits et légumes" };
 		prix = new List<double> {0.22, 1.0, 0.81, 1.42, 1.13, 1.22, 2.19, 0.80, 1.32, 2.61, 7.33, 3.85};
-		Perime1 = new List<int> {500};
-		Perime2 = new List<int> {500};
-		Perime3 = new List<int> {500};
-		Perime4 = new List<int> {500};
-		Perime5 = new List<int> {500};
-		Perime6 = new List<int> {500};
+		Perime1 = new List<int> {300};
+		Perime2 = new List<int> {300};
+		Perime3 = new List<int> {300};
+		Perime4 = new List<int> {300};
+		Perime5 = new List<int> {300};
+		Perime6 = new List<int> {300};
 		Perime7 = new List<int> {0};
 		Perime8 = new List<int> {0};
 		Perime9 = new List<int> {0};
