@@ -11,7 +11,7 @@ public class ButtonAct3 : MonoBehaviour
     public void DoAct3()
     {
 		PlayerClass gamer = Gamer1;
-        gamer._stat["Attracivité"] += 0.1;
+        gamer._stat["Attracivité"] += 0.5;
         gamer.AddMoney(-100);
     }
 

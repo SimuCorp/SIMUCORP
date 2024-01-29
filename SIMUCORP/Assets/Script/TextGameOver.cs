@@ -18,14 +18,14 @@ public class TextGameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TourCount.TurnValues <= TourCount.MaxTurn || Gamer1._money < Gamer2._money)
-            GameOver.text = "Vous avez perdu";
+        if (Gamer1._money < Gamer2._money)
+            GameOver.text = "Joueur2 a gagné";
         else 
         {
             if (Gamer1._money == Gamer2._money)
                 GameOver.text = "Egalité";
             else
-                GameOver.text = "Vous avez gagné";
+                GameOver.text = "Joueur1 a gagné";
         }
     }
 

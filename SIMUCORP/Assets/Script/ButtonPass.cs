@@ -8,12 +8,13 @@ public class ButtonPass : MonoBehaviour
 {
     public void DoButtonPass(string str, PlayerClass gamer)
     {
-        Action1.ChangeAction1(str, gamer);
-        Action2.ChangeAction2(str, gamer);
-        Action3.ChangeAction3(str, gamer);
-        Action4.ChangeAction4(str, gamer);
-        CalCulus(gamer, str);
-		CountdownScript.UpdateTimeButton(gamer);
+        gamer._button = false;
+        if (Gamer1._button == Gamer2._button)
+        {
+            CalCulus(gamer, str);
+            CalCulus(Gamer2, str);
+            CountdownScript.UpdateTimeButton(gamer);
+        }
     }
 	[SerializeField]
     // Start is called before the first frame update

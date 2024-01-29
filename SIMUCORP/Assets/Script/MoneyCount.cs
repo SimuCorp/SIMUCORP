@@ -13,6 +13,8 @@ public class MoneyCount : MonoBehaviour
     public static PlayerClass Gamer1 = new Primeur("Primeur");
 	public static PlayerClass Gamer2 = new Boucherie("Boucher");
 	public static Evenement evenement = new Evenement();
+	public static bool multijoueur = false;
+	public static IntelligenceArtificielle AI = new IntelligenceArtificielle();
     Text MoneyInformation;
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime1[0];
 						gamer.Perime1.RemoveAt(0);
 					}
+					gamer.More1 = 0;
 				  	break;
 				case 1:
 					gamer.Perime2.Add(gamer.More2);
@@ -49,6 +52,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime2[0];
 						gamer.Perime2.RemoveAt(0);
 					}
+					gamer.More2 = 0;
 					break;
 				case 2:
 					gamer.Perime3.Add(gamer.More3);
@@ -57,6 +61,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime3[0];
 						gamer.Perime3.RemoveAt(0);
 					}
+					gamer.More3 = 0;
 					break;
 				case 3:
 					gamer.Perime4.Add(gamer.More4);
@@ -65,6 +70,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime4[0];
 						gamer.Perime4.RemoveAt(0);
 					}
+					gamer.More4 = 0;
 					break;
 				case 4:
 					gamer.Perime5.Add(gamer.More5);
@@ -73,6 +79,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime5[0];
 						gamer.Perime5.RemoveAt(0);
 					}
+					gamer.More5 = 0;
 					break;
 				case 5:
 					gamer.Perime6.Add(gamer.More6);
@@ -81,6 +88,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime6[0];
 						gamer.Perime6.RemoveAt(0);
 					}
+					gamer.More6 = 0;
 					break;
 				case 6:
 					gamer.Perime7.Add(gamer.More7);
@@ -89,6 +97,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime7[0];
 						gamer.Perime7.RemoveAt(0);
 					}
+					gamer.More7 = 0;
 					break;
 				case 7:
 					gamer.Perime8.Add(gamer.More8);
@@ -97,6 +106,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime8[0];
 						gamer.Perime8.RemoveAt(0);
 					}
+					gamer.More8 = 0;
 					break;
 				case 8:
 					gamer.Perime9.Add(gamer.More9);
@@ -105,6 +115,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime9[0];
 						gamer.Perime9.RemoveAt(0);
 					}
+					gamer.More9 = 0;
 					break;
 				case 9:
 					gamer.Perime10.Add(gamer.More10);
@@ -113,6 +124,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime10[0];
 						gamer.Perime10.RemoveAt(0);
 					}
+					gamer.More10 = 0;
 					break;
 				case 10:
 					gamer.Perime11.Add(gamer.More11);
@@ -121,6 +133,7 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime11[0];
 						gamer.Perime11.RemoveAt(0);
 					}
+					gamer.More11 = 0;
 					break;
 				case 11:
 				  	gamer.Perime12.Add(gamer.More12);
@@ -129,9 +142,13 @@ public class MoneyCount : MonoBehaviour
 						j = gamer.Perime12[0];
 						gamer.Perime12.RemoveAt(0);
 					}
+					gamer.More12 = 0;
 					break;
 			}
-			gamer._marchandise[gamer._items[key]] = (Quantity-j, price, possible, promo, tour);
+			Quantity -= j;
+			if (Quantity < 0)
+				Quantity = 0;
+			gamer._marchandise[gamer._items[key]] = (Quantity, price, possible, promo, tour);
 		
 		}
 	}
@@ -286,7 +303,8 @@ public class MoneyCount : MonoBehaviour
         double sum = 0;
         if (gamer._turn)
         {
-            for (int i = 0; i < nb_client*(1+gamer._stat["Magasin"]); ++i)
+			gamer._turn = false;
+            for (int i = 0; i < nb_client*(gamer._stat["Magasin"]); ++i)
             {
 
                 if (aleatoire.Next(0, 101) < attractive)
@@ -319,10 +337,11 @@ public class MoneyCount : MonoBehaviour
 				Perime(gamer, i);
             gamer.AddMoney(sum);
 			gamer._mounth += sum;
-            gamer._turn = true;
 			bool b = false;
 			if (TourCount.TurnValues % 4 == 0)
 			{
+				if (gamer._mounth < 4000)
+					gamer._mounth = 4000;
 				b = (!gamer.AddMoney(-gamer._mounth/4) || !gamer.AddMoney(-gamer._stat["Employé"]*gamer._stat["Salaire"]));
 				if (b)
 				{
@@ -331,7 +350,13 @@ public class MoneyCount : MonoBehaviour
 				else
 					gamer._mounth = 0;
 			}
-			TourCount.AddTurn(Button);
+			if (Gamer1._turn == Gamer2._turn)
+			{
+				TourCount.AddTurn(Button);
+				Gamer1._turn = true;
+				Gamer2._turn = true;
+				AI.Act10();
+			}
 			gamer.TimeLeft = 100;
 			if (TourCount.TurnValues > TourCount.MaxTurn || b)
 			{

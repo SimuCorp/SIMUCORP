@@ -6,7 +6,7 @@ using UnityEngine;
 using Random = System.Random;
 
 
-public class Evenement : MonoBehaviour
+public class Evenement 
 {
     public Dictionary<string,(double,double,double)> _event { get; set; }//nom evenement ; multiplicateur de bénéfice ; multiplicateur d'attractivité ; chance d'apparition;
     public List<string> _eventComing { get; set; } // nom des évènements à venir;
