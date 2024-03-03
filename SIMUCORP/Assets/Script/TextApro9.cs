@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Mirror;
 using static MoneyCount;
 
-public class TextApro9 : MonoBehaviour
+public class TextApro9 : NetworkBehaviour 
 {
     public TextMeshProUGUI Apro9;
     
@@ -20,7 +21,12 @@ public class TextApro9 : MonoBehaviour
     {
         int i = 1;
         string res = "";
-        foreach (string s in Gamer1._marchandise.Keys)
+        PlayerClass g;
+        if (this.isServer)
+            g = Gamer1;
+        else
+            g = Gamer2;
+        foreach (string s in g._marchandise.Keys)
         {
             if (i == 9)
             {
@@ -31,8 +37,8 @@ public class TextApro9 : MonoBehaviour
             ++i;
         }
 
-        (int j, double d, bool b, double st, int l) = Gamer1._marchandise[res];
+        (int j, double d, bool b, double st, int l) = g._marchandise[res];
         Apro9.text = $"{res}\n\n{j}";
-        Gamer1._marchandise[res] = (j, d, b, st, l);
+        g._marchandise[res] = (j, d, b, st, l);
     }
 }

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Mirror;
 using static MoneyCount;
 using static TourCount;
-public class ButtonExitCommercial : MonoBehaviour
+public class ButtonExitCommercial : NetworkBehaviour 
 {
 
     public void Exit()
@@ -116,58 +117,138 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void ExitPrimeur()
 	{
-		Gamer1 = new Primeur("Primeur");
-		TurnValues = 1;
-		SceneManager.LoadScene("ScenePrincipale");
+		if (this.isServer)
+		{
+			Gamer1 = new Primeur("Primeur");
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Primeur("Primeur");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}	
 	}
 
 	public void ExitBoucherie()
 	{
-		Gamer1 = new Boucherie("Boucher");
-		TurnValues = 1;
-		SceneManager.LoadScene("ScenePrincipale");
+		if (this.isServer)
+		{
+			Gamer1 = new Boucherie("Boucher");
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Boucherie("Boucher");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
 	}
 
 	public void ExitLibraire()
 	{
-		Gamer1 = new Libraire("Libraire");
-		TurnValues = 1;
-		SceneManager.LoadScene("ScenePrincipale");
+		if (this.isServer)
+		{
+			Gamer1 = new Libraire("Libraire");
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Libraire("Libraire");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
 	}
 
 	public void ExitCoiffeur()
 	{
-		Gamer1 = new Coiffeur("Coiffeur");
-		TurnValues = 1;
-		SceneManager.LoadScene("ScenePrincipale");
+		if (this.isServer)
+		{
+			Gamer1 = new Coiffeur("Coiffeur");
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Coiffeur("Coiffeur");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
 	}
 
 	public void ExitPoisson()
 	{
-		Gamer1 = new Poissonier("Poissonier");
-		TurnValues = 1;
-		SceneManager.LoadScene("ScenePrincipale");
+		if (this.isServer)
+		{
+			Gamer1 = new Poissonier("Poissonier");
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Poissonier("Poissonier");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
 	}
 
 	public void ExitBijouterie()
 	{
-		Gamer1 = new Bijouterie("Bijoutier");
-		TurnValues = 1;
-		SceneManager.LoadScene("ScenePrincipale");
+		if (this.isServer)
+		{
+			Gamer1 = new Bijouterie("Bijoutier");
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Bijouterie("Bijoutier");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
 	}
 
 	public void ExitVetement()
 	{
-		Gamer1 = new Pret_a_porter("Prêt à porter");
-		TurnValues = 1;
-		SceneManager.LoadScene("ScenePrincipale");
+		if (this.isServer)
+		{
+			Gamer1 = new Pret_a_porter("Prêt à porter");
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Pret_a_porter("Prêt à porter");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
 	}
 
 	public void ExitFleur()
 	{
-		Gamer1 = new Fleuriste("Fleuriste");
-		TurnValues = 1;
-		SceneManager.LoadScene("ScenePrincipale");
+		if (this.isServer)
+		{
+			Gamer1 = new Fleuriste("Fleuriste");
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Fleuriste("Fleuriste");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale");
+		}
 	}
 
 	public void ExitCourte()

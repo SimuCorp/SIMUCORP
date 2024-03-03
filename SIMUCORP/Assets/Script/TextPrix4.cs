@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Mirror;
 using static MoneyCount;
 
-public class TextPrix4 : MonoBehaviour
+public class TextPrix4 : NetworkBehaviour 
 {
     public TextMeshProUGUI Prix4;
     
@@ -20,7 +21,12 @@ public class TextPrix4 : MonoBehaviour
     {
         int i = 1;
         string res = "";
-        foreach (string s in Gamer1._marchandise.Keys)
+        PlayerClass g;
+        if (this.isServer)
+            g = Gamer1;
+        else
+            g = Gamer2;
+        foreach (string s in g._marchandise.Keys)
         {
             if (i == 4)
             {
@@ -31,7 +37,7 @@ public class TextPrix4 : MonoBehaviour
             ++i;
         }
 
-        (_, double j, _, _, _) = Gamer1._marchandise[res];
+        (_, double j, _, _, _) = g._marchandise[res];
         Prix4.text = $"{res}\n\n{j}";
     }
 }

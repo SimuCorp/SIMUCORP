@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerClass
+public class PlayerClass : MonoBehaviour
 {
     public string _name { get; }
     public Dictionary<string, (int, double, bool, double, int)> _marchandise { get; set; } // Quantity; price; possible; level; turn
@@ -49,7 +49,6 @@ public class PlayerClass
 	public int More12 {get; set;}
 	
 	public float TimeLeft { get; set; }
-
 
     public PlayerClass(string name)
     {

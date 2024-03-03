@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Mirror;
 using static MoneyCount;
-public class TextMateriel4 : MonoBehaviour
+public class TextMateriel4 : NetworkBehaviour 
 {
     public TextMeshProUGUI Text4;
     
@@ -17,7 +18,12 @@ public class TextMateriel4 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string res = Gamer1.materiel[3];
+        PlayerClass g;
+        if (this.isServer)
+            g = Gamer1;
+        else
+            g = Gamer2;
+        string res = g.materiel[3];
         Text4.text = res;
     }
 }

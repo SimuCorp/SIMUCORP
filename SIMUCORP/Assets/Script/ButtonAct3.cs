@@ -2,34 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 using static MoneyCount;
 using static TextMagasin;
 
-public class ButtonAct3 : MonoBehaviour
-{
-    
+public class ButtonAct3 : NetworkBehaviour 
+{   
     public void DoAct3()
     {
-		PlayerClass gamer = Gamer1;
+        PlayerClass gamer;
+        if (isServer)
+            gamer = Gamer1;
+        else
+            gamer = Gamer2;
         gamer._stat["Attracivité"] += 0.5;
         gamer.AddMoney(-100);
     }
 
     public void DoAct32()
     {
+        PlayerClass gamer;
+        if (isServer)
+            gamer = Gamer1;
+        else
+            gamer = Gamer2;
         double n = TextMagasin.n;
-        double n1 = Gamer1._stat["Magasin"];
+        double n1 = gamer._stat["Magasin"];
         bool b = true;
-        if (TextMagasin.n - 1 <= Gamer1._stat["Employé"])
+        if (TextMagasin.n - 1 <= gamer._stat["Employé"])
         {
             if (n1 - n > 0)
-                b = Gamer1.AddMoney(2500 * (n1 - n));
+                b = gamer.AddMoney(2500 * (n1 - n));
             else if (n1 - n < 0)
-                b = Gamer1.AddMoney(5000 * (n1 - n));
+                b = gamer.AddMoney(5000 * (n1 - n));
             if (b)
-                Gamer1._stat["Magasin"] = n;
+                gamer._stat["Magasin"] = n;
             else
-                TextMagasin.n = Gamer1._stat["Magasin"];
+                TextMagasin.n = gamer._stat["Magasin"];
         }
     }
     

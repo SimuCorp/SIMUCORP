@@ -3,33 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Mirror;
 using static MoneyCount;
 using static TextEmploye;
 
-public class ButtonAct1 : MonoBehaviour
+public class ButtonAct1 : NetworkBehaviour 
 {
     
-    public void DoAct1()
-    {
-		if (Gamer1.materiel[0] == "done")
-        {
-			Gamer1.promo = !Gamer1.promo;
-			if (Gamer1.promo)
-				Gamer1._stat["Attracivité"] *= 1.33;
-			else
-				Gamer1._stat["Attracivité"] /= 1.33;
-		}
-    }
-
-    public void DoAct12()
-    {
-		if (Gamer1._stat["Employé"] > TextEmploye.n)
+	public void DoAct1()
+	{
+		PlayerClass gamer;
+		if (isServer)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		if (gamer.materiel[0] == "done")
 		{
-			if (!Gamer1.AddMoney(-700*(Gamer1._stat["Employé"] - TextEmploye.n)))
+			gamer.promo = !gamer.promo;
+			if (gamer.promo)
+				gamer._stat["Attracivité"] *= 1.33;
+			else
+				gamer._stat["Attracivité"] /= 1.33;
+		}
+	}
+
+	public void DoAct12()
+	{
+		PlayerClass gamer;
+		if (isServer)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		if (gamer._stat["Employé"] > TextEmploye.n)
+		{
+			if (!gamer.AddMoney(-700*(gamer._stat["Employé"] - TextEmploye.n)))
 				SceneManager.LoadScene("GameOver");
 		}
-        Gamer1._stat["Employé"] = TextEmploye.n;
-    }
+		gamer._stat["Employé"] = TextEmploye.n;
+	}
 	
 	public void DoAct13()
 	{
