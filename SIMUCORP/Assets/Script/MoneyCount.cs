@@ -346,7 +346,7 @@ public class MoneyCount : MonoBehaviour
 				b = (!gamer.AddMoney(-gamer._mounth/4) || !gamer.AddMoney(-gamer._stat["Employé"]*gamer._stat["Salaire"]));
 				if (b)
 				{
-					SceneManager.LoadScene("GameOver");
+					SceneManager.LoadScene("GameOver",  LoadSceneMode.Additive);
 				}
 				else
 					gamer._mounth = 0;
@@ -361,10 +361,10 @@ public class MoneyCount : MonoBehaviour
 			gamer.TimeLeft = 100;
 			if (TourCount.TurnValues > TourCount.MaxTurn || b)
 			{
-				SceneManager.LoadScene("GameOver");
+				SceneManager.LoadScene("GameOver",  LoadSceneMode.Additive);
 			}
 			else
-				SceneManager.LoadScene("ScenePrincipale");
+				SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
         }
     }
 }

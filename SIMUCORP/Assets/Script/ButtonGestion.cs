@@ -12,7 +12,7 @@ public class ButtonGestion : MonoBehaviour
     void Start()
     {
         string temp = gameObject.name;
-        gameObject.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("ActionGestion"));
+        gameObject.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("ActionGestion",  LoadSceneMode.Additive));
     }
     
 }

@@ -9,7 +9,7 @@ public class ButtonCommercial : MonoBehaviour
 
 	public void DoButtonCommercial()
 	{
-		SceneManager.LoadScene("ActionCommercial");
+		SceneManager.LoadScene("ActionCommercial",  LoadSceneMode.Additive);
 	}
     // Start is called before the first frame update
     [SerializeField]
