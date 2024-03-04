@@ -8,7 +8,7 @@ using static MoneyCount;
 public class CountdownScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static float ButtonLeft = 3;
+    public static float ButtonLeft = 1;
     public bool TimerOn = false;
     Text Countdown;
 	public int tour = 1;
@@ -39,7 +39,7 @@ public class CountdownScript : MonoBehaviour
     void UpdateTimer(float currentTime)
     {
         currentTime -= 1;
-        Countdown.text = $"{(int)Gamer1.TimeLeft}";
+        Countdown.text = $"{(int)(Gamer1.TimeLeft/Gamer1.nbCount)}";
     }
 
     public static void UpdateTimeButton(PlayerClass gamer)

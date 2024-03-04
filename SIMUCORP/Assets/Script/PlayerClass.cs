@@ -49,6 +49,7 @@ public class PlayerClass : MonoBehaviour
 	public int More12 {get; set;}
 	
 	public float TimeLeft { get; set; }
+	public float nbCount {get; set;}
 
     public PlayerClass(string name)
     {
@@ -76,6 +77,7 @@ public class PlayerClass : MonoBehaviour
 		More12 = 0;
 
 		TimeLeft = 100;
+		nbCount = 1;
     }
     
     public bool AddMoney(double sum)

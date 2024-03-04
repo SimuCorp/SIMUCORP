@@ -353,18 +353,22 @@ public class MoneyCount : MonoBehaviour
 			}
 			if (Gamer1._turn == Gamer2._turn)
 			{
+				Gamer1.TimeLeft = 100*Gamer1.nbCount;
 				TourCount.AddTurn(Button);
 				Gamer1._turn = true;
 				Gamer2._turn = true;
 				AI.Act10();
 			}
-			gamer.TimeLeft = 100;
 			if (TourCount.TurnValues > TourCount.MaxTurn || b)
 			{
 				SceneManager.LoadScene("GameOver",  LoadSceneMode.Additive);
 			}
 			else
-				SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+				{
+					Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
+					++Gamer1.nbCount;
+					SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+				}
         }
     }
 }

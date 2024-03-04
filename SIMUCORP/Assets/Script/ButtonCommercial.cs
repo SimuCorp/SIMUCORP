@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static MoneyCount;
+using static ButtonExitCommercial;
 public class ButtonCommercial : MonoBehaviour
 {
 
 	public void DoButtonCommercial()
 	{
+        Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
+        ++Gamer1.nbCount;
 		SceneManager.LoadScene("ActionCommercial",  LoadSceneMode.Additive);
 	}
     // Start is called before the first frame update
