@@ -10,7 +10,7 @@ public class AfficheEvent : MonoBehaviour
 {
     private static bool rentre;
 
-    public Text texte;
+    Text texte;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,20 +21,20 @@ public class AfficheEvent : MonoBehaviour
 
     IEnumerator attend()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(50);
         texte.text = "";
     }
 
     // Update is called once per frame
-    public void Affiche(Text texte)
+    public void Affiche()
     {
         if (TourCount.TurnValues % 4 == 1 && TourCount.TurnValues != 1)
         {
             if (rentre)
             {
-                texte.text = evenement._eventComing[TourCount.TurnValues/4-1];
-                rentre = false;
-                StartCoroutine("attend");
+                texte.text = MoneyCount.evenement._eventComing[TourCount.TurnValues/4-1];
+                rentre = true; 
+                //StartCoroutine("attend");
             }
             
         }
@@ -45,9 +45,9 @@ public class AfficheEvent : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
-        Affiche(texte);
+        Affiche();
     }
 }
 

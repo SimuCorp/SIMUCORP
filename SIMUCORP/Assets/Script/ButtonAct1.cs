@@ -37,14 +37,14 @@ public class ButtonAct1 : NetworkBehaviour
 		if (gamer._stat["Employé"] > TextEmploye.n)
 		{
 			if (!gamer.AddMoney(-700*(gamer._stat["Employé"] - TextEmploye.n)))
-				SceneManager.LoadScene("GameOver");
+				SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
 		}
 		gamer._stat["Employé"] = TextEmploye.n;
 	}
 	
 	public void DoAct13()
 	{
-		SceneManager.LoadScene("ActionPrix1");
+		SceneManager.LoadScene("ActionPrix1", LoadSceneMode.Additive);
 	}
 	public void Prix1()
 	{

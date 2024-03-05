@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Mirror;
 using static MoneyCount;
 using static TourCount;
+using static IntelligenceArtificielle;
 public class ButtonExitCommercial : NetworkBehaviour 
 {
 	public static bool changement = false;
@@ -139,22 +140,16 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitAccueil()
 	{
-		Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-        ++Gamer1.nbCount;
 		SceneManager.LoadScene("ChoixTour", LoadSceneMode.Additive);
 	}
 
 	public void Simple()
 	{
-		Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-        ++Gamer1.nbCount;
 		SceneManager.LoadScene("NonPerissable",  LoadSceneMode.Additive);
 	}
 
 	public void Difficile()
 	{
-		Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-        ++Gamer1.nbCount;
 		SceneManager.LoadScene("Perissable",  LoadSceneMode.Additive);
 	}
 
@@ -163,9 +158,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 		if (this.isServer)
 		{
 			Gamer1 = new Primeur("Primeur");
+			if (!(multijoueur))
+				{
+					Gamer2 = new Boucherie("Boucher");
+					new IntelligenceArtificielle();
+				}
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -173,8 +171,6 @@ public class ButtonExitCommercial : NetworkBehaviour
 			Gamer2 = new Primeur("Primeur");
 			multijoueur = true;
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}	
 	}
@@ -184,9 +180,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 		if (this.isServer)
 		{
 			Gamer1 = new Boucherie("Boucher");
+			if (!(multijoueur))
+				{
+					Gamer2 = new Boucherie("Boucher");
+					new IntelligenceArtificielle();
+				}
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -194,8 +193,6 @@ public class ButtonExitCommercial : NetworkBehaviour
 			Gamer2 = new Boucherie("Boucher");
 			multijoueur = true;
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 	}
@@ -205,9 +202,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 		if (this.isServer)
 		{
 			Gamer1 = new Libraire("Libraire");
+			if (!(multijoueur))
+				{
+					Gamer2 = new Boucherie("Boucher");
+					new IntelligenceArtificielle();
+				}
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -215,8 +215,6 @@ public class ButtonExitCommercial : NetworkBehaviour
 			Gamer2 = new Libraire("Libraire");
 			multijoueur = true;
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 	}
@@ -226,9 +224,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 		if (this.isServer)
 		{
 			Gamer1 = new Coiffeur("Coiffeur");
+			if (!(multijoueur))
+				{
+					Gamer2 = new Boucherie("Boucher");
+					new IntelligenceArtificielle();
+				}
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -236,8 +237,6 @@ public class ButtonExitCommercial : NetworkBehaviour
 			Gamer2 = new Coiffeur("Coiffeur");
 			multijoueur = true;
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 	}
@@ -247,9 +246,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 		if (this.isServer)
 		{
 			Gamer1 = new Poissonier("Poissonier");
+			if (!(multijoueur))
+				{
+					Gamer2 = new Boucherie("Boucher");
+					new IntelligenceArtificielle();
+				}
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -257,8 +259,6 @@ public class ButtonExitCommercial : NetworkBehaviour
 			Gamer2 = new Poissonier("Poissonier");
 			multijoueur = true;
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 	}
@@ -268,9 +268,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 		if (this.isServer)
 		{
 			Gamer1 = new Bijouterie("Bijoutier");
+			if (!(multijoueur))
+				{
+					Gamer2 = new Boucherie("Boucher");
+					new IntelligenceArtificielle();
+				}
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -278,8 +281,6 @@ public class ButtonExitCommercial : NetworkBehaviour
 			Gamer2 = new Bijouterie("Bijoutier");
 			multijoueur = true;
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 	}
@@ -289,9 +290,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 		if (this.isServer)
 		{
 			Gamer1 = new Pret_a_porter("Prêt à porter");
+			if (!(multijoueur))
+				{
+					Gamer2 = new Boucherie("Boucher");
+					new IntelligenceArtificielle();
+				}
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -299,8 +303,6 @@ public class ButtonExitCommercial : NetworkBehaviour
 			Gamer2 = new Pret_a_porter("Prêt à porter");
 			multijoueur = true;
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 	}
@@ -310,9 +312,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 		if (this.isServer)
 		{
 			Gamer1 = new Fleuriste("Fleuriste");
+			if (!(multijoueur))
+			{
+					Gamer2 = new Boucherie("Boucher");
+					new IntelligenceArtificielle();
+			}
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -320,8 +325,6 @@ public class ButtonExitCommercial : NetworkBehaviour
 			Gamer2 = new Fleuriste("Fleuriste");
 			multijoueur = true;
 			TurnValues = 1;
-			Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-			++Gamer1.nbCount;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 	}
@@ -329,31 +332,25 @@ public class ButtonExitCommercial : NetworkBehaviour
 	public void ExitCourte()
 	{
 		MaxTurn = 13;
-		Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-        ++Gamer1.nbCount;	
 		SceneManager.LoadScene("ChoixDifficulté",  LoadSceneMode.Additive);
 	}
 
 	public void ExitMoyenne()
 	{
 		MaxTurn = 26;
-		Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-        ++Gamer1.nbCount;
 		SceneManager.LoadScene("ChoixDifficulté",  LoadSceneMode.Additive);
 	}
 		
 	public void ExitLongue()
 	{
 		MaxTurn = 52;
-		Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-        ++Gamer1.nbCount;
 		SceneManager.LoadScene("ChoixDifficulté",  LoadSceneMode.Additive);
 	}
 
 	public void Retour()
 	{
-		Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-        ++Gamer1.nbCount;
-		SceneManager.LoadScene("EcranAccueil",  LoadSceneMode.Additive);
+		Gamer1.TimeLeft = 100;
+        Gamer1.nbCount = 1;
+		SceneManager.LoadScene("EcranAccueil",  LoadSceneMode.Single);
 	}
 }

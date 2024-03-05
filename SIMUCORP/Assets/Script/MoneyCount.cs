@@ -351,13 +351,16 @@ public class MoneyCount : MonoBehaviour
 				else
 					gamer._mounth = 0;
 			}
-			if (Gamer1._turn == Gamer2._turn)
+			if (Gamer1._turn == false && Gamer2._turn == false)
 			{
 				Gamer1.TimeLeft = 100*Gamer1.nbCount;
 				TourCount.AddTurn(Button);
 				Gamer1._turn = true;
 				Gamer2._turn = true;
-				AI.Act10();
+				Gamer1._button = true;
+				Gamer2._button = true;
+				if (!(TourCount.TurnValues > TourCount.MaxTurn))
+					AI.Act10();
 			}
 			if (TourCount.TurnValues > TourCount.MaxTurn || b)
 			{

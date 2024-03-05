@@ -1758,8 +1758,8 @@ RectTransform:
   - {fileID: 1838000973}
   - {fileID: 1040028469}
   - {fileID: 668041454}
-  - {fileID: 1452278345}
   - {fileID: 384822344}
+  - {fileID: 1452278345}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1920,7 +1920,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1373261366}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1373261368}
+        m_TargetAssemblyTypeName: ButtonPass, Assembly-CSharp
+        m_MethodName: NewButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1429365432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,7 +2058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cedfac7f741be4f8ca5e2be37dad21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texte: {fileID: 0}
 --- !u!114 &1452278347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2060,7 +2071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.98742133, b: 0.98742133, a: 1}
+  m_Color: {r: 0.063351884, g: 0.06289297, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2069,12 +2080,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

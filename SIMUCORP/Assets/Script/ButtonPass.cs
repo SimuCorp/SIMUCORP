@@ -7,27 +7,20 @@ using static MoneyCount;
 
 public class ButtonPass : NetworkBehaviour
 {
-    public void DoButtonPass(string str, PlayerClass gamer)
+ 
+
+    public void NewButton()
     {
-        gamer._button = false;
-        if (Gamer1._button == Gamer2._button)
-        {
-            CalCulus(Gamer1, str);
-            CalCulus(Gamer2, str);
-            CountdownScript.UpdateTimeButton(gamer);
-        }
-    }
-	[SerializeField]
-    // Start is called before the first frame update
-    void Start()
-    {
-        string temp = gameObject.name;
         PlayerClass gamer;
-        if (isServer)
+        if (this.isServer)
             gamer = Gamer1;
         else
             gamer = Gamer2;
-        gameObject.GetComponent<Button>().onClick.AddListener(() => DoButtonPass(temp, gamer));
+        if (gamer._button)
+        {
+            gamer._button = false;
+            CalCulus(gamer, "");
+        }
     }
     
 }

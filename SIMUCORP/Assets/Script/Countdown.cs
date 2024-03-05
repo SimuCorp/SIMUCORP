@@ -31,7 +31,23 @@ public class CountdownScript : MonoBehaviour
             }
             else
             {
-                MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
+                if (Gamer1._button && Gamer2._button)
+                {
+                    Gamer1._button = false;
+                    MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
+                    Gamer2._button = false;
+                    MoneyCount.CalCulus(MoneyCount.Gamer2, "timer");
+                }
+                else if (Gamer2._button)
+                {
+                    Gamer2._button = false;
+                    MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
+                }
+                else
+                {
+                       Gamer1._button = false;
+                       MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
+                }
             }
         }
     }

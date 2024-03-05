@@ -156,9 +156,14 @@ public class IntelligenceArtificielle
 		}
 		else if (act == 0)
 		{
-			metier._button = false;
-			last_money = metier._money;
-			--act;
+			if ((TourCount.TurnValues <= TourCount.MaxTurn))
+			{
+				metier._button = false;
+				CalCulus(metier, "");
+				last_money = metier._money;
+				--act;
+			}
+		
 		}
 		else
 			act = -1;
