@@ -9,23 +9,23 @@ using UnityEngine.SceneManagement;
 using System.Threading;
 public class TextGameOver : MonoBehaviour
 {
-    public Text GameOver;
+    public TextMeshProUGUI GameOver;
     void Start()
     {
-        GameOver = GetComponent<Text>();
+        GameOver = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Gamer1._money < Gamer2._money)
-            GameOver.text = "Joueur2 a gagné";
+            GameOver.text = "Joueur2 a gagné\nRetour à l'écran d'accueil";
         else 
         {
             if (Gamer1._money == Gamer2._money)
-                GameOver.text = "Egalité";
+                GameOver.text = "Egalité\nRetour à l'écran d'accueil";
             else
-                GameOver.text = "Joueur1 a gagné";
+                GameOver.text = "Joueur1 a gagné\nRetour à l'écran d'accueil";
         }
     }
 

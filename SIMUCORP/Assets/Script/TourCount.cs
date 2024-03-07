@@ -20,7 +20,7 @@ public class TourCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        NB_tour.text = $"Turn : {TurnValues}";
+        NB_tour.text = $"Tour : {TurnValues}";
     }
 
 	public static void AddTurn(string Button)

@@ -80,5 +80,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: c6dc414a04976be458da0d43eb269771
+  - enabled: 1
+    path: Assets/Scenes/Qualite.unity
+    guid: 55925f8fd59ab4a4f9a564f0f0a3f074
+  - enabled: 1
+    path: "Assets/Scenes/R\xE9glage.unity"
+    guid: c5bf893ed13f08e4f8da1d1d9ae0beef
+  - enabled: 1
+    path: Assets/Scenes/Son.unity
+    guid: 8ad5caaefb842674f81c3f55cf0c1e9b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9eed0b7dfdc720e42b584fd635d534e5, type: 2}

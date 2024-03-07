@@ -353,4 +353,19 @@ public class ButtonExitCommercial : NetworkBehaviour
         Gamer1.nbCount = 1;
 		SceneManager.LoadScene("EcranAccueil",  LoadSceneMode.Single);
 	}
+
+	public void reglage()
+	{
+		SceneManager.LoadScene("Réglage",  LoadSceneMode.Additive);
+	}
+
+	public void qualite()
+	{
+		SceneManager.LoadScene("Qualite",  LoadSceneMode.Additive);
+	}
+
+	public void son()
+	{
+		SceneManager.LoadScene("Son",  LoadSceneMode.Additive);
+	}
 }
