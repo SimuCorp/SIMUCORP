@@ -140,7 +140,8 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitAccueil()
 	{
-		SceneManager.LoadScene("ChoixTour", LoadSceneMode.Additive);
+		SceneManager.UnloadSceneAsync("EcranAccueil");
+		SceneManager.LoadSceneAsync("ChoixTour", LoadSceneMode.Additive);
 	}
 
 	public void Simple()
@@ -351,6 +352,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 	{
 		Gamer1.TimeLeft = 100;
         Gamer1.nbCount = 1;
+		multijoueur = false;
 		SceneManager.LoadScene("EcranAccueil",  LoadSceneMode.Single);
 	}
 
