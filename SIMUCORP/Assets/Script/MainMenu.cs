@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         { 
-            SceneManager.LoadScene("EcranAccueil");
+            SceneManager.LoadScene("Réglage", LoadSceneMode.Additive);
         }
     }
 
