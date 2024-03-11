@@ -1176,8 +1176,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1736960657}
-        m_TargetAssemblyTypeName: ButtonExitCommercial, Assembly-CSharp
-        m_MethodName: ExitAccueil
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: LastScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1234,12 +1234,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1736960652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
+  m_Script: {fileID: 11500000, guid: d32d3ab47719f6545a5db0d5fd42b65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
+  audioSource: {fileID: 0}
+  sLider: {fileID: 0}
+  TxtVolume: {fileID: 0}
 --- !u!1 &1856577150
 GameObject:
   m_ObjectHideFlags: 0

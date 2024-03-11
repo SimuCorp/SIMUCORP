@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public AudioSource audioSource;
     public Slider sLider;
     public Text TxtVolume;
+    public static string scene = "EcranAccueil";
 
     void Start()
     {
@@ -20,6 +21,9 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         { 
+            string s = SceneManager.GetActiveScene().name;
+            if (s != "Qualite" && s != "Réglage" && s != "son")  
+                scene = s;
             SceneManager.LoadScene("Réglage", LoadSceneMode.Additive);
         }
     }
@@ -33,9 +37,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("ChoixDIfficulté");
     }
     
-    public void EcranAccueil()
+    public void LastScene()
     {
-        SceneManager.LoadScene("EcranAccueil");
+        SceneManager.LoadScene(scene, LoadSceneMode.Additive);
     }
     public void Qualité()
     {

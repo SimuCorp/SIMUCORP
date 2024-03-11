@@ -11,6 +11,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 {
 	public static bool changement = false;
 
+
     public void Exit()
     {
 		Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
