@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static MoneyCount;
 
 public class MainMenu : MonoBehaviour
 {
@@ -21,9 +22,6 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         { 
-            string s = SceneManager.GetActiveScene().name;
-            if (s != "Qualite" && s != "Réglage" && s != "son")  
-                scene = s;
             SceneManager.LoadScene("Réglage", LoadSceneMode.Additive);
         }
     }
@@ -39,7 +37,16 @@ public class MainMenu : MonoBehaviour
     
     public void LastScene()
     {
-        SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+        if (ButtonExitCommercial.changement2)
+        {
+            Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
+            ++Gamer1.nbCount;
+            SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+        }
+        else
+        {
+            SceneManager.LoadScene("EcranAccueil", LoadSceneMode.Additive);
+        }
     }
     public void Qualité()
     {

@@ -10,7 +10,7 @@ using static IntelligenceArtificielle;
 public class ButtonExitCommercial : NetworkBehaviour 
 {
 	public static bool changement = false;
-
+	public static bool changement2 = false;
 
     public void Exit()
     {
@@ -166,6 +166,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
+			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -188,6 +189,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
+			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -210,6 +212,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
+			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -232,6 +235,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
+			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -254,6 +258,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
+			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -276,6 +281,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
+			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -298,6 +304,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
+			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -320,6 +327,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 					new IntelligenceArtificielle();
 			}
 			TurnValues = 1;
+			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
 		}
 		else if (!multijoueur)
@@ -354,6 +362,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 		Gamer1.TimeLeft = 100;
         Gamer1.nbCount = 1;
 		multijoueur = false;
+		changement2 = false;
 		SceneManager.LoadScene("EcranAccueil",  LoadSceneMode.Single);
 	}
 
@@ -370,5 +379,40 @@ public class ButtonExitCommercial : NetworkBehaviour
 	public void son()
 	{
 		SceneManager.LoadScene("Son",  LoadSceneMode.Additive);
+	}
+
+	public void DoButtonCommercial()
+	{
+        Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
+        ++Gamer1.nbCount;
+		SceneManager.LoadScene("ActionCommercial",  LoadSceneMode.Additive);
+	}
+
+	public void DoButtonGestion()
+	{
+        Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
+        ++Gamer1.nbCount;
+		SceneManager.LoadScene("ActionGestion",  LoadSceneMode.Additive);
+	}
+
+	public void NewButton()
+    {
+        PlayerClass gamer;
+        if (this.isServer)
+            gamer = Gamer1;
+        else
+            gamer = Gamer2;
+        if (gamer._button)
+        {
+            gamer._button = false;
+            CalCulus(gamer, "");
+        }
+    }
+
+	public void DoButtonRH()
+	{
+        Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
+        ++Gamer1.nbCount;
+		SceneManager.LoadScene("ActionRH",  LoadSceneMode.Additive);
 	}
 }
