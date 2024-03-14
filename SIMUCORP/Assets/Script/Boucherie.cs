@@ -9,17 +9,17 @@ public class Boucherie : PlayerClass
         _marchandise = new Dictionary<string, (int, double, bool, double, int)>()
         {
             { "Steak Haché", (300, 3.30, true, 1, 3) },
-            { "Saucisson", (300, 6.65, true, 1, 3) },
-            { "Ailes de poulet", (300, 2.95, true, 1, 3) },
-            { "Saucisses", (300, 6.81, true, 1, 3) },
-            { "Echine de porc", (300, 10.97, true, 1, 3) },
-            { "Brechet de poulet", (300, 2.08, true, 1, 3) },
-            { "Rôti de boeuf", (0, 14.66, false, 1, 3) },
+            { "Saucisson", (300, 13.90, true, 1, 3) },
+            { "Cuisse de poulet", (300, 3.70, true, 1, 3) },
+            { "Saucisse", (300, 1.70, true, 1, 3) },
+            { "Echine de porc", (300, 3.70, true, 1, 3) },
+            { "Escalope de poulet", (300, 4.60, true, 1, 3) },
+            { "Rôti de boeuf", (0, 30, false, 1, 3) },
             { "Poulet Rôti", (0, 12.50, false, 1, 3) },
-            { "Merguez", (0, 4.16, false, 1, 3) },
-            { "Lapin", (0, 6.50, false, 1, 3) },
-            { "Sanglier", (0, 6.66, false, 1, 3) },
-            { "Popiette", (0, 5.78, false, 1, 3) }
+            { "Merguez", (0, 1.70, false, 1, 3) },
+            { "Lapin", (0, 25, false, 1, 3) },
+            { "Roti de porc", (0, 9.00, false, 1, 3) },
+            { "Paupiette", (0, 5.78, false, 1, 3) }
         };
         _stat = new Dictionary<string, double>()
         {
@@ -31,12 +31,12 @@ public class Boucherie : PlayerClass
             { "Salaire", 1399 },
             { "Magasin", 1 },
         };
-        _items = new List<string> { "Steak Haché", "Saucisson", "Ailes de poulet", "Saucisses", "Echine de porc", "Brechet de poulet" };
+        _items = new List<string> { "Steak Haché", "Saucisson", "Cuisse de poulet", "Saucisse", "Echine de porc", "Escalope de poulet" };
 		for (int i = 0; i < 6; ++i)
 			_items.Add("NaN");
-        _missingitems = new List<string> { "Rôti de boeuf", "Poulet Rôti", "Merguez", "Lapin", "Sanglier", "Popiette"};
+        _missingitems = new List<string> { "Rôti de boeuf", "Poulet Rôti", "Merguez", "Lapin", "Roti de porc", "Paupiette"};
         materiel = new List<string> { "tableau de promotion", "rotissoire", "couteaux", "nouvelles viandes" };
-        prix = new List<double> {2.20, 4.43, 1.97, 4.54, 7.31, 1.39, 9.77, 8.33, 2.77, 4.33, 4.44, 3.85};
+        prix = new List<double> {2.20, 9.27, 2.46, 1.13, 2.46, 3.07, 20, 8.33, 1.13, 16.67, 6.00, 3.85};
 		Perime1 = new List<int> {300};
 		Perime2 = new List<int> {300};
 		Perime3 = new List<int> {300};
