@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Mirror;
 using static MoneyCount;
 
-public class TextEmploye : NetworkBehaviour 
+public class TextEmploye : MonoBehaviour 
 {
     public TextMeshProUGUI Text1;
     
