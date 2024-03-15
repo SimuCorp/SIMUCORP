@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Mirror;
 using static MoneyCount;
 
-public class TextPromo : NetworkBehaviour 
+public class TextPromo : MonoBehaviour
 {
     public TextMeshProUGUI TextPro;
     void Start()
@@ -17,11 +16,7 @@ public class TextPromo : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerClass g;
-        if (this.isServer)
-            g = Gamer1;
-        else
-            g = Gamer2;
+        PlayerClass g = Gamer1;
         if (g.promo)
             TextPro.text = "Promotion\n\nEn cours";
         else
