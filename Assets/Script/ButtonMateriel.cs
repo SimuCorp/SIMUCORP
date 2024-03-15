@@ -2,63 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Mirror;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static MoneyCount;
 
-public class ButtonMateriel : NetworkBehaviour 
+public class ButtonMateriel : MonoBehaviour
 {
    public void Materiel1()
     {
-		PlayerClass gamer;
-		if (isServer)
-			gamer = Gamer1;
-		else
-			gamer = Gamer2;
-        if (gamer.materiel[0] != "done" && gamer.AddMoney(-200))
+        if (Gamer1.materiel[0] != "done" && Gamer1.AddMoney(-200))
         {
-           gamer.materiel[0] = "done";
-           gamer._stat["Attracivité"] += 0.01;
+           Gamer1.materiel[0] = "done";
+           Gamer1._stat["Attracivité"] += 0.01;
         }
     }
    
    public void Materiel2()
    {
-	  PlayerClass gamer;
-		if (isServer)
-			gamer = Gamer1;
-		else
-			gamer = Gamer2;
-      if (gamer.materiel[1] != "done" && gamer.AddMoney(-2500))
+      if (Gamer1.materiel[1] != "done" && Gamer1.AddMoney(-2500))
       {
-         gamer.materiel[1] = "done";
-         gamer._stat["Attracivité"] += 5;
+         Gamer1.materiel[1] = "done";
+         Gamer1._stat["Attracivité"] += 5;
       }
    }
    
    public void Materiel3()
    {
-      PlayerClass gamer;
-		if (isServer)
-			gamer = Gamer1;
-		else
-			gamer = Gamer2;
-      if (gamer.materiel[2] != "done" && gamer.AddMoney(-2500))
+      if (Gamer1.materiel[2] != "done" && Gamer1.AddMoney(-2500))
       {
-         gamer.materiel[2] = "done";
-         gamer._stat["Attracivité"] += 5;
+         Gamer1.materiel[2] = "done";
+         Gamer1._stat["Attracivité"] += 5;
       }
    }
 
 	public void Materiel5()
 	{
-		PlayerClass gamer;
-		if (isServer)
-			gamer = Gamer1;
-		else
-			gamer = Gamer2;
-		if(gamer._missingitems[0] != "done" && gamer.AddMoney(-300))
+		if(Gamer1._missingitems[0] != "done" && Gamer1.AddMoney(-300))
 		{
 			int i = 1;
 			int a = 0;
@@ -67,28 +46,24 @@ public class ButtonMateriel : NetworkBehaviour
 			double d = 0;
 			int e = 0;
 			string s = "";
-			foreach(string res in gamer._marchandise.Keys)
+			foreach(string res in Gamer1._marchandise.Keys)
 			{
 				if (i == 7)
 				{
-					(a, b, c, d, e) = gamer._marchandise[res];
+					(a, b, c, d, e) = Gamer1._marchandise[res];
 					s = res;
 				}
 				++i;
 			}
-			gamer._marchandise[s] = (a, b, true, d, e);
-			gamer._missingitems[0] = "done";
-			gamer._items[6] = s;
+			Gamer1._marchandise[s] = (a, b, true, d, e);
+			Gamer1._missingitems[0] = "done";
+			Gamer1._items[6] = s;
 		}
 	}
 
 	public void Materiel6()
 	{
-		PlayerClass gamer;
-		if (isServer)
-			gamer = Gamer1;
-		else
-			gamer = Gamer2;
+		PlayerClass gamer = Gamer1;
 		if(gamer._missingitems[1] != "done" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -115,11 +90,7 @@ public class ButtonMateriel : NetworkBehaviour
 
 	public void Materiel7()
 	{
-		PlayerClass gamer;
-		if (isServer)
-			gamer = Gamer1;
-		else
-			gamer = Gamer2;
+		PlayerClass gamer = Gamer1;
 		if(gamer._missingitems[2] != "done" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -146,11 +117,7 @@ public class ButtonMateriel : NetworkBehaviour
 
 	public void Materiel8()
 	{
-		PlayerClass gamer;
-		if (isServer)
-			gamer = Gamer1;
-		else
-			gamer = Gamer2;
+		PlayerClass gamer = Gamer1;
 		if(gamer._missingitems[3] != "done" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -177,11 +144,7 @@ public class ButtonMateriel : NetworkBehaviour
 
 	public void Materiel9()
 	{
-		PlayerClass gamer;
-		if (isServer)
-			gamer = Gamer1;
-		else
-			gamer = Gamer2;
+		PlayerClass gamer = Gamer1;
 		if(gamer._missingitems[4] != "done" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -208,11 +171,7 @@ public class ButtonMateriel : NetworkBehaviour
 
 	public void Materiel10()
 	{
-		PlayerClass gamer;
-		if (isServer)
-			gamer = Gamer1;
-		else
-			gamer = Gamer2;
+		PlayerClass gamer = Gamer1;
 		if(gamer._missingitems[5] != "done" && gamer.AddMoney(-300))
 		{
 			int i = 1;

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Mirror;
 using static MoneyCount;
 using static TourCount;
 using static IntelligenceArtificielle;
-public class ButtonExitCommercial : NetworkBehaviour 
+public class ButtonExitCommercial : MonoBehaviour
 {
 	public static bool changement = false;
 	public static bool changement2 = false;
@@ -157,8 +156,6 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitPrimeur()
 	{
-		if (this.isServer)
-		{
 			Gamer1 = new Primeur("Primeur");
 			if (!(multijoueur))
 				{
@@ -168,20 +165,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
-		else if (!multijoueur)
-		{
-			Gamer2 = new Primeur("Primeur");
-			multijoueur = true;
-			TurnValues = 1;
-			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}	
+
 	}
 
 	public void ExitBoucherie()
 	{
-		if (this.isServer)
-		{
+
 			Gamer1 = new Boucherie("Boucher");
 			if (!(multijoueur))
 				{
@@ -191,20 +180,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
-		else if (!multijoueur)
-		{
-			Gamer2 = new Boucherie("Boucher");
-			multijoueur = true;
-			TurnValues = 1;
-			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
+	
 	}
 
 	public void ExitLibraire()
 	{
-		if (this.isServer)
-		{
+
 			Gamer1 = new Libraire("Libraire");
 			if (!(multijoueur))
 				{
@@ -214,20 +195,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
-		else if (!multijoueur)
-		{
-			Gamer2 = new Libraire("Libraire");
-			multijoueur = true;
-			TurnValues = 1;
-			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
+		
 	}
 
 	public void ExitCoiffeur()
 	{
-		if (this.isServer)
-		{
+
 			Gamer1 = new Coiffeur("Coiffeur");
 			if (!(multijoueur))
 				{
@@ -237,20 +210,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
-		else if (!multijoueur)
-		{
-			Gamer2 = new Coiffeur("Coiffeur");
-			multijoueur = true;
-			TurnValues = 1;
-			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
+
 	}
 
 	public void ExitPoisson()
 	{
-		if (this.isServer)
-		{
+
 			Gamer1 = new Poissonier("Poissonier");
 			if (!(multijoueur))
 				{
@@ -260,20 +225,11 @@ public class ButtonExitCommercial : NetworkBehaviour
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
-		else if (!multijoueur)
-		{
-			Gamer2 = new Poissonier("Poissonier");
-			multijoueur = true;
-			TurnValues = 1;
-			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
+
 	}
 
 	public void ExitBijouterie()
 	{
-		if (this.isServer)
-		{
 			Gamer1 = new Bijouterie("Bijoutier");
 			if (!(multijoueur))
 				{
@@ -283,20 +239,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
-		else if (!multijoueur)
-		{
-			Gamer2 = new Bijouterie("Bijoutier");
-			multijoueur = true;
-			TurnValues = 1;
-			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
+
 	}
 
 	public void ExitVetement()
 	{
-		if (this.isServer)
-		{
+
 			Gamer1 = new Pret_a_porter("Prêt à porter");
 			if (!(multijoueur))
 				{
@@ -306,20 +254,12 @@ public class ButtonExitCommercial : NetworkBehaviour
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
-		else if (!multijoueur)
-		{
-			Gamer2 = new Pret_a_porter("Prêt à porter");
-			multijoueur = true;
-			TurnValues = 1;
-			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
+
 	}
 
 	public void ExitFleur()
 	{
-		if (this.isServer)
-		{
+
 			Gamer1 = new Fleuriste("Fleuriste");
 			if (!(multijoueur))
 			{
@@ -329,14 +269,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
-		else if (!multijoueur)
-		{
-			Gamer2 = new Fleuriste("Fleuriste");
-			multijoueur = true;
-			TurnValues = 1;
-			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		}
+
 	}
 
 	public void ExitCourte()
@@ -397,16 +330,10 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void NewButton()
     {
-        PlayerClass gamer;
-        if (this.isServer)
-            gamer = Gamer1;
-        else
-            gamer = Gamer2;
-        if (gamer._button)
-        {
+        PlayerClass gamer = Gamer1;
             gamer._button = false;
             CalCulus(gamer, "");
-        }
+     
     }
 
 	public void DoButtonRH()

@@ -2,32 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Mirror;
 using static MoneyCount;
 
-public class ButtonAct4 : NetworkBehaviour 
+public class ButtonAct4 : MonoBehaviour
 {
     
     public void DoAct4()
     {
-        PlayerClass gamer;
-        if (isServer)
-            gamer = Gamer1;
-        else
-            gamer = Gamer2;
-        gamer._stat["Attracivité"] += 2.5;
-        gamer.AddMoney(-500);
+        Gamer1._stat["Attracivité"] += 2.5;
+        Gamer1.AddMoney(-500);
     }
 
     public void DoAct42()
     {
-        PlayerClass gamer;
-        if (isServer)
-            gamer = Gamer1;
-        else
-            gamer = Gamer2;
-        if (gamer.AddMoney(-1000*gamer._stat["Employé"]) && gamer._stat["Employé"] != 0)
-            gamer._stat["Qualité"] += 2*gamer._stat["Employé"];
+        if (Gamer1.AddMoney(-1000*Gamer1._stat["Employé"]) && Gamer1._stat["Employé"] != 0)
+            Gamer1._stat["Qualité"] += 2*Gamer1._stat["Employé"];
     }
     
 }

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Mirror;
 using static MoneyCount;
-public class TextMateriel9 : NetworkBehaviour 
+public class TextMateriel9  : MonoBehaviour
 {
     public TextMeshProUGUI Text9;
     
@@ -18,11 +17,7 @@ public class TextMateriel9 : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerClass g;
-        if (this.isServer)
-            g = Gamer1;
-        else
-            g = Gamer2;
+        PlayerClass g = Gamer1;
         string res = g._missingitems[4];
 		if (res == "done")
         	Text9.text = res;

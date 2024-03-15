@@ -4,17 +4,16 @@ using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Mirror;
 using static MoneyCount;
 
-public class TextQuali6 : NetworkBehaviour 
+public class TextQuali6  : MonoBehaviour
 {
     public TextMeshProUGUI Quali6;
     
     // Start is called before the first frame update
     void Start()
     {
-        Quali6 = GetComponent<TextMeshProUGUI>();
+        Quali6 = Quali6.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -22,11 +21,7 @@ public class TextQuali6 : NetworkBehaviour
     {
         int i = 1;
         string res = "";
-        PlayerClass g;
-        if (this.isServer)
-            g = Gamer1;
-        else
-            g = Gamer2;
+        PlayerClass g = Gamer1;
         foreach (string s in g._marchandise.Keys)
         {
             if (i == 6)
