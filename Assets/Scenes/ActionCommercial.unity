@@ -173,9 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b917db154bb7884bb466fff3dd28b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &38561522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,9 +459,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b917db154bb7884bb466fff3dd28b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &438994209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,7 +1104,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 60}
+  m_AnchoredPosition: {x: 240, y: 60}
   m_SizeDelta: {x: 540, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114612830
@@ -1220,9 +1214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b147ede92738bb54ba77000113c763e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &1127088817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,9 +1320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b147ede92738bb54ba77000113c763e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!1 &1344157001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,9 +1371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77943b9c1b7ba4149a054e926a9455df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &1344157004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1495,10 +1480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6cf50f1f5cb76428afdc7d77b282c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  TextPro: {fileID: 0}
+  TextPro: {fileID: 1344157004}
 --- !u!1 &1431999857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,9 +1849,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &1786571666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2016,9 +1995,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374b84252f359b04d91b8ca5c1bab9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &1828195338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2148,7 +2124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 60}
+  m_AnchoredPosition: {x: -240, y: 60}
   m_SizeDelta: {x: 540, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1894283042
@@ -2351,9 +2327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77943b9c1b7ba4149a054e926a9455df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

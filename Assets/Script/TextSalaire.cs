@@ -13,7 +13,7 @@ public class TextSalaire  : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Text1 = Text1.GetComponent<TextMeshProUGUI>();
+        Text1 = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
