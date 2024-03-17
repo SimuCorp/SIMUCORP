@@ -27,8 +27,8 @@ using Photon.Pun.UtilityScripts;
         public Button PlayerReadyButton;
         public Image PlayerReadyImage;
 
-        private int ownerId;
-        private bool isPlayerReady;
+        public int ownerId;
+        public bool isPlayerReady;
 
         #region UNITY
 
@@ -78,7 +78,7 @@ using Photon.Pun.UtilityScripts;
             PlayerNameText.text = playerName;
         }
 
-        private void OnPlayerNumberingChanged()
+        public void OnPlayerNumberingChanged()
         {
             foreach (Player p in PhotonNetwork.PlayerList)
             {

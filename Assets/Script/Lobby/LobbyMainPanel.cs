@@ -38,9 +38,9 @@ using UnityEngine.UI;
         public Button StartGameButton;
         public GameObject PlayerListEntryPrefab;
 
-        private Dictionary<string, RoomInfo> cachedRoomList;
-        private Dictionary<string, GameObject> roomListEntries;
-        private Dictionary<int, GameObject> playerListEntries;
+        public Dictionary<string, RoomInfo> cachedRoomList;
+        public Dictionary<string, GameObject> roomListEntries;
+        public Dictionary<int, GameObject> playerListEntries;
 
         #region UNITY
 
@@ -278,7 +278,7 @@ using UnityEngine.UI;
 
         #endregion
 
-        private bool CheckPlayersReady()
+        public bool CheckPlayersReady()
         {
             if (!PhotonNetwork.IsMasterClient)
             {
@@ -304,7 +304,7 @@ using UnityEngine.UI;
             return true;
         }
         
-        private void ClearRoomListView()
+        public void ClearRoomListView()
         {
             foreach (GameObject entry in roomListEntries.Values)
             {
@@ -330,7 +330,7 @@ using UnityEngine.UI;
             InsideRoomPanel.SetActive(activePanel.Equals(InsideRoomPanel.name));
         }
 
-        private void UpdateCachedRoomList(List<RoomInfo> roomList)
+        public void UpdateCachedRoomList(List<RoomInfo> roomList)
         {
             foreach (RoomInfo info in roomList)
             {
@@ -358,7 +358,7 @@ using UnityEngine.UI;
             }
         }
 
-        private void UpdateRoomListView()
+        public void UpdateRoomListView()
         {
             foreach (RoomInfo info in cachedRoomList.Values)
             {

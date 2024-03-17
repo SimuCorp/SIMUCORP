@@ -16,7 +16,7 @@ using Photon.Pun.UtilityScripts;
     {
         public GameObject PlayerOverviewEntryPrefab;
 
-        private Dictionary<int, GameObject> playerListEntries;
+        public Dictionary<int, GameObject> playerListEntries;
 
         #region UNITY
 
