@@ -34,8 +34,8 @@ public class Evenement
     {
         _event = new Dictionary<string, (double, double, double)>()
         {
-            { "Jeux Olympiques", (2, 2, 5) },
-            { "Fashion Week", (1.5, 2, 7) },
+            { "Rentrée d'argent", (2, 2, 5) },
+            { "Black Friday", (1.5, 2, 7) },
             { "Grève SNCF", (0.8, 0.8, 20) },
             { "Vacances", (1.4, 1.3, 30) },
             { "Inflation", (0.8, 1, 20) },

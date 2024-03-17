@@ -23,7 +23,6 @@ public class MoneyJoueur2 : MonoBehaviour
 		{	
 			DoAction();
 		}
-		(int Quantity, double price, bool possible, double promo, int tour) = Gamer2._marchandise["Steak Haché"];
         MoneyInfo.text = $"{Math.Round(Gamer2._money, 2)}$";
     }
 }

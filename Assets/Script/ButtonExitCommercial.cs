@@ -174,7 +174,7 @@ public class ButtonExitCommercial : MonoBehaviour
 			Gamer1 = new Boucherie("Boucher");
 			if (!(multijoueur))
 				{
-					Gamer2 = new Boucherie("Boucher");
+					Gamer2 = new Primeur("Primeur");
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
