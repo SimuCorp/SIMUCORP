@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class PlayerClass : MonoBehaviour
 {
     public string _name { get; }
@@ -92,5 +94,6 @@ public class PlayerClass : MonoBehaviour
         return false;
 
     }
+    
     
 }

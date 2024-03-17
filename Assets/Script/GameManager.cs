@@ -6,6 +6,9 @@ using static ButtonExitCommercial;
 
 public class GameManager : MonoBehaviour
 {
+    public const string PLAYER_READY = "IsPlayerReady";
+    public const string PLAYER_LOADED_LEVEL = "PlayerLoadedLevel";
+    
     // Start is called before the first frame update
     void Start()
     {
