@@ -121,10 +121,16 @@ public class LobbyMainPanel : MonoBehaviourPunCallbacks
 
             foreach (Player p in PhotonNetwork.PlayerList)
             {
+                Debug.Log(p.NickName);
+                Debug.Log(p.ActorNumber);
+                
                 GameObject entry = Instantiate(PlayerListEntryPrefab);
+                Debug.Log(entry);
+                Debug.Log(entry.GetComponent<PlayerListEntry>());
                 entry.transform.SetParent(InsideRoomPanel.transform);
                 entry.transform.localScale = Vector3.one;
                 entry.GetComponent<PlayerListEntry>().Initialize(p.ActorNumber, p.NickName);
+                
 
                 object isPlayerReady;
                 if (p.CustomProperties.TryGetValue(GameManager.PLAYER_READY, out isPlayerReady))
