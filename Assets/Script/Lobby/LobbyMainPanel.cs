@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ExitGames.Client.Photon;
 using Photon.Pun;
 
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 
-    public class LobbyMainPanel : MonoBehaviourPunCallbacks
+public class LobbyMainPanel : MonoBehaviourPunCallbacks
     {
         [Header("Login Panel")]
         public GameObject LoginPanel;
@@ -246,7 +248,6 @@ using UnityEngine.UI;
         public void OnLoginButtonClicked()
         {
             string playerName = PlayerNameInput.text;
-
             if (!playerName.Equals(""))
             {
                 PhotonNetwork.LocalPlayer.NickName = playerName;
