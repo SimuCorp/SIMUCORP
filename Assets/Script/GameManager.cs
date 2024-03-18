@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static ButtonExitCommercial;
 
 public class GameManager : MonoBehaviour
@@ -38,4 +41,5 @@ public class GameManager : MonoBehaviour
         if (ButtonExitCommercial.changement)
             Destroy(this);
     }
+    
 }
