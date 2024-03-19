@@ -9,6 +9,9 @@ using static ButtonExitCommercial;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance = null;
+
+    public Text InfoText;
     public const string PLAYER_READY = "IsPlayerReady";
     public const string PLAYER_LOADED_LEVEL = "PlayerLoadedLevel";
     public static Color GetColor(int colorChoice)
@@ -40,6 +43,21 @@ public class GameManager : MonoBehaviour
     {
         if (ButtonExitCommercial.changement)
             Destroy(this);
+    }
+    private IEnumerator EndOfGame(string winner, int score)
+    {
+        float timer = 5.0f;
+
+        while (timer > 0.0f)
+        {
+            InfoText.text = string.Format("Player {0} won with {1} points.\n\n\nReturning to login screen in {2} seconds.", winner, score, timer.ToString("n2"));
+
+            yield return new WaitForEndOfFrame();
+
+            timer -= Time.deltaTime;
+        }
+
+        PhotonNetwork.LeaveRoom();
     }
     
 }

@@ -95,6 +95,12 @@ public class PlayerClass : MonoBehaviour
         return false;
 
     }
+    public double Getmoney()
+    {
+
+	    return _money;
+
+    }
     
     
 }
