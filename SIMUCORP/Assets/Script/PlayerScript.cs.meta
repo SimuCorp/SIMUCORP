@@ -1,0 +1,39 @@
+fileFormatVersion: 2
+guid: ef1d30fcc7af8f7429058c6f874ee4e6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Accueil: {instanceID: 0}
+  - ChoixTour: {instanceID: 0}
+  - Options: {instanceID: 0}
+  - Apro1: {instanceID: 0}
+  - Apro2: {instanceID: 0}
+  - Apro3: {instanceID: 0}
+  - Apro4: {instanceID: 0}
+  - Materiel1: {instanceID: 0}
+  - Materiel2: {instanceID: 0}
+  - Materiel3: {instanceID: 0}
+  - Prix1: {instanceID: 0}
+  - Prix2: {instanceID: 0}
+  - Prix3: {instanceID: 0}
+  - Prix4: {instanceID: 0}
+  - Commercial: {instanceID: 0}
+  - Gestion: {instanceID: 0}
+  - Quali1: {instanceID: 0}
+  - Quali2: {instanceID: 0}
+  - Quali3: {instanceID: 0}
+  - Quali4: {instanceID: 0}
+  - RH: {instanceID: 0}
+  - Difficulte: {instanceID: 0}
+  - GameOver: {instanceID: 0}
+  - NonPerissable: {instanceID: 0}
+  - Perissable: {instanceID: 0}
+  - Qualite: {instanceID: 0}
+  - Son: {instanceID: 0}
+  - ScenePrincipale: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
