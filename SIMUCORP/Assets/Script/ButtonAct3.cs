@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Mirror;
+
 using static MoneyCount;
 using static TextMagasin;
 using static PlayerScript;
 
-public class ButtonAct3 : NetworkBehaviour 
+public class ButtonAct3 : MonoBehaviour
 {   
     public void DoAct3()
     {
         PlayerClass gamer;
-        if (isServer)
+     
             gamer = Gamer1;
-        else
-            gamer = Gamer2;
+       
         gamer._stat["Attractivité"] += 0.5;
         gamer.AddMoney(-100);
     }
@@ -23,10 +22,9 @@ public class ButtonAct3 : NetworkBehaviour
     public void DoAct32()
     {
         PlayerClass gamer;
-        if (isServer)
+   
             gamer = Gamer1;
-        else
-            gamer = Gamer2;
+     
         double n = TextMagasin.n;
         double n1 = gamer._stat["Magasin"];
         bool b = true;

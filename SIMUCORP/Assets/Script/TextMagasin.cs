@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Mirror;
+
 using static MoneyCount;
 using static PlayerScript;
 
-public class TextMagasin : NetworkBehaviour 
+public class TextMagasin : MonoBehaviour
 {
 
 	public TextMeshProUGUI Text1;
@@ -18,10 +18,9 @@ public class TextMagasin : NetworkBehaviour
     void Start()
     {
         Text1 = GetComponent<TextMeshProUGUI>();
-        if (this.isServer)
+   
             g = Gamer1;
-        else
-            g = Gamer2;
+      
         n = g._stat["Magasin"];
     }
 

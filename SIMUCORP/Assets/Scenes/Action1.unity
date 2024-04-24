@@ -2531,9 +2531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 238527974}
@@ -2885,9 +2882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -5379,9 +5373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 1791766176}
   ChoixTour: {fileID: 0}
@@ -5432,9 +5423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &157188371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7085,9 +7073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2310ebef155849479664a0b070451d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   TimerOn: 0
   tour: 1
   GameOver: {fileID: 746549355}
@@ -7240,9 +7225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -8511,6 +8493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
   offsetX: 0
   offsetY: 0
 --- !u!114 &229988837
@@ -8583,6 +8566,10 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
+  clientLoadedScene: 0
+  <mode>k__BackingField: 0
+  finishStartHostPending: 0
+  clientSceneOperation: 0
 --- !u!4 &229988839
 Transform:
   m_ObjectHideFlags: 0
@@ -9160,9 +9147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae0ac8386683d84d848a3ca3ee84ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   audio: {fileID: 255212827}
   FinTour: {fileID: 255212827}
   Text_action: {fileID: 255212825}
@@ -9630,9 +9614,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3031b063bb09afd43865c73a551ee107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   Info: {fileID: 269478940}
 --- !u!1 &272335165
 GameObject:
@@ -10547,9 +10528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 238527974}
@@ -11770,9 +11748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &355423781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14707,9 +14682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -17124,9 +17096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -17177,9 +17146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &487256870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18515,12 +18481,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <isClient>k__BackingField: 0
+  <isServer>k__BackingField: 0
+  <isLocalPlayer>k__BackingField: 0
+  <isOwned>k__BackingField: 0
   clientStarted: 0
+  <netId>k__BackingField: 0
   sceneId: 464028312
   _assetId: 0
   serverOnly: 0
+  destroyCalled: 0
+  <NetworkBehaviours>k__BackingField: []
   visible: 0
   hasSpawned: 0
+  <SpawnedFromInstantiate>k__BackingField: 0
+  hadAuthority: 0
 --- !u!1 &522803802
 GameObject:
   m_ObjectHideFlags: 0
@@ -19439,9 +19414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0ead2384b0a1d45b8e0370e1145536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   Joueur: {fileID: 552396734}
   collision: {fileID: 0}
 --- !u!114 &552396739
@@ -19702,9 +19674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -20670,9 +20639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0ead2384b0a1d45b8e0370e1145536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   Joueur: {fileID: 586748843}
   collision: {fileID: 0}
 --- !u!114 &586748848
@@ -23588,9 +23554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -24614,9 +24577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0ead2384b0a1d45b8e0370e1145536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   Joueur: {fileID: 710715483}
   collision: {fileID: 0}
 --- !u!114 &710715489
@@ -25976,9 +25936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae0ac8386683d84d848a3ca3ee84ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   audio: {fileID: 742591159}
   FinTour: {fileID: 742591160}
   Text_action: {fileID: 742591154}
@@ -26593,9 +26550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -27155,9 +27109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0ead2384b0a1d45b8e0370e1145536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   Joueur: {fileID: 786483065}
   collision: {fileID: 0}
 --- !u!82 &786483073
@@ -28318,9 +28269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -31093,9 +31041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -33296,9 +33241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 1791766176}
   ChoixTour: {fileID: 0}
@@ -33349,9 +33291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &982925342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36078,9 +36017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -36131,9 +36067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &1081114457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39884,9 +39817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae0ac8386683d84d848a3ca3ee84ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   audio: {fileID: 1223512803}
   FinTour: {fileID: 1223512803}
   Text_action: {fileID: 1423922404}
@@ -42454,9 +42384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3031b063bb09afd43865c73a551ee107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   Info: {fileID: 1293143456}
 --- !u!1 &1302113560
 GameObject:
@@ -46234,9 +46161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae0ac8386683d84d848a3ca3ee84ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   audio: {fileID: 1423922409}
   FinTour: {fileID: 1423922409}
   Text_action: {fileID: 1423922404}
@@ -49982,9 +49906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae0ac8386683d84d848a3ca3ee84ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   audio: {fileID: 1560804621}
   FinTour: {fileID: 1560804621}
   Text_action: {fileID: 1560804616}
@@ -51424,9 +51345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae0ac8386683d84d848a3ca3ee84ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   audio: {fileID: 1598850971}
   FinTour: {fileID: 1598850971}
   Text_action: {fileID: 1598850969}
@@ -51988,9 +51906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 238527974}
@@ -52244,9 +52159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 1791766176}
   ChoixTour: {fileID: 238527974}
@@ -52297,9 +52209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &1609841149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52913,9 +52822,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0ead2384b0a1d45b8e0370e1145536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   Joueur: {fileID: 1627935362}
   collision: {fileID: 0}
 --- !u!82 &1627935370
@@ -54095,9 +54001,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0ead2384b0a1d45b8e0370e1145536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   Joueur: {fileID: 1650369924}
   collision: {fileID: 0}
 --- !u!114 &1650369930
@@ -56500,9 +56403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0ead2384b0a1d45b8e0370e1145536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   Joueur: {fileID: 1715563577}
   collision: {fileID: 0}
 --- !u!114 &1715563583
@@ -57475,9 +57375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0ead2384b0a1d45b8e0370e1145536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   Joueur: {fileID: 1744130022}
   collision: {fileID: 0}
 --- !u!114 &1744130028
@@ -58746,9 +58643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -59343,9 +59237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 1791766176}
   ChoixTour: {fileID: 0}
@@ -59396,9 +59287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &1810553065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59640,9 +59528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae0ac8386683d84d848a3ca3ee84ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   audio: {fileID: 1825238244}
   FinTour: {fileID: 1825238244}
   Text_action: {fileID: 1825238242}
@@ -59918,9 +59803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -64343,9 +64225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 0}
   ChoixTour: {fileID: 0}
@@ -66908,9 +66787,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &2073251985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67152,9 +67028,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 1791766176}
   ChoixTour: {fileID: 0}
@@ -68371,9 +68244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d30fcc7af8f7429058c6f874ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   speed: 0
   Accueil: {fileID: 1791766176}
   ChoixTour: {fileID: 238527974}
@@ -68437,9 +68307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cad36000b886d64da7c13ff27ccfef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
 --- !u!114 &2102401637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68681,9 +68548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae0ac8386683d84d848a3ca3ee84ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   audio: {fileID: 2104342476}
   FinTour: {fileID: 2104342476}
   Text_action: {fileID: 2104342474}

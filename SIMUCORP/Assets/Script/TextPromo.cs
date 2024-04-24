@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Mirror;
+
 using static MoneyCount;
 using static PlayerScript;
 
-public class TextPromo : NetworkBehaviour 
+public class TextPromo : MonoBehaviour
 {
     public TextMeshProUGUI TextPro;
     void Start()
@@ -19,10 +19,9 @@ public class TextPromo : NetworkBehaviour
     void Update()
     {
         PlayerClass g;
-        if (this.isServer)
+  
             g = Gamer1;
-        else
-            g = Gamer2;
+
         if (g.promo)
             TextPro.text = "Promotion\n\nEn cours";
         else

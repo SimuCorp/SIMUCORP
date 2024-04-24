@@ -8,10 +8,10 @@ using static PlayerScript;
 using static Player1Script;
 using static MoneyCount;
 using static System.Math;
-using Mirror;
+
 using static FinDeTour;
 
-public class TextActionJoueur1 : NetworkBehaviour
+public class TextActionJoueur1 : MonoBehaviour
 {
 
     public static Text action;
@@ -53,14 +53,13 @@ public class TextActionJoueur1 : NetworkBehaviour
 			FinDeTour.SetActive(false);
 			move = true;
 		}
-		if (((this.isServer && x <= x2) || (!this.isServer && x >= x2)))
+		if (((true && x <= x2) || (!true && x >= x2)))
 		{
 			PlayerClass gamer;
-			if (this.isServer)
+	
 				gamer = Gamer1;
-			else
-				gamer = Gamer2;
-			move = action.text == "" && gamer._button && !PlayerScript.pause;
+		
+			move = action.text == "" && gamer._button && !PlayerScript.pause && !FinDeTour.activeSelf;
 			if (Gamer1.TimeLeft <= 0)
             {
                 if (Gamer1._button && Gamer2._button)
@@ -82,7 +81,7 @@ public class TextActionJoueur1 : NetworkBehaviour
                 }
             }
 			if (action.text.Length != 0)
-				ChangementText(Player1Script.act, this.isServer);
+				ChangementText(Player1Script.act, true);
 			if (Input.GetKeyDown(KeyCode.Backspace))
 			{
 				Player1Script.move = gamer._button && Gamer1.TimeLeft < 120;
@@ -332,35 +331,25 @@ public class TextActionJoueur1 : NetworkBehaviour
 				if (Input.GetKeyDown(KeyCode.Return))
 				{
 					OpponentCalcul();
-					if (Gamer1._button == Gamer2._button)
-						System.Threading.Thread.Sleep(4000);
 					TextActionJoueur1.action.text = "";
 					//Player1Script.move = !end;
 				}
 			}
 			else
 			{
-				ChangementText(Player1Script.act, this.isServer);
+			ChangementText(Player1Script.act, true);
 			}
 		}
 	}
 
 	public void MoreMaterielAOpponent(int p)
 	{
-		if (this.isServer)
-		{
+	
 			AMateriel(p, true);
-		}
-		else
-		{
-			OpponentMaterielAServerRpC(p);
-		}
+		
 	}
 
-	[Command(requiresAuthority = false)]
-	private void OpponentMaterielAServerRpC(int p) => AMateriel(p, false);
-
-   [ClientRpc]
+	
    public void AMateriel(int p, bool joueur)
    {
 	  PlayerClass gamer;
@@ -381,20 +370,12 @@ public class TextActionJoueur1 : NetworkBehaviour
    
 	public void MoreMaterielGOpponent(int p, string s)
 	{
-		if (this.isServer)
-		{
+	
 			MaterielG(p, s, true);
-		}
-		else
-		{
-			OpponentMaterielGServerRpC(p, s);
-		}
+	
 	}
 
-	[Command(requiresAuthority = false)]
-	private void OpponentMaterielGServerRpC(int p, string s) => MaterielG(p, s, false);
 
-	[ClientRpc]
     public void MaterielG(int p, string s, bool joueur)
 	{
 		PlayerClass gamer;
@@ -416,7 +397,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 			gamer._items[p-1] = s;
 			double x = Text_action.transform.position.x;
 			double x2 = Screen.width/2;
-			if ((this.isServer && x <= x2) || (!this.isServer && x >= x2))
+			if ((true && x <= x2) || (!true && x >= x2))
 				action.text = "Quantité de " + gamer._items[p-1] + $" : {a}";
 		}
 		else
@@ -427,20 +408,14 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void MoreAproOpponent(string item)
 	{
-		if (this.isServer)
-		{
+		
+	
 			MoreApro(item, true);
-		}
-		else
-		{
-			OpponentAproServerRpC(item);
-		}
+	
+	
 	}
 
-	[Command(requiresAuthority = false)]
-	private void OpponentAproServerRpC(string item) => MoreApro(item, false);
 
-	[ClientRpc]
 	public void MoreApro(string item, bool joueur)
 	{
 		PlayerClass gamer;
@@ -495,19 +470,12 @@ public class TextActionJoueur1 : NetworkBehaviour
 	}
 	public void MorePriceOpponent(string item)
 	{
-		if (this.isServer)
-		{
+	
 			MorePrice(item, true);
-		}
-		else
-		{
-			OpponentMPriceServerRpC(item);
-		}
+	
+	
 	}
-	[Command(requiresAuthority = false)]
-	private void OpponentMPriceServerRpC(string item) => MorePrice(item, false);
 
-	[ClientRpc]
 	public void MorePrice(string item, bool joueur)
 	{
 		PlayerClass gamer;
@@ -522,21 +490,13 @@ public class TextActionJoueur1 : NetworkBehaviour
 	}
 	public void LessPriceOpponent(string item)
 	{
-		if (this.isServer)
-		{
+		
 			LessPrice(item, true);
-		}
-		else
-		{
-			OpponentLPriceServerRpC(item);
-		}
+	
 	}
 
 
-	[Command(requiresAuthority = false)]
-	private void OpponentLPriceServerRpC(string item) => LessPrice(item, false);
 
-	[ClientRpc]
 	public void LessPrice(string item, bool joueur)
 	{
 		PlayerClass gamer;
@@ -553,19 +513,11 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void MoreQualiOpponent(string item)
 	{
-		if (this.isServer)
-		{
+		
 			MoreQuali(item, true);
-		}
-		else
-		{
-			OpponentQualiServerRpC(item);
-		}
+	
 	}
-	[Command(requiresAuthority = false)]
-	private void OpponentQualiServerRpC(string item) => MoreQuali(item, false);
 
-	[ClientRpc]
 	public void MoreQuali(string item, bool joueur)
 	{
 		PlayerClass gamer;
@@ -582,19 +534,11 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void EmployeOpponent(bool verif)
 	{
-		if (this.isServer)
-		{
+		
 			Employe(verif, true);
-		}
-		else
-		{
-			OpponentEmployeServerRpC(verif);
-		}
+	
 	}
-	[Command(requiresAuthority = false)]
-	private void OpponentEmployeServerRpC(bool verif) => Employe(verif, false);
-
-	[ClientRpc]
+	
 	public void Employe(bool verif, bool joueur)
     {
 		PlayerClass gamer;
@@ -617,20 +561,12 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void salaireOpponent(bool verif)
 	{
-		if (this.isServer)
-		{
+		
 			Salaire(verif, true);
-		}
-		else
-		{
-			OpponentsalaireServerRpC(verif);
-		}
+		
 	}
 
-	[Command(requiresAuthority = false)]
-	private void OpponentsalaireServerRpC(bool verif) => Salaire(verif, false);
-
-	[ClientRpc]
+	
 	public void Salaire(bool verif, bool joueur)
 	{
 		PlayerClass gamer;
@@ -655,20 +591,13 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void magasinOpponent(bool verif)
 	{
-		if (this.isServer)
-		{
+		
 			Magasin(verif, true);
-		}
-		else
-		{
-			OpponentmagasinServerRpC(verif);
-		}
+	
+		
 	}
 
-	[Command(requiresAuthority = false)]
-	private void OpponentmagasinServerRpC(bool verif) => Magasin(verif, false);
-
-	[ClientRpc]
+	
 	public void Magasin(bool verif, bool joueur)
     {
 		PlayerClass gamer;
@@ -692,19 +621,11 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void primeOpponent()
 	{
-		if (this.isServer)
-		{
+	
 			Prime(true);
-		}
-		else
-		{
-			OpponentprimeServerRpC();
-		}
+		
 	}
-	[Command(requiresAuthority = false)]
-	private void OpponentprimeServerRpC() => Prime(false);
 
-	[ClientRpc]
 	public void Prime(bool joueur)
 	{
 		PlayerClass gamer;
@@ -718,20 +639,12 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void PromoOpponent()
 	{
-		if (this.isServer)
-		{
+		
 			Promotion(true);
-		}
-		else
-		{
-			OpponentPromoServerRpC();
-		}
+		
 	}
 
-	[Command(requiresAuthority = false)]
-	private void OpponentPromoServerRpC() => Promotion(false);
 
-	[ClientRpc]
 	public void Promotion(bool joueur)
     {
 		PlayerClass gamer;
@@ -756,20 +669,11 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void carteOpponent()
 	{
-		if (this.isServer)
-		{
+		
 			Carte(true);
-		}
-		else
-		{
-			OpponentcarteServerRpC();
-		}
+	
 	}
 
-	[Command(requiresAuthority = false)]
-	private void OpponentcarteServerRpC() => Carte(false);
-
-	[ClientRpc]
 	public void Carte(bool joueur)
     {
 		PlayerClass gamer;
@@ -784,20 +688,12 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void cadeauOpponent()
 	{
-		if (this.isServer)
-		{
+		
 			Carte(true);
-		}
-		else
-		{
-			OpponentcadeauServerRpC();
-		}
+	
 	}
 
-	[Command(requiresAuthority = false)]
-	private void OpponentcadeauServerRpC() => Carte(false);
-
-	[ClientRpc]
+	
 	public void Cadeau(bool joueur)
     {
 		PlayerClass gamer;
@@ -812,20 +708,13 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void pubOpponent()
 	{
-		if (this.isServer)
-		{
+	
 			Pub(true);
-		}
-		else
-		{
-			OpponentPubServerRpC();
-		}
+	
+
 	}
 
-	[Command(requiresAuthority = false)]
-	private void OpponentPubServerRpC() => Pub(false);
-
-	[ClientRpc]
+	
 	public void Pub(bool joueur)
     {
 		PlayerClass gamer;
@@ -839,20 +728,15 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void OpponentCalcul()
 	{
-		if (this.isServer)
-		{
+	
 			calcul(true);
-		}
-		else
-		{
-			OpponentCalculServerRpC();
-		}
+	
+
 	}
 
-	[Command(requiresAuthority = false)]
-	public void OpponentCalculServerRpC() => calcul(false);
 
-   	[ClientRpc]
+
+
 	public void calcul(bool joueur)
 	{
 		if (joueur)

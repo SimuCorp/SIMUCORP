@@ -1,9 +1,13 @@
 using TMPro;
 using UnityEngine.UI;
-using Mirror;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine;
 using static MoneyCount;
 using static PlayerScript;
-public class TextMateriel : NetworkBehaviour 
+public class TextMateriel : MonoBehaviour
 {
     public int n;
     public TextMeshProUGUI Text;
@@ -18,10 +22,9 @@ public class TextMateriel : NetworkBehaviour
     void Update()
     {
         PlayerClass g;
-        if (this.isServer)
+        
             g = Gamer1;
-        else
-            g = Gamer2;
+    
         string res = g.materiel[n];
         Text.text = $"{res}\n\n {2500}";
     }

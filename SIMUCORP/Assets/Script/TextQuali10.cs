@@ -4,10 +4,10 @@ using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Mirror;
+
 using static MoneyCount;
 using static PlayerScript;
-public class TextQuali10 : NetworkBehaviour 
+public class TextQuali10 : MonoBehaviour
 {
     public TextMeshProUGUI Quali10;
     
@@ -23,10 +23,9 @@ public class TextQuali10 : NetworkBehaviour
         int i = 1;
         string res = "";
         PlayerClass g;
-        if (this.isServer)
+
             g = Gamer1;
-        else
-            g = Gamer2;
+
         foreach (string s in g._marchandise.Keys)
         {
             if (i == 10)

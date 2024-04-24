@@ -7,9 +7,9 @@ using UnityEngine.UI;
 using static PlayerScript;
 using static TextActionJoueur1;
 using static System.Math;
-using Mirror;
 
-public class Player1Script : NetworkBehaviour
+
+public class Player1Script : MonoBehaviour
 {
 
     public static bool move {get; set;}
@@ -34,7 +34,7 @@ public class Player1Script : NetworkBehaviour
     {
         double x = Joueur.transform.position.x;
         double x2 = Screen.width/2;
-        if (move && ((this.isServer && x <= x2) || (!this.isServer && x >= x2)))
+        if (move && ((true && x <= x2) || (!true && x >= x2)))
         {
             transform.Translate(Vector3.up * 30f * Time.fixedDeltaTime * Input.GetAxis("Vertical"));
             transform.Translate(Vector3.right * 30f * Time.fixedDeltaTime * Input.GetAxis("Horizontal"));
@@ -82,10 +82,9 @@ public class Player1Script : NetworkBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerClass gamer;
-        if (this.isServer)
+ 
             gamer = Gamer1;
-        else
-            gamer = Gamer2;
+
         if (other.gameObject.CompareTag("amelioration1") && amelioration1)
         {
             if (gamer._money < 2500)

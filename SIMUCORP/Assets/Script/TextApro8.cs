@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Mirror;
+
 using static MoneyCount;
 using static PlayerScript;
 
-public class TextApro8 : NetworkBehaviour 
+public class TextApro8 : MonoBehaviour
 {
     public TextMeshProUGUI Apro8;
     
@@ -23,10 +23,9 @@ public class TextApro8 : NetworkBehaviour
         int i = 1;
         string res = "";
         PlayerClass g;
-        if (this.isServer)
+    
             g = Gamer1;
-        else
-            g = Gamer2;
+
         foreach (string s in g._marchandise.Keys)
         {
             if (i == 8)

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Mirror;
+
 using static TextGameOver;
 using static PlayerScript;
 using static TextActionJoueur1;
