@@ -2,42 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static PlayerScript;
 using static MoneyCount;
 
 public class ButtonMateriel : MonoBehaviour
 {
    public void Materiel1()
     {
-        if (Gamer1.materiel[0] != "done" && Gamer1.AddMoney(-200))
+		PlayerClass gamer;
+
+			gamer = Gamer1;
+
+        if (gamer.materiel[0] != "acheté" && gamer.AddMoney(-200))
         {
-           Gamer1.materiel[0] = "done";
-           Gamer1._stat["Attracivité"] += 0.01;
+           gamer.materiel[0] = "acheté";
+           gamer._stat["Attractivité"] += 0.01;
         }
     }
    
    public void Materiel2()
    {
-      if (Gamer1.materiel[1] != "done" && Gamer1.AddMoney(-2500))
+	  PlayerClass gamer;
+
+			gamer = Gamer1;
+
+      if (gamer.materiel[1] != "acheté" && gamer.AddMoney(-2500))
       {
-         Gamer1.materiel[1] = "done";
-         Gamer1._stat["Attracivité"] += 5;
+         gamer.materiel[1] = "acheté";
+         gamer._stat["Attractivité"] += 5;
       }
    }
    
    public void Materiel3()
    {
-      if (Gamer1.materiel[2] != "done" && Gamer1.AddMoney(-2500))
+      PlayerClass gamer;
+	
+			gamer = Gamer1;
+		
+      if (gamer.materiel[2] != "acheté" && gamer.AddMoney(-2500))
       {
-         Gamer1.materiel[2] = "done";
-         Gamer1._stat["Attracivité"] += 5;
+         gamer.materiel[2] = "acheté";
+         gamer._stat["Attractivité"] += 5;
       }
    }
 
 	public void Materiel5()
 	{
-		if(Gamer1._missingitems[0] != "done" && Gamer1.AddMoney(-300))
+		PlayerClass gamer;
+	
+			gamer = Gamer1;
+	
+		if(gamer._missingitems[0] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
 			int a = 0;
@@ -46,25 +64,28 @@ public class ButtonMateriel : MonoBehaviour
 			double d = 0;
 			int e = 0;
 			string s = "";
-			foreach(string res in Gamer1._marchandise.Keys)
+			foreach(string res in gamer._marchandise.Keys)
 			{
 				if (i == 7)
 				{
-					(a, b, c, d, e) = Gamer1._marchandise[res];
+					(a, b, c, d, e) = gamer._marchandise[res];
 					s = res;
 				}
 				++i;
 			}
-			Gamer1._marchandise[s] = (a, b, true, d, e);
-			Gamer1._missingitems[0] = "done";
-			Gamer1._items[6] = s;
+			gamer._marchandise[s] = (a, b, true, d, e);
+			gamer._missingitems[0] = "acheté";
+			gamer._items[6] = s;
 		}
 	}
 
 	public void Materiel6()
 	{
-		PlayerClass gamer = Gamer1;
-		if(gamer._missingitems[1] != "done" && gamer.AddMoney(-300))
+		PlayerClass gamer;
+	
+			gamer = Gamer1;
+	
+		if(gamer._missingitems[1] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
 			int a = 0;
@@ -83,15 +104,18 @@ public class ButtonMateriel : MonoBehaviour
 				++i;
 			}
 			gamer._marchandise[s] = (a, b, true, d, e);
-			gamer._missingitems[1] = "done";
+			gamer._missingitems[1] = "acheté";
 			gamer._items[7] = s;
 		}
 	}
 
 	public void Materiel7()
 	{
-		PlayerClass gamer = Gamer1;
-		if(gamer._missingitems[2] != "done" && gamer.AddMoney(-300))
+		PlayerClass gamer;
+	
+			gamer = Gamer1;
+		
+		if(gamer._missingitems[2] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
 			int a = 0;
@@ -110,15 +134,18 @@ public class ButtonMateriel : MonoBehaviour
 				++i;
 			}
 			gamer._marchandise[s] = (a, b, true, d, e);
-			gamer._missingitems[2] = "done";
+			gamer._missingitems[2] = "acheté";
 			gamer._items[8] = s;
 		}
 	}
 
 	public void Materiel8()
 	{
-		PlayerClass gamer = Gamer1;
-		if(gamer._missingitems[3] != "done" && gamer.AddMoney(-300))
+		PlayerClass gamer;
+	
+			gamer = Gamer1;
+	
+		if(gamer._missingitems[3] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
 			int a = 0;
@@ -137,15 +164,18 @@ public class ButtonMateriel : MonoBehaviour
 				++i;
 			}
 			gamer._marchandise[s] = (a, b, true, d, e);
-			gamer._missingitems[3] = "done";
+			gamer._missingitems[3] = "acheté";
 			gamer._items[9] = s;
 		}
 	}
 
 	public void Materiel9()
 	{
-		PlayerClass gamer = Gamer1;
-		if(gamer._missingitems[4] != "done" && gamer.AddMoney(-300))
+		PlayerClass gamer;
+
+			gamer = Gamer1;
+	
+		if(gamer._missingitems[4] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
 			int a = 0;
@@ -164,15 +194,18 @@ public class ButtonMateriel : MonoBehaviour
 				++i;
 			}
 			gamer._marchandise[s] = (a, b, true, d, e);
-			gamer._missingitems[4] = "done";
+			gamer._missingitems[4] = "acheté";
 			gamer._items[10] = s;
 		}
 	}
 
 	public void Materiel10()
 	{
-		PlayerClass gamer = Gamer1;
-		if(gamer._missingitems[5] != "done" && gamer.AddMoney(-300))
+		PlayerClass gamer;
+	
+			gamer = Gamer1;
+
+		if(gamer._missingitems[5] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
 			int a = 0;
@@ -191,7 +224,7 @@ public class ButtonMateriel : MonoBehaviour
 				++i;
 			}
 			gamer._marchandise[s] = (a, b, true, d, e);
-			gamer._missingitems[5] = "done";
+			gamer._missingitems[5] = "acheté";
 			gamer._items[11] = s;
 		}
 	}

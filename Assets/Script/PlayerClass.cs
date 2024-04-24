@@ -51,6 +51,10 @@ public class PlayerClass : MonoBehaviour
 	public float TimeLeft { get; set; }
 	public float nbCount {get; set;}
 
+	public bool ready {get; set;}
+	public bool tour {get; set;}
+	public double sum {get; set;}
+
     public PlayerClass(string name)
     {
         _name = name;
@@ -76,8 +80,10 @@ public class PlayerClass : MonoBehaviour
 		More11 = 0;
 		More12 = 0;
 
-		TimeLeft = 100;
+		TimeLeft = 120;
 		nbCount = 1;
+		ready = false;
+		sum = 0;
     }
     
     public bool AddMoney(double sum)
@@ -92,5 +98,30 @@ public class PlayerClass : MonoBehaviour
         return false;
 
     }
+
+	public string Display(int n)
+	{
+		string res = _name;
+		int i = 0;
+		foreach((string product, (int quantity, double price, bool possible, double level, int turn)) in _marchandise)
+		{
+			if (i != n)
+				++i;
+			else
+			{
+				if (possible)
+				{
+					res += "\nDisponible ";
+					res += $"{product}:\n Quantité: {quantity}\n Prix: {price} $\n Qualité: {level}";
+				}
+				else
+				{
+					res += "\nIndisponible " + product;
+				}
+				break;
+			}
+		}
+		return res;
+	}
     
 }

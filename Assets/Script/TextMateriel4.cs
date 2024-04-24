@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 using static MoneyCount;
+using static PlayerScript;
 public class TextMateriel4 : MonoBehaviour
 {
     public TextMeshProUGUI Text4;
@@ -17,7 +19,10 @@ public class TextMateriel4 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerClass g = Gamer1;
+        PlayerClass g;
+       
+            g = Gamer1;
+   
         string res = g.materiel[3];
         Text4.text = res;
     }

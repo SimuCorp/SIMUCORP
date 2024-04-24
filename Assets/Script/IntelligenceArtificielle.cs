@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 using static MoneyCount;
 using static TourCount;
+using static PlayerScript;
 
-public class IntelligenceArtificielle
+public class IntelligenceArtificielle : MonoBehaviour
 {
-	public static  PlayerClass metier {get; set;}
+	public static PlayerClass metier {get; set;}
 	public static int act {get; set;}
 	public static bool Perime {get; set;}
 
@@ -112,25 +114,25 @@ public class IntelligenceArtificielle
     }
 	public static void DoAction()
 	{
-		if (act == 10 && !MoneyCount.multijoueur)
+		if (act == 10)
 	    {
 		    last_money = metier._money;
 	    }
-        if (!MoneyCount.multijoueur && act > 0)
+        if (act > 0)
         {
 	        for (int i = 0; i < 4; ++i)
 	        {
 				Achete();
 			}
-			if (metier._stat["Attracivité"] < 25 && !metier.promo)
+			if (metier._stat["Attractivité"] < 25 && !metier.promo)
 			{
 				metier.promo = true;
-				metier._stat["Attracivité"] *= 1.33;
+				metier._stat["Attractivité"] *= 1.33;
 			}
-			else if (metier._stat["Attracivité"] > 70 && metier.promo)
+			else if (metier._stat["Attractivité"] > 70 && metier.promo)
 			{
 				metier.promo = false;
-				metier._stat["Attracivité"] /= 1.33;
+				metier._stat["Attractivité"] /= 1.33;
 			}
 	        else if (metier._money > 7_500 && TurnValues % 4 >= 1)
 	        {
@@ -144,14 +146,14 @@ public class IntelligenceArtificielle
 		        --metier._stat["Employé"];
 				metier.AddMoney(3200);
 			}
-			else if (metier._stat["Attracivité"] < 50 && metier._money > 20_000 && metier.AddMoney(-1000))
+			else if (metier._stat["Attractivité"] < 50 && metier._money > 20_000 && metier.AddMoney(-1000))
 			{
-				metier._stat["Attracivité"] += 5;
+				metier._stat["Attractivité"] += 5;
 			}
-			else if (metier._stat["Attracivité"] < 50 && metier._money > 4000 && metier.AddMoney(-500))
-				metier._stat["Attracivité"] += 2.5;
-			else if (metier._stat["Attracivité"] < 50 && metier._money > 2000 && metier.AddMoney(-100))
-				metier._stat["Attracivité"] += 0.5;	 
+			else if (metier._stat["Attractivité"] < 50 && metier._money > 4000 && metier.AddMoney(-500))
+				metier._stat["Attractivité"] += 2.5;
+			else if (metier._stat["Attractivité"] < 50 && metier._money > 2000 && metier.AddMoney(-100))
+				metier._stat["Attractivité"] += 0.5;	 
 			--act;
 		}
 		else if (act == 0)

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static MoneyCount;
 using static ButtonExitCommercial;
+using static PlayerScript;
 public class ButtonCommercial : MonoBehaviour
 {
 

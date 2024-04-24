@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using static MoneyCount;
 using static Action4;
 using static CountdownScript;
+using static PlayerScript;
 
 public class ButtonAction4 : MonoBehaviour
 {

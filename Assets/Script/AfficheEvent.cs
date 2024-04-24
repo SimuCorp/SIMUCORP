@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static MoneyCount;
 using static CountdownScript;
+using static PlayerScript;
 using UnityEngine.SceneManagement;
 public class AfficheEvent : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class AfficheEvent : MonoBehaviour
 
     IEnumerator attend()
     {
-        yield return new WaitForSeconds(50);
+        yield return new WaitForSeconds(4);
         texte.text = "";
     }
 
@@ -32,9 +33,15 @@ public class AfficheEvent : MonoBehaviour
         {
             if (rentre)
             {
-                texte.text = MoneyCount.evenement._eventComing[TourCount.TurnValues/4-1];
-                rentre = true; 
-                //StartCoroutine("attend");
+                texte.text ="Evenement : " + evenement._eventComing[TourCount.TurnValues/4-1];
+                (double benef, double attract, double chance) =
+                evenement._event[evenement._eventComing[TourCount.TurnValues/4 - 1]];
+                if (benef >= 1)
+                    texte.color = Color.green;
+                else
+                    texte.color = Color.red;
+                rentre = false; 
+                StartCoroutine("attend");
             }
             
         }

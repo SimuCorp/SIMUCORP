@@ -44,7 +44,7 @@ public class Action2 : MonoBehaviour
             switch (TextAction2.text)
             {
                 case "Publicité":
-                    gamer._stat["Attracivité"] += 10;
+                    gamer._stat["Attractivité"] += 10;
                     break;
                 case "Salaire":
                     gamer._stat["Salaire"] += 100;

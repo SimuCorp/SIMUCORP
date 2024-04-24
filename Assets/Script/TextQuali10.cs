@@ -4,16 +4,17 @@ using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using static MoneyCount;
 
-public class TextQuali10  : MonoBehaviour
+using static MoneyCount;
+using static PlayerScript;
+public class TextQuali10 : MonoBehaviour
 {
     public TextMeshProUGUI Quali10;
     
     // Start is called before the first frame update
     void Start()
     {
-        Quali10 = Quali10.GetComponent<TextMeshProUGUI>();
+        Quali10 = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -21,7 +22,10 @@ public class TextQuali10  : MonoBehaviour
     {
         int i = 1;
         string res = "";
-        PlayerClass g = Gamer1;
+        PlayerClass g;
+
+            g = Gamer1;
+
         foreach (string s in g._marchandise.Keys)
         {
             if (i == 10)

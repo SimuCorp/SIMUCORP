@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using static TourCount;
 using static MoneyCount;
+using static PlayerScript;
+using static TextActionJoueur1;
+using static System.Math;
+
 
 public class CountdownScript : MonoBehaviour
 {
@@ -12,50 +16,60 @@ public class CountdownScript : MonoBehaviour
     public bool TimerOn = false;
     Text Countdown;
 	public int tour = 1;
+	[SerializeField] private GameObject GameOver;
+	public AudioSource FinTour;
 
     void Start()
     {
         TimerOn = true;
         Countdown = GetComponent<Text> ();
+		FinTour = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (TimerOn)
+        
+        if (TimerOn && Gamer1.ready && Gamer2.ready)
         {
             if (Gamer1.TimeLeft > 0)
             {
                 Gamer1.TimeLeft -= Time.deltaTime;
-                UpdateTimer(Gamer1.TimeLeft);
+                UpdateTimer();
             }
-            else
+            /**else
             {
                 if (Gamer1._button && Gamer2._button)
                 {
                     Gamer1._button = false;
-                    MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
+                    MoneyCount.CalCulus(Gamer1, "timer");
                     Gamer2._button = false;
-                    MoneyCount.CalCulus(MoneyCount.Gamer2, "timer");
+                    MoneyCount.CalCulus(Gamer2, "timer");
                 }
                 else if (Gamer2._button)
                 {
                     Gamer2._button = false;
-                    MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
+                    MoneyCount.CalCulus(Gamer1, "timer");
                 }
                 else
                 {
                        Gamer1._button = false;
-                       MoneyCount.CalCulus(MoneyCount.Gamer1, "timer");
+                       MoneyCount.CalCulus(Gamer1, "timer");
                 }
-            }
+            }*/
         }
+        
     }
 
-    void UpdateTimer(float currentTime)
+    void UpdateTimer()
     {
-        currentTime -= 1;
         Countdown.text = $"{(int)(Gamer1.TimeLeft/Gamer1.nbCount)}";
+        if (Gamer1.TimeLeft >= 80)
+            Countdown.color = Color.green;
+        else if (Gamer1.TimeLeft >= 40)
+            Countdown.color = Color.yellow;
+        else
+            Countdown.color = Color.red;
     }
 
     public static void UpdateTimeButton(PlayerClass gamer)
@@ -69,4 +83,5 @@ public class CountdownScript : MonoBehaviour
         ButtonLeft = 3;
         gamer._button = true;
     }
+
 }

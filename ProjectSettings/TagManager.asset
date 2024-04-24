@@ -3,7 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - item1
+  - item3
+  - item2
+  - item4
+  - item5
+  - item6
+  - item7
+  - item8
+  - item9
+  - item10
+  - item11
+  - item12
+  - amelioration1
+  - amelioration2
+  - Caisse
+  - promotion
+  - Mur
   layers:
   - Default
   - TransparentFX

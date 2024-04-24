@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 using static MoneyCount;
+using static PlayerScript;
 
 public class TextPromo : MonoBehaviour
 {
@@ -16,7 +18,10 @@ public class TextPromo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerClass g = Gamer1;
+        PlayerClass g;
+  
+            g = Gamer1;
+
         if (g.promo)
             TextPro.text = "Promotion\n\nEn cours";
         else

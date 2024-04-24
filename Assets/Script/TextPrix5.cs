@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 using static MoneyCount;
+using static PlayerScript;
 
 public class TextPrix5 : MonoBehaviour
 {
@@ -20,7 +22,11 @@ public class TextPrix5 : MonoBehaviour
     {
         int i = 1;
         string res = "";
-        foreach (string s in Gamer1._marchandise.Keys)
+        PlayerClass g;
+        
+            g = Gamer1;
+  
+        foreach (string s in g._marchandise.Keys)
         {
             if (i == 5)
             {
@@ -31,7 +37,7 @@ public class TextPrix5 : MonoBehaviour
             ++i;
         }
 
-        (_, double j, _, _, _) = Gamer1._marchandise[res];
+        (_, double j, _, _, _) = g._marchandise[res];
         Prix5.text = $"{res}\n\n{j}";
     }
 }

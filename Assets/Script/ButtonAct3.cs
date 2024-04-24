@@ -2,32 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 using static MoneyCount;
 using static TextMagasin;
+using static PlayerScript;
 
 public class ButtonAct3 : MonoBehaviour
 {   
     public void DoAct3()
     {
-        Gamer1._stat["Attracivité"] += 0.5;
-        Gamer1.AddMoney(-100);
+        PlayerClass gamer;
+     
+            gamer = Gamer1;
+       
+        gamer._stat["Attractivité"] += 0.5;
+        gamer.AddMoney(-100);
     }
 
     public void DoAct32()
     {
+        PlayerClass gamer;
+   
+            gamer = Gamer1;
+     
         double n = TextMagasin.n;
-        double n1 = Gamer1._stat["Magasin"];
+        double n1 = gamer._stat["Magasin"];
         bool b = true;
-        if (TextMagasin.n - 1 <= Gamer1._stat["Employé"])
+        if (TextMagasin.n - 1 <= gamer._stat["Employé"])
         {
             if (n1 - n > 0)
-                b = Gamer1.AddMoney(2500 * (n1 - n));
+                b = gamer.AddMoney(2500 * (n1 - n));
             else if (n1 - n < 0)
-                b = Gamer1.AddMoney(5000 * (n1 - n));
+                b = gamer.AddMoney(5000 * (n1 - n));
             if (b)
-                Gamer1._stat["Magasin"] = n;
+                gamer._stat["Magasin"] = n;
             else
-                TextMagasin.n = Gamer1._stat["Magasin"];
+                TextMagasin.n = gamer._stat["Magasin"];
         }
     }
     

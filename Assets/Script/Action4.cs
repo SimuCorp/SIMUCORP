@@ -44,13 +44,13 @@ public class Action4 : MonoBehaviour
             switch (TextAction4.text)
             {
                 case "Cadeau":
-                    gamer._stat["Attracivité"] += 10;
+                    gamer._stat["Attractivité"] += 10;
                     break;
                 case "Prime":
                     gamer.AddMoney(-1000);;
                     break;
                 case "Matériels":
-                    gamer._stat["Attracivité"] += 10;
+                    gamer._stat["Attractivité"] += 10;
                     gamer.AddMoney(-1000);
                     break;
                 default:

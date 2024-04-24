@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 using static MoneyCount;
+using static PlayerScript;
 
 public class ButtonPass : MonoBehaviour
 {
@@ -10,10 +12,14 @@ public class ButtonPass : MonoBehaviour
 
     public void NewButton()
     {
-        if (Gamer1._button)
+        PlayerClass gamer;
+
+            gamer = Gamer1;
+
+        if (gamer._button)
         {
-            Gamer1._button = false;
-            CalCulus(Gamer1, "");
+            gamer._button = false;
+            CalCulus(gamer, "");
         }
     }
     

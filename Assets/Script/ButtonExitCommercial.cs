@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 using static MoneyCount;
 using static TourCount;
 using static IntelligenceArtificielle;
+using static PlayerScript;
 public class ButtonExitCommercial : MonoBehaviour
 {
 	public static bool changement = false;
@@ -114,7 +116,7 @@ public class ButtonExitCommercial : MonoBehaviour
 		int i = 0;
 		int length = Gamer1._items.Count;
 
-		while (i < length && Gamer1._items[i] == "done")
+		while (i < length && Gamer1._items[i] == "acheté")
 			++i;
 		if (i < length)
 		{
@@ -137,8 +139,21 @@ public class ButtonExitCommercial : MonoBehaviour
         ++Gamer1.nbCount;
 		SceneManager.LoadScene("ActionMateriel1",  LoadSceneMode.Additive);
 	}
-
+	
 	public void ExitAccueil()
+	{
+		
+			OpponentAccueilClientRpc();
+	
+	}
+	
+	public void OpponentAccueilClientRpc()
+	{
+		SceneManager.UnloadSceneAsync("EcranAccueil");
+		SceneManager.LoadSceneAsync("ChoixTour", LoadSceneMode.Additive);
+	}
+
+	public void OpponentAccueilServer()
 	{
 		SceneManager.UnloadSceneAsync("EcranAccueil");
 		SceneManager.LoadSceneAsync("ChoixTour", LoadSceneMode.Additive);
@@ -156,6 +171,8 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void ExitPrimeur()
 	{
+		if (true)
+		{
 			Gamer1 = new Primeur("Primeur");
 			if (!(multijoueur))
 				{
@@ -165,111 +182,175 @@ public class ButtonExitCommercial : MonoBehaviour
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Primeur("Primeur");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+		}	
 	}
 
 	public void ExitBoucherie()
 	{
-
+		if (true)
+		{
 			Gamer1 = new Boucherie("Boucher");
 			if (!(multijoueur))
 				{
-					Gamer2 = new Boucherie("Boucher");
+					Gamer2 = new Primeur("Primeur");
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-	
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Boucherie("Boucher");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+		}
 	}
 
 	public void ExitLibraire()
 	{
-
+		if (true)
+		{
 			Gamer1 = new Libraire("Libraire");
 			if (!(multijoueur))
 				{
-					Gamer2 = new Boucherie("Boucher");
+					Gamer2 = new Primeur("Primeur");
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-		
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Libraire("Libraire");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+		}
 	}
 
 	public void ExitCoiffeur()
 	{
-
+		if (true)
+		{
 			Gamer1 = new Coiffeur("Coiffeur");
 			if (!(multijoueur))
 				{
-					Gamer2 = new Boucherie("Boucher");
+					Gamer2 = new Primeur("Primeur");
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Coiffeur("Coiffeur");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+		}
 	}
 
 	public void ExitPoisson()
 	{
-
+		if (true)
+		{
 			Gamer1 = new Poissonier("Poissonier");
 			if (!(multijoueur))
 				{
-					Gamer2 = new Boucherie("Boucher");
+					Gamer2 = new Primeur("Primeur");
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Poissonier("Poissonier");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+		}
 	}
 
 	public void ExitBijouterie()
 	{
+		if (true)
+		{
 			Gamer1 = new Bijouterie("Bijoutier");
 			if (!(multijoueur))
 				{
-					Gamer2 = new Boucherie("Boucher");
+					Gamer2 = new Primeur("Primeur");
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Bijouterie("Bijoutier");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+		}
 	}
 
 	public void ExitVetement()
 	{
-
+		if (true)
+		{
 			Gamer1 = new Pret_a_porter("Prêt à porter");
 			if (!(multijoueur))
 				{
-					Gamer2 = new Boucherie("Boucher");
+					Gamer2 = new Primeur("Primeur");
 					new IntelligenceArtificielle();
 				}
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Pret_a_porter("Prêt à porter");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+		}
 	}
 
 	public void ExitFleur()
 	{
-
+		if (true)
+		{
 			Gamer1 = new Fleuriste("Fleuriste");
 			if (!(multijoueur))
 			{
-					Gamer2 = new Boucherie("Boucher");
+					Gamer2 = new Primeur("Primeur");
 					new IntelligenceArtificielle();
 			}
 			TurnValues = 1;
 			changement2 = true;
 			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-
+		}
+		else if (!multijoueur)
+		{
+			Gamer2 = new Fleuriste("Fleuriste");
+			multijoueur = true;
+			TurnValues = 1;
+			SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+		}
 	}
 
 	public void ExitCourte()
@@ -330,10 +411,15 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void NewButton()
     {
-        PlayerClass gamer = Gamer1;
+        PlayerClass gamer;
+   
+            gamer = Gamer1;
+
+        if (gamer._button)
+        {
             gamer._button = false;
             CalCulus(gamer, "");
-     
+        }
     }
 
 	public void DoButtonRH()

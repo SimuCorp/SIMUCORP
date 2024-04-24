@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static MoneyCount;
-
+using static PlayerScript;
 public class MainMenu : MonoBehaviour
 {
     public AudioSource audioSource;

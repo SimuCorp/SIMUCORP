@@ -44,13 +44,13 @@ public class Action3 : MonoBehaviour
             switch (TextAction3.text)
             {
                 case "Carte de fidélité":
-                    gamer._stat["Attracivité"] += 10;
+                    gamer._stat["Attractivité"] += 10;
                     break;
                 case "Magasin":
                     gamer._stat["Magasin"] += 1;
                     break;
                 case "Qualité":
-                    gamer._stat["Attracivité"] += 10;
+                    gamer._stat["Attractivité"] += 10;
                     gamer.AddMoney(-1000);
                     break;
                 default:

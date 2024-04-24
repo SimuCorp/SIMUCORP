@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 using static MoneyCount;
+using static PlayerScript;
 
 public class TextPrix1 : MonoBehaviour
 {
     public TextMeshProUGUI Prix1;
+    public static int n = 1;
     
     // Start is called before the first frame update
     void Start()
@@ -20,9 +23,13 @@ public class TextPrix1 : MonoBehaviour
     {
         int i = 1;
         string res = "";
-        foreach (string s in Gamer1._marchandise.Keys)
+        PlayerClass g;
+ 
+            g = Gamer1;
+
+        foreach (string s in g._marchandise.Keys)
         {
-            if (i == 1)
+            if (i == n)
             {
                 res = s;
                 break;
@@ -31,7 +38,7 @@ public class TextPrix1 : MonoBehaviour
             ++i;
         }
 
-        (_, double j, _, _, _) = Gamer1._marchandise[res];
+        (_, double j, _, _, _) = g._marchandise[res];
         Prix1.text = $"{res}\n\n{j}";
     }
 }

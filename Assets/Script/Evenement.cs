@@ -34,19 +34,19 @@ public class Evenement
     {
         _event = new Dictionary<string, (double, double, double)>()
         {
-            { "Jeux Olympiques", (2, 2, 5) },
-            { "Fashion Week", (1.5, 2, 7) },
-            { "Grève SNCF", (0.8, 0.8, 20) },
+            { "Entrée d'argent", (2, 2, 5) },
+            { "Black Friday", (1.5, 2, 7) },
+            { "Travaux", (0.8, 0.8, 20) },
             { "Vacances", (1.4, 1.3, 30) },
             { "Inflation", (0.8, 1, 20) },
             { "Coupure de courant", (0.5, 0.9, 10) },
-            { "Attentat", (0.1, 1, 2) },
+            { "Emeute", (0.1, 1, 2) },
             { "Exposition", (1.2, 1.4, 10) },
-            { "Tremblement de terre", (0.1, 0.2, 2) },
+            { "Inondation", (0.1, 0.2, 2) },
             { "Concert", (1.2, 1.4, 30) },
             { "Conférence", (1.1, 1.3, 35) },
             { "Cambriolage", (0.1, 1, 1) },
-            { "Mode", (1.5, 1.5, 10) }
+            { "Braderie", (1.5, 1.5, 10) }
         };
         _eventComing = aVenir(_event);
     }

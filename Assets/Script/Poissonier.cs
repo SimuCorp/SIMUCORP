@@ -8,35 +8,35 @@ public class Poissonier : PlayerClass
     {
         _marchandise = new Dictionary<string, (int, double, bool, double, int)>()
         {
-            { "Maquereau", (300, 6.75, true, 1, 3) },
+            { "Maquereau", (300, 3.00, true, 1, 3) },
             { "Sardine", (300, 4.25, true, 1, 3) },
             { "Coquilles saint jacques", (300, 5.50, true, 1, 3) },
-            { "Sole", (300, 14, true, 1, 3) },
-            { "Merlan", (300, 8.50, true, 1, 3) },
-            { "Hareng", (300, 9.00, true, 1, 3) },
-            { "Saumon", (0, 22.45, false, 1, 3) },
-            { "Salicorne", (0, 3.50, false, 1, 3) },
-            { "Moule", (0, 7.50, false, 1, 3) },
+            { "Sole", (300, 11.73, true, 1, 3) },
+            { "Merlan", (300, 5, true, 1, 3) },
+            { "Cabillaud", (300, 13.20, true, 1, 3) },
+            { "Saumon", (0, 8, false, 1, 3) },
+            { "Salicorne", (0, 4.50, false, 1, 3) },
+            { "Moules", (0, 9.90, false, 1, 3) },
             { "Crevettes", (0, 17, false, 1, 3) },
-            { "Crabe", (0, 18, false, 1, 3) },
-            { "Homard", (0, 49, false, 1, 3) }
+            { "Crabe", (0, 10, false, 1, 3) },
+            { "Homard", (0, 15, false, 1, 3) }
         };
         _stat = new Dictionary<string, double>()
         {
             { "Qualité", 50 },
-            { "Attracivité", 20 },
+            { "Attractivité", 20 },
             { "Clientèle", 1000 },
             { "Panier", 15 },
             { "Employé", 0 },
             { "Salaire", 1399 },
             { "Magasin", 1 },
         };
-        _items = new List<string> { "Maquereau", "Sardine", "Coquilles saint jacques", "Sole", "Merlan", "Hareng" };
+        _items = new List<string> { "Maquereau", "Sardine", "Coquilles saint jacques", "Sole", "Merlan", "Cabillaud" };
         for (int i = 0; i < 6; ++i)
             _items.Add("NaN");
-        _missingitems = new List<string> { "Saumon", "Salicorne", "Moule", "Crevettes", "Crabe", "Homard"};
-        materiel = new List<string> { "tableau de promotion", "Douchette de Nettoyage", "Etal à poisson", "nouvelles marchandises" };
-        prix = new List<double> {4.50, 2.83, 3.66, 9.33, 5.67, 6.00, 14.97, 2.33, 5.00, 11.33, 12, 32.67};
+        _missingitems = new List<string> { "Saumon", "Salicorne", "Moules", "Crevettes", "Crabe", "Homard"};
+        materiel = new List<string> { "tableau de promotion", "Aquarium", "Table de dégustation", "nouvelles marchandises" };
+        prix = new List<double> {2.00, 2.83, 3.66, 7.82, 3.33, 8.80, 5.33, 3, 6.60, 11.33, 6.67, 10};
         Perime1 = new List<int> {300};
         Perime2 = new List<int> {300};
         Perime3 = new List<int> {300};

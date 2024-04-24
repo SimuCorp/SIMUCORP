@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 using static MoneyCount;
+using static PlayerScript;
 
 public class TextApro8 : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class TextApro8 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Apro8 =  GetComponent<TextMeshProUGUI>();
+        Apro8 = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -20,7 +22,11 @@ public class TextApro8 : MonoBehaviour
     {
         int i = 1;
         string res = "";
-        foreach (string s in Gamer1._marchandise.Keys)
+        PlayerClass g;
+    
+            g = Gamer1;
+
+        foreach (string s in g._marchandise.Keys)
         {
             if (i == 8)
             {
@@ -31,8 +37,8 @@ public class TextApro8 : MonoBehaviour
             ++i;
         }
 
-        (int j, double d, bool b, double st, int l) = Gamer1._marchandise[res];
+        (int j, double d, bool b, double st, int l) = g._marchandise[res];
         Apro8.text = $"{res}\n\n{j}";
-        Gamer1._marchandise[res] = (j, d, b, st, l);
+        g._marchandise[res] = (j, d, b, st, l);
     }
 }

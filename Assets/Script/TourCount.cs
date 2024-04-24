@@ -20,7 +20,14 @@ public class TourCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        NB_tour.text = $"Tour : {TurnValues}";
+        NB_tour.text = $"Semaine {TurnValues}/{MaxTurn}";
+        if (TurnValues <= MaxTurn/3)
+            NB_tour.color = Color.green;
+        else if (TurnValues <= 2*MaxTurn/3)
+            NB_tour.color = Color.yellow;
+        else
+            NB_tour.color = Color.red;
+            
     }
 
 	public static void AddTurn(string Button)

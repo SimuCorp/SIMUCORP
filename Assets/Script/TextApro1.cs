@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 using static MoneyCount;
 
-public class TextApro1  : MonoBehaviour
+public class TextApro1 : MonoBehaviour 
 {
     public TextMeshProUGUI Apro1;
+    public static int n = 1;
     
     // Start is called before the first frame update
     void Start()
     {
         Apro1 = GetComponent<TextMeshProUGUI>();
+        n = 1;
     }
 
     // Update is called once per frame
@@ -20,9 +23,13 @@ public class TextApro1  : MonoBehaviour
     {
         int i = 1;
         string res = "";
-        foreach (string s in Gamer1._marchandise.Keys)
+        PlayerClass g;
+
+            g = PlayerScript.Gamer1;
+
+        foreach (string s in g._marchandise.Keys)
         {
-            if (i == 1)
+            if (i == n)
             {
                 res = s;
                 break;
@@ -31,8 +38,8 @@ public class TextApro1  : MonoBehaviour
             ++i;
         }
 
-        (int j, double d, bool b, double st, int l) = Gamer1._marchandise[res];
+        (int j, double d, bool b, double st, int l) = g._marchandise[res];
         Apro1.text = $"{res}\n\n{j}";
-        Gamer1._marchandise[res] = (j, d, b, st, l);
+        g._marchandise[res] = (j, d, b, st, l);
     }
 }

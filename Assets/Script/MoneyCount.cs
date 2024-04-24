@@ -5,16 +5,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using static TextGameOver;
 
+using static TextGameOver;
+using static PlayerScript;
+using static TextActionJoueur1;
+using static FinDeTour;
 
 public class MoneyCount : MonoBehaviour
 {
-    public static PlayerClass Gamer1 = new Primeur("Primeur");
-	public static PlayerClass Gamer2 = new Boucherie("Boucher");
-	public static Evenement evenement = new Evenement();
+    //public static PlayerClass Gamer1 = new Primeur("Primeur");
+	//public static PlayerClass Gamer2 = new Boucherie("Boucher");
+	//public static Evenement evenement = new Evenement();
 	public static bool multijoueur = false;
-	public static IntelligenceArtificielle AI = new IntelligenceArtificielle();
+	//public static IntelligenceArtificielle AI = new IntelligenceArtificielle();
     Text MoneyInformation;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,12 @@ public class MoneyCount : MonoBehaviour
     void Update()
     {
         MoneyInformation.text = $"{Math.Round(Gamer1._money, 2)} $";
+		  if (Gamer1._money >= 5000)
+            MoneyInformation.color = Color.green;
+        else if (Gamer1._money >= 1000)
+            MoneyInformation.color = Color.yellow;
+        else
+            MoneyInformation.color = Color.red;
     }
 
 	public static void Perime(PlayerClass gamer, int key)
@@ -296,7 +305,7 @@ public class MoneyCount : MonoBehaviour
     public static void CalCulus(PlayerClass gamer, string Button)
     {
         System.Random aleatoire = new System.Random();
-        double attractive = gamer._stat["Attracivité"];
+        double attractive = gamer._stat["Attractivité"];
         double client = gamer._stat["Clientèle"];
         int nb_client = aleatoire.Next((int)Math.Round(client / 2, 0), (int)Math.Round(client * 2, 0));
         int key;
@@ -329,12 +338,13 @@ public class MoneyCount : MonoBehaviour
           	{
              (double benef, double attract, double chance) =
                 evenement._event[evenement._eventComing[TourCount.TurnValues/4 - 1]];
-             gamer._stat["Attracivité"] *= attract;
+             gamer._stat["Attractivité"] *= attract;
              sum *= benef;
           	}
 
 			for (int i = 0; i < 12; ++i)
 				Perime(gamer, i);
+			gamer.sum = sum;
             gamer.AddMoney(sum);
 			gamer._mounth += sum;
 			bool b = false;
@@ -345,14 +355,14 @@ public class MoneyCount : MonoBehaviour
 				b = (!gamer.AddMoney(-gamer._mounth/4) || !gamer.AddMoney(-gamer._stat["Employé"]*gamer._stat["Salaire"]));
 				if (b)
 				{
-					SceneManager.LoadScene("GameOver",  LoadSceneMode.Additive);
+					//SceneManager.LoadScene("GameOver",  LoadSceneMode.Additive);
 				}
 				else
 					gamer._mounth = 0;
 			}
 			if (Gamer1._turn == false && Gamer2._turn == false)
 			{
-				Gamer1.TimeLeft = 100*Gamer1.nbCount;
+				Gamer1.TimeLeft = 124*Gamer1.nbCount;
 				TourCount.AddTurn(Button);
 				Gamer1._turn = true;
 				Gamer2._turn = true;
@@ -363,14 +373,14 @@ public class MoneyCount : MonoBehaviour
 			}
 			if (TourCount.TurnValues > TourCount.MaxTurn || b)
 			{
-				SceneManager.LoadScene("GameOver",  LoadSceneMode.Additive);
+				//SceneManager.LoadScene("GameOver",  LoadSceneMode.Additive);
 			}
-			else
-				{
-					Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
-					++Gamer1.nbCount;
-					SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
-				}
+			//else
+				//{
+					//PlayerScript.Gamer1.TimeLeft += (Gamer1.TimeLeft/Gamer1.nbCount);
+					//++PlayerScript.Gamer1.nbCount;
+					//SceneManager.LoadScene("ScenePrincipale",  LoadSceneMode.Additive);
+				//}
         }
     }
 }
