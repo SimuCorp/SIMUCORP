@@ -98,5 +98,30 @@ public class PlayerClass : MonoBehaviour
         return false;
 
     }
+
+	public string Display(int n)
+	{
+		string res = _name;
+		int i = 0;
+		foreach((string product, (int quantity, double price, bool possible, double level, int turn)) in _marchandise)
+		{
+			if (i != n)
+				++i;
+			else
+			{
+				if (possible)
+				{
+					res += "\nDisponible ";
+					res += $"{product}:\n Quantité: {quantity}\n Prix: {price} $\n Qualité: {level}";
+				}
+				else
+				{
+					res += "\nIndisponible " + product;
+				}
+				break;
+			}
+		}
+		return res;
+	}
     
 }

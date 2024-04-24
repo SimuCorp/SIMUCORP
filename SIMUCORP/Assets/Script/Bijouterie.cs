@@ -35,7 +35,7 @@ public class Bijouterie : PlayerClass
        for (int i = 0; i < 6; ++i)
           _items.Add("NaN");
         _missingitems = new List<string> { "Collier en saphir", "Bague en or et rubis", "Montre en or", "Bague en diamant", "Collier en diamant", "Alliances"};
-        materiel = new List<string> { "tableau de promotion", "Coffre", "Cameras", "nouveaux bijoux" };
+        materiel = new List<string> { "tableau de promotion", "Réparation", "Cameras", "nouveaux bijoux" };
         prix = new List<double> {39, 66, 16, 26, 60, 100, 200, 133.33, 400.00, 1000.00, 2666.66, 666.66};
        Perime1 = new List<int> {50};
        Perime2 = new List<int> {50};

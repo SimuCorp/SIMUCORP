@@ -91,9 +91,9 @@ public class PlayerScript : NetworkBehaviour
         }
 		if (Input.GetKeyDown(KeyCode.Space) && Gamer1.ready && Gamer2.ready)
         { 
-			Pause.SetActive(pause);
-			pause = !pause;
 			InfoTour.SetActive(pause);
+			pause = !pause;
+			Pause.SetActive(pause);
 			ChangementPause();
 		}
 		
@@ -1005,8 +1005,52 @@ public class PlayerScript : NetworkBehaviour
 
 	public void Retour()
 	{
+		float taille = Screen.width;
 		Options.SetActive(false);
 		GameOver.SetActive(false);
+		if (Gamer2 is Primeur)
+		{
+			Primeur.transform.Translate(new Vector3(-taille/2, 0, 0));
+		}
+		Primeur.SetActive(false);
+		if (Gamer1 is Libraire)
+		{
+			Librairie.transform.Translate(new Vector3(taille/2, 0, 0));
+		}
+		Librairie.SetActive(false);
+		if (Gamer1 is Coiffeur)
+		{
+			Coiffeur.transform.Translate(new Vector3(taille/2, 0, 0));
+		}
+		Coiffeur.SetActive(false);
+		if (Gamer2 is Poissonier)
+		{
+			Poissonerie.transform.Translate(new Vector3(-taille/2, 0, 0));
+		}
+		Poissonerie.SetActive(false);
+		if (Gamer1 is Bijouterie)
+		{
+			Bijouterie.transform.Translate(new Vector3(taille/2, 0, 0));
+		}
+		Bijouterie.SetActive(false);
+		if (Gamer1 is Pret_a_porter)
+		{
+			Vetement.transform.Translate(new Vector3(taille/2, 0, 0));
+		}
+		Fleuriste.SetActive(false);
+		if (Gamer2 is Fleuriste)
+		{
+			Fleuriste.transform.Translate(new Vector3(-taille/2, 0, 0));
+		}
+		Vetement.SetActive(false);
+		if (Gamer2 is Boucherie)
+		{
+			Boucherie.transform.Translate(new Vector3(-taille/2, 0, 0));
+		}
+		Boucherie.SetActive(false);
+		InfoTour.SetActive(false);
+		InfoJoueur1.SetActive(false);
+		InfoJoueur2.SetActive(false);
 		Accueil.SetActive(true);
 		Gamer1.ready = false;
 		Gamer2.ready = false;

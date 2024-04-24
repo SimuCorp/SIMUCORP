@@ -32,7 +32,7 @@ public class MoneyCount : MonoBehaviour
 		  if (Gamer1._money >= 5000)
             MoneyInformation.color = Color.green;
         else if (Gamer1._money >= 1000)
-            MoneyInformation.color = Color.magenta;
+            MoneyInformation.color = Color.yellow;
         else
             MoneyInformation.color = Color.red;
     }
@@ -344,11 +344,8 @@ public class MoneyCount : MonoBehaviour
 
 			for (int i = 0; i < 12; ++i)
 				Perime(gamer, i);
+			gamer.sum = sum;
             gamer.AddMoney(sum);
-			if (gamer == Gamer1)
-				TextActionJoueur1.Vente1 = gamer.sum;
-			else
-				TextActionJoueur1.Vente2 = gamer.sum;
 			gamer._mounth += sum;
 			bool b = false;
 			if (TourCount.TurnValues % 4 == 0)
@@ -365,7 +362,7 @@ public class MoneyCount : MonoBehaviour
 			}
 			if (Gamer1._turn == false && Gamer2._turn == false)
 			{
-				Gamer1.TimeLeft = 120*Gamer1.nbCount;
+				Gamer1.TimeLeft = 124*Gamer1.nbCount;
 				TourCount.AddTurn(Button);
 				Gamer1._turn = true;
 				Gamer2._turn = true;

@@ -31,7 +31,7 @@ public class Fleuriste : PlayerClass
             { "Salaire", 1399 },
             { "Magasin", 1 },
         };
-        _items = new List<string> { "Rose rouge", "Terreaux", "Pot de fleur", "Tulipe", "Pivoine", "Gerbera" };
+        _items = new List<string> { "Rose", "Terreaux", "Pot de fleur", "Tulipe", "Pivoine", "Gerbera" };
         for (int i = 0; i < 6; ++i)
             _items.Add("NaN");
         _missingitems = new List<string> { "Iris", "Lys", "Bouquet de fleurs", "Cactus", "Camelia", "Couronne de fleurs"};

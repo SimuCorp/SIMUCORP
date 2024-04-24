@@ -27,7 +27,7 @@ public class MoneyJoueur2 : MonoBehaviour
          if (Gamer2._money >= 5000)
             MoneyInfo.color = Color.green;
         else if (Gamer2._money >= 1000)
-            MoneyInfo.color = Color.magenta;
+            MoneyInfo.color = Color.yellow;
         else
             MoneyInfo.color = Color.red;
     }

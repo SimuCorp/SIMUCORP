@@ -41,6 +41,44 @@ public class Player1Script : NetworkBehaviour
         }
     }
 
+    void OnCollisionEnter2D (Collision2D collision )
+    {
+
+        double x = collision.transform.position.x;
+        double y = collision.transform.position.y;
+        if  (collision.gameObject.name ==  "mur_bas" )  
+        {
+            transform.Translate(new Vector2(0,1) * 10);
+        }
+        else if  (collision.gameObject.name ==  "mur_haut" )  
+        {
+            transform.Translate(new Vector2(0,-1) * 10);
+        }
+        else if  (collision.gameObject.name ==  "mur_droite" )  
+        {
+            transform.Translate(new Vector2(-1,0) * 10);
+        }
+        else if  (collision.gameObject.name ==  "mur_gauche" )  
+        {
+            transform.Translate(new Vector2(1,0) * 10);
+        }
+        else
+        {
+            double x2 = Joueur.transform.position.x;
+            double y2 = Joueur.transform.position.y;
+            if (y < y2)
+                transform.Translate(new Vector2(0,1) * 10);
+            if (y > y2)
+                transform.Translate(new Vector2(0,-1) * 10);
+            if (x < x2)
+                transform.Translate(new Vector2(1,0) * 10);
+            if (x > x2)
+                transform.Translate(new Vector2(-1,0) * 10);
+                
+        }
+      
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerClass gamer;

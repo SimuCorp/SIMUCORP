@@ -24,6 +24,6 @@ public class FinDeTour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Information.text = $"Fin de la semaine : {TourCount.TurnValues-1}\nTotal des Ventes du Joueur 1 : {TextActionJoueur1.Vente1}\n Total des Ventes du Joueur 2 : {TextActionJoueur1.Vente2}";
+        Information.text = $"Fin de la semaine {TourCount.TurnValues-1}\nTotal des Ventes du Joueur 1 : {Round(TextActionJoueur1.Vente1, 2)} $\n Total des Ventes du Joueur 2 : {Round(TextActionJoueur1.Vente2, 2)} $";
     }
 }

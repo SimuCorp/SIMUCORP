@@ -20,14 +20,16 @@ public class TextActionJoueur1 : NetworkBehaviour
 	public GameObject Text_action;
 	public Image Emplacement1;
 	public Image Emplacement2;
+	public Sprite fond;
 	public Sprite Amelioration1;
     public Sprite Amelioration2;
 	public bool end;
 	[SerializeField] private GameObject GameOver;
 	[SerializeField] private GameObject FinDeTour;
 	[SerializeField] private GameObject ElementTour;
-	public static double Vente1 = 0;
-    public static double Vente2 = 0;
+	public static double Vente1;
+    public static double Vente2;
+	public static double Collision;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,10 @@ public class TextActionJoueur1 : NetworkBehaviour
 		audio = GetComponent<AudioSource>();
 		FinTour = GetComponent<AudioSource>();
 		end = false;
+		Emplacement1.sprite = fond;
+		Emplacement2.sprite = fond;
+		Vente1 = 0;
+		Vente2 = 0;
     }
 
     // Update is called once per frame
@@ -42,6 +48,11 @@ public class TextActionJoueur1 : NetworkBehaviour
     {	
 		double x = Text_action.transform.position.x;
 		double x2 = Screen.width/2;
+		if (FinDeTour.activeSelf && Gamer1.TimeLeft < 120)
+		{
+			FinDeTour.SetActive(false);
+			move = true;
+		}
 		if (((this.isServer && x <= x2) || (!this.isServer && x >= x2)))
 		{
 			PlayerClass gamer;
@@ -49,12 +60,33 @@ public class TextActionJoueur1 : NetworkBehaviour
 				gamer = Gamer1;
 			else
 				gamer = Gamer2;
+			move = action.text == "" && gamer._button && !PlayerScript.pause;
+			if (Gamer1.TimeLeft <= 0)
+            {
+                if (Gamer1._button && Gamer2._button)
+                {
+                    Gamer1._button = false;
+                    CalCulus(Gamer1);
+                    Gamer2._button = false;
+                    CalCulus(Gamer2);
+                }
+                else if (Gamer2._button)
+                {
+                    Gamer2._button = false;
+                    CalCulus(Gamer1);
+                }
+                else
+                {
+                       Gamer1._button = false;
+                       CalCulus(Gamer1);
+                }
+            }
 			if (action.text.Length != 0)
 				ChangementText(Player1Script.act, this.isServer);
 			if (Input.GetKeyDown(KeyCode.Backspace))
 			{
-					Player1Script.move = true;
-					action.text = "";
+				Player1Script.move = gamer._button && Gamer1.TimeLeft < 120;
+				action.text = "";
 			}
 			if (action.text == (gamer.materiel[1] + " : 2500 $") && Input.GetKeyDown(KeyCode.Return))
 			{
@@ -136,7 +168,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 				}
 				(int n, double j, bool b, double d, int k)= gamer._marchandise[item];
 				TextActionJoueur1.action.color = Color.green;
-				action.text = "Prix de " + item + $" : {j} $";
+				action.text = "Prix de " + item + $" : {Round(j,2)} $";
 			}
 			else if (action.text.Contains("de niveau"))
 			{
@@ -883,10 +915,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 			for (int i = 0; i < 12; ++i)
 				Perime(gamer, i);
-			if (gamer == Gamer1)
-				Vente1 = gamer.sum;
-			else
-				Vente2 = gamer.sum;
+			Debug.Log(Gamer2.sum);
 			gamer.AddMoney(gamer.sum);
 			gamer._mounth += gamer.sum;
 
@@ -907,24 +936,21 @@ public class TextActionJoueur1 : NetworkBehaviour
 					}
 			}
 			end = true;
-			if (Gamer1._turn == false && Gamer2._turn == false)
+			if (Gamer1._turn ==  Gamer2._turn)
 			{
-				Gamer1.TimeLeft = 120*Gamer1.nbCount;
+				Gamer1.TimeLeft = 124*Gamer1.nbCount;
 
 					TourCount.AddTurn("");
 				Gamer1._turn = true;
 				Gamer2._turn = true;
 				Gamer1._button = true;
 				Gamer2._button = true;
+				Vente1 = Gamer1.sum;
+				Vente2 = Gamer2.sum;
 				Gamer1.sum = 0;
 				Gamer2.sum = 0;
 				end = false;
-				
 				FinDeTour.SetActive(true);
-				ElementTour.SetActive(false);
-				FinDeTour.SetActive(false);
-				ElementTour.SetActive(true);
-				Player1Script.move = true;
 				FinTour.Play();
 				if (!(TourCount.TurnValues > TourCount.MaxTurn))
 					AI.Act10();

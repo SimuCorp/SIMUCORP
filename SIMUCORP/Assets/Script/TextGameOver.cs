@@ -21,13 +21,13 @@ public class TextGameOver : MonoBehaviour
     void Update()
     {
         if (Gamer1._money < Gamer2._money)
-            GameOver.text = "Joueur2 a gagné\nRetour à l'écran d'accueil";
+            GameOver.text = $"Le {Gamer2._name} a gagné";
         else 
         {
             if (Gamer1._money == Gamer2._money)
-                GameOver.text = "Egalité\nRetour à l'écran d'accueil";
+                GameOver.text = $"Egalité parfaite entre le {Gamer1._name} et le {Gamer2._name}";
             else
-                GameOver.text = "Joueur1 a gagné\nRetour à l'écran d'accueil";
+                GameOver.text = $"Le {Gamer1._name} a gagné";
         }
     }
 

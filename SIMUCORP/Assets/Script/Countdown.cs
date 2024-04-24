@@ -37,7 +37,7 @@ public class CountdownScript : NetworkBehaviour
                 Gamer1.TimeLeft -= Time.deltaTime;
                 UpdateTimer();
             }
-            else
+            /**else
             {
                 if (Gamer1._button && Gamer2._button)
                 {
@@ -56,7 +56,7 @@ public class CountdownScript : NetworkBehaviour
                        Gamer1._button = false;
                        MoneyCount.CalCulus(Gamer1, "timer");
                 }
-            }
+            }*/
         }
         
     }
