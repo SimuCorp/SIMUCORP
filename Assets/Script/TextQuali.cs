@@ -24,9 +24,9 @@ public class TextQuali : MonoBehaviour
         int i = 1;
         string res = "";
         PlayerClass g;
-
+  
             g = PlayerScript.Gamer1;
-
+     
         foreach (string s in g._marchandise.Keys)
         {
             if (i == n)

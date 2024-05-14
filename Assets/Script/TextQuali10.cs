@@ -25,7 +25,7 @@ public class TextQuali10 : MonoBehaviour
         PlayerClass g;
 
             g = Gamer1;
-
+     
         foreach (string s in g._marchandise.Keys)
         {
             if (i == 10)

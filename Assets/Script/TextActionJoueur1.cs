@@ -13,34 +13,44 @@ using static FinDeTour;
 
 public class TextActionJoueur1 : MonoBehaviour
 {
-
-    public static Text action;
+	public static Text action;
 	public AudioSource audio;
 	public AudioSource FinTour;
 	public GameObject Text_action;
-	public Image Emplacement1;
-	public Image Emplacement2;
-	public Sprite fond;
-	public Sprite Amelioration1;
-    public Sprite Amelioration2;
 	public bool end;
 	[SerializeField] private GameObject GameOver;
 	[SerializeField] private GameObject FinDeTour;
 	[SerializeField] private GameObject ElementTour;
+	[SerializeField] private GameObject Compteur1;
+	[SerializeField] private GameObject Compteur2;
 	public static double Vente1;
     public static double Vente2;
+	public static double TotalVente1;
+	public static double TotalVente2;
+	public static double diff1;
+	public static double diff2;
+	public static int Quantity1;
+	public static int Quantity2;
+	public static double NbSalaire1;
+	public static double NbSalaire2;
 	public static double Collision;
     // Start is called before the first frame update
     void Start()
     {
-        action = GetComponent<Text>();
+		action = GetComponent<Text>();
 		audio = GetComponent<AudioSource>();
 		FinTour = GetComponent<AudioSource>();
 		end = false;
-		Emplacement1.sprite = fond;
-		Emplacement2.sprite = fond;
 		Vente1 = 0;
 		Vente2 = 0;
+		diff1 = 0;
+		diff2 = 0;
+		Quantity1 = 0;
+		Quantity2 = 0;
+		TotalVente1 = 0;
+		TotalVente2 = 0;
+		NbSalaire1 = 0;
+		NbSalaire2 = 0;
     }
 
     // Update is called once per frame
@@ -51,33 +61,87 @@ public class TextActionJoueur1 : MonoBehaviour
 		if (FinDeTour.activeSelf && Gamer1.TimeLeft < 120)
 		{
 			FinDeTour.SetActive(false);
+			Compteur1.SetActive(true);
+			Compteur2.SetActive(true);
 			move = true;
 		}
-		if (((true && x <= x2) || (!true && x >= x2)))
-		{
+
 			PlayerClass gamer;
-	
+			
 				gamer = Gamer1;
-		
+
 			move = action.text == "" && gamer._button && !PlayerScript.pause && !FinDeTour.activeSelf;
 			if (Gamer1.TimeLeft <= 0)
             {
                 if (Gamer1._button && Gamer2._button)
                 {
-                    Gamer1._button = false;
-                    CalCulus(Gamer1);
-                    Gamer2._button = false;
-                    CalCulus(Gamer2);
+					CalCulus(true);
+					bool verif2 = GameOver.activeSelf;
+					double money = Gamer1._money;
+					double res_Vente1 = Vente1;
+					double res_TotalVente1 = TotalVente1;
+					double sum2 = 0;
+					double res_diff1 = diff1;
+					double last_money = Gamer1._money;
+					int res_Quantity1 = Quantity1;
+			
+					int last_quantite = Gamer1.quantite;
+			
+					double last_attrat = Gamer1._stat["Attractivité"];
+	
+						//calcul(true, res_Vente1, res_TotalVente1, sum2, res_diff1, last_money, res_Quantity1, last_quantite, last_attrat, money, verif2);
+					CalCulus(false);
+					verif2 = GameOver.activeSelf;
+					money = Gamer2._money;
+					res_Vente1 = Vente2;
+					res_TotalVente1 = TotalVente2;
+					sum2 = 0;
+					res_diff1 = diff2;
+					last_money = Gamer2._money;
+					res_Quantity1 = Quantity2;
+			
+					last_quantite = Gamer2.quantite;
+			
+					last_attrat = Gamer2._stat["Attractivité"];
+				
+						//calcul(false, res_Vente1, res_TotalVente1, sum2, res_diff1, last_money, res_Quantity1, last_quantite, last_attrat, money, verif2);
+			
                 }
                 else if (Gamer2._button)
                 {
-                    Gamer2._button = false;
-                    CalCulus(Gamer1);
+						CalCulus(false);
+						bool verif2 = GameOver.activeSelf;
+						double money = Gamer2._money;
+						double res_Vente1 = Vente2;
+						double res_TotalVente1 = TotalVente2;
+						double sum2 = 0;
+						double res_diff1 = diff2;
+						double last_money = Gamer2._money;
+						int res_Quantity1 = Quantity2;
+			
+						int last_quantite = Gamer2.quantite;
+			
+						double last_attrat = Gamer2._stat["Attractivité"];
+			
+							//calcul(false, res_Vente1, res_TotalVente1, sum2, res_diff1, last_money, res_Quantity1, last_quantite, last_attrat, money, verif2);
                 }
                 else
                 {
-                       Gamer1._button = false;
-                       CalCulus(Gamer1);
+					CalCulus(true);
+					bool verif2 = GameOver.activeSelf;
+					double money = Gamer1._money;
+					double res_Vente1 = Vente1;
+					double res_TotalVente1 = TotalVente1;
+					double sum2 = 0;
+					double res_diff1 = diff1;
+					double last_money = Gamer1._money;
+					int res_Quantity1 = Quantity1;
+			
+					int last_quantite = Gamer1.quantite;
+			
+					double last_attrat = Gamer1._stat["Attractivité"];
+		
+						//calcul(true, res_Vente1, res_TotalVente1, sum2, res_diff1, last_money, res_Quantity1, last_quantite, last_attrat, money, verif2);
                 }
             }
 			if (action.text.Length != 0)
@@ -95,7 +159,6 @@ public class TextActionJoueur1 : MonoBehaviour
 				{
 					action.color = Color.green;
 					audio.Play();
-					Emplacement1.sprite = Amelioration1;
 				}
 				 MoreMaterielAOpponent(1);
 				Player1Script.move = true;
@@ -109,7 +172,6 @@ public class TextActionJoueur1 : MonoBehaviour
 				{
 					action.color = Color.green;
 					audio.Play();
-					Emplacement2.sprite = Amelioration2;
 				}
 				 MoreMaterielAOpponent(2);
 				Player1Script.move = true;
@@ -118,23 +180,21 @@ public class TextActionJoueur1 : MonoBehaviour
 			else if (action.text == gamer._missingitems[Player1Script.act%6] + " : 300 $" && Input.GetKeyDown(KeyCode.Return))
 			{
 				string s = gamer._missingitems[Player1Script.act%6];
-				MoreMaterielGOpponent(Player1Script.act+1, s);
 				if (action.color == Color.green)
 				{
+					MoreMaterielGOpponent(Player1Script.act+1, s);
+					gamer._items[act] = s;
 					audio.Play();
-				}
-				if( gamer._missingitems[act-6] == "acheté")
-				{
 					int a = 0;
 					double b = 0;
 					bool c = false;
 					double d = 0;
 					int e = 0;
 					(a, b, c, d, e) = gamer._marchandise[s];
-					action.text = "Quantité de " + gamer._items[act-6] + $" : {a}";
+					action.text = "Quantité de " + gamer._items[act] + $" : {a}";
 				}
 			}
-			else if (action.text.StartsWith("Quantité"))
+			else if (action.text.Contains("Quantité"))
 			{
 				string item = gamer._items[Player1Script.act];
 				if (Input.GetKeyDown(KeyCode.Return))
@@ -147,12 +207,12 @@ public class TextActionJoueur1 : MonoBehaviour
 				}
 				(int n, double j, bool b, double d, int k)= gamer._marchandise[item];
 				if (j*5>gamer._money)
-						TextActionJoueur1.action.color = Color.red;
+						action.color = Color.red;
 				else 
-						TextActionJoueur1.action.color = Color.green;
+						action.color = Color.green;
 				action.text = "Quantité de " + item + $" : {n}";
 			}
-			else if (action.text.StartsWith("Prix de"))
+			else if (action.text.Contains("Prix de"))
 			{
 				string item = gamer._items[Player1Script.act];
 				if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -166,8 +226,8 @@ public class TextActionJoueur1 : MonoBehaviour
 					audio.Play();
 				}
 				(int n, double j, bool b, double d, int k)= gamer._marchandise[item];
-				TextActionJoueur1.action.color = Color.green;
-				action.text = "Prix de " + item + $" : {Round(j,2)} $";
+				action.color = Color.green;
+				action.text = "< Prix de " + item + $" : {Round(j,2)} $ >";
 			}
 			else if (action.text.Contains("de niveau"))
 			{
@@ -183,17 +243,17 @@ public class TextActionJoueur1 : MonoBehaviour
 				(int n, double j, bool b, double d, int k)= gamer._marchandise[item];
 				action.text =  item + " de niveau " +$"{d}"+$" : {50*Pow(d, 2)} $";
 				if (50*Pow(d, 2) > gamer._money)
-					TextActionJoueur1.action.color = Color.red;
+					action.color = Color.red;
 				else 
-					TextActionJoueur1.action.color = Color.green;
+					action.color = Color.green;
 				
 			}
-			else if (TextActionJoueur1.action.text.Contains("employés"))
+			else if (action.text.Contains("employés"))
 			{
 				if (gamer._money < 700 || gamer._stat["Employé"] <= 0)
-					TextActionJoueur1.action.color = Color.red;
+					action.color = Color.red;
 				else
-					TextActionJoueur1.action.color = Color.green;
+					action.color = Color.green;
 				if (Input.GetKeyDown(KeyCode.LeftArrow))
 				{
 					EmployeOpponent(false);
@@ -205,14 +265,14 @@ public class TextActionJoueur1 : MonoBehaviour
 					EmployeOpponent(true);
 					audio.Play();
 				}
-				TextActionJoueur1.action.text = $"Nombre d'employés : {gamer._stat["Employé"]}";
+				action.text = $"< Nombre d'employés : {gamer._stat["Employé"]} >";
 			}
-			else if (TextActionJoueur1.action.text.Contains("Salaire"))
+			else if (action.text.Contains("Salaire"))
 			{
 				if (gamer._stat["Salaire"] == 1399)
-					TextActionJoueur1.action.color = Color.red;
+					action.color = Color.red;
 				else
-					TextActionJoueur1.action.color = Color.green;
+					action.color = Color.green;
 				if (Input.GetKeyDown(KeyCode.LeftArrow))
 				{
 					salaireOpponent(false);
@@ -224,9 +284,9 @@ public class TextActionJoueur1 : MonoBehaviour
 					salaireOpponent(true);
 					audio.Play();
 				}
-				TextActionJoueur1.action.text = $"Salaire : {gamer._stat["Salaire"]} $";
+				action.text = $"< Salaire : {gamer._stat["Salaire"]} $ >";
 			}
-			else if (TextActionJoueur1.action.text.Contains("magasins"))
+			else if (action.text.Contains("magasins"))
 			{
 				if (gamer._money >= 5000 && gamer._stat["Employé"]+1 >= gamer._stat["Magasin"])
 					action.color = Color.green;
@@ -242,9 +302,9 @@ public class TextActionJoueur1 : MonoBehaviour
 					magasinOpponent(true);
 					audio.Play();
 				}
-				TextActionJoueur1.action.text = $"Nombre de magasins : {gamer._stat["Magasin"]}";
+				action.text = $"< Nombre de magasins : {gamer._stat["Magasin"]} >";
 			}
-			else if (TextActionJoueur1.action.text.Contains("Prime"))
+			else if (action.text.Contains("Prime"))
 			{
 				if (gamer._money >= 1000*gamer._stat["Employé"] && gamer._stat["Employé"]!= 0)
 					action.color = Color.green;
@@ -257,14 +317,14 @@ public class TextActionJoueur1 : MonoBehaviour
 						audio.Play();
 				}
 			}
-			else if (TextActionJoueur1.action.text.Contains("romotion"))
+			else if (action.text.Contains("romotion"))
 			{
 				if (gamer.materiel[0] != "acheté")
 				{
 					if (gamer._money < 300)
-						TextActionJoueur1.action.color = Color.red;
+						action.color = Color.red;
 					else
-						TextActionJoueur1.action.color = Color.green;
+						action.color = Color.green;
 					if (action.color == Color.green && Input.GetKeyDown(KeyCode.Return))
 					{
 						PromoOpponent();
@@ -275,19 +335,19 @@ public class TextActionJoueur1 : MonoBehaviour
 				}
 				else
 				{
-					TextActionJoueur1.action.color = Color.green;
+					action.color = Color.green;
 					if (Input.GetKeyDown(KeyCode.Return))
 					{
 						PromoOpponent();
 						audio.Play();
 					}
 					if (gamer.promo)
-						TextActionJoueur1.action.text = "Promotion en cours";
+						action.text = "Promotion en cours";
 					else
-						TextActionJoueur1.action.text = "Promotion en attente";
+						action.text = "Promotion en attente";
 				}
 			}
-			else if (TextActionJoueur1.action.text.Contains("Cartes"))
+			else if (action.text.Contains("Cartes"))
 			{
 				if (gamer._money < 100)
 					action.color = Color.red;
@@ -300,7 +360,7 @@ public class TextActionJoueur1 : MonoBehaviour
 						audio.Play();
 				}
 			}
-			else if (TextActionJoueur1.action.text.Contains("Cadeaux"))
+			else if (action.text.Contains("Cadeaux"))
 			{
 				if (gamer._money < 500)
 					action.color = Color.red;
@@ -313,7 +373,7 @@ public class TextActionJoueur1 : MonoBehaviour
 						audio.Play();
 				}
 			}
-			else if (TextActionJoueur1.action.text.Contains("Publicité"))
+			else if (action.text.Contains("Publicité"))
 			{
 				if (gamer._money < 1000)
 					action.color = Color.red;
@@ -326,30 +386,92 @@ public class TextActionJoueur1 : MonoBehaviour
 						audio.Play();
 				}
 			}
-			else if (TextActionJoueur1.action.text.Contains("Finir"))
+			else if (action.text.Contains("Finir"))
 			{
 				if (Input.GetKeyDown(KeyCode.Return))
 				{
 					OpponentCalcul();
-					TextActionJoueur1.action.text = "";
+					action.text = "";
 					//Player1Script.move = !end;
 				}
 			}
 			else
 			{
-			ChangementText(Player1Script.act, true);
+				ChangementText(Player1Script.act, true);
 			}
-		}
+	
+	
 	}
+
+	public  void ChangementText(int n, bool verif)
+    {
+        PlayerClass gamer;
+        if (verif)
+            gamer = Gamer1;
+        else
+            gamer = Gamer2;
+        if (gamer._items[n] != "NaN")
+        {
+            (int m, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[n]];
+            if ((TextActionJoueur1.action.text.Contains("Quantité de") 
+                && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("de niveau") && Input.GetKeyDown(KeyCode.UpArrow)))
+                    TextActionJoueur1.action.text = "< Prix de " + gamer._items[n] + $" : {j} $ >";
+            else if ((TextActionJoueur1.action.text.Contains("Prix de") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Quantité de") && Input.GetKeyDown(KeyCode.UpArrow)))
+                TextActionJoueur1.action.text = gamer._items[n] + " de niveau " +$"{d}"+$" : {50*Math.Pow(d, 2)} $";
+            else if (
+            (TextActionJoueur1.action.text.Contains("de niveau") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Prix de") && Input.GetKeyDown(KeyCode.UpArrow)))
+            {
+                TextActionJoueur1.action.text = "Quantité de " + gamer._items[n] + $" : {m}";
+
+            }
+            else if ((TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.UpArrow)))
+                TextActionJoueur1.action.text = $"< Salaire : {gamer._stat["Salaire"]} $ >";
+            else if ((TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.UpArrow)))
+                TextActionJoueur1.action.text = $"< Nombre de magasins : {gamer._stat["Magasin"]} >";
+            else if ((TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.UpArrow)))
+                TextActionJoueur1.action.text = "Prime : 1000 $/employé";
+            else if ((TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.UpArrow)))
+            {
+                TextActionJoueur1.action.text = "Cartes de fidélité : 100 $";
+            }
+            else if ((TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.UpArrow)))
+            {
+                TextActionJoueur1.action.text = "Cadeaux : 500 $";
+            }
+            else if ((TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.UpArrow)))
+            {
+                TextActionJoueur1.action.text = "Publicité : 1000 $";
+            }
+            else if ((TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.DownArrow)) ||(TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.UpArrow)))
+            {
+                TextActionJoueur1.action.text = $"< Nombre d'employés : {gamer._stat["Employé"]} >";
+                TextActionJoueur1.action.color = Color.green;
+            }
+             else if ((TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.UpArrow)))
+             {
+                 TextActionJoueur1.action.text = "Finir son tour";
+                 TextActionJoueur1.action.color = Color.green;
+             }
+        }
+            
+    }
 
 	public void MoreMaterielAOpponent(int p)
 	{
-	
+		if (true)
+		{
 			AMateriel(p, true);
-		
+		}
+		else
+		{
+			OpponentMaterielAServerRpC(p);
+		}
 	}
 
 	
+	private void OpponentMaterielAServerRpC(int p) => AMateriel(p, false);
+
+ 
    public void AMateriel(int p, bool joueur)
    {
 	  PlayerClass gamer;
@@ -370,12 +492,20 @@ public class TextActionJoueur1 : MonoBehaviour
    
 	public void MoreMaterielGOpponent(int p, string s)
 	{
-	
+		if (true)
+		{
 			MaterielG(p, s, true);
-	
+		}
+		else
+		{
+			OpponentMaterielGServerRpC(p, s);
+		}
 	}
 
+	
+	private void OpponentMaterielGServerRpC(int p, string s) => MaterielG(p, s, false);
 
+	
     public void MaterielG(int p, string s, bool joueur)
 	{
 		PlayerClass gamer;
@@ -397,8 +527,7 @@ public class TextActionJoueur1 : MonoBehaviour
 			gamer._items[p-1] = s;
 			double x = Text_action.transform.position.x;
 			double x2 = Screen.width/2;
-			if ((true && x <= x2) || (!true && x >= x2))
-				action.text = "Quantité de " + gamer._items[p-1] + $" : {a}";
+		
 		}
 		else
 		{
@@ -408,12 +537,18 @@ public class TextActionJoueur1 : MonoBehaviour
 
 	public void MoreAproOpponent(string item)
 	{
-		
-	
+		if (true)
+		{
 			MoreApro(item, true);
-	
-	
+		}
+		else
+		{
+			OpponentAproServerRpC(item);
+		}
 	}
+
+
+	private void OpponentAproServerRpC(string item) => MoreApro(item, false);
 
 
 	public void MoreApro(string item, bool joueur)
@@ -470,11 +605,18 @@ public class TextActionJoueur1 : MonoBehaviour
 	}
 	public void MorePriceOpponent(string item)
 	{
-	
+		if (true)
+		{
 			MorePrice(item, true);
-	
-	
+		}
+		else
+		{
+			OpponentMPriceServerRpC(item);
+		}
 	}
+	
+	private void OpponentMPriceServerRpC(string item) => MorePrice(item, false);
+
 
 	public void MorePrice(string item, bool joueur)
 	{
@@ -490,13 +632,21 @@ public class TextActionJoueur1 : MonoBehaviour
 	}
 	public void LessPriceOpponent(string item)
 	{
-		
+		if (true)
+		{
 			LessPrice(item, true);
-	
+		}
+		else
+		{
+			OpponentLPriceServerRpC(item);
+		}
 	}
 
 
+	
+	private void OpponentLPriceServerRpC(string item) => LessPrice(item, false);
 
+	
 	public void LessPrice(string item, bool joueur)
 	{
 		PlayerClass gamer;
@@ -513,11 +663,19 @@ public class TextActionJoueur1 : MonoBehaviour
 
 	public void MoreQualiOpponent(string item)
 	{
-		
+		if (true)
+		{
 			MoreQuali(item, true);
-	
+		}
+		else
+		{
+			OpponentQualiServerRpC(item);
+		}
 	}
 
+	private void OpponentQualiServerRpC(string item) => MoreQuali(item, false);
+
+	
 	public void MoreQuali(string item, bool joueur)
 	{
 		PlayerClass gamer;
@@ -534,11 +692,19 @@ public class TextActionJoueur1 : MonoBehaviour
 
 	public void EmployeOpponent(bool verif)
 	{
-		
+		if (true)
+		{
 			Employe(verif, true);
-	
+		}
+		else
+		{
+			OpponentEmployeServerRpC(verif);
+		}
 	}
-	
+
+	private void OpponentEmployeServerRpC(bool verif) => Employe(verif, false);
+
+
 	public void Employe(bool verif, bool joueur)
     {
 		PlayerClass gamer;
@@ -561,12 +727,20 @@ public class TextActionJoueur1 : MonoBehaviour
 
 	public void salaireOpponent(bool verif)
 	{
-		
+		if (true)
+		{
 			Salaire(verif, true);
-		
+		}
+		else
+		{
+			OpponentsalaireServerRpC(verif);
+		}
 	}
 
-	
+
+	private void OpponentsalaireServerRpC(bool verif) => Salaire(verif, false);
+
+
 	public void Salaire(bool verif, bool joueur)
 	{
 		PlayerClass gamer;
@@ -591,13 +765,20 @@ public class TextActionJoueur1 : MonoBehaviour
 
 	public void magasinOpponent(bool verif)
 	{
-		
+		if (true)
+		{
 			Magasin(verif, true);
-	
-		
+		}
+		else
+		{
+			OpponentmagasinServerRpC(verif);
+		}
 	}
 
 	
+	private void OpponentmagasinServerRpC(bool verif) => Magasin(verif, false);
+
+
 	public void Magasin(bool verif, bool joueur)
     {
 		PlayerClass gamer;
@@ -606,26 +787,34 @@ public class TextActionJoueur1 : MonoBehaviour
 		else
 			gamer = Gamer2;
         double n1 = gamer._stat["Magasin"];
-			if (n1 - 1 <= gamer._stat["Employé"])
-			{
-				if (verif && gamer.AddMoney(-5000))
-					++gamer._stat["Magasin"];
-			}
-			if (!verif)
-			{
-				gamer.AddMoney(2500);
-				--gamer._stat["Magasin"];
-			}
+		if (n1 - 1 <= gamer._stat["Employé"])
+		{
+			if (verif && gamer.AddMoney(-5000))
+				++gamer._stat["Magasin"];
+		}
+		if (!verif)
+		{
+			gamer.AddMoney(2500);
+			--gamer._stat["Magasin"];
+		}
 	
     }
 
 	public void primeOpponent()
 	{
-	
+		if (true)
+		{
 			Prime(true);
-		
+		}
+		else
+		{
+			OpponentprimeServerRpC();
+		}
 	}
+	
+	private void OpponentprimeServerRpC() => Prime(false);
 
+	
 	public void Prime(bool joueur)
 	{
 		PlayerClass gamer;
@@ -639,11 +828,18 @@ public class TextActionJoueur1 : MonoBehaviour
 
 	public void PromoOpponent()
 	{
-		
+		if (true)
+		{
 			Promotion(true);
-		
+		}
+		else
+		{
+			OpponentPromoServerRpC();
+		}
 	}
 
+	
+	private void OpponentPromoServerRpC() => Promotion(false);
 
 	public void Promotion(bool joueur)
     {
@@ -669,10 +865,19 @@ public class TextActionJoueur1 : MonoBehaviour
 
 	public void carteOpponent()
 	{
-		
+		if (true)
+		{
 			Carte(true);
-	
+		}
+		else
+		{
+			OpponentcarteServerRpC();
+		}
 	}
+
+
+	private void OpponentcarteServerRpC() => Carte(false);
+
 
 	public void Carte(bool joueur)
     {
@@ -688,12 +893,20 @@ public class TextActionJoueur1 : MonoBehaviour
 
 	public void cadeauOpponent()
 	{
-		
+		if (true)
+		{
 			Carte(true);
-	
+		}
+		else
+		{
+			OpponentcadeauServerRpC();
+		}
 	}
 
-	
+
+	private void OpponentcadeauServerRpC() => Carte(false);
+
+
 	public void Cadeau(bool joueur)
     {
 		PlayerClass gamer;
@@ -708,13 +921,19 @@ public class TextActionJoueur1 : MonoBehaviour
 
 	public void pubOpponent()
 	{
-	
+		if (true)
+		{
 			Pub(true);
-	
-
+		}
+		else
+		{
+			OpponentPubServerRpC();
+		}
 	}
 
-	
+	private void OpponentPubServerRpC() => Pub(false);
+
+
 	public void Pub(bool joueur)
     {
 		PlayerClass gamer;
@@ -728,43 +947,157 @@ public class TextActionJoueur1 : MonoBehaviour
 
 	public void OpponentCalcul()
 	{
-	
-			calcul(true);
-	
+		bool verif2 = GameOver.activeSelf;
+		if (true)
+		{
+				CalCulus(true);
+				double money = Gamer1._money;
+				double res_Vente1 = Vente1;
+				double res_TotalVente1 = TotalVente1;
+				double sum = 0;
+				double res_diff1 = diff1;
+				double last_money = Gamer1._money;
+				int res_Quantity1 = Quantity1;
+			
+				int last_quantite = Gamer1.quantite;
+			
+				double last_attrat = Gamer1._stat["Attractivité"];
+			
+					//calcul(true, res_Vente1, res_TotalVente1, sum, res_diff1, last_money, res_Quantity1, last_quantite, last_attrat, money, verif2);
 
+			
+		}
+		else
+		{
+				OpponentCalculServerRpC(verif2);
+				
+		}
 	}
 
-
-
-
-	public void calcul(bool joueur)
+	public void MAJQuantity(bool verif,string s, int q)
 	{
-		if (joueur)
-		{
-			if(Gamer1._button)
-			{
+		PlayerClass gamer;
+		if(verif)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		(int j, double d, bool b, double st, int l) = gamer._marchandise[s];
+		gamer._marchandise[s] = (q, d, b, st, l);
+	}
 
+	public void OpponentCalculServerRpC(bool verif2)
+	{
+		CalCulus(false);
+		double money = Gamer2._money;
+		double res_Vente1 = Vente2;
+		double res_TotalVente1 = TotalVente2;
+		double sum = 0;
+		double res_diff1 = diff2;
+		double last_money = Gamer2._money;
+		int res_Quantity1 = Quantity2;
+		int last_quantite = Gamer2.quantite;
+			
+		double last_attrat = Gamer2._stat["Attractivité"];
+		calcul(false, res_Vente1, res_TotalVente1, sum, res_diff1, last_money, res_Quantity1, last_quantite, last_attrat, money, verif2);
+		foreach (string s in Gamer2._marchandise.Keys)
+		{
+			(int j, double d, bool b, double st, int l) = Gamer2._marchandise[s];
+			MAJQuantity(false, s, j);
+		}
+	}
+
+   	
+	public void calcul(bool verif, double v1, double tv1, double sum, double diff, double lm, int quantity, int lq, double lsq, double money, bool verif2)
+	{
+		if(verif)
+		{
+			Gamer1._money = money;
+			Vente1 = v1;
+			TotalVente1 += tv1;
+			Gamer1.sum = sum;
+			diff1 = diff;
+			Gamer1.last_money = lm;
+			Quantity1 = quantity;
+			
+			Gamer1.last_quantite = lq;
+			
+			Gamer1.last_attrat = lsq;
+			if(Gamer2._turn)
+			{
+				Gamer1._turn = false;
 				Gamer1._button = false;
-				CalCulus(Gamer1);
+			}
+			else
+			{
+				Gamer1._turn = true;
+				Gamer1._button = true;
+				Gamer2._turn = true;
+				Gamer2._button = true;
 			}
 		}
 		else
 		{
-			if(Gamer2._button)
+			Gamer2._money = money;
+			Vente2 = v1;
+			TotalVente2 += tv1;
+			Gamer2.sum = sum;
+			diff2 = diff;
+			Gamer2.last_money = lm;
+			Quantity2 = quantity;
+			
+			Gamer2.last_quantite = lq;
+			
+			Gamer2.last_attrat = lsq;
+			if(Gamer1._turn)
 			{
+				Gamer2._turn = false;
 				Gamer2._button = false;
-				CalCulus(Gamer2);
+			}
+			else
+			{
+				Gamer1._turn = true;
+				Gamer1._button = true;
+				Gamer2._turn = true;
+				Gamer2._button = true;
 			}
 		}
+		if (Gamer1._turn && Gamer2._turn)
+		{
+			Gamer1.TimeLeft = 130*Gamer1.nbCount;
+			TourCount.AddTurn("");
+			Compteur1.SetActive(false);
+			Compteur2.SetActive(false);
+			if (TourCount.TurnValues <= TourCount.MaxTurn)
+			{
+				FinDeTour.SetActive(true);
+			}
+			if (!(TourCount.TurnValues > TourCount.MaxTurn))
+					AI.Act10();
+		}
+		if(verif2)
+		{
+			Player1Script.move = false;
+			ElementTour.SetActive(false);
+			GameOver.SetActive(true);
+			FinDeTour.SetActive(false);
+			Compteur1.SetActive(false);
+			Compteur2.SetActive(false);
+		}
 	}
-
-	public void CalCulus(PlayerClass gamer)
+	public double CalCulus(bool verif)
     {
+		PlayerClass gamer;
+		if (verif)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
         System.Random aleatoire = new System.Random();
         double attractive = gamer._stat["Attractivité"];
         double client = gamer._stat["Clientèle"];
         int nb_client = aleatoire.Next((int)Round(client / 2, 0), (int)Round(client * 2, 0));
         int key;
+		double sum = 0;
+		bool end = true;
         if (gamer._turn)
         {
 			gamer._turn = false;
@@ -773,18 +1106,19 @@ public class TextActionJoueur1 : MonoBehaviour
 
                 if (aleatoire.Next(0, 101) < attractive)
                 {
-                    key = aleatoire.Next(0, gamer._items.Count);
+					key = aleatoire.Next(0, gamer._items.Count);
 					if (gamer._items[key] != "NaN")
 					{
-                    	(int Quantity, double price, bool possible, double quali, int tour) = gamer._marchandise[gamer._items[key]];
+						(int Quantity, double price, bool possible, double quali, int tour) = gamer._marchandise[gamer._items[key]];
 						if (Quantity > 0)
 						{
-                    		gamer._marchandise[gamer._items[key]] = (--Quantity, price, possible, quali, tour);
+							gamer._marchandise[gamer._items[key]] = (--Quantity, price, possible, quali, tour);
+							++gamer.quantite;
 							RemovePerime(gamer, key);
 							if (gamer.promo)
 								gamer.sum += price*0.8 + 0.1*price*(quali-1);
 							else
-                    			gamer.sum += price + 0.1*price*(quali-1);
+								gamer.sum += price + 0.1*price*(quali-1);
 						}
 					}
                 }
@@ -799,10 +1133,9 @@ public class TextActionJoueur1 : MonoBehaviour
 
 			for (int i = 0; i < 12; ++i)
 				Perime(gamer, i);
-			Debug.Log(Gamer2.sum);
+			gamer.sum *= (1+gamer._stat["Qualité"]/100);
 			gamer.AddMoney(gamer.sum);
 			gamer._mounth += gamer.sum;
-
 			bool b = false;
 			if (TourCount.TurnValues % 4 == 0)
 			{
@@ -818,33 +1151,93 @@ public class TextActionJoueur1 : MonoBehaviour
 					{
 						gamer._mounth = 0;
 					}
+					if (gamer == Gamer1)
+						NbSalaire1 += gamer._stat["Employé"];
+					else
+						NbSalaire2 += gamer._stat["Employé"];
 			}
 			end = true;
-			if (Gamer1._turn ==  Gamer2._turn)
+			sum = gamer.sum;
+			if(Gamer1._turn ==  Gamer2._turn)
 			{
-				Gamer1.TimeLeft = 124*Gamer1.nbCount;
-
-					TourCount.AddTurn("");
-				Gamer1._turn = true;
+				Gamer1.TimeLeft = 130*Gamer1.nbCount;
+					
 				Gamer2._turn = true;
-				Gamer1._button = true;
 				Gamer2._button = true;
-				Vente1 = Gamer1.sum;
 				Vente2 = Gamer2.sum;
-				Gamer1.sum = 0;
+				TotalVente2 += Gamer2.sum;
 				Gamer2.sum = 0;
+				diff2 = Gamer2._money - Gamer2.last_money;
+				Gamer2.last_money = Gamer2._money;
+				Quantity2 = Gamer2.quantite - Gamer2.last_quantite;
+			
+				Gamer2.last_quantite = Gamer2.quantite;
+			
+				Gamer2.last_attrat = Gamer2._stat["Attractivité"];
+				Gamer1._turn = true;
+				Gamer1._button = true;
+				Vente1 = Gamer1.sum;
+				TotalVente1 += Gamer1.sum;
+				Gamer1.sum = 0;
+				diff1 = Gamer1._money - Gamer1.last_money;
+				Gamer1.last_money = Gamer1._money;
+				Quantity1 = Gamer1.quantite - Gamer1.last_quantite;
+			
+				Gamer1.last_quantite = Gamer1.quantite;
+			
+				Gamer1.last_attrat = Gamer1._stat["Attractivité"];
+			
+				
 				end = false;
-				FinDeTour.SetActive(true);
-				FinTour.Play();
+			
+				TourCount.AddTurn("");
+				Compteur1.SetActive(false);
+				Compteur2.SetActive(false);
+				if (TourCount.TurnValues <= TourCount.MaxTurn)
+				{
+					FinDeTour.SetActive(true);
+				}
 				if (!(TourCount.TurnValues > TourCount.MaxTurn))
 					AI.Act10();
 			}
+			else if(gamer == Gamer1)
+			{
+		
+				Vente1 = Gamer1.sum;
+				TotalVente1 += Gamer1.sum;
+				Gamer1.sum = 0;
+				diff1 = Gamer1._money - Gamer1.last_money;
+				Gamer1.last_money = Gamer1._money;
+				Quantity1 = Gamer1.quantite - Gamer1.last_quantite;
+			
+				Gamer1.last_quantite = Gamer1.quantite;
+			
+				Gamer1.last_attrat = Gamer1._stat["Attractivité"];
+			}
+			else
+			{
+	
+				Vente2 = Gamer2.sum;
+				TotalVente2 += Gamer2.sum;
+				Gamer2.sum = 0;
+				diff2 = Gamer2._money - Gamer2.last_money;
+				Gamer2.last_money = Gamer2._money;
+				Quantity2 = Gamer2.quantite - Gamer2.last_quantite;
+			
+				Gamer2.last_quantite = Gamer2.quantite;
+			}
+			FinTour.Play();
 			if (TourCount.TurnValues > TourCount.MaxTurn || b)
 			{
 				Player1Script.move = false;
+				ElementTour.SetActive(false);
 				GameOver.SetActive(true);
+				FinDeTour.SetActive(false);
+				Compteur1.SetActive(false);
+				Compteur2.SetActive(false);
 			}
         }
+		return sum;
     }
 	 IEnumerator attend()
     {

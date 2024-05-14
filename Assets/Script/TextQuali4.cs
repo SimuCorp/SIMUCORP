@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 using static MoneyCount;
 using static PlayerScript;
-public class TextQuali4 : MonoBehaviour
+public class TextQuali4 : MonoBehaviour 
 {
     public TextMeshProUGUI Quali4;
     
@@ -23,9 +23,9 @@ public class TextQuali4 : MonoBehaviour
         int i = 1;
         string res = "";
         PlayerClass g;
-       
+  
             g = Gamer1;
-     
+  
         foreach (string s in g._marchandise.Keys)
         {
             if (i == 4)

@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 using static MoneyCount;
 using static PlayerScript;
 public class TextQuali12 : MonoBehaviour
@@ -21,9 +22,10 @@ public class TextQuali12 : MonoBehaviour
     {
         int i = 1;
         string res = "";
-       
-        PlayerClass g = Gamer1;
-    
+        PlayerClass g;
+      
+            g = Gamer1;
+ 
         foreach (string s in g._marchandise.Keys)
         {
             if (i == 12)

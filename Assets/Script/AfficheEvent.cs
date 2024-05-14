@@ -10,7 +10,8 @@ using UnityEngine.SceneManagement;
 public class AfficheEvent : MonoBehaviour
 {
     private static bool rentre;
-
+    public GameObject image;
+    public GameObject image2;
     Text texte;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class AfficheEvent : MonoBehaviour
 
     IEnumerator attend()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(10);
         texte.text = "";
     }
 
@@ -31,9 +32,11 @@ public class AfficheEvent : MonoBehaviour
     {
         if (TourCount.TurnValues % 4 == 1 && TourCount.TurnValues != 1)
         {
+            image.SetActive(true);
+            image2.SetActive(true);
             if (rentre)
             {
-                texte.text ="Evenement : " + evenement._eventComing[TourCount.TurnValues/4-1];
+                texte.text ="Evènement : " + evenement._eventComing[TourCount.TurnValues/4-1];
                 (double benef, double attract, double chance) =
                 evenement._event[evenement._eventComing[TourCount.TurnValues/4 - 1]];
                 if (benef >= 1)
@@ -42,6 +45,7 @@ public class AfficheEvent : MonoBehaviour
                     texte.color = Color.red;
                 rentre = false; 
                 StartCoroutine("attend");
+               
             }
             
         }
@@ -49,6 +53,8 @@ public class AfficheEvent : MonoBehaviour
         {
             texte.text = "";
             rentre = true;
+            image.SetActive(false);
+            image2.SetActive(false);
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 using static MoneyCount;
 using static PlayerScript;
-public class TextPrix11 : MonoBehaviour
+public class TextPrix11 : MonoBehaviour 
 {
     public TextMeshProUGUI Prix11;
     
@@ -24,7 +24,7 @@ public class TextPrix11 : MonoBehaviour
         PlayerClass g;
   
             g = Gamer1;
-   
+
         foreach (string s in g._marchandise.Keys)
         {
             if (i == 11)

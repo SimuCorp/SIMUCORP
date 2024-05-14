@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using static System.Math;
 using static MoneyCount;
 using static TourCount;
 using static PlayerScript;
@@ -47,7 +48,7 @@ public class IntelligenceArtificielle : MonoBehaviour
 						Perime = true;
 					bool b;
 					if (Perime)
-						b = (Quantity == 0 || (((i == 0 && metier.Perime1[0] <= Quantity / 2) ||
+						b = (Quantity <= 100 || (((i == 0 && metier.Perime1[0] <= Quantity / 2) ||
 					                        (i == 1 && metier.Perime2[0] <= Quantity / 2) ||
 					                        (i == 2 && metier.Perime3[0] <= Quantity / 2) ||
 					                        (i == 3 && metier.Perime4[0] <= Quantity / 2) ||
@@ -110,29 +111,56 @@ public class IntelligenceArtificielle : MonoBehaviour
 					}
 				}
 			}
-		
-    }
+	}
+	public static void LevelUp()
+    {
+		for (int i = 0; i < 12; ++i)
+		{
+			if (metier._items[i] != "NaN")
+			{
+				(int Quantity, double price, bool possible, double level, int tour) = metier._marchandise[metier._items[i]];
+				double prix = 50*Pow(level, 2);
+				if (metier._money >= 2*prix)
+				{
+					metier.AddMoney(-prix);
+					++level;
+				}
+				metier._marchandise[metier._items[i]] = (Quantity, price, possible, level, tour);
+			}
+		}
+	}
+	public static void NewProduct()
+    {
+		for (int i = 6; i < 12; ++i)
+		{
+			if (metier._items[i] == "NaN" && metier._money >= 600)
+			{
+					metier.AddMoney(-300);
+					metier._items[i] = metier._missingitems[i-6];
+					metier._missingitems[i-6] = "acheté";
+					(int a, double b, bool c, double d,int e) = metier._marchandise[metier._items[i]];
+					metier._marchandise[metier._items[i]] = (a, b, true, d, e);
+			}
+		}
+	}
 	public static void DoAction()
 	{
-		if (act == 10)
+		if (act == 10 )
 	    {
 		    last_money = metier._money;
 	    }
-        if (act > 0)
+        if ( act > 0)
         {
+			NewProduct();
 	        for (int i = 0; i < 4; ++i)
 	        {
 				Achete();
 			}
-			if (metier._stat["Attractivité"] < 25 && !metier.promo)
+			if (metier.materiel[0] != "acheté" && metier.AddMoney(-300))
 			{
+				metier.materiel[0] = "acheté";
 				metier.promo = true;
 				metier._stat["Attractivité"] *= 1.33;
-			}
-			else if (metier._stat["Attractivité"] > 70 && metier.promo)
-			{
-				metier.promo = false;
-				metier._stat["Attractivité"] /= 1.33;
 			}
 	        else if (metier._money > 7_500 && TurnValues % 4 >= 1)
 	        {
@@ -144,15 +172,25 @@ public class IntelligenceArtificielle : MonoBehaviour
 			{
 				--metier._stat["Magasin"];
 		        --metier._stat["Employé"];
-				metier.AddMoney(3200);
+				metier.AddMoney(1800);
 			}
-			else if (metier._stat["Attractivité"] < 50 && metier._money > 20_000 && metier.AddMoney(-1000))
+			else if (metier._money*2 > 1000*metier._stat["Employé"] && metier.AddMoney(-1000*metier._stat["Employé"]) && metier._stat["Employé"] != 0)
+				metier._stat["Qualité"] += 2*metier._stat["Employé"];
+			else if (metier._money > 5_000 && metier.materiel[2] != "acheté" && metier.AddMoney(-2500))
+			{
+				if (metier.materiel[1] != "acheté")
+					metier.materiel[1] = "acheté";
+				else
+					metier.materiel[2] = "acheté";
+				metier._stat["Attractivité"] += 5;
+			}
+			else if (metier._stat["Attractivité"] < 80 && metier._money > 5_000 && metier.AddMoney(-1000))
 			{
 				metier._stat["Attractivité"] += 5;
 			}
-			else if (metier._stat["Attractivité"] < 50 && metier._money > 4000 && metier.AddMoney(-500))
+			else if (metier._stat["Attractivité"] < 80 && metier._money > 2500 && metier.AddMoney(-500))
 				metier._stat["Attractivité"] += 2.5;
-			else if (metier._stat["Attractivité"] < 50 && metier._money > 2000 && metier.AddMoney(-100))
+			else if (metier._stat["Attractivité"] < 80 && metier._money > 1500 && metier.AddMoney(-100))
 				metier._stat["Attractivité"] += 0.5;	 
 			--act;
 		}
@@ -160,6 +198,7 @@ public class IntelligenceArtificielle : MonoBehaviour
 		{
 			if ((TourCount.TurnValues <= TourCount.MaxTurn))
 			{
+				LevelUp();
 				metier._button = false;
 				CalCulus(metier, "");
 				last_money = metier._money;

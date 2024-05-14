@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using static MoneyCount;
 using static PlayerScript;
 
-public class TextEmploye : MonoBehaviour
+public class TextEmploye : MonoBehaviour 
 {
     public TextMeshProUGUI Text1;
     
@@ -18,9 +18,9 @@ public class TextEmploye : MonoBehaviour
     void Start()
     {
         Text1 = GetComponent<TextMeshProUGUI>();
-     
+        
             g = Gamer1;
-   
+
         n = g._stat["Employé"];
     }
 

@@ -13,9 +13,9 @@ public class ButtonPass : MonoBehaviour
     public void NewButton()
     {
         PlayerClass gamer;
-
+ 
             gamer = Gamer1;
-
+  
         if (gamer._button)
         {
             gamer._button = false;

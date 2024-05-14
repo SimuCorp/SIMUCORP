@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 using static MoneyCount;
 using static PlayerScript;
-public class TextMateriel3 : MonoBehaviour
+public class TextMateriel3 : MonoBehaviour 
 {
     public TextMeshProUGUI Text3;
     

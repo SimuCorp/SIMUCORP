@@ -13,9 +13,9 @@ public class ButtonMateriel : MonoBehaviour
    public void Materiel1()
     {
 		PlayerClass gamer;
-
+		
 			gamer = Gamer1;
-
+		
         if (gamer.materiel[0] != "acheté" && gamer.AddMoney(-200))
         {
            gamer.materiel[0] = "acheté";
@@ -41,7 +41,7 @@ public class ButtonMateriel : MonoBehaviour
       PlayerClass gamer;
 	
 			gamer = Gamer1;
-		
+	
       if (gamer.materiel[2] != "acheté" && gamer.AddMoney(-2500))
       {
          gamer.materiel[2] = "acheté";
@@ -52,7 +52,7 @@ public class ButtonMateriel : MonoBehaviour
 	public void Materiel5()
 	{
 		PlayerClass gamer;
-	
+
 			gamer = Gamer1;
 	
 		if(gamer._missingitems[0] != "acheté" && gamer.AddMoney(-300))
@@ -112,9 +112,9 @@ public class ButtonMateriel : MonoBehaviour
 	public void Materiel7()
 	{
 		PlayerClass gamer;
-	
-			gamer = Gamer1;
 		
+			gamer = Gamer1;
+
 		if(gamer._missingitems[2] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -144,7 +144,7 @@ public class ButtonMateriel : MonoBehaviour
 		PlayerClass gamer;
 	
 			gamer = Gamer1;
-	
+
 		if(gamer._missingitems[3] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -174,7 +174,7 @@ public class ButtonMateriel : MonoBehaviour
 		PlayerClass gamer;
 
 			gamer = Gamer1;
-	
+
 		if(gamer._missingitems[4] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -202,7 +202,7 @@ public class ButtonMateriel : MonoBehaviour
 	public void Materiel10()
 	{
 		PlayerClass gamer;
-	
+
 			gamer = Gamer1;
 
 		if(gamer._missingitems[5] != "acheté" && gamer.AddMoney(-300))

@@ -6,15 +6,15 @@ using UnityEngine.UI;
 using static MoneyCount;
 using static PlayerScript;
 
-public class ButtonAct4 : MonoBehaviour
+public class ButtonAct4 : MonoBehaviour 
 {
     
     public void DoAct4()
     {
         PlayerClass gamer;
-      
-            gamer = Gamer1;
    
+            gamer = Gamer1;
+
         gamer._stat["Attractivité"] += 2.5;
         gamer.AddMoney(-500);
     }
@@ -24,7 +24,7 @@ public class ButtonAct4 : MonoBehaviour
         PlayerClass gamer;
    
             gamer = Gamer1;
-      
+ 
         if (gamer.AddMoney(-1000*gamer._stat["Employé"]) && gamer._stat["Employé"] != 0)
             gamer._stat["Qualité"] += 2*gamer._stat["Employé"];
     }

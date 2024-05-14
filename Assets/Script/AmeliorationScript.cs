@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using static PlayerScript;
+using static Player1Script;
 
 public class AmeliorationScript : MonoBehaviour
 {

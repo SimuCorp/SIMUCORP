@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
 using static MoneyCount;
 using static PlayerScript;
 public class TextSalaire : MonoBehaviour
@@ -16,9 +15,9 @@ public class TextSalaire : MonoBehaviour
     void Start()
     {
         Text1 = GetComponent<TextMeshProUGUI>();
-  
+      
             g = Gamer1;
-
+ 
         n = g._stat["Salaire"];
     }
 

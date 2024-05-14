@@ -12,9 +12,9 @@ public class ButtonAct3 : MonoBehaviour
     public void DoAct3()
     {
         PlayerClass gamer;
-     
+
             gamer = Gamer1;
-       
+
         gamer._stat["Attractivité"] += 0.5;
         gamer.AddMoney(-100);
     }
@@ -22,9 +22,9 @@ public class ButtonAct3 : MonoBehaviour
     public void DoAct32()
     {
         PlayerClass gamer;
-   
-            gamer = Gamer1;
      
+            gamer = Gamer1;
+ 
         double n = TextMagasin.n;
         double n1 = gamer._stat["Magasin"];
         bool b = true;

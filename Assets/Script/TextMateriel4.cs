@@ -20,9 +20,9 @@ public class TextMateriel4 : MonoBehaviour
     void Update()
     {
         PlayerClass g;
-       
-            g = Gamer1;
    
+            g = Gamer1;
+
         string res = g.materiel[3];
         Text4.text = res;
     }

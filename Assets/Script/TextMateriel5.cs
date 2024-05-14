@@ -20,9 +20,9 @@ public class TextMateriel5 : MonoBehaviour
     void Update()
     {
         PlayerClass g;
-
+    
             g = Gamer1;
-
+ 
         string res = g._missingitems[0];
 		if (res == "done")
         	Text5.text = res;

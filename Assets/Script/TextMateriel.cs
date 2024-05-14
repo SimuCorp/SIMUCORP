@@ -1,10 +1,10 @@
 using TMPro;
-using UnityEngine.UI;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 using static MoneyCount;
 using static PlayerScript;
 public class TextMateriel : MonoBehaviour
@@ -22,9 +22,9 @@ public class TextMateriel : MonoBehaviour
     void Update()
     {
         PlayerClass g;
-        
-            g = Gamer1;
     
+            g = Gamer1;
+
         string res = g.materiel[n];
         Text.text = $"{res}\n\n {2500}";
     }

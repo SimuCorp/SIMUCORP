@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 using static MoneyCount;
 using static PlayerScript;
-public class TextMissingItem : MonoBehaviour
+public class TextMissingItem : MonoBehaviour 
 {
     public TextMeshProUGUI Text;
     public int n;
@@ -20,9 +20,9 @@ public class TextMissingItem : MonoBehaviour
     void Update()
     {
         PlayerClass g;
-      
+
             g = Gamer1;
-     
+  
         string res = g._missingitems[n];
 		if (res == "done")
         	Text.text = res;

@@ -8,12 +8,12 @@ public class Pret_a_porter : PlayerClass
     {
         _marchandise = new Dictionary<string, (int, double, bool, double, int)>()
         {
-            { "Tee-shirt", (200, 15, true, 1, 500) },
-            { "Pull", (200, 40, true, 1, 500) },
-            { "Sweat", (200, 30, true, 1, 500) },
-            { "Jupe", (200, 14, true, 1, 500) },
-            { "Chapeau", (200, 20, true, 1, 500) },
-            { "Pantalon", (200, 45, true, 1, 500) },
+            { "Tee-shirt", (100, 15, true, 1, 500) },
+            { "Pull", (100, 40, true, 1, 500) },
+            { "Sweat", (100, 30, true, 1, 500) },
+            { "Jupe", (100, 14, true, 1, 500) },
+            { "Chapeau", (100, 20, true, 1, 500) },
+            { "Pantalon", (100, 45, true, 1, 500) },
             { "Robe", (0, 30, false, 1, 0) },
             { "Jean", (0, 45, false, 1, 0) },
             { "Manteau", (0, 200, false, 1, 0) },

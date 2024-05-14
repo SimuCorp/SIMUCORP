@@ -24,7 +24,7 @@ public class TextPrix1 : MonoBehaviour
         int i = 1;
         string res = "";
         PlayerClass g;
- 
+  
             g = Gamer1;
 
         foreach (string s in g._marchandise.Keys)

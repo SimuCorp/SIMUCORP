@@ -30,9 +30,9 @@ public class ButtonAct1 : MonoBehaviour
 	public void DoAct12()
 	{
 		PlayerClass gamer;
-
+	
 			gamer = Gamer1;
-
+	
 		if (gamer._stat["Employé"] > TextEmploye.n)
 		{
 			if (!gamer.AddMoney(-700*(gamer._stat["Employé"] - TextEmploye.n)))
