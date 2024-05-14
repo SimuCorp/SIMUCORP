@@ -8,8 +8,8 @@ using static MoneyCount;
 using static PlayerScript;
 
 public class TextApro10 : MonoBehaviour
-{
-    public TextMeshProUGUI Apro10;
+  {
+      public TextMeshProUGUI Apro10;
     
     // Start is called before the first frame update
     void Start()

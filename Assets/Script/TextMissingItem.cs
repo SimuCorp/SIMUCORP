@@ -20,9 +20,9 @@ public class TextMissingItem : MonoBehaviour
     void Update()
     {
         PlayerClass g;
-      
+
             g = Gamer1;
-     
+      
         string res = g._missingitems[n];
 		if (res == "done")
         	Text.text = res;

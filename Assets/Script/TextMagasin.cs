@@ -18,9 +18,9 @@ public class TextMagasin : MonoBehaviour
     void Start()
     {
         Text1 = GetComponent<TextMeshProUGUI>();
-   
+    
             g = Gamer1;
-      
+
         n = g._stat["Magasin"];
     }
 

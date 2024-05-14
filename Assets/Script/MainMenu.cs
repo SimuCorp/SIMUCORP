@@ -20,10 +20,10 @@ public class MainMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+       /* if (Input.GetKeyDown(KeyCode.Escape))
         { 
             SceneManager.LoadScene("Réglage", LoadSceneMode.Additive);
-        }
+        }**/
     }
 
     public void multi()

@@ -142,7 +142,7 @@ public class ButtonExitCommercial : MonoBehaviour
 	
 	public void ExitAccueil()
 	{
-		
+	
 			OpponentAccueilClientRpc();
 	
 	}
@@ -152,7 +152,7 @@ public class ButtonExitCommercial : MonoBehaviour
 		SceneManager.UnloadSceneAsync("EcranAccueil");
 		SceneManager.LoadSceneAsync("ChoixTour", LoadSceneMode.Additive);
 	}
-
+	
 	public void OpponentAccueilServer()
 	{
 		SceneManager.UnloadSceneAsync("EcranAccueil");
@@ -412,7 +412,7 @@ public class ButtonExitCommercial : MonoBehaviour
 	public void NewButton()
     {
         PlayerClass gamer;
-   
+  
             gamer = Gamer1;
 
         if (gamer._button)

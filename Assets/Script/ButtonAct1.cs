@@ -14,9 +14,9 @@ public class ButtonAct1 : MonoBehaviour
 	public void DoAct1()
 	{
 		PlayerClass gamer;
-	
+
 			gamer = Gamer1;
-	
+
 		if (gamer.materiel[0] == "acheté")
 		{
 			gamer.promo = !gamer.promo;

@@ -27,9 +27,9 @@ public class infoPause : MonoBehaviour
 		if (((true && x <= x2) || (!true && x >= x2)))
 		{
             PlayerClass gamer;
-
+			
 				gamer = Gamer1;
-
+	
             if (Input.GetKeyDown(KeyCode.RightArrow))
                 n = (n+1)%12;
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -44,7 +44,7 @@ public class infoPause : MonoBehaviour
         else
         {
             PlayerClass gamer;
-
+        
 				gamer = Gamer2;
             Info.text = gamer.Display(n);
             if (Info.text.Contains("Indisponible"))

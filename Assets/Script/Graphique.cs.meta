@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3a871c756a093934c856e80a411eac01
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - basic: {instanceID: 0}
+  - augmente: {fileID: 21300000, guid: abb2e1a2772ccb14cb7eb171aa88a796, type: 3}
+  - stagne: {fileID: 21300000, guid: 666645b23b012614199505ddad719020, type: 3}
+  - dimin: {fileID: 21300000, guid: 2358173f601cb99418d4d7e5898aff21, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

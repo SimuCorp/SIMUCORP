@@ -20,9 +20,9 @@ public class TextMateriel3 : MonoBehaviour
     void Update()
     {
         PlayerClass g;
-    
+      
             g = Gamer1;
-
+    
         string res = g.materiel[2];
         Text3.text = $"{res}\n\n {2500}";
     }

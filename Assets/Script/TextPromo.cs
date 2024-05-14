@@ -19,7 +19,7 @@ public class TextPromo : MonoBehaviour
     void Update()
     {
         PlayerClass g;
-  
+    
             g = Gamer1;
 
         if (g.promo)

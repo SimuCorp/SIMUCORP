@@ -24,9 +24,9 @@ public class TextPrix3 : MonoBehaviour
         int i = 1;
         string res = "";
         PlayerClass g;
-  
-            g = Gamer1;
  
+            g = Gamer1;
+     
         foreach (string s in g._marchandise.Keys)
         {
             if (i == n)

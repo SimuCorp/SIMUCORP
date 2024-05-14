@@ -10,7 +10,7 @@ using static TourCount;
 using static PlayerClass;
 using static Player1Script;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : MonoBehaviour 
 {
 	private bool verif;
     [SerializeField]
@@ -46,6 +46,10 @@ public class PlayerScript : MonoBehaviour
 	[SerializeField] private GameObject InfoJoueur1;
 	[SerializeField] private GameObject InfoJoueur2;
 	[SerializeField] private GameObject Pause;
+	[SerializeField] private GameObject FinDeTour;
+	[SerializeField] private GameObject Tuto1;
+	[SerializeField] private GameObject Tuto2;
+	[SerializeField] static private GameObject? Last;
 	public static float ButtonLeft = 1;
     public bool TimerOn = false;
     public Text Countdown;
@@ -71,70 +75,200 @@ public class PlayerScript : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.Escape))
         { 
-			Primeur.SetActive(false);
-			Librairie.SetActive(false);
-			Coiffeur.SetActive(false);
-			Poissonerie.SetActive(false);
-			Bijouterie.SetActive(false);
-			Vetement.SetActive(false);
-			Fleuriste.SetActive(false);
-			Boucherie.SetActive(false);
-			NonPerissable.SetActive(false);
-			Perissable.SetActive(false);
-			Accueil.SetActive(false);
-			Difficulte.SetActive(false);
-			ChoixTour.SetActive(false);
-			InfoTour.SetActive(false);
-			InfoJoueur1.SetActive(false);
-			InfoJoueur2.SetActive(false);
-			Options.SetActive(true);
+			ChangementOptions();
         }
 		if (Input.GetKeyDown(KeyCode.Space) && Gamer1.ready && Gamer2.ready)
         { 
-			InfoTour.SetActive(pause);
-			pause = !pause;
-			Pause.SetActive(pause);
 			ChangementPause();
+		}
+		if (Input.GetKeyDown(KeyCode.Space) && Tuto1.activeSelf)
+		{
+			PauseTuto();
 		}
 		
     }
+	public void ChangementOptions()
+	{
+		if (true)
+			ROptions();
+		else
+			OptionsServer();
+	}
 
+	private void OptionsServer() => ROptions();
+
+
+	private void ROptions()
+	{
+		if (Primeur.activeSelf)
+			Last = Primeur;
+		Primeur.SetActive(false);
+		if (Librairie.activeSelf)
+			Last = Librairie;
+		Librairie.SetActive(false);
+		if (Coiffeur.activeSelf)
+			Last = Coiffeur;
+		Coiffeur.SetActive(false);
+		if (Poissonerie.activeSelf)
+			Last = Poissonerie;
+		Poissonerie.SetActive(false);
+		if (Bijouterie.activeSelf)
+			Last = Bijouterie;
+		Bijouterie.SetActive(false);
+		if (Vetement.activeSelf)
+			Last = Vetement;
+		Vetement.SetActive(false);
+		if (Fleuriste.activeSelf)
+			Last = Fleuriste;
+		Fleuriste.SetActive(false);
+		if (Boucherie.activeSelf)
+			Last = Boucherie;
+		Boucherie.SetActive(false);
+		if (NonPerissable.activeSelf)
+			Last = NonPerissable;
+		NonPerissable.SetActive(false);
+		if (Perissable.activeSelf)
+			Last = Perissable;
+		Perissable.SetActive(false);
+		if (Accueil.activeSelf)
+			Last = Accueil;
+		Accueil.SetActive(false);
+		if (Difficulte.activeSelf)
+			Last = Difficulte;
+		Difficulte.SetActive(false);
+		if (ChoixTour.activeSelf)
+			Last = ChoixTour;
+		ChoixTour.SetActive(false);
+		InfoTour.SetActive(false);
+		InfoJoueur1.SetActive(false);
+		InfoJoueur2.SetActive(false);
+		if (Pause.activeSelf)
+			Last = Pause;
+		Pause.SetActive(false);
+		if (GameOver.activeSelf)
+			Last = GameOver;
+		GameOver.SetActive(false);
+		if (FinDeTour.activeSelf)
+			Last = FinDeTour;
+		FinDeTour.SetActive(false);
+		if (Qualite.activeSelf)
+			Last = Qualite;
+		Qualite.SetActive(false);
+		if (Tuto1.activeSelf)
+			Last = Tuto1;
+		Tuto1.SetActive(false);
+		if (Tuto2.activeSelf)
+			Last = Tuto2;
+		Tuto2.SetActive(false);
+		Options.SetActive(true);
+
+	}
+	public void PauseTuto()
+	{
+		if (true)
+			MouvementT();
+		else
+			MouvementServerT();
+	}
+
+	private void MouvementServerT() => MouvementT();
+
+
+	private void MouvementT()
+	{
+		pause = !pause;
+		Pause.SetActive(pause);
+		Player1Script.move = pause;
+	}
 	public void ChangementPause()
 	{
-		
+		if (true)
 			Mouvement();
-		
+		else
+			MouvementServer();
 	}
 
 
+	private void MouvementServer() => Mouvement();
 
+
+	private void Mouvement()
+	{
+		InfoTour.SetActive(pause);
+		pause = !pause;
+		Pause.SetActive(pause);
+		Player1Script.move = pause;
+	}
+
+	public void Tuto()
+	{
+		if (true)
+			TutoClient();
+		else
+			TutoServer();
+	}
+
+
+	private void TutoServer() => TutoClient();
+
+
+	private void TutoClient()
+	{
+		
+			AI = new IntelligenceArtificielle();
 	
-	private void Mouvement() => Player1Script.move = pause;
+		Accueil.SetActive(false);
+		Tuto1.SetActive(true);
+		Tuto2.SetActive(true);
+		InfoJoueur1.SetActive(true);
+		InfoJoueur2.SetActive(true);
+	}
 	
 
 	public void calcul()
 	{
-	
+		if (true)
+		{
 			if(Gamer1._button)
 			{
 
 				Gamer1._button = false;
 				CalCulus(Gamer1);
-				
+				OpponentCalcul(Gamer1._money);
 			}
-		
+		}
 		else
 		{
 			if(Gamer2._button)
 			{
 				Gamer2._button = false;
 				CalCulus(Gamer2);
-				
+				OpponentCalcul(Gamer2._money);
 			}
 		}
 	}
 
-	
+	public void OpponentCalcul(double gamer)
+	{
+		if (true)
+		{
+			OpponentCalculClientRpC(gamer);
+		}
+		else
+		{
+			OpponentCalculServerRpC(gamer);
+		}
+	}
+
+	public void OpponentCalculClientRpC(double gamer)
+	{
+		Gamer1._money = gamer;
+	}
+
+	public void OpponentCalculServerRpC(double gamer)
+	{
+		Gamer2._money = gamer;
+	}
     void UpdateTimer()
     {
         Countdown.text = $"{(int)(Gamer1.TimeLeft/Gamer1.nbCount)}";
@@ -154,21 +288,27 @@ public class PlayerScript : MonoBehaviour
 
 	public void ExitAccueil()
 	{
-	
+		if (true)
+		{
 			ExitAccueilAux();
-		
+		}
 		
 	}
-
+	
 	public void ExitAccueilAux()
 	{
 		Accueil.SetActive(false);
 		ChoixTour.SetActive(true);
 	}
 
-	public void LastScene()
+	public void LastSceneServer() => LastSceneClient();
+
+
+	
+	private void LastSceneClient()
 	{
 		Options.SetActive(false);
+		Qualite.SetActive(false);
 		if(Gamer1.ready && Gamer2.ready)
 		{
 			if (Gamer1._name == "Primeur")
@@ -203,14 +343,49 @@ public class PlayerScript : MonoBehaviour
 				Fleuriste.SetActive(true);
 			else
 				Boucherie.SetActive(true);
-			InfoTour.SetActive(true);
-			InfoJoueur1.SetActive(true);
-			InfoJoueur2.SetActive(true);
+			if (Last == Pause || Last == GameOver)
+			{
+				InfoJoueur1.SetActive(true);
+				InfoJoueur2.SetActive(true);
+				Last.SetActive(true);
+			}
+			else if (Last == FinDeTour)
+			{
+				FinDeTour.SetActive(true);
+				InfoTour.SetActive(true);
+			}
+			else
+			{
+				InfoJoueur1.SetActive(true);
+				InfoJoueur2.SetActive(true);
+				InfoTour.SetActive(true);
+			}
+		}
+		else if (Last != null)
+		{
+			Last.SetActive(true);
+			if (Last == Tuto1 || Last == Tuto2)
+			{
+				InfoJoueur1.SetActive(true);
+				InfoJoueur2.SetActive(true);
+				Tuto1.SetActive(true);
+				Tuto2.SetActive(true);
+					
+			}
 		}
 		else
+		{
 			Accueil.SetActive(true);
+		}
+		Last = null;
 	}
-
+	public void LastScene()
+	{
+		if (true)
+			LastSceneServer();
+		else
+			LastSceneClient();
+	}
 	public void Exit()
     {
         RH.SetActive(false);
@@ -255,7 +430,8 @@ public class PlayerScript : MonoBehaviour
 
     public void ExitGestion()
     {
-		
+		if (true)
+		{
 			if(Gamer1.ready && Gamer1._button && Gamer2.ready)
 			{
 				ScenePrincipale.SetActive(false);
@@ -267,7 +443,7 @@ public class PlayerScript : MonoBehaviour
 				Materiel3.SetActive(false);
 				Gestion.SetActive(true);
 			}
-		
+		}
 		else if (Gamer2.ready && Gamer1.ready && Gamer2._button)
 		{
 			ScenePrincipale.SetActive(false);
@@ -283,13 +459,14 @@ public class PlayerScript : MonoBehaviour
 
 	public void ExitCommercial()
     {
-	
+		if (true)
+		{
 			if (Gamer1.ready && Gamer1._button && Gamer2.ready)
 			{
 				ScenePrincipale.SetActive(false);
 				Commercial.SetActive(true);
 			}
-		
+		}
 		else if (Gamer2.ready && Gamer2._button && Gamer1.ready)
 		{
 				ScenePrincipale.SetActive(false);
@@ -298,14 +475,14 @@ public class PlayerScript : MonoBehaviour
     }
 	public void ExitRH()
     {
-	
-		
+		if (true)
+		{
 			if (Gamer1.ready && Gamer1._button && Gamer2.ready)
 			{
         		ScenePrincipale.SetActive(false);
 				RH.SetActive(true);
 			}
-	
+		}
 		else if (Gamer2.ready && Gamer2._button && Gamer1.ready)
 		{
 			ScenePrincipale.SetActive(false);
@@ -389,7 +566,7 @@ public class PlayerScript : MonoBehaviour
 	
 	public void Simple()
 	{
-	
+		if(true)
 			SimpleAux();
 	}
 
@@ -401,16 +578,66 @@ public class PlayerScript : MonoBehaviour
 
 	public void Difficile()
 	{
-	
+		
 			DifficileAux();
 	}
-
+	
 	public void DifficileAux()
 	{
 		Difficulte.SetActive(false);
 		Perissable.SetActive(true);
 	}
+	private void ChangementClassOponent(string s)
+	{
+		if (true)
+			OpponentClassClientRpC(s);
+		else
+			OpponentClassServerRpC(s);
+	}
 	
+	private void OpponentClassClientRpC(string s)
+	{
+		if (s == "Primeur")
+			Gamer1 = new Primeur("Primeur");
+		else if (s == "Libraire")
+			Gamer1 = new Libraire("Libraire");
+		else if (s == "Coiffeur")
+			Gamer1 = new Coiffeur("Coiffeur");
+		else if (s == "Poissonier")
+			Gamer1 = new Poissonier("Poissonier");
+		else if (s == "Bijoutier")
+			Gamer1 = new Bijouterie("Bijoutier");
+		else if (s == "Prêt à porter")
+			Gamer1 = new Pret_a_porter("Prêt à porter");
+		else if (s == "Fleuriste")
+			Gamer1 = new Fleuriste("Fleuriste");
+		else
+			Gamer1 = new Boucherie("Boucher");
+		Gamer1.ready = true;
+		
+	}
+	
+	
+	private void OpponentClassServerRpC(string s)
+	{
+		if (s == "Primeur")
+			Gamer2 = new Primeur("Primeur");
+		else if (s == "Libraire")
+			Gamer2 = new Libraire("Libraire");
+		else if (s == "Coiffeur")
+			Gamer2 = new Coiffeur("Coiffeur");
+		else if (s == "Poissonier")
+			Gamer2 = new Poissonier("Poissonier");
+		else if (s == "Bijoutier")
+			Gamer2 = new Bijouterie("Bijoutier");
+		else if (s == "Prêt à porter")
+			Gamer2 = new Pret_a_porter("Prêt à porter");
+		else if (s == "Fleuriste")
+			Gamer2 = new Fleuriste("Fleuriste");
+		else
+			Gamer2 = new Boucherie("Boucher");
+		Gamer2.ready = true;
+	}
 	
 	public void ChangementPrimeur()
 	{
@@ -419,6 +646,9 @@ public class PlayerScript : MonoBehaviour
 		
 	}
 	
+	private void ChangementPrimeurServerRpC() => ExitPrimeur(false);
+
+
 	public void ExitPrimeur(bool joueur)
 	{
 		verif = true;
@@ -430,7 +660,6 @@ public class PlayerScript : MonoBehaviour
 			Gamer1.ready = true;
 			if (true)
 				{
-					Gamer2 = new Boucherie("Boucher");
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
 					Boucherie.SetActive(true);
@@ -462,7 +691,10 @@ public class PlayerScript : MonoBehaviour
 			if (Gamer1.ready)
 			{
 				Perissable.SetActive(false);
-				InfoTour.SetActive(true);
+				if (!pause)
+					InfoTour.SetActive(true);
+				else
+					Pause.SetActive(true);
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -473,8 +705,10 @@ public class PlayerScript : MonoBehaviour
 	{
 		
 			ExitBoucherie(true);
-		
+
 	}
+	
+	private void ChangementBoucherieServerRpC() => ExitBoucherie(false);
 
 	public void ExitBoucherie(bool joueur)
 	{
@@ -529,10 +763,12 @@ public class PlayerScript : MonoBehaviour
 
 	public void ChangementLibraire()
 	{
-		
+	
 			ExitLibraire(true);
-		
+	
 	}
+	
+	private void ChangementLibraireServerRpC() => ExitLibraire(false);
 	
 	public void ExitLibraire(bool joueur)
 	{
@@ -589,10 +825,13 @@ public class PlayerScript : MonoBehaviour
 
 	public void ChangementCoiffeur()
 	{
-		
+	
 			ExitCoiffeur(true);
-		
+	
 	}
+
+	private void ChangementCoiffeurServerRpC() => ExitCoiffeur(false);
+
 
 	public void ExitCoiffeur(bool joueur)
 	{
@@ -649,9 +888,12 @@ public class PlayerScript : MonoBehaviour
 	{
 		
 			ExitPoisson(true);
-		
+
 	}
 
+	private void ChangementPoissonServerRpC() => ExitPoisson(false);
+
+	
 	public void ExitPoisson(bool joueur)
 	{
 		verif = true;
@@ -706,10 +948,13 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void ChangementBijouterie()
 	{
-		
+
 			ExitBijouterie(true);
-		
+	
 	}
+	
+	private void ChangementBijouterieServerRpC() => ExitBijouterie(false);
+
 	
 	public void ExitBijouterie(bool joueur)
 	{
@@ -767,9 +1012,11 @@ public class PlayerScript : MonoBehaviour
 	{
 		
 			ExitVetement(true);
-	
+		
 	}
 	
+	private void ChangementVetementServerRpC() => ExitVetement(false);
+
 	public void ExitVetement(bool joueur)
 	{
 		verif = true;
@@ -826,9 +1073,11 @@ public class PlayerScript : MonoBehaviour
 	{
 		
 			ExitFleur(true);
-		
+
 	}
 	
+	private void ChangementFleurServerRpC() => ExitFleur(false);
+
 	public void ExitFleur(bool joueur)
 	{
 		verif = true;
@@ -889,13 +1138,23 @@ public class PlayerScript : MonoBehaviour
 			ExitDureAux(nb);
 	}
 
-
+	
 	public void ExitDureAux(int nb)
 	{
 		MaxTurn = nb;
 		ChoixTour.SetActive(false);
 		Difficulte.SetActive(true);
 	}
+
+	public void ChoixRetour()
+	{
+
+			Retour();
+	
+	}
+
+	
+	private void RetourServer() => Retour();
 
 	public void Retour()
 	{
@@ -937,7 +1196,7 @@ public class PlayerScript : MonoBehaviour
 			Fleuriste.transform.Translate(new Vector3(-taille/2, 0, 0));
 		}
 		Vetement.SetActive(false);
-		if (Gamer2 is Boucherie)
+		if (Gamer2 is Boucherie && Gamer2.ready)
 		{
 			Boucherie.transform.Translate(new Vector3(-taille/2, 0, 0));
 		}
@@ -946,8 +1205,10 @@ public class PlayerScript : MonoBehaviour
 		InfoJoueur1.SetActive(false);
 		InfoJoueur2.SetActive(false);
 		Accueil.SetActive(true);
-		Gamer1.ready = false;
-		Gamer2.ready = false;
+		Last = Accueil;
+		TourCount.TurnValues = 1;
+		Gamer1 = new Primeur("Primeur");
+		Gamer2 = new Boucherie("Boucher");
 	}
 
 	public void AOptions()
@@ -970,7 +1231,7 @@ public class PlayerScript : MonoBehaviour
 	public void DoButtonPass()
     {
 		PlayerClass gamer;
-
+	
 			gamer = Gamer1;
 
         gamer._button = false;
@@ -1105,10 +1366,276 @@ public class PlayerScript : MonoBehaviour
 			gamer._marchandise[gamer._items[key]] = (Quantity, price, possible, promo, tour);
 		
 		}
-
+	
 	}
 
+	public void PerimeOpponent(int p, bool joueur1)
+	{
+	
+			OpponentPerimeClientRpC(p, joueur1);
+	
+	}
+ 
+	private void OpponentPerimeClientRpC(int key, bool joueur1)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		if (gamer._items[key] != "NaN")
+		{
+            (int Quantity, double price, bool possible, double promo, int tour) = gamer._marchandise[gamer._items[key]];
+			int j = 0;
+			switch (key)
+			{
+				case 0:
+				  	gamer.Perime1.Add(gamer.More1);
+				  	if (gamer.Perime1.Count > tour)
+					{
+						j = gamer.Perime1[0];
+						gamer.Perime1.RemoveAt(0);
+					}
+					gamer.More1 = 0;
+				  	break;
+				case 1:
+					gamer.Perime2.Add(gamer.More2);
+				  	if (gamer.Perime2.Count > tour)
+					{
+						j = gamer.Perime2[0];
+						gamer.Perime2.RemoveAt(0);
+					}
+					gamer.More2 = 0;
+					break;
+				case 2:
+					gamer.Perime3.Add(gamer.More3);
+				  	if (gamer.Perime3.Count > tour)
+					{
+						j = gamer.Perime3[0];
+						gamer.Perime3.RemoveAt(0);
+					}
+					gamer.More3 = 0;
+					break;
+				case 3:
+					gamer.Perime4.Add(gamer.More4);
+				  	if (gamer.Perime4.Count > tour)
+					{
+						j = gamer.Perime4[0];
+						gamer.Perime4.RemoveAt(0);
+					}
+					gamer.More4 = 0;
+					break;
+				case 4:
+					gamer.Perime5.Add(gamer.More5);
+				  	if (gamer.Perime5.Count > tour)
+					{
+						j = gamer.Perime5[0];
+						gamer.Perime5.RemoveAt(0);
+					}
+					gamer.More5 = 0;
+					break;
+				case 5:
+					gamer.Perime6.Add(gamer.More6);
+				  	if (gamer.Perime6.Count > tour)
+					{
+						j = gamer.Perime6[0];
+						gamer.Perime6.RemoveAt(0);
+					}
+					gamer.More6 = 0;
+					break;
+				case 6:
+					gamer.Perime7.Add(gamer.More7);
+				  	if (gamer.Perime7.Count > tour)
+					{
+						j = gamer.Perime7[0];
+						gamer.Perime7.RemoveAt(0);
+					}
+					gamer.More7 = 0;
+					break;
+				case 7:
+					gamer.Perime8.Add(gamer.More8);
+				  	if (gamer.Perime8.Count > tour)
+					{
+						j = gamer.Perime8[0];
+						gamer.Perime8.RemoveAt(0);
+					}
+					gamer.More8 = 0;
+					break;
+				case 8:
+					gamer.Perime9.Add(gamer.More9);
+				  	if (gamer.Perime9.Count > tour)
+					{
+						j = gamer.Perime9[0];
+						gamer.Perime9.RemoveAt(0);
+					}
+					gamer.More9 = 0;
+					break;
+				case 9:
+					gamer.Perime10.Add(gamer.More10);
+				  	if (gamer.Perime10.Count > tour)
+					{
+						j = gamer.Perime10[0];
+						gamer.Perime10.RemoveAt(0);
+					}
+					gamer.More10 = 0;
+					break;
+				case 10:
+					gamer.Perime11.Add(gamer.More11);
+				  	if (gamer.Perime11.Count > tour)
+					{
+						j = gamer.Perime11[0];
+						gamer.Perime11.RemoveAt(0);
+					}
+					gamer.More11 = 0;
+					break;
+				case 11:
+				  	gamer.Perime12.Add(gamer.More12);
+				  	if (gamer.Perime12.Count > tour)
+					{
+						j = gamer.Perime12[0];
+						gamer.Perime12.RemoveAt(0);
+					}
+					gamer.More12 = 0;
+					break;
+			}
+			Quantity -= j;
+			if (Quantity < 0)
+				Quantity = 0;
+			gamer._marchandise[gamer._items[key]] = (Quantity, price, possible, promo, tour);
+		
+		}
+	}
 
+	
+	private void OpponentPerimeServerRpC(int key, bool joueur1)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		if (gamer._items[key] != "NaN")
+		{
+            (int Quantity, double price, bool possible, double promo, int tour) = gamer._marchandise[gamer._items[key]];
+			int j = 0;
+			switch (key)
+			{
+				case 0:
+				  	gamer.Perime1.Add(gamer.More1);
+				  	if (gamer.Perime1.Count > tour)
+					{
+						j = gamer.Perime1[0];
+						gamer.Perime1.RemoveAt(0);
+					}
+					gamer.More1 = 0;
+				  	break;
+				case 1:
+					gamer.Perime2.Add(gamer.More2);
+				  	if (gamer.Perime2.Count > tour)
+					{
+						j = gamer.Perime2[0];
+						gamer.Perime2.RemoveAt(0);
+					}
+					gamer.More2 = 0;
+					break;
+				case 2:
+					gamer.Perime3.Add(gamer.More3);
+				  	if (gamer.Perime3.Count > tour)
+					{
+						j = gamer.Perime3[0];
+						gamer.Perime3.RemoveAt(0);
+					}
+					gamer.More3 = 0;
+					break;
+				case 3:
+					gamer.Perime4.Add(gamer.More4);
+				  	if (gamer.Perime4.Count > tour)
+					{
+						j = gamer.Perime4[0];
+						gamer.Perime4.RemoveAt(0);
+					}
+					gamer.More4 = 0;
+					break;
+				case 4:
+					gamer.Perime5.Add(gamer.More5);
+				  	if (gamer.Perime5.Count > tour)
+					{
+						j = gamer.Perime5[0];
+						gamer.Perime5.RemoveAt(0);
+					}
+					gamer.More5 = 0;
+					break;
+				case 5:
+					gamer.Perime6.Add(gamer.More6);
+				  	if (gamer.Perime6.Count > tour)
+					{
+						j = gamer.Perime6[0];
+						gamer.Perime6.RemoveAt(0);
+					}
+					gamer.More6 = 0;
+					break;
+				case 6:
+					gamer.Perime7.Add(gamer.More7);
+				  	if (gamer.Perime7.Count > tour)
+					{
+						j = gamer.Perime7[0];
+						gamer.Perime7.RemoveAt(0);
+					}
+					gamer.More7 = 0;
+					break;
+				case 7:
+					gamer.Perime8.Add(gamer.More8);
+				  	if (gamer.Perime8.Count > tour)
+					{
+						j = gamer.Perime8[0];
+						gamer.Perime8.RemoveAt(0);
+					}
+					gamer.More8 = 0;
+					break;
+				case 8:
+					gamer.Perime9.Add(gamer.More9);
+				  	if (gamer.Perime9.Count > tour)
+					{
+						j = gamer.Perime9[0];
+						gamer.Perime9.RemoveAt(0);
+					}
+					gamer.More9 = 0;
+					break;
+				case 9:
+					gamer.Perime10.Add(gamer.More10);
+				  	if (gamer.Perime10.Count > tour)
+					{
+						j = gamer.Perime10[0];
+						gamer.Perime10.RemoveAt(0);
+					}
+					gamer.More10 = 0;
+					break;
+				case 10:
+					gamer.Perime11.Add(gamer.More11);
+				  	if (gamer.Perime11.Count > tour)
+					{
+						j = gamer.Perime11[0];
+						gamer.Perime11.RemoveAt(0);
+					}
+					gamer.More11 = 0;
+					break;
+				case 11:
+				  	gamer.Perime12.Add(gamer.More12);
+				  	if (gamer.Perime12.Count > tour)
+					{
+						j = gamer.Perime12[0];
+						gamer.Perime12.RemoveAt(0);
+					}
+					gamer.More12 = 0;
+					break;
+			}
+			Quantity -= j;
+			if (Quantity < 0)
+				Quantity = 0;
+			gamer._marchandise[gamer._items[key]] = (Quantity, price, possible, promo, tour);
+		
+		}
+	}
 
 
 	public void RemovePerime(PlayerClass gamer, int key)
@@ -1119,7 +1646,10 @@ public class PlayerScript : MonoBehaviour
 				  	if (gamer.Perime1.Count != 0 && gamer.Perime1[0] != 0)
 						{
 							--gamer.Perime1[0];
-					
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime1.Count == 0)
 						return;
@@ -1127,14 +1657,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime1.RemoveAt(0);
 						RemovePerime(gamer, key);
-					
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 1:
 					if (gamer.Perime2.Count != 0 && gamer.Perime2[0] != 0)
 						{
 							--gamer.Perime2[0];
-				
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 
 					else if (gamer.Perime2.Count == 0)
@@ -1143,14 +1679,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime2.RemoveAt(0);
 						RemovePerime(gamer, key);
-						
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 2:
 					if (gamer.Perime3.Count != 0 && gamer.Perime3[0] != 0)
 						{
 							--gamer.Perime3[0];
-						
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime3.Count == 0)
 						return;
@@ -1158,14 +1700,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime3.RemoveAt(0);
 						RemovePerime(gamer, key);
-				
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 3:
 					if (gamer.Perime4.Count != 0 && gamer.Perime4[0] != 0)
 						{
 							--gamer.Perime4[0];
-							
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime4.Count == 0)
 						return;
@@ -1173,14 +1721,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime4.RemoveAt(0);
 						RemovePerime(gamer, key);
-						
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 4:
 					if (gamer.Perime5.Count != 0 && gamer.Perime5[0] != 0)
 						{
 							--gamer.Perime5[0];
-							
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime5.Count == 0)
 						return;
@@ -1188,14 +1742,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime5.RemoveAt(0);
 						RemovePerime(gamer, key);
-					
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 5:
 					if (gamer.Perime6.Count != 0 && gamer.Perime6[0] != 0)
 						{
 							--gamer.Perime6[0];
-							
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime6.Count == 0)
 						return;
@@ -1203,14 +1763,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime6.RemoveAt(0);
 						RemovePerime(gamer, key);
-					
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 6:
 					if (gamer.Perime7.Count != 0 && gamer.Perime7[0] != 0)
 						{
 							--gamer.Perime7[0];
-							
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime7.Count == 0)
 						return;
@@ -1218,14 +1784,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime7.RemoveAt(0);
 						RemovePerime(gamer, key);
-						
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 7:
 					if (gamer.Perime8.Count != 0 && gamer.Perime8[0] != 0)
 						{
 							--gamer.Perime8[0];
-				
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime8.Count == 0)
 						return;
@@ -1233,14 +1805,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime8.RemoveAt(0);
 						RemovePerime(gamer, key);
-					
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 8:
 					if (gamer.Perime9.Count != 0 && gamer.Perime9[0] != 0)
 						{
 							--gamer.Perime9[0];
-							
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime9.Count == 0)
 						return;
@@ -1248,14 +1826,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime9.RemoveAt(0);
 						RemovePerime(gamer, key);
-					
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 9:
 					if (gamer.Perime10.Count != 0 && gamer.Perime10[0] != 0)
 						{
 							--gamer.Perime10[0];
-							
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime10.Count == 0)
 						return;
@@ -1263,14 +1847,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime10.RemoveAt(0);
 						RemovePerime(gamer, key);
-					
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 10:
 					if (gamer.Perime11.Count != 0 && gamer.Perime11[0] != 0)
 						{
 							--gamer.Perime11[0];
-							
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime11.Count == 0)
 						return;
@@ -1278,14 +1868,20 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime11.RemoveAt(0);
 						RemovePerime(gamer, key);
-					
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 				case 11:
 				  	if (gamer.Perime12.Count != 0 && gamer.Perime12[0] != 0)
 						{
 							--gamer.Perime12[0];
-						
+							if (gamer == Gamer1)
+								RemovePerimeOpponent(key, true);
+							else
+								RemovePerimeOpponent(key, false);
 						}
 					else if (gamer.Perime12.Count == 0)
 						return;
@@ -1293,13 +1889,224 @@ public class PlayerScript : MonoBehaviour
 					{
 						gamer.Perime12.RemoveAt(0);
 						RemovePerime(gamer, key);
-		
+						if (gamer == Gamer1)
+								RemovePerimeOpponentR(key, true);
+							else
+								RemovePerimeOpponentR(key, false);
 					}
 				  	break;
 			}
 	}
 
+	public void RemovePerimeOpponent(int p, bool joueur1)
+	{
 
+			OpponentRemovePerimeClientRpC(p, joueur1);
+
+	}
+	
+	private void OpponentRemovePerimeClientRpC(int key, bool joueur1)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+			(int Quantity, double price, bool possible, double quali, int tour) = gamer._marchandise[gamer._items[key]];
+		gamer._marchandise[gamer._items[key]] = (--Quantity, price, possible, quali, tour);
+		switch(key)
+		{
+			case 0:
+				--gamer.Perime1[0];
+				break;
+			case 1:
+				--gamer.Perime2[0];
+				break;
+			case 2:
+				--gamer.Perime3[0];
+				break;
+			case 3:
+				--gamer.Perime4[0];
+				break;
+			case 4:
+				--gamer.Perime5[0];
+				break;
+			case 5:
+				--gamer.Perime6[0];
+				break;
+			case 6:
+				--gamer.Perime7[0];
+				break;
+			case 7:
+				--gamer.Perime8[0];
+				break;
+			case 8:
+				--gamer.Perime9[0];
+				break;
+			case 9:
+				--gamer.Perime10[0];
+				break;
+			case 10:
+				--gamer.Perime11[0];
+				break;
+			case 11:
+				--gamer.Perime12[0];
+				break;
+		}
+	}
+
+	private void OpponentRemovePerimeServerRpC(int p, bool joueur1)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+			(int Quantity, double price, bool possible, double quali, int tour) = gamer._marchandise[gamer._items[p]];
+		gamer._marchandise[gamer._items[p]] = (--Quantity, price, possible, quali, tour);
+		switch(p)
+		{
+			case 0:
+				--gamer.Perime1[0];
+				break;
+			case 1:
+				--gamer.Perime2[0];
+				break;
+			case 2:
+				--gamer.Perime3[0];
+				break;
+			case 3:
+				--gamer.Perime4[0];
+				break;
+			case 4:
+				--gamer.Perime5[0];
+				break;
+			case 5:
+				--gamer.Perime6[0];
+				break;
+			case 6:
+				--gamer.Perime7[0];
+				break;
+			case 7:
+				--gamer.Perime8[0];
+				break;
+			case 8:
+				--gamer.Perime9[0];
+				break;
+			case 9:
+				--gamer.Perime10[0];
+				break;
+			case 10:
+				--gamer.Perime11[0];
+				break;
+			case 11:
+				--gamer.Perime12[0];
+				break;
+		}
+	}
+
+	public void RemovePerimeOpponentR(int p, bool joueur1)
+	{
+		
+			OpponentRemovePerimeClientRpCR(p, joueur1);
+	
+	}
+	
+	private void OpponentRemovePerimeClientRpCR(int p, bool joueur1)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		switch(p)
+		{
+			case 0:
+				gamer.Perime1.RemoveAt(0);
+				break;
+			case 1:
+				gamer.Perime2.RemoveAt(0);
+				break;
+			case 2:
+				gamer.Perime3.RemoveAt(0);
+				break;
+			case 3:
+				gamer.Perime4.RemoveAt(0);
+				break;
+			case 4:
+				gamer.Perime5.RemoveAt(0);
+				break;
+			case 5:
+				gamer.Perime6.RemoveAt(0);
+				break;
+			case 6:
+				gamer.Perime7.RemoveAt(0);
+				break;
+			case 7:
+				gamer.Perime8.RemoveAt(0);
+				break;
+			case 8:
+				gamer.Perime9.RemoveAt(0);
+				break;
+			case 9:
+				gamer.Perime10.RemoveAt(0);
+				break;
+			case 10:
+				gamer.Perime11.RemoveAt(0);
+				break;
+			case 11:
+				gamer.Perime12.RemoveAt(0);
+				break;
+		}
+	}
+
+	private void OpponentRemovePerimeServerRpCR(int p, bool joueur1)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		switch(p)
+		{
+			case 0:
+				--gamer.Perime1[0];
+				break;
+			case 1:
+				--gamer.Perime2[0];
+				break;
+			case 2:
+				--gamer.Perime3[0];
+				break;
+			case 3:
+				--gamer.Perime4[0];
+				break;
+			case 4:
+				--gamer.Perime5[0];
+				break;
+			case 5:
+				--gamer.Perime6[0];
+				break;
+			case 6:
+				--gamer.Perime7[0];
+				break;
+			case 7:
+				--gamer.Perime8[0];
+				break;
+			case 8:
+				--gamer.Perime9[0];
+				break;
+			case 9:
+				--gamer.Perime10[0];
+				break;
+			case 10:
+				--gamer.Perime11[0];
+				break;
+			case 11:
+				--gamer.Perime12[0];
+				break;
+		}
+	}
 	public void CalCulus(PlayerClass gamer)
     {
         System.Random aleatoire = new System.Random();
@@ -1327,7 +2134,7 @@ public class PlayerScript : MonoBehaviour
 								gamer.sum += price*0.8 + 0.1*price*(quali-1);
 							else
                     			gamer.sum += price + 0.1*price*(quali-1);
-					
+							Vente(gamer == Gamer1, price, quali);
 						}
 					}
                 }
@@ -1338,14 +2145,14 @@ public class PlayerScript : MonoBehaviour
                 evenement._event[evenement._eventComing[TourCount.TurnValues/4 - 1]];
              gamer._stat["Attractivité"] *= attract;
              gamer.sum *= benef;
-	
+			 CooefficientOpponent(gamer == Gamer1, attract, gamer.sum, benef);
           	}
 
 			for (int i = 0; i < 12; ++i)
 				Perime(gamer, i);
             gamer.AddMoney(gamer.sum);
 			gamer._mounth += gamer.sum;
-	
+			AjoutOpponent(gamer.sum, gamer == Gamer1);
 			bool b = false;
 			if (TourCount.TurnValues % 4 == 0)
 			{
@@ -1359,7 +2166,7 @@ public class PlayerScript : MonoBehaviour
 				else
 					{
 						gamer._mounth = 0;
-						
+						RetraitOpponent(gamer._mounth/4+gamer._stat["Employé"]*gamer._stat["Salaire"], gamer == Gamer1);
 					}
 			}
 			if (Gamer1._turn == false && Gamer2._turn == false)
@@ -1372,7 +2179,7 @@ public class PlayerScript : MonoBehaviour
 				Gamer2._button = true;
 				Gamer1.sum = 0;
 				Gamer2.sum = 0;
-
+				RetourOpponent();
 				if (!(TourCount.TurnValues > TourCount.MaxTurn))
 					AI.Act10();
 			}
@@ -1386,7 +2193,157 @@ public class PlayerScript : MonoBehaviour
 				}
         }
     }
+	public void Vente(bool joueur1, double price, double quali)
+	{
+	
+			VenteClientRpC(joueur1, price, quali);
+		
+	}
 
+
+	private void VenteClientRpC(bool joueur1, double price, double quali)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		if (gamer.promo)
+			gamer.sum += price*0.8 + 0.1*price*(quali-1);
+		else
+            gamer.sum += price + 0.1*price*(quali-1);
+	}
+	
+	private void VenteServerRpC(bool joueur1, double price, double quali)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		if (gamer.promo)
+			gamer.sum += price*0.8 + 0.1*price*(quali-1);
+		else
+            gamer.sum += price + 0.1*price*(quali-1);
+	}
+	public void CooefficientOpponent(bool joueur1, double attract, double sum, double benef)
+	{
+	
+			CooefficientOpponentClientRpC(joueur1, attract, sum, benef);
+	
+	}
+
+
+	private void CooefficientOpponentClientRpC(bool joueur1, double attract, double sum, double benef)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		gamer._stat["Attractivité"] *= attract;
+             gamer.sum *= benef;
+	}
+	
+	private void CooefficientOpponentServerRpC(bool joueur1, double attract, double sum, double benef)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		gamer._stat["Attractivité"] *= attract;
+             gamer.sum *= benef;
+	}
+	public void RetourOpponent()
+	{
+	
+			RetourOpponentClientRpC();
+
+	}
+	
+	private void RetourOpponentClientRpC()
+	{
+		Gamer1.TimeLeft = 100*Gamer1.nbCount;
+				TourCount.AddTurn("");
+		Gamer1._turn = true;
+				Gamer2._turn = true;
+				Gamer1._button = true;
+				Gamer2._button = true;
+				Gamer1.sum = 0;
+				Gamer2.sum = 0;
+		
+	}
+	
+	private void RetourOpponentServerRpC()
+	{
+		Gamer1.TimeLeft = 100*Gamer1.nbCount;
+				TourCount.AddTurn("");
+		Gamer1._turn = true;
+				Gamer2._turn = true;
+				Gamer1._button = true;
+				Gamer2._button = true;
+				Gamer1.sum = 0;
+				Gamer2.sum = 0;
+	}
+	public void RetraitOpponent(double sum, bool joueur1)
+	{
+
+			RetraitOpponentClientRpC(sum, joueur1);
+	
+	}
+
+	private void RetraitOpponentClientRpC(double sum, bool joueur1)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		gamer.AddMoney(-sum);
+		gamer._mounth = 0;
+		
+	}
+
+	private void RetraitOpponentServerRpC(double sum, bool joueur1)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		gamer.AddMoney(-sum);
+		gamer._mounth = 0;
+	}
+	public void AjoutOpponent(double sum, bool joueur1)
+	{
+	
+			AjoutOpponentClientRpC(sum, joueur1);
+	
+	}
+	
+	private void AjoutOpponentClientRpC(double sum, bool joueur1)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		gamer.AddMoney(sum);
+		gamer._mounth += sum;
+		
+	}
+	
+	private void AjoutOpponentServerRpC(double sum, bool joueur1)
+	{
+		PlayerClass gamer;
+		if (joueur1)
+			gamer = Gamer1;
+		else
+			gamer = Gamer2;
+		gamer.AddMoney(sum);
+		gamer._mounth += sum;
+	}
 
 
 
@@ -1437,9 +2394,9 @@ public class PlayerScript : MonoBehaviour
 	public void LessPrice(int p)
 	{
 		PlayerClass gamer;
-	
+		
 			gamer = Gamer1;
-	
+
 		string res = "";
 		int i1 = 1;
 		foreach (string s in gamer._marchandise.Keys)
@@ -1457,15 +2414,65 @@ public class PlayerScript : MonoBehaviour
 		if (j <= 0.10)
 			j += 0.10;
 		gamer._marchandise[res] = (i, Round(j-0.10, 2), b, d, k);
+		LessPriceOpponent(3*NbScene+p);
+	}
+	public void LessPriceOpponent(int p)
+	{
+	
+			OpponentLPriceClientRpC(p);
 	
 	}
 
+
+	private void OpponentLPriceClientRpC(int p)
+	{
+		PlayerClass gamer = Gamer1;
+		string res = "";
+		int i1 = 1;
+		foreach (string s in gamer._marchandise.Keys)
+        {
+            if (i1 == p)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+
+        (int i, double j, bool b, double d, int k)= gamer._marchandise[res];
+		if (j <= 0.10)
+			j += 0.10;
+		gamer._marchandise[res] = (i, Round(j-0.10, 2), b, d, k);
+	}
+	
+	private void OpponentLPriceServerRpC(int p)
+	{
+		PlayerClass gamer = Gamer2;
+		string res = "";
+		int i1 = 1;
+		foreach (string s in gamer._marchandise.Keys)
+        {
+            if (i1 == p)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+
+        (int i, double j, bool b, double d, int k)= gamer._marchandise[res];
+		if (j <= 0.10)
+			j += 0.10;
+		gamer._marchandise[res] = (i, Round(j-0.10, 2), b, d, k);
+	}
 	public void MorePrice(int p)
 	{
 		PlayerClass gamer;
-
+	
 			gamer = Gamer1;
-
+	
 		string res = "";
 		int i1 = 1;
 		foreach (string s in gamer._marchandise.Keys)
@@ -1481,14 +2488,62 @@ public class PlayerScript : MonoBehaviour
 
         (int i, double j, bool b, double d, int k)= gamer._marchandise[res];
 		gamer._marchandise[res] = (i, j+0.10, b, d, k);
+		MorePriceOpponent(NbScene*3+p);
+	}
+
+	public void MorePriceOpponent(int p)
+	{
+
+			OpponentMPriceClientRpC(p);
 	
 	}
 
 
+	private void OpponentMPriceClientRpC(int p)
+	{
+		PlayerClass gamer = Gamer1;
+		string res = "";
+		int i1 = 1;
+		foreach (string s in gamer._marchandise.Keys)
+        {
+            if (i1 == p)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+
+        (int i, double j, bool b, double d, int k)= gamer._marchandise[res];
+		gamer._marchandise[res] = (i, j+0.10, b, d, k);
+	}
+
+
+	private void OpponentMPriceServerRpC(int p)
+	{
+		PlayerClass gamer = Gamer2;
+		string res = "";
+		int i1 = 1;
+		foreach (string s in gamer._marchandise.Keys)
+        {
+            if (i1 == p)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+
+        (int i, double j, bool b, double d, int k)= gamer._marchandise[res];
+		gamer._marchandise[res] = (i, j+0.10, b, d, k);
+	}
+
 	public void MoreApro(int n)
 	{
 		PlayerClass gamer;
-
+		
 			gamer = Gamer1;
 
 		int i1 = 1;
@@ -1546,17 +2601,147 @@ public class PlayerScript : MonoBehaviour
 					gamer.More12 += 5;
 					break;
 			}
+			MoreAproOpponent(3*NbScene+n);
+		}
+	}
+
+	public void MoreAproOpponent(int p)
+	{
 	
+			OpponentAproClientRpC(p);
+		
+	}
+
+	
+	private void OpponentAproClientRpC(int p)
+	{
+		PlayerClass gamer = Gamer1;
+		int i1 = 1;
+        string res = "";
+        foreach (string s in gamer._marchandise.Keys)
+        {
+            if (i1 == p)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= gamer._marchandise[res];
+		if (b && gamer.AddMoney(-gamer.prix[p-1]*5))
+		{
+			gamer._marchandise[res] = (i+5, j, b, d, k);
+			switch (p)
+			{
+				case 1:
+					gamer.More1 += 5;
+					break;
+				case 2:
+					gamer.More2 += 5;
+					break;
+				case 3:
+					gamer.More3 += 5;
+					break;
+				case 4:
+					gamer.More4 += 5;
+					break;
+				case 5:
+					gamer.More5 += 5;
+					break;
+				case 6:
+					gamer.More6 += 5;
+					break;
+				case 7:
+					gamer.More7 += 5;
+					break;
+				case 8:
+					gamer.More8 += 5;
+					break;
+				case 9:
+					gamer.More9 += 5;
+					break;
+				case 10:
+					gamer.More10 += 5;
+					break;
+				case 11:
+					gamer.More11 += 5;
+					break;
+				case 12:
+					gamer.More12 += 5;
+					break;
+			}
 		}
 	}
 
 
+	private void OpponentAproServerRpC(int p)
+	{
+		PlayerClass gamer = Gamer2;
+		int i1 = 1;
+        string res = "";
+        foreach (string s in gamer._marchandise.Keys)
+        {
+            if (i1 == p)
+            {
+                res = s;
+                break;
+            }
+
+            ++i1;
+        }
+		(int i, double j, bool b, double d, int k)= gamer._marchandise[res];
+		if (b && gamer.AddMoney(-gamer.prix[p-1]*5))
+		{
+			gamer._marchandise[res] = (i+5, j, b, d, k);
+			switch (p)
+			{
+				case 1:
+					gamer.More1 += 5;
+					break;
+				case 2:
+					gamer.More2 += 5;
+					break;
+				case 3:
+					gamer.More3 += 5;
+					break;
+				case 4:
+					gamer.More4 += 5;
+					break;
+				case 5:
+					gamer.More5 += 5;
+					break;
+				case 6:
+					gamer.More6 += 5;
+					break;
+				case 7:
+					gamer.More7 += 5;
+					break;
+				case 8:
+					gamer.More8 += 5;
+					break;
+				case 9:
+					gamer.More9 += 5;
+					break;
+				case 10:
+					gamer.More10 += 5;
+					break;
+				case 11:
+					gamer.More11 += 5;
+					break;
+				case 12:
+					gamer.More12 += 5;
+					break;
+			}
+		}
+	}
+
 	public void MoreQuali(int p)
 	{
 		PlayerClass gamer;
-
+		
 			gamer = Gamer1;
-	
+
 		int i1 = 1;
 		string res = "";
 		foreach (string s in gamer._marchandise.Keys)
@@ -1573,15 +2758,65 @@ public class PlayerScript : MonoBehaviour
 		if (b && gamer.AddMoney(-50*Pow(d, 2)))
 		{
 			gamer._marchandise[res] = (i, j, b, d+1, k);
-		
+			MoreQualiOpponent(p);
 		}
 	}
 
+	public void MoreQualiOpponent(int p)
+	{
+
+			OpponentQualiClientRpC(p);
+
+	}
+
+	private void OpponentQualiClientRpC(int p)
+	{
+		PlayerClass gamer = Gamer1;
+		int i1 = 1;
+		string res = "";
+		foreach (string s in gamer._marchandise.Keys)
+		{
+			if (i1 == p)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= gamer._marchandise[res];
+		if (b && gamer.AddMoney(-50*Pow(d, 2)))
+		{
+			gamer._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
+	
+	private void OpponentQualiServerRpC(int p)
+	{
+		PlayerClass gamer = Gamer2;
+		int i1 = 1;
+		string res = "";
+		foreach (string s in gamer._marchandise.Keys)
+		{
+			if (i1 == p)
+			{
+				res = s;
+				break;
+			}
+
+			++i1;
+		}
+		(int i, double j, bool b, double d, int k)= gamer._marchandise[res];
+		if (b && gamer.AddMoney(-50*Pow(d, 2)))
+		{
+			gamer._marchandise[res] = (i, j, b, d+1, k);
+		}
+	}
 
 	public void Promotion()
     {
 		PlayerClass gamer;
-
+		
 			gamer = Gamer1;
 
 		if (gamer.materiel[0] == "acheté")
@@ -1591,15 +2826,46 @@ public class PlayerScript : MonoBehaviour
 				gamer._stat["Attractivité"] *= 1.33;
 			else
 				gamer._stat["Attractivité"] /= 1.33;
-
+			PromoOpponent();
 		}
     }
 
+	public void PromoOpponent()
+	{
 	
+			OpponentPromoClientRpC();
+	
+	}
+	
+	private void OpponentPromoClientRpC()
+	{
+		PlayerClass gamer = Gamer1;
+		if (gamer.materiel[0] == "acheté")
+        {
+			gamer.promo = !gamer.promo;
+			if (gamer.promo)
+				gamer._stat["Attractivité"] *= 1.33;
+			else
+				gamer._stat["Attractivité"] /= 1.33;
+		}
+	}
+	
+	private void OpponentPromoServerRpC()
+	{
+		PlayerClass gamer = Gamer2;
+		if (gamer.materiel[0] == "acheté")
+        {
+			gamer.promo = !gamer.promo;
+			if (gamer.promo)
+				gamer._stat["Attractivité"] *= 1.33;
+			else
+				gamer._stat["Attractivité"] /= 1.33;
+		}
+	}
     public void Employe()
     {
 		PlayerClass gamer;
-
+	
 			gamer = Gamer1;
 
 		if (gamer._stat["Employé"] > TextEmploye.n)
@@ -1608,49 +2874,121 @@ public class PlayerScript : MonoBehaviour
 				SceneManager.LoadScene("GameOver");
 		}
         gamer._stat["Employé"] = TextEmploye.n;
-
+		EmployeOpponent(gamer._stat["Employé"]);
     }
+	public void EmployeOpponent(double p)
+	{
+
+			OpponentEmployeClientRpC(p);
+
+	}
 	
+	private void OpponentEmployeClientRpC(double p)
+	{
+		Gamer1._stat["Employé"] = p;
+	}
+	
+	private void OpponentEmployeServerRpC(double p)
+	{
+		Gamer2._stat["Employé"] = p;
+	}
 	public void Pub()
     {
 		PlayerClass gamer;
-	
+
 			gamer = Gamer1;
 
 		if(gamer.AddMoney(-1000))
 			gamer._stat["Attractivité"] += 5;
-
+		pubOpponent();
     }
-
+	public void pubOpponent()
+	{
+	
+			OpponentPubClientRpC();
+	
+	}
+	
+	private void OpponentPubClientRpC()
+	{
+		PlayerClass gamer = Gamer1;
+		if(gamer.AddMoney(-1000))
+			gamer._stat["Attractivité"] += 5;
+	}
+	
+	private void OpponentPubServerRpC()
+	{
+		PlayerClass gamer = Gamer2;
+		if(gamer.AddMoney(-1000))
+			gamer._stat["Attractivité"] += 5;
+	}
 	public void Salaire()
 	{
 		PlayerClass gamer;
-
+		
 			gamer = Gamer1;
-
+	
 		gamer._stat["Qualité"] += (gamer._stat["Salaire"] - TextSalaire.n)/50; 
 		gamer._stat["Salaire"] = TextSalaire.n;
-		
+		salaireOpponent(gamer._stat["Salaire"]);
 	}
-
+	public void salaireOpponent(double p)
+	{
+	
+			OpponentsalaireClientRpC(p);
+	
+	}
+	
+	private void OpponentsalaireClientRpC(double p)
+	{
+		PlayerClass gamer = Gamer1;
+		gamer._stat["Qualité"] += (gamer._stat["Salaire"] - p)/50; 
+		gamer._stat["Salaire"] = p;
+	}
+	
+	private void OpponentsalaireServerRpC(double p)
+	{
+		PlayerClass gamer = Gamer2;
+		gamer._stat["Qualité"] += (gamer._stat["Salaire"] - p)/50; 
+		gamer._stat["Salaire"] = p;
+	}
 
 	public void Carte()
     {
 		PlayerClass gamer;
-
+		
 			gamer = Gamer1;
-
+		
 		if(gamer.AddMoney(-100))
 			gamer._stat["Attractivité"] += 0.5;
-
+		carteOpponent();
     }
+	public void carteOpponent()
+	{
+	
+			OpponentcarteClientRpC();
+	
+	}
+	
+	private void OpponentcarteClientRpC()
+	{
+		PlayerClass gamer = Gamer1;
+		if(gamer.AddMoney(-100))
+			gamer._stat["Attractivité"] += 0.5;
+	}
 
+	private void OpponentcarteServerRpC()
+	{
+		PlayerClass gamer = Gamer2;
+		if(gamer.AddMoney(-100))
+			gamer._stat["Attractivité"] += 0.5;
+	}
     public void Magasin()
     {
 		PlayerClass gamer;
-
+		
 			gamer = Gamer1;
-
+		
         double n = TextMagasin.n;
         double n1 = gamer._stat["Magasin"];
         bool b = true;
@@ -1664,70 +3002,200 @@ public class PlayerScript : MonoBehaviour
                 gamer._stat["Magasin"] = n;
             else
                 TextMagasin.n = gamer._stat["Magasin"];
-		
+			magasinOpponent(gamer._stat["Magasin"]);
         }
     }
 
-
+	public void magasinOpponent(double p)
+	{
+		
+			OpponentmagasinClientRpC(p);
+	
+	}
+	
+	private void OpponentmagasinClientRpC(double p)
+	{
+		PlayerClass gamer = Gamer1;
+		double n = p;
+        double n1 = gamer._stat["Magasin"];
+        bool b = true;
+        if (n1 - n > 0)
+             b = gamer.AddMoney(2500 * (n1 - n));
+        else if (n1 - n < 0)
+             b = gamer.AddMoney(5000 * (n1 - n));
+        if (b)
+             gamer._stat["Magasin"] = n;
+	}
+	
+	private void OpponentmagasinServerRpC(double p)
+	{
+		PlayerClass gamer = Gamer2;
+		double n = p;
+        double n1 = gamer._stat["Magasin"];
+        bool b = true;
+        if (n1 - n > 0)
+             b = gamer.AddMoney(2500 * (n1 - n));
+        else if (n1 - n < 0)
+             b = gamer.AddMoney(5000 * (n1 - n));
+        if (b)
+             gamer._stat["Magasin"] = n;
+	}
 
 	public void Cadeau()
     {
 		PlayerClass gamer;
-
+	
 			gamer = Gamer1;
-
+	
 		if(gamer.AddMoney(-500))
 			gamer._stat["Attractivité"] += 2.5;
-
+		cadeauOpponent();
     }
 
-
+	public void cadeauOpponent()
+	{
+		
+			OpponentcadeauClientRpC();
+		
+	}
+	
+	private void OpponentcadeauClientRpC()
+	{
+		PlayerClass gamer = Gamer1;
+		if(gamer.AddMoney(-500))
+			gamer._stat["Attractivité"] += 2.5;
+	}
+	
+	private void OpponentcadeauServerRpC()
+	{
+		PlayerClass gamer = Gamer2;
+		if(gamer.AddMoney(-500))
+			gamer._stat["Attractivité"] += 2.5;
+	}
 
 	public void Prime()
 	{
 		PlayerClass gamer;
-
+		
 			gamer = Gamer1;
 
 		if (gamer.AddMoney(-1000*gamer._stat["Employé"]) && gamer._stat["Employé"] != 0)
 			gamer._stat["Qualité"] += 2*gamer._stat["Employé"];
-
+		primeOpponent();
 	}
 
+	public void primeOpponent()
+	{
+		
+			OpponentprimeClientRpC();
+		
+	}
+	
+	private void OpponentprimeClientRpC()
+	{
+		PlayerClass gamer = Gamer1;
+		if (gamer.AddMoney(-1000*gamer._stat["Employé"]) && gamer._stat["Employé"] != 0)
+			gamer._stat["Qualité"] += 2*gamer._stat["Employé"];
+	}
+
+	private void OpponentprimeServerRpC()
+	{
+		PlayerClass gamer = Gamer2;
+		if (gamer.AddMoney(-1000*gamer._stat["Employé"]) && gamer._stat["Employé"] != 0)
+			gamer._stat["Qualité"] += 2*gamer._stat["Employé"];
+	}
 
 	public void AMateriel1()
     {
 		PlayerClass gamer;
-
+		
 			gamer = Gamer1;
-
+	
         if (gamer.materiel[0] != "acheté" && gamer.AddMoney(-200))
         {
            gamer.materiel[0] = "acheté";
            gamer._stat["Attractivité"] += 1;
         }
+		MoreMateriel1Opponent();
     }
 
+	public void MoreMateriel1Opponent()
+	{
+		
+			OpponentMateriel1ClientRpC();
+	
+	}
+
+	
+	private void OpponentMateriel1ClientRpC()
+	{
+	  PlayerClass gamer = Gamer1;
+      if (gamer.materiel[0] != "acheté" && gamer.AddMoney(-300))
+      {
+         gamer.materiel[0] = "acheté";
+         gamer._stat["Attractivité"] += 1;
+      }
+	}
+
+	
+	private void OpponentMateriel1ServerRpC()
+	{
+	  PlayerClass gamer = Gamer2;
+      if (gamer.materiel[0] != "acheté" && gamer.AddMoney(-300))
+      {
+         gamer.materiel[0] = "acheté";
+         gamer._stat["Attractivité"] += 1;
+      }
+	}
    
    public void AMateriel(int p)
    {
 	  PlayerClass gamer;
+		
 			gamer = Gamer1;
-
+	
       if (gamer.materiel[p] != "acheté" && gamer.AddMoney(-2500))
       {
          gamer.materiel[p] = "acheté";
          gamer._stat["Attractivité"] += 5;
-	
+		 MoreMaterielAOpponent(p);
       }
    }
 
+   public void MoreMaterielAOpponent(int p)
+	{
+		
+			OpponentMaterielAClientRpC(p);
+		
+	}
 
+	
+	private void OpponentMaterielAClientRpC(int p)
+	{
+	  PlayerClass gamer = Gamer1;
+      if (gamer.materiel[p] != "acheté" && gamer.AddMoney(-2500))
+      {
+         gamer.materiel[p] = "acheté";
+         gamer._stat["Attractivité"] += 5;
+      }
+	}
+
+	
+	private void OpponentMaterielAServerRpC(int p)
+	{
+	  PlayerClass gamer = Gamer2;
+      if (gamer.materiel[p] != "acheté" && gamer.AddMoney(-2500))
+      {
+         gamer.materiel[p] = "acheté";
+         gamer._stat["Attractivité"] += 5;
+      }
+	}
+   
 
    public void MaterielG(int p)
 	{
 		PlayerClass gamer;
-
+		
 			gamer = Gamer1;
 		
 		if(gamer._missingitems[p-7] != "acheté" && gamer.AddMoney(-300))
@@ -1751,7 +3219,68 @@ public class PlayerScript : MonoBehaviour
 			gamer._marchandise[s] = (a, b, true, d, e);
 			gamer._missingitems[p-7] = "acheté";
 			gamer._items[p-1] = s;
+			MoreMaterielGOpponent(p);
+		}
+	}
+
+	public void MoreMaterielGOpponent(int p)
+	{
 		
+			OpponentMaterielGClientRpC(p);
+	
+	}
+	
+	private void OpponentMaterielGClientRpC(int p)
+	{
+		PlayerClass gamer = Gamer1;
+		if(gamer._missingitems[p-7] != "acheté" && gamer.AddMoney(-300))
+		{
+			int i = 1;
+			int a = 0;
+			double b = 0;
+			bool c = false;
+			double d = 0;
+			int e = 0;
+			string s = "";
+			foreach(string res in gamer._marchandise.Keys)
+			{
+				if (i == p)
+				{
+					(a, b, c, d, e) = gamer._marchandise[res];
+					s = res;
+				}
+				++i;
+			}
+			gamer._marchandise[s] = (a, b, true, d, e);
+			gamer._missingitems[p-7] = "acheté";
+			gamer._items[p-1] = s;
+		}
+	}
+	
+	private void OpponentMaterielGServerRpC(int p)
+	{
+		PlayerClass gamer = Gamer2;
+		if(gamer._missingitems[p-7] != "acheté" && gamer.AddMoney(-300))
+		{
+			int i = 1;
+			int a = 0;
+			double b = 0;
+			bool c = false;
+			double d = 0;
+			int e = 0;
+			string s = "";
+			foreach(string res in gamer._marchandise.Keys)
+			{
+				if (i == p)
+				{
+					(a, b, c, d, e) = gamer._marchandise[res];
+					s = res;
+				}
+				++i;
+			}
+			gamer._marchandise[s] = (a, b, true, d, e);
+			gamer._missingitems[p-7] = "acheté";
+			gamer._items[p-1] = s;
 		}
 	}
 

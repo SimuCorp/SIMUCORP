@@ -61,7 +61,7 @@ public class MoreLess : MonoBehaviour
 		PlayerClass gamer;
 
 			gamer = Gamer1;
-
+	
 		string res = "";
 		int i1 = 1;
 		foreach (string s in gamer._marchandise.Keys)
@@ -84,7 +84,7 @@ public class MoreLess : MonoBehaviour
 		PlayerClass gamer;
 	
 			gamer = Gamer1;
-
+		
 		string res = "";
 		int i1 = 1;
 		foreach (string s in gamer._marchandise.Keys)
@@ -107,9 +107,9 @@ public class MoreLess : MonoBehaviour
 	public void MoreApro(int p)
 	{
 		PlayerClass gamer;
-	
+		
 			gamer = Gamer1;
-	
+		
 		int i1 = 1;
         string res = "";
         foreach (string s in gamer._marchandise.Keys)
@@ -135,7 +135,7 @@ public class MoreLess : MonoBehaviour
 		PlayerClass gamer;
 	
 			gamer = Gamer1;
-	
+
 		int i1 = 1;
 		string res = "";
 		foreach (string s in gamer._marchandise.Keys)

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 using static MoneyCount;
 using static PlayerScript;
-public class TextMateriel4 : MonoBehaviour
+public class TextMateriel4 : MonoBehaviour 
 {
     public TextMeshProUGUI Text4;
     
@@ -20,9 +20,9 @@ public class TextMateriel4 : MonoBehaviour
     void Update()
     {
         PlayerClass g;
-       
+        
             g = Gamer1;
-   
+
         string res = g.materiel[3];
         Text4.text = res;
     }

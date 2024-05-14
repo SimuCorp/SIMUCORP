@@ -21,12 +21,14 @@ public class TourCount : MonoBehaviour
     void Update()
     {
         NB_tour.text = $"Semaine {TurnValues}/{MaxTurn}";
+        /*
         if (TurnValues <= MaxTurn/3)
             NB_tour.color = Color.green;
         else if (TurnValues <= 2*MaxTurn/3)
             NB_tour.color = Color.yellow;
         else
             NB_tour.color = Color.red;
+            */
             
     }
 

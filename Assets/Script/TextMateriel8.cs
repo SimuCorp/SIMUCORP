@@ -20,7 +20,7 @@ public class TextMateriel8 : MonoBehaviour
     void Update()
     {
         PlayerClass g;
-       
+        
             g = Gamer1;
 
         string res = g._missingitems[3];
