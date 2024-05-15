@@ -7,10 +7,10 @@ using UnityEngine.UI;
 using static MoneyCount;
 using UnityEngine.SceneManagement;
 using System.Threading;
-
+using Mirror;
 using static PlayerScript;
 
-public class infoPause : MonoBehaviour
+public class infoPause : NetworkBehaviour
 {
     public Text Info;
     public static int n = 0;
@@ -24,12 +24,13 @@ public class infoPause : MonoBehaviour
     {
         double x = Info.transform.position.x;
 		double x2 = Screen.width/2;
-		if (((true && x <= x2) || (!true && x >= x2)))
+		if (((this.isServer && x <= x2) || (!this.isServer && x >= x2)))
 		{
             PlayerClass gamer;
-			
+			if (this.isServer)
 				gamer = Gamer1;
-	
+			else
+				gamer = Gamer2;
             if (Input.GetKeyDown(KeyCode.RightArrow))
                 n = (n+1)%12;
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -44,7 +45,9 @@ public class infoPause : MonoBehaviour
         else
         {
             PlayerClass gamer;
-        
+            if (!this.isServer)
+				gamer = Gamer1;
+			else
 				gamer = Gamer2;
             Info.text = gamer.Display(n);
             if (Info.text.Contains("Indisponible"))

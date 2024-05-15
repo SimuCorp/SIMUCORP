@@ -1087,6 +1087,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a523f900c51152843a6f8c47af9be680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   basic: {fileID: 28150632}
   argent: {fileID: 21300000, guid: 1fbfdaff7e751d24fbec90d286f074ce, type: 3}
   blackfriday: {fileID: 21300000, guid: 3124fce60f9ee814e9a8e66856b2b844, type: 3}
@@ -53585,6 +53588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cedfac7f741be4f8ca5e2be37dad21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   image: {fileID: 28150629}
   image2: {fileID: 1797877957}
 --- !u!1 &1261342145
@@ -75824,6 +75830,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a523f900c51152843a6f8c47af9be680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   basic: {fileID: 1797877960}
   argent: {fileID: 21300000, guid: 1fbfdaff7e751d24fbec90d286f074ce, type: 3}
   blackfriday: {fileID: 21300000, guid: 3124fce60f9ee814e9a8e66856b2b844, type: 3}

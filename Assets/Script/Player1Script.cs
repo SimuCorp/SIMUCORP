@@ -7,9 +7,9 @@ using UnityEngine.UI;
 using static PlayerScript;
 using static TextActionJoueur1;
 using static System.Math;
+using Mirror;
 
-
-public class Player1Script : MonoBehaviour
+public class Player1Script : NetworkBehaviour
 {
 
     public static bool move {get; set;}
@@ -48,12 +48,15 @@ public class Player1Script : MonoBehaviour
         {   
             double vert = Input.GetAxis("Vertical");
             double hori = Input.GetAxis("Horizontal");
-            if ( x <= x2)
+            if (this.isServer && x <= x2)
             {
                 
                     OpponentMove(vert, hori);
             }
-        
+            else if (!this.isServer && x >= x2)
+            {
+                OpponentMoveServerRpc(vert, hori);
+            }
         }
         else if (Gamer1.TimeLeft > 120 || (TourCount.TurnValues == 1 && Gamer1.TimeLeft >= 119.8 && Gamer1.ready && Gamer2.ready))
         {
@@ -79,20 +82,20 @@ public class Player1Script : MonoBehaviour
 
     }
 
-    
+    [Command(requiresAuthority = false)]
 	private void OpponentMoveServerRpc(double x, double x2) => OpponentMove(x, x2);
 
-
+	[ClientRpc]
 	private void OpponentMove(double x, double x2)
     {
             transform.Translate(Vector3.up * 30f * Time.fixedDeltaTime * (float)x * Screen.height/385);
             transform.Translate(Vector3.right * 30f * Time.fixedDeltaTime * (float)x2  * Screen.width/720);
     }
 
-  
+    [Command(requiresAuthority = false)]
 	private void CollisionServer() => CollisionClient();
 
-	
+	[ClientRpc]
 	private void CollisionClient()
     {
             double x = collision.transform.position.x;
@@ -131,20 +134,22 @@ public class Player1Script : MonoBehaviour
 
     void OnCollisionEnter2D (Collision2D collision)
     {
-  
+        if (this.isServer)
             CollisionClient();
-
+        else
+            CollisionServer();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerClass gamer;
- 
+        if (this.isServer)
             gamer = Gamer1;
-   
+        else
+            gamer = Gamer2;
         double x = Joueur.transform.position.x;
 		double x2 = Screen.width/2;
-        if ((x <= x2))
+        if (this.isServer == (x <= x2))
         {
             if (other.gameObject.CompareTag("amelioration1") && amelioration1)
             {

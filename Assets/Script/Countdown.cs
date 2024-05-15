@@ -7,9 +7,9 @@ using static MoneyCount;
 using static PlayerScript;
 using static TextActionJoueur1;
 using static System.Math;
+using Mirror;
 
-
-public class CountdownScript : MonoBehaviour
+public class CountdownScript : NetworkBehaviour
 {
     // Start is called before the first frame update
     public static float ButtonLeft = 1;
@@ -300,11 +300,16 @@ public class CountdownScript : MonoBehaviour
 
 	public void PerimeOpponent(int p, bool joueur1)
 	{
-		
+		if (this.isServer)
+		{
 			OpponentPerimeClientRpC(p, joueur1);
-	
+		}
+		else
+		{
+			OpponentPerimeServerRpC(p, joueur1);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentPerimeClientRpC(int key, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -435,7 +440,7 @@ public class CountdownScript : MonoBehaviour
 		}
 	}
 
-
+	[Command(requiresAuthority = false)]
 	private void OpponentPerimeServerRpC(int key, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -829,11 +834,16 @@ public class CountdownScript : MonoBehaviour
 
 	public void RemovePerimeOpponent(int p, bool joueur1)
 	{
-	
+		if (this.isServer)
+		{
 			OpponentRemovePerimeClientRpC(p, joueur1);
-	
+		}
+		else
+		{
+			OpponentRemovePerimeServerRpC(p, joueur1);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentRemovePerimeClientRpC(int key, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -883,7 +893,7 @@ public class CountdownScript : MonoBehaviour
 				break;
 		}
 	}
-
+	[Command(requiresAuthority = false)]
 	private void OpponentRemovePerimeServerRpC(int p, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -936,11 +946,16 @@ public class CountdownScript : MonoBehaviour
 
 	public void RemovePerimeOpponentR(int p, bool joueur1)
 	{
-		
+		if (this.isServer)
+		{
 			OpponentRemovePerimeClientRpCR(p, joueur1);
-		
+		}
+		else
+		{
+			OpponentRemovePerimeServerRpCR(p, joueur1);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentRemovePerimeClientRpCR(int p, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -988,7 +1003,7 @@ public class CountdownScript : MonoBehaviour
 				break;
 		}
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentRemovePerimeServerRpCR(int p, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -1039,12 +1054,13 @@ public class CountdownScript : MonoBehaviour
 
 	public void Vente(bool joueur1, double price, double quali)
 	{
-		
+		if (this.isServer)
 			VenteClientRpC(joueur1, price, quali);
-	
+		else
+			VenteServerRpC(joueur1, price, quali);
 	}
 
-
+	[ClientRpc(includeOwner = false)]
 	private void VenteClientRpC(bool joueur1, double price, double quali)
 	{
 		PlayerClass gamer;
@@ -1057,7 +1073,7 @@ public class CountdownScript : MonoBehaviour
 		else
             gamer.sum += price + 0.1*price*(quali-1);
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void VenteServerRpC(bool joueur1, double price, double quali)
 	{
 		PlayerClass gamer;
@@ -1072,12 +1088,17 @@ public class CountdownScript : MonoBehaviour
 	}
 	public void CooefficientOpponent(bool joueur1, double attract, double sum, double benef)
 	{
-	
+		if (this.isServer)
+		{
 			CooefficientOpponentClientRpC(joueur1, attract, sum, benef);
-	
+		}
+		else
+		{
+			CooefficientOpponentServerRpC(joueur1, attract, sum, benef);
+		}
 	}
 
-
+	[ClientRpc(includeOwner = false)]
 	private void CooefficientOpponentClientRpC(bool joueur1, double attract, double sum, double benef)
 	{
 		PlayerClass gamer;
@@ -1088,7 +1109,7 @@ public class CountdownScript : MonoBehaviour
 		gamer._stat["Attractivité"] *= attract;
              gamer.sum *= benef;
 	}
-
+	[Command(requiresAuthority = false)]
 	private void CooefficientOpponentServerRpC(bool joueur1, double attract, double sum, double benef)
 	{
 		PlayerClass gamer;
@@ -1101,11 +1122,16 @@ public class CountdownScript : MonoBehaviour
 	}
 	public void RetourOpponent()
 	{
-		
+		if (this.isServer)
+		{
 			RetourOpponentClientRpC();
-		
+		}
+		else
+		{
+			RetourOpponentServerRpC();
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void RetourOpponentClientRpC()
 	{
 		Gamer1.TimeLeft = 100*Gamer1.nbCount;
@@ -1118,7 +1144,7 @@ public class CountdownScript : MonoBehaviour
 				Gamer2.sum = 0;
 		
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void RetourOpponentServerRpC()
 	{
 		Gamer1.TimeLeft = 100*Gamer1.nbCount;
@@ -1132,11 +1158,16 @@ public class CountdownScript : MonoBehaviour
 	}
 	public void RetraitOpponent(double sum, bool joueur1)
 	{
-	
+		if (this.isServer)
+		{
 			RetraitOpponentClientRpC(sum, joueur1);
-	
+		}
+		else
+		{
+			RetraitOpponentServerRpC(sum, joueur1);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void RetraitOpponentClientRpC(double sum, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -1148,7 +1179,7 @@ public class CountdownScript : MonoBehaviour
 		gamer._mounth = 0;
 		
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void RetraitOpponentServerRpC(double sum, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -1161,11 +1192,16 @@ public class CountdownScript : MonoBehaviour
 	}
 	public void AjoutOpponent(double sum, bool joueur1)
 	{
-		
+		if (this.isServer)
+		{
 			AjoutOpponentClientRpC(sum, joueur1);
-	
+		}
+		else
+		{
+			AjoutOpponentServerRpC(sum, joueur1);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void AjoutOpponentClientRpC(double sum, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -1177,7 +1213,7 @@ public class CountdownScript : MonoBehaviour
 		gamer._mounth += sum;
 		
 	}
-
+	[Command(requiresAuthority = false)]
 	private void AjoutOpponentServerRpC(double sum, bool joueur1)
 	{
 		PlayerClass gamer;

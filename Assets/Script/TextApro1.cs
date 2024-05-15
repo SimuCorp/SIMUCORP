@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using Mirror;
 using static MoneyCount;
 
-public class TextApro1 : MonoBehaviour
+public class TextApro1 : NetworkBehaviour 
 {
     public TextMeshProUGUI Apro1;
     public static int n = 1;
@@ -24,9 +24,10 @@ public class TextApro1 : MonoBehaviour
         int i = 1;
         string res = "";
         PlayerClass g;
-     
+        if (this.isServer)
             g = PlayerScript.Gamer1;
-  
+        else
+            g = PlayerScript.Gamer2;
         foreach (string s in g._marchandise.Keys)
         {
             if (i == n)

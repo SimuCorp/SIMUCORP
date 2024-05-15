@@ -7,13 +7,13 @@ using UnityEngine.UI;
 using static MoneyCount;
 using UnityEngine.SceneManagement;
 using System.Threading;
-
+using Mirror;
 using static System.Math;
 using static PlayerScript;
 using static Player1Script;
 using static TextActionJoueur1;
 
-public class TextTuto : MonoBehaviour
+public class TextTuto : NetworkBehaviour
 {
     public Text Info;
     public static int i;
@@ -57,9 +57,10 @@ public class TextTuto : MonoBehaviour
         double x = Info.transform.position.x;
 		double x2 = Screen.width/2;
         PlayerClass gamer;
-    
+        if (this.isServer)
             gamer = Gamer1;
-    
+        else
+            gamer = Gamer2;
         switch(i)
         {
             case(0):

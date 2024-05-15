@@ -6,8 +6,8 @@ using UnityEngine.UI;
 using static MoneyCount;
 using static IntelligenceArtificielle;
 using static PlayerScript;
-
-public class MoneyJoueur2 : MonoBehaviour
+using Mirror;
+public class MoneyJoueur2 : NetworkBehaviour
 {
     Text MoneyInfo;
 
@@ -20,7 +20,7 @@ public class MoneyJoueur2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (true)
+        if (NetworkServer.connections.Count == 1)
 		{	
 			DoAction();
 		}

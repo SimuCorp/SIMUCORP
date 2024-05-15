@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 using static MoneyCount;
 using static CountdownScript;
 using static PlayerScript;
 using UnityEngine.SceneManagement;
-public class EvenementComplement : MonoBehaviour
+public class EvenementComplement : NetworkBehaviour
 {
     public Image basic;
     public Sprite argent;
@@ -31,6 +32,30 @@ public class EvenementComplement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        if (!this.isServer && TourCount.TurnValues%4 >= 1)
+        {
+            string event1 = PlayerScript.evenement._eventComing[TourCount.TurnValues/4];
+            Transfert(event1);
+        }
+        if(this.isServer)
+           Affiche();
+        else
+            AfficheCommand();
+           
+    }
+    [Command(requiresAuthority = false)]
+    public void Transfert(string event1) => TransfertClient(event1);
+
+    [ClientRpc]
+    public void TransfertClient(string event1)
+    {
+         PlayerScript.evenement._eventComing[TourCount.TurnValues/4] = event1;
+    }
+    [Command(requiresAuthority = false)]
+    public void AfficheCommand() => Affiche();
+    [ClientRpc]
+    public void Affiche()
     {
         bool verif = TourCount.TurnValues%4 == 1 && TourCount.TurnValues != 1;
         if (verif)
@@ -64,6 +89,5 @@ public class EvenementComplement : MonoBehaviour
             else
                 basic.sprite = braderie;
         }
-           
     }
 }

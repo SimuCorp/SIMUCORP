@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Mirror;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static System.Math;
@@ -10,7 +10,7 @@ using static TourCount;
 using static PlayerClass;
 using static Player1Script;
 
-public class PlayerScript : MonoBehaviour 
+public class PlayerScript : NetworkBehaviour 
 {
 	private bool verif;
     [SerializeField]
@@ -89,15 +89,16 @@ public class PlayerScript : MonoBehaviour
     }
 	public void ChangementOptions()
 	{
-		if (true)
+		if (this.isServer)
 			ROptions();
 		else
 			OptionsServer();
 	}
 
+	[Command(requiresAuthority = false)]
 	private void OptionsServer() => ROptions();
 
-
+	[ClientRpc]
 	private void ROptions()
 	{
 		if (Primeur.activeSelf)
@@ -165,15 +166,15 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void PauseTuto()
 	{
-		if (true)
+		if (this.isServer)
 			MouvementT();
 		else
 			MouvementServerT();
 	}
-
+	[Command(requiresAuthority = false)]
 	private void MouvementServerT() => MouvementT();
 
-
+	[ClientRpc]
 	private void MouvementT()
 	{
 		pause = !pause;
@@ -182,16 +183,16 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void ChangementPause()
 	{
-		if (true)
+		if (this.isServer)
 			Mouvement();
 		else
 			MouvementServer();
 	}
 
-
+	[Command(requiresAuthority = false)]
 	private void MouvementServer() => Mouvement();
 
-
+	[ClientRpc]
 	private void Mouvement()
 	{
 		InfoTour.SetActive(pause);
@@ -202,21 +203,22 @@ public class PlayerScript : MonoBehaviour
 
 	public void Tuto()
 	{
-		if (true)
+		if (this.isServer)
 			TutoClient();
 		else
 			TutoServer();
 	}
 
-
+	[Command(requiresAuthority = false)]
 	private void TutoServer() => TutoClient();
 
-
+	[ClientRpc]
 	private void TutoClient()
 	{
-		
+		if (NetworkServer.connections.Count == 1)
+		{
 			AI = new IntelligenceArtificielle();
-	
+		}
 		Accueil.SetActive(false);
 		Tuto1.SetActive(true);
 		Tuto2.SetActive(true);
@@ -227,7 +229,7 @@ public class PlayerScript : MonoBehaviour
 
 	public void calcul()
 	{
-		if (true)
+		if (this.isServer)
 		{
 			if(Gamer1._button)
 			{
@@ -250,7 +252,7 @@ public class PlayerScript : MonoBehaviour
 
 	public void OpponentCalcul(double gamer)
 	{
-		if (true)
+		if (this.isServer)
 		{
 			OpponentCalculClientRpC(gamer);
 		}
@@ -259,12 +261,12 @@ public class PlayerScript : MonoBehaviour
 			OpponentCalculServerRpC(gamer);
 		}
 	}
-
+	[ClientRpc(includeOwner = false)]
 	public void OpponentCalculClientRpC(double gamer)
 	{
 		Gamer1._money = gamer;
 	}
-
+	[Command(requiresAuthority = false)]
 	public void OpponentCalculServerRpC(double gamer)
 	{
 		Gamer2._money = gamer;
@@ -288,23 +290,23 @@ public class PlayerScript : MonoBehaviour
 
 	public void ExitAccueil()
 	{
-		if (true)
+		if (this.isServer)
 		{
 			ExitAccueilAux();
 		}
 		
 	}
-	
+	[ClientRpc]
 	public void ExitAccueilAux()
 	{
 		Accueil.SetActive(false);
 		ChoixTour.SetActive(true);
 	}
-
+	[Command(requiresAuthority = false)]
 	public void LastSceneServer() => LastSceneClient();
 
 
-	
+	[ClientRpc]
 	private void LastSceneClient()
 	{
 		Options.SetActive(false);
@@ -381,7 +383,7 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void LastScene()
 	{
-		if (true)
+		if (this.isServer)
 			LastSceneServer();
 		else
 			LastSceneClient();
@@ -430,7 +432,7 @@ public class PlayerScript : MonoBehaviour
 
     public void ExitGestion()
     {
-		if (true)
+		if (this.isServer)
 		{
 			if(Gamer1.ready && Gamer1._button && Gamer2.ready)
 			{
@@ -459,7 +461,7 @@ public class PlayerScript : MonoBehaviour
 
 	public void ExitCommercial()
     {
-		if (true)
+		if (this.isServer)
 		{
 			if (Gamer1.ready && Gamer1._button && Gamer2.ready)
 			{
@@ -475,7 +477,7 @@ public class PlayerScript : MonoBehaviour
     }
 	public void ExitRH()
     {
-		if (true)
+		if (this.isServer)
 		{
 			if (Gamer1.ready && Gamer1._button && Gamer2.ready)
 			{
@@ -566,10 +568,10 @@ public class PlayerScript : MonoBehaviour
 	
 	public void Simple()
 	{
-		if(true)
+		if(this.isServer)
 			SimpleAux();
 	}
-
+	[ClientRpc]
 	public void SimpleAux()
 	{
 		Difficulte.SetActive(false);
@@ -578,10 +580,10 @@ public class PlayerScript : MonoBehaviour
 
 	public void Difficile()
 	{
-		
+		if(this.isServer)
 			DifficileAux();
 	}
-	
+	[ClientRpc]
 	public void DifficileAux()
 	{
 		Difficulte.SetActive(false);
@@ -589,12 +591,12 @@ public class PlayerScript : MonoBehaviour
 	}
 	private void ChangementClassOponent(string s)
 	{
-		if (true)
+		if (this.isServer)
 			OpponentClassClientRpC(s);
 		else
 			OpponentClassServerRpC(s);
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentClassClientRpC(string s)
 	{
 		if (s == "Primeur")
@@ -617,7 +619,7 @@ public class PlayerScript : MonoBehaviour
 		
 	}
 	
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentClassServerRpC(string s)
 	{
 		if (s == "Primeur")
@@ -641,14 +643,15 @@ public class PlayerScript : MonoBehaviour
 	
 	public void ChangementPrimeur()
 	{
-		
+		if (this.isServer)
 			ExitPrimeur(true);
-		
+		else
+			ChangementPrimeurServerRpC();
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void ChangementPrimeurServerRpC() => ExitPrimeur(false);
 
-
+	[ClientRpc]
 	public void ExitPrimeur(bool joueur)
 	{
 		verif = true;
@@ -658,7 +661,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			Gamer1 = new Primeur("Primeur");
 			Gamer1.ready = true;
-			if (true)
+			if (NetworkServer.connections.Count == 1)
 				{
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
@@ -703,13 +706,15 @@ public class PlayerScript : MonoBehaviour
 
 	public void ChangementBoucherie()
 	{
-		
+		if (this.isServer)
 			ExitBoucherie(true);
-
+		else
+			ChangementBoucherieServerRpC();
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void ChangementBoucherieServerRpC() => ExitBoucherie(false);
 
+	[ClientRpc]
 	public void ExitBoucherie(bool joueur)
 	{
 		verif = true;
@@ -719,7 +724,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			Gamer1 = new Boucherie("Boucher");
 			Gamer1.ready = true;
-			if (true)
+			if (NetworkServer.connections.Count == 1)
 				{
 					Gamer2 = new Primeur("Primeur");
 					AI = new IntelligenceArtificielle();
@@ -763,13 +768,14 @@ public class PlayerScript : MonoBehaviour
 
 	public void ChangementLibraire()
 	{
-	
+		if (this.isServer)
 			ExitLibraire(true);
-	
+		else
+			ChangementLibraireServerRpC();
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void ChangementLibraireServerRpC() => ExitLibraire(false);
-	
+	[ClientRpc]
 	public void ExitLibraire(bool joueur)
 	{
 		verif = true;
@@ -779,7 +785,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			Gamer1 = new Libraire("Libraire");
 			Gamer1.ready = true;
-			if (true)
+			if (NetworkServer.connections.Count == 1)
 				{
 					Gamer2 = new Primeur("Primeur");
 					AI = new IntelligenceArtificielle();
@@ -825,14 +831,15 @@ public class PlayerScript : MonoBehaviour
 
 	public void ChangementCoiffeur()
 	{
-	
+		if (this.isServer)
 			ExitCoiffeur(true);
-	
+		else
+			ChangementCoiffeurServerRpC();
 	}
-
+	[Command(requiresAuthority = false)]
 	private void ChangementCoiffeurServerRpC() => ExitCoiffeur(false);
 
-
+	[ClientRpc]
 	public void ExitCoiffeur(bool joueur)
 	{
 		verif = true;
@@ -842,7 +849,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			Gamer1 = new Coiffeur("Coiffeur");
 			Gamer1.ready = true;
-			if (true)
+			if (NetworkServer.connections.Count == 1)
 				{
 					Gamer2 = new Primeur("Primeur");
 					AI = new IntelligenceArtificielle();
@@ -886,14 +893,15 @@ public class PlayerScript : MonoBehaviour
 
 	public void ChangementPoisson()
 	{
-		
+		if (this.isServer)
 			ExitPoisson(true);
-
+		else
+			ChangementPoissonServerRpC();
 	}
-
+	[Command(requiresAuthority = false)]
 	private void ChangementPoissonServerRpC() => ExitPoisson(false);
 
-	
+	[ClientRpc]
 	public void ExitPoisson(bool joueur)
 	{
 		verif = true;
@@ -903,7 +911,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			Gamer1 = new Poissonier("Poissonier");
 			Gamer1.ready = true;
-			if (true)
+			if (NetworkServer.connections.Count == 1)
 				{
 					Gamer2 = new Primeur("Primeur");
 					AI = new IntelligenceArtificielle();
@@ -948,14 +956,15 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void ChangementBijouterie()
 	{
-
+		if (this.isServer)
 			ExitBijouterie(true);
-	
+		else
+			ChangementBijouterieServerRpC();
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void ChangementBijouterieServerRpC() => ExitBijouterie(false);
 
-	
+	[ClientRpc]
 	public void ExitBijouterie(bool joueur)
 	{
 		verif = true;
@@ -965,7 +974,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			Gamer1 = new Bijouterie("Bijoutier");
 			Gamer1.ready = true;
-			if (true)
+			if (NetworkServer.connections.Count == 1)
 				{
 					Gamer2 = new Primeur("Primeur");
 					AI = new IntelligenceArtificielle();
@@ -1010,13 +1019,15 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void ChangementVetement()
 	{
-		
+		if (this.isServer)
 			ExitVetement(true);
-		
+		else
+			ChangementVetementServerRpC();
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void ChangementVetementServerRpC() => ExitVetement(false);
 
+	[ClientRpc]
 	public void ExitVetement(bool joueur)
 	{
 		verif = true;
@@ -1026,7 +1037,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			Gamer1 = new Pret_a_porter("Prêt à porter");
 			Gamer1.ready = true;
-			if (true)
+			if (NetworkServer.connections.Count == 1)
 				{
 					Gamer2 = new Primeur("Primeur");
 					AI = new IntelligenceArtificielle();
@@ -1071,13 +1082,14 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void ChangementFleur()
 	{
-		
+		if (this.isServer)
 			ExitFleur(true);
-
+		else
+			ChangementFleurServerRpC();
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void ChangementFleurServerRpC() => ExitFleur(false);
-
+	[ClientRpc]
 	public void ExitFleur(bool joueur)
 	{
 		verif = true;
@@ -1087,7 +1099,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			Gamer1 = new Fleuriste("Fleuriste");
 			Gamer1.ready = true;
-			if (true)
+			if (NetworkServer.connections.Count == 1)
 			{
 					Gamer2 = new Primeur("Primeur");
 					AI = new IntelligenceArtificielle();
@@ -1134,11 +1146,11 @@ public class PlayerScript : MonoBehaviour
 
 	public void ExitDure(int nb)
 	{
-	
+		if(this.isServer)
 			ExitDureAux(nb);
 	}
 
-	
+	[ClientRpc]
 	public void ExitDureAux(int nb)
 	{
 		MaxTurn = nb;
@@ -1148,14 +1160,20 @@ public class PlayerScript : MonoBehaviour
 
 	public void ChoixRetour()
 	{
-
+		if (this.isServer)
+		{
 			Retour();
-	
+		}
+		else
+		{
+			RetourServer();
+		}
 	}
 
-	
+	[Command(requiresAuthority = false)]
 	private void RetourServer() => Retour();
 
+	[ClientRpc]
 	public void Retour()
 	{
 		float taille = Screen.width;
@@ -1231,9 +1249,10 @@ public class PlayerScript : MonoBehaviour
 	public void DoButtonPass()
     {
 		PlayerClass gamer;
-	
+		if (this.isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
         gamer._button = false;
         if (Gamer1._button == Gamer2._button)
         {
@@ -1366,16 +1385,24 @@ public class PlayerScript : MonoBehaviour
 			gamer._marchandise[gamer._items[key]] = (Quantity, price, possible, promo, tour);
 		
 		}
-	
+		if (gamer == Gamer1)
+			PerimeOpponent(key, true);
+		else
+			PerimeOpponent(key, false);
 	}
 
 	public void PerimeOpponent(int p, bool joueur1)
 	{
-	
+		if (this.isServer)
+		{
 			OpponentPerimeClientRpC(p, joueur1);
-	
+		}
+		else
+		{
+			OpponentPerimeServerRpC(p, joueur1);
+		}
 	}
- 
+	[ClientRpc(includeOwner = false)]
 	private void OpponentPerimeClientRpC(int key, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -1506,7 +1533,7 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentPerimeServerRpC(int key, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -1900,11 +1927,16 @@ public class PlayerScript : MonoBehaviour
 
 	public void RemovePerimeOpponent(int p, bool joueur1)
 	{
-
+		if (this.isServer)
+		{
 			OpponentRemovePerimeClientRpC(p, joueur1);
-
+		}
+		else
+		{
+			OpponentRemovePerimeServerRpC(p, joueur1);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentRemovePerimeClientRpC(int key, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -1954,7 +1986,7 @@ public class PlayerScript : MonoBehaviour
 				break;
 		}
 	}
-
+	[Command(requiresAuthority = false)]
 	private void OpponentRemovePerimeServerRpC(int p, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -2007,11 +2039,16 @@ public class PlayerScript : MonoBehaviour
 
 	public void RemovePerimeOpponentR(int p, bool joueur1)
 	{
-		
+		if (this.isServer)
+		{
 			OpponentRemovePerimeClientRpCR(p, joueur1);
-	
+		}
+		else
+		{
+			OpponentRemovePerimeServerRpCR(p, joueur1);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentRemovePerimeClientRpCR(int p, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -2059,7 +2096,7 @@ public class PlayerScript : MonoBehaviour
 				break;
 		}
 	}
-
+	[Command(requiresAuthority = false)]
 	private void OpponentRemovePerimeServerRpCR(int p, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -2195,12 +2232,13 @@ public class PlayerScript : MonoBehaviour
     }
 	public void Vente(bool joueur1, double price, double quali)
 	{
-	
+		if (this.isServer)
 			VenteClientRpC(joueur1, price, quali);
-		
+		else
+			VenteServerRpC(joueur1, price, quali);
 	}
 
-
+	[ClientRpc(includeOwner = false)]
 	private void VenteClientRpC(bool joueur1, double price, double quali)
 	{
 		PlayerClass gamer;
@@ -2213,7 +2251,7 @@ public class PlayerScript : MonoBehaviour
 		else
             gamer.sum += price + 0.1*price*(quali-1);
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void VenteServerRpC(bool joueur1, double price, double quali)
 	{
 		PlayerClass gamer;
@@ -2228,12 +2266,17 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void CooefficientOpponent(bool joueur1, double attract, double sum, double benef)
 	{
-	
+		if (this.isServer)
+		{
 			CooefficientOpponentClientRpC(joueur1, attract, sum, benef);
-	
+		}
+		else
+		{
+			CooefficientOpponentServerRpC(joueur1, attract, sum, benef);
+		}
 	}
 
-
+	[ClientRpc(includeOwner = false)]
 	private void CooefficientOpponentClientRpC(bool joueur1, double attract, double sum, double benef)
 	{
 		PlayerClass gamer;
@@ -2244,7 +2287,7 @@ public class PlayerScript : MonoBehaviour
 		gamer._stat["Attractivité"] *= attract;
              gamer.sum *= benef;
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void CooefficientOpponentServerRpC(bool joueur1, double attract, double sum, double benef)
 	{
 		PlayerClass gamer;
@@ -2257,11 +2300,16 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void RetourOpponent()
 	{
-	
+		if (this.isServer)
+		{
 			RetourOpponentClientRpC();
-
+		}
+		else
+		{
+			RetourOpponentServerRpC();
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void RetourOpponentClientRpC()
 	{
 		Gamer1.TimeLeft = 100*Gamer1.nbCount;
@@ -2274,7 +2322,7 @@ public class PlayerScript : MonoBehaviour
 				Gamer2.sum = 0;
 		
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void RetourOpponentServerRpC()
 	{
 		Gamer1.TimeLeft = 100*Gamer1.nbCount;
@@ -2288,11 +2336,16 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void RetraitOpponent(double sum, bool joueur1)
 	{
-
+		if (this.isServer)
+		{
 			RetraitOpponentClientRpC(sum, joueur1);
-	
+		}
+		else
+		{
+			RetraitOpponentServerRpC(sum, joueur1);
+		}
 	}
-
+	[ClientRpc(includeOwner = false)]
 	private void RetraitOpponentClientRpC(double sum, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -2304,7 +2357,7 @@ public class PlayerScript : MonoBehaviour
 		gamer._mounth = 0;
 		
 	}
-
+	[Command(requiresAuthority = false)]
 	private void RetraitOpponentServerRpC(double sum, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -2317,11 +2370,16 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void AjoutOpponent(double sum, bool joueur1)
 	{
-	
+		if (this.isServer)
+		{
 			AjoutOpponentClientRpC(sum, joueur1);
-	
+		}
+		else
+		{
+			AjoutOpponentServerRpC(sum, joueur1);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void AjoutOpponentClientRpC(double sum, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -2333,7 +2391,7 @@ public class PlayerScript : MonoBehaviour
 		gamer._mounth += sum;
 		
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void AjoutOpponentServerRpC(double sum, bool joueur1)
 	{
 		PlayerClass gamer;
@@ -2394,9 +2452,10 @@ public class PlayerScript : MonoBehaviour
 	public void LessPrice(int p)
 	{
 		PlayerClass gamer;
-		
+		if (isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
 		string res = "";
 		int i1 = 1;
 		foreach (string s in gamer._marchandise.Keys)
@@ -2418,12 +2477,17 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void LessPriceOpponent(int p)
 	{
-	
+		if (this.isServer)
+		{
 			OpponentLPriceClientRpC(p);
-	
+		}
+		else
+		{
+			OpponentLPriceServerRpC(p);
+		}
 	}
 
-
+	[ClientRpc(includeOwner = false)]
 	private void OpponentLPriceClientRpC(int p)
 	{
 		PlayerClass gamer = Gamer1;
@@ -2445,7 +2509,7 @@ public class PlayerScript : MonoBehaviour
 			j += 0.10;
 		gamer._marchandise[res] = (i, Round(j-0.10, 2), b, d, k);
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentLPriceServerRpC(int p)
 	{
 		PlayerClass gamer = Gamer2;
@@ -2470,9 +2534,10 @@ public class PlayerScript : MonoBehaviour
 	public void MorePrice(int p)
 	{
 		PlayerClass gamer;
-	
+		if (isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
 		string res = "";
 		int i1 = 1;
 		foreach (string s in gamer._marchandise.Keys)
@@ -2493,12 +2558,17 @@ public class PlayerScript : MonoBehaviour
 
 	public void MorePriceOpponent(int p)
 	{
-
+		if (this.isServer)
+		{
 			OpponentMPriceClientRpC(p);
-	
+		}
+		else
+		{
+			OpponentMPriceServerRpC(p);
+		}
 	}
 
-
+	[ClientRpc(includeOwner = false)]
 	private void OpponentMPriceClientRpC(int p)
 	{
 		PlayerClass gamer = Gamer1;
@@ -2519,7 +2589,7 @@ public class PlayerScript : MonoBehaviour
 		gamer._marchandise[res] = (i, j+0.10, b, d, k);
 	}
 
-
+	[Command(requiresAuthority = false)]
 	private void OpponentMPriceServerRpC(int p)
 	{
 		PlayerClass gamer = Gamer2;
@@ -2543,9 +2613,10 @@ public class PlayerScript : MonoBehaviour
 	public void MoreApro(int n)
 	{
 		PlayerClass gamer;
-		
+		if (this.isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
 		int i1 = 1;
         string res = "";
         foreach (string s in gamer._marchandise.Keys)
@@ -2607,12 +2678,17 @@ public class PlayerScript : MonoBehaviour
 
 	public void MoreAproOpponent(int p)
 	{
-	
+		if (this.isServer)
+		{
 			OpponentAproClientRpC(p);
-		
+		}
+		else
+		{
+			OpponentAproServerRpC(p);
+		}
 	}
 
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentAproClientRpC(int p)
 	{
 		PlayerClass gamer = Gamer1;
@@ -2674,7 +2750,7 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
-
+	[Command(requiresAuthority = false)]
 	private void OpponentAproServerRpC(int p)
 	{
 		PlayerClass gamer = Gamer2;
@@ -2739,9 +2815,10 @@ public class PlayerScript : MonoBehaviour
 	public void MoreQuali(int p)
 	{
 		PlayerClass gamer;
-		
+		if (this.isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
 		int i1 = 1;
 		string res = "";
 		foreach (string s in gamer._marchandise.Keys)
@@ -2764,11 +2841,16 @@ public class PlayerScript : MonoBehaviour
 
 	public void MoreQualiOpponent(int p)
 	{
-
+		if (this.isServer)
+		{
 			OpponentQualiClientRpC(p);
-
+		}
+		else
+		{
+			OpponentQualiServerRpC(p);
+		}
 	}
-
+	[ClientRpc(includeOwner = false)]
 	private void OpponentQualiClientRpC(int p)
 	{
 		PlayerClass gamer = Gamer1;
@@ -2790,7 +2872,7 @@ public class PlayerScript : MonoBehaviour
 			gamer._marchandise[res] = (i, j, b, d+1, k);
 		}
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentQualiServerRpC(int p)
 	{
 		PlayerClass gamer = Gamer2;
@@ -2816,9 +2898,10 @@ public class PlayerScript : MonoBehaviour
 	public void Promotion()
     {
 		PlayerClass gamer;
-		
+		if (this.isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
 		if (gamer.materiel[0] == "acheté")
         {
 			gamer.promo = !gamer.promo;
@@ -2832,11 +2915,16 @@ public class PlayerScript : MonoBehaviour
 
 	public void PromoOpponent()
 	{
-	
+		if (this.isServer)
+		{
 			OpponentPromoClientRpC();
-	
+		}
+		else
+		{
+			OpponentPromoServerRpC();
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentPromoClientRpC()
 	{
 		PlayerClass gamer = Gamer1;
@@ -2849,7 +2937,7 @@ public class PlayerScript : MonoBehaviour
 				gamer._stat["Attractivité"] /= 1.33;
 		}
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentPromoServerRpC()
 	{
 		PlayerClass gamer = Gamer2;
@@ -2865,9 +2953,10 @@ public class PlayerScript : MonoBehaviour
     public void Employe()
     {
 		PlayerClass gamer;
-	
+		if (this.isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
 		if (gamer._stat["Employé"] > TextEmploye.n)
 		{
 			if (!gamer.AddMoney(-700*(gamer._stat["Employé"] - TextEmploye.n)))
@@ -2878,16 +2967,21 @@ public class PlayerScript : MonoBehaviour
     }
 	public void EmployeOpponent(double p)
 	{
-
+		if (this.isServer)
+		{
 			OpponentEmployeClientRpC(p);
-
+		}
+		else
+		{
+			OpponentEmployeServerRpC(p);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentEmployeClientRpC(double p)
 	{
 		Gamer1._stat["Employé"] = p;
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentEmployeServerRpC(double p)
 	{
 		Gamer2._stat["Employé"] = p;
@@ -2895,27 +2989,33 @@ public class PlayerScript : MonoBehaviour
 	public void Pub()
     {
 		PlayerClass gamer;
-
+		if (this.isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
 		if(gamer.AddMoney(-1000))
 			gamer._stat["Attractivité"] += 5;
 		pubOpponent();
     }
 	public void pubOpponent()
 	{
-	
+		if (this.isServer)
+		{
 			OpponentPubClientRpC();
-	
+		}
+		else
+		{
+			OpponentPubServerRpC();
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentPubClientRpC()
 	{
 		PlayerClass gamer = Gamer1;
 		if(gamer.AddMoney(-1000))
 			gamer._stat["Attractivité"] += 5;
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentPubServerRpC()
 	{
 		PlayerClass gamer = Gamer2;
@@ -2925,27 +3025,33 @@ public class PlayerScript : MonoBehaviour
 	public void Salaire()
 	{
 		PlayerClass gamer;
-		
+		if (this.isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
 		gamer._stat["Qualité"] += (gamer._stat["Salaire"] - TextSalaire.n)/50; 
 		gamer._stat["Salaire"] = TextSalaire.n;
 		salaireOpponent(gamer._stat["Salaire"]);
 	}
 	public void salaireOpponent(double p)
 	{
-	
+		if (this.isServer)
+		{
 			OpponentsalaireClientRpC(p);
-	
+		}
+		else
+		{
+			OpponentsalaireServerRpC(p);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentsalaireClientRpC(double p)
 	{
 		PlayerClass gamer = Gamer1;
 		gamer._stat["Qualité"] += (gamer._stat["Salaire"] - p)/50; 
 		gamer._stat["Salaire"] = p;
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentsalaireServerRpC(double p)
 	{
 		PlayerClass gamer = Gamer2;
@@ -2956,27 +3062,33 @@ public class PlayerScript : MonoBehaviour
 	public void Carte()
     {
 		PlayerClass gamer;
-		
+		if (this.isServer)
 			gamer = Gamer1;
-		
+		else
+			gamer = Gamer2;
 		if(gamer.AddMoney(-100))
 			gamer._stat["Attractivité"] += 0.5;
 		carteOpponent();
     }
 	public void carteOpponent()
 	{
-	
+		if (this.isServer)
+		{
 			OpponentcarteClientRpC();
-	
+		}
+		else
+		{
+			OpponentcarteServerRpC();
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentcarteClientRpC()
 	{
 		PlayerClass gamer = Gamer1;
 		if(gamer.AddMoney(-100))
 			gamer._stat["Attractivité"] += 0.5;
 	}
-
+	[Command(requiresAuthority = false)]
 	private void OpponentcarteServerRpC()
 	{
 		PlayerClass gamer = Gamer2;
@@ -2986,9 +3098,10 @@ public class PlayerScript : MonoBehaviour
     public void Magasin()
     {
 		PlayerClass gamer;
-		
+		if (this.isServer)
 			gamer = Gamer1;
-		
+		else
+			gamer = Gamer2;
         double n = TextMagasin.n;
         double n1 = gamer._stat["Magasin"];
         bool b = true;
@@ -3008,11 +3121,16 @@ public class PlayerScript : MonoBehaviour
 
 	public void magasinOpponent(double p)
 	{
-		
+		if (this.isServer)
+		{
 			OpponentmagasinClientRpC(p);
-	
+		}
+		else
+		{
+			OpponentmagasinServerRpC(p);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentmagasinClientRpC(double p)
 	{
 		PlayerClass gamer = Gamer1;
@@ -3026,7 +3144,7 @@ public class PlayerScript : MonoBehaviour
         if (b)
              gamer._stat["Magasin"] = n;
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentmagasinServerRpC(double p)
 	{
 		PlayerClass gamer = Gamer2;
@@ -3044,9 +3162,10 @@ public class PlayerScript : MonoBehaviour
 	public void Cadeau()
     {
 		PlayerClass gamer;
-	
+		if (this.isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
 		if(gamer.AddMoney(-500))
 			gamer._stat["Attractivité"] += 2.5;
 		cadeauOpponent();
@@ -3054,18 +3173,23 @@ public class PlayerScript : MonoBehaviour
 
 	public void cadeauOpponent()
 	{
-		
+		if (this.isServer)
+		{
 			OpponentcadeauClientRpC();
-		
+		}
+		else
+		{
+			OpponentcadeauServerRpC();
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentcadeauClientRpC()
 	{
 		PlayerClass gamer = Gamer1;
 		if(gamer.AddMoney(-500))
 			gamer._stat["Attractivité"] += 2.5;
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentcadeauServerRpC()
 	{
 		PlayerClass gamer = Gamer2;
@@ -3076,9 +3200,10 @@ public class PlayerScript : MonoBehaviour
 	public void Prime()
 	{
 		PlayerClass gamer;
-		
+		if (this.isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
 		if (gamer.AddMoney(-1000*gamer._stat["Employé"]) && gamer._stat["Employé"] != 0)
 			gamer._stat["Qualité"] += 2*gamer._stat["Employé"];
 		primeOpponent();
@@ -3086,18 +3211,23 @@ public class PlayerScript : MonoBehaviour
 
 	public void primeOpponent()
 	{
-		
+		if (this.isServer)
+		{
 			OpponentprimeClientRpC();
-		
+		}
+		else
+		{
+			OpponentprimeServerRpC();
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentprimeClientRpC()
 	{
 		PlayerClass gamer = Gamer1;
 		if (gamer.AddMoney(-1000*gamer._stat["Employé"]) && gamer._stat["Employé"] != 0)
 			gamer._stat["Qualité"] += 2*gamer._stat["Employé"];
 	}
-
+	[Command(requiresAuthority = false)]
 	private void OpponentprimeServerRpC()
 	{
 		PlayerClass gamer = Gamer2;
@@ -3108,9 +3238,10 @@ public class PlayerScript : MonoBehaviour
 	public void AMateriel1()
     {
 		PlayerClass gamer;
-		
+		if (this.isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
         if (gamer.materiel[0] != "acheté" && gamer.AddMoney(-200))
         {
            gamer.materiel[0] = "acheté";
@@ -3121,12 +3252,17 @@ public class PlayerScript : MonoBehaviour
 
 	public void MoreMateriel1Opponent()
 	{
-		
+		if (this.isServer)
+		{
 			OpponentMateriel1ClientRpC();
-	
+		}
+		else
+		{
+			OpponentMateriel1ServerRpC();
+		}
 	}
 
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentMateriel1ClientRpC()
 	{
 	  PlayerClass gamer = Gamer1;
@@ -3137,7 +3273,7 @@ public class PlayerScript : MonoBehaviour
       }
 	}
 
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentMateriel1ServerRpC()
 	{
 	  PlayerClass gamer = Gamer2;
@@ -3151,9 +3287,10 @@ public class PlayerScript : MonoBehaviour
    public void AMateriel(int p)
    {
 	  PlayerClass gamer;
-		
+		if (this.isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
       if (gamer.materiel[p] != "acheté" && gamer.AddMoney(-2500))
       {
          gamer.materiel[p] = "acheté";
@@ -3164,12 +3301,17 @@ public class PlayerScript : MonoBehaviour
 
    public void MoreMaterielAOpponent(int p)
 	{
-		
+		if (this.isServer)
+		{
 			OpponentMaterielAClientRpC(p);
-		
+		}
+		else
+		{
+			OpponentMaterielAServerRpC(p);
+		}
 	}
 
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentMaterielAClientRpC(int p)
 	{
 	  PlayerClass gamer = Gamer1;
@@ -3180,7 +3322,7 @@ public class PlayerScript : MonoBehaviour
       }
 	}
 
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentMaterielAServerRpC(int p)
 	{
 	  PlayerClass gamer = Gamer2;
@@ -3195,9 +3337,10 @@ public class PlayerScript : MonoBehaviour
    public void MaterielG(int p)
 	{
 		PlayerClass gamer;
-		
+		if (this.isServer)
 			gamer = Gamer1;
-		
+		else
+			gamer = Gamer2;
 		if(gamer._missingitems[p-7] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -3225,11 +3368,16 @@ public class PlayerScript : MonoBehaviour
 
 	public void MoreMaterielGOpponent(int p)
 	{
-		
+		if (this.isServer)
+		{
 			OpponentMaterielGClientRpC(p);
-	
+		}
+		else
+		{
+			OpponentMaterielGServerRpC(p);
+		}
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	private void OpponentMaterielGClientRpC(int p)
 	{
 		PlayerClass gamer = Gamer1;
@@ -3256,7 +3404,7 @@ public class PlayerScript : MonoBehaviour
 			gamer._items[p-1] = s;
 		}
 	}
-	
+	[Command(requiresAuthority = false)]
 	private void OpponentMaterielGServerRpC(int p)
 	{
 		PlayerClass gamer = Gamer2;

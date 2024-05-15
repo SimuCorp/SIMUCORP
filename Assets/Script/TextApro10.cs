@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using Mirror;
 using static MoneyCount;
 using static PlayerScript;
 
-public class TextApro10 : MonoBehaviour
-  {
-      public TextMeshProUGUI Apro10;
+public class TextApro10 : NetworkBehaviour 
+{
+    public TextMeshProUGUI Apro10;
     
     // Start is called before the first frame update
     void Start()
@@ -23,9 +23,10 @@ public class TextApro10 : MonoBehaviour
         int i = 1;
         string res = "";
         PlayerClass g;
-
+        if (this.isServer)
             g = Gamer1;
-
+        else
+            g = Gamer2;
         foreach (string s in g._marchandise.Keys)
         {
             if (i == 10)

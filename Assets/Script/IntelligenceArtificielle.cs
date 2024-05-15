@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Mirror;
 using static System.Math;
 using static MoneyCount;
 using static TourCount;
 using static PlayerScript;
 
-public class IntelligenceArtificielle : MonoBehaviour
+public class IntelligenceArtificielle : NetworkBehaviour 
 {
 	public static PlayerClass metier {get; set;}
 	public static int act {get; set;}
@@ -145,11 +145,11 @@ public class IntelligenceArtificielle : MonoBehaviour
 	}
 	public static void DoAction()
 	{
-		if (act == 10 )
+		if (act == 10 && NetworkServer.connections.Count == 1)
 	    {
 		    last_money = metier._money;
 	    }
-        if (act > 0)
+        if (NetworkServer.connections.Count == 1 && act > 0)
         {
 			NewProduct();
 	        for (int i = 0; i < 4; ++i)

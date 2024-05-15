@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 using static MoneyCount;
 using static CountdownScript;
 using static PlayerScript;
 using UnityEngine.SceneManagement;
-public class AfficheEvent : MonoBehaviour
+public class AfficheEvent : NetworkBehaviour
 {
     private static bool rentre;
     public GameObject image;
@@ -28,6 +29,7 @@ public class AfficheEvent : MonoBehaviour
     }
 
     // Update is called once per frame
+    [ClientRpc]
     public void Affiche()
     {
         if (TourCount.TurnValues % 4 == 1 && TourCount.TurnValues != 1)
@@ -57,10 +59,30 @@ public class AfficheEvent : MonoBehaviour
             image2.SetActive(false);
         }
     }
+    [Command(requiresAuthority = false)]
+    public void AfficheCommand() => Affiche();
 
     void Update()
     {
-        Affiche();
+
+        if (!this.isServer && TourCount.TurnValues%4 >= 1)
+        {
+            string event1 = PlayerScript.evenement._eventComing[TourCount.TurnValues/4];
+            Transfert(event1);
+        }
+        if (this.isServer)
+            Affiche();
+        else
+            AfficheCommand();
     }
+    [Command(requiresAuthority = false)]
+    public void Transfert(string event1) => TransfertClient(event1);
+
+    [ClientRpc]
+    public void TransfertClient(string event1)
+    {
+         PlayerScript.evenement._eventComing[TourCount.TurnValues/4] = event1;
+    }
+
 }
 
