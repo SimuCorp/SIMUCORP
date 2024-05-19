@@ -1232,6 +1232,7 @@ public class PlayerScript : NetworkBehaviour
 	public void AOptions()
 	{
 		Accueil.SetActive(false);
+		Last = Accueil;
 		Qualite.SetActive(false);
 		Options.SetActive(true);
 	}
