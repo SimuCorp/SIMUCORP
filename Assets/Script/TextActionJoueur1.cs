@@ -308,8 +308,10 @@ public class TextActionJoueur1 : NetworkBehaviour
 				}
 				else if (Input.GetKeyDown(KeyCode.RightArrow))
 				{
+					double mag = gamer._stat["Magasin"];
 					magasinOpponent(true);
-					audio.Play();
+					if (mag != gamer._stat["Magasin"])
+						audio.Play();
 				}
 				action.text = $"< Nombre de magasins : {gamer._stat["Magasin"]} >";
 			}

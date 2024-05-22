@@ -663,6 +663,7 @@ public class PlayerScript : NetworkBehaviour
 			Gamer1.ready = true;
 			if (NetworkServer.connections.Count == 1)
 				{
+					Gamer2 = new Boucherie("Boucher");
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
 					Boucherie.SetActive(true);
@@ -726,11 +727,11 @@ public class PlayerScript : NetworkBehaviour
 			Gamer1.ready = true;
 			if (NetworkServer.connections.Count == 1)
 				{
-					Gamer2 = new Primeur("Primeur");
+					Gamer2 = new Poissonier("Poissonier");
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
-					Primeur.SetActive(true);
-					Primeur.transform.Translate(new Vector3(taille/2, 0, 0));
+					Poissonerie.SetActive(true);
+					Poissonerie.transform.Translate(new Vector3(taille/2, 0, 0));
 				}
 				else
 			{
@@ -787,11 +788,10 @@ public class PlayerScript : NetworkBehaviour
 			Gamer1.ready = true;
 			if (NetworkServer.connections.Count == 1)
 				{
-					Gamer2 = new Primeur("Primeur");
+					Gamer2 = new Pret_a_porter("Prêt à porter");
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
-					Primeur.SetActive(true);
-					Primeur.transform.Translate(new Vector3(taille/2, 0, 0));
+					Vetement.SetActive(true);
 				}
 				else
 			{
@@ -851,11 +851,10 @@ public class PlayerScript : NetworkBehaviour
 			Gamer1.ready = true;
 			if (NetworkServer.connections.Count == 1)
 				{
-					Gamer2 = new Primeur("Primeur");
+					Gamer2 = new Libraire("Libraire");
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
-					Primeur.SetActive(true);
-					Primeur.transform.Translate(new Vector3(taille/2, 0, 0));
+					Librairie.SetActive(true);
 				}
 				else
 			{
@@ -913,11 +912,11 @@ public class PlayerScript : NetworkBehaviour
 			Gamer1.ready = true;
 			if (NetworkServer.connections.Count == 1)
 				{
-					Gamer2 = new Primeur("Primeur");
+					Gamer2 = new Fleuriste("Fleuriste");
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
 					Primeur.SetActive(true);
-					Primeur.transform.Translate(new Vector3(taille/2, 0, 0));
+					Fleuriste.transform.Translate(new Vector3(taille/2, 0, 0));
 				}
 				else
 			{
@@ -976,11 +975,10 @@ public class PlayerScript : NetworkBehaviour
 			Gamer1.ready = true;
 			if (NetworkServer.connections.Count == 1)
 				{
-					Gamer2 = new Primeur("Primeur");
+					Gamer2 = new Coiffeur("Coiffeur");
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
-					Primeur.SetActive(true);
-					Primeur.transform.Translate(new Vector3(taille/2, 0, 0));
+					Coiffeur.SetActive(true);
 				}
 				else
 			{
@@ -1039,11 +1037,10 @@ public class PlayerScript : NetworkBehaviour
 			Gamer1.ready = true;
 			if (NetworkServer.connections.Count == 1)
 				{
-					Gamer2 = new Primeur("Primeur");
+					Gamer2 = new Bijouterie("Bijoutier");
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
-					Primeur.SetActive(true);
-					Primeur.transform.Translate(new Vector3(taille/2, 0, 0));
+					Bijouterie.SetActive(true);
 				}
 				else
 			{
@@ -1232,8 +1229,8 @@ public class PlayerScript : NetworkBehaviour
 	public void AOptions()
 	{
 		Accueil.SetActive(false);
-		Last = Accueil;
 		Qualite.SetActive(false);
+		Last = Accueil;
 		Options.SetActive(true);
 	}
 

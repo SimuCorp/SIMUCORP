@@ -34,7 +34,7 @@ public class TextTuto : NetworkBehaviour
         "Les dernières actions possible se trouve à la caisse. Elles vous permettent la gestion de votre ou de vos magasins et de finir votre semaine de travail.",
         "Vous pouvez par exemple embaucher des employés, augmenter leur salaire ou leur donner des primes afin d'améliorer la qualité du magasin ou encore acheter de nouveau magasin pour avoir plus de clients. Cependant pour acheter un magasin il faut 5000 $ ainsi qu'au moins n-1 employés pour n magasins. Attention, vous devrez payer les salaires et vos impots ainsi que faire face à des évènements aléatoires toutes les 4 semaines.",
         "En complément à cela, vouz pouvez mettre le jeu en pause en appuyant sur le touche espace de votre clavier. A l'intérieur vous aurez la possibilité de consulté les statiques liés à vos produits ou services. Pour changer de produits appuyez sur les flèches latérales. Enfin pour quitter le menu pause faites réappuyer sur la barre d'espace.",
-        "Dans la même optique, vous pouvez aller sur le menu options en appuyant sur echap.",
+        "Dans la même optique, vous pouvez aller sur le menu options en appuyant sur échap.",
         "Toutes les actions que vous ferez lors de votre aventure auront un impact sur votre score final. En effet, le score final est calculé en fonction de vos ventes, de l'argent restant, de l'argent gagné, des marchandises restantes, de votre nombre d'améliorations, ainsi que de toutes vos autres statistiques.",
         "Pour conclure ce tutoriel, finissez votre tour."
                                                            };
