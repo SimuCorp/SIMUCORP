@@ -34,7 +34,7 @@ public class Coiffeur : PlayerClass
         _items = new List<string> { "Coupe Homme", "Coupe Femme", "Mèches", "Barbe", "Soin", "Frange"};
 		for (int i = 0; i < 6; ++i)
 			_items.Add("NaN");
-        _missingitems = new List<string> { "Coloration", "Shampoing + Coupe", "Brushing", "Permanente", "Shampoing + Coupe + Coloration", "Lissage brésilien"};
+        _missingitems = new List<string> { "Coloration", "Shampoing + Coupe", "Brushing", "Permanente", "Coupe + Coloration", "Lissage brésilien"};
         materiel = new List<string> { "tableau de promotion", "desserte", "casque", "nouvelles coupes" };
         prix = new List<double> {18, 21.8, 86.67, 16.67, 3.33, 10, 16.67, 33.33, 22, 56.67, 27.27, 66};
 		Perime1 = new List<int> {200};

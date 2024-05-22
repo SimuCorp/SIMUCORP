@@ -25,18 +25,25 @@ public class Player1Script : NetworkBehaviour
     public Sprite Amelioration1;
     public Sprite Amelioration2;
     public GameObject textaction;
+    public double last_x;
+    public double last_y;
+    public double timecol;
  
     // Start is called before the first frame update
     void Start()
     {
         move = true;
         position = Joueur.transform.position.x;
+        last_x = 0;
+        last_y = 0;
         Emplacement1.sprite = fond;
 		Emplacement2.sprite = fond;
         amelioration1 = true;
         amelioration2 = true;
         act = 0;
         collision = GetComponent<AudioSource>();
+
+        timecol = 130;
     }
 
     // Update is called once per frame
@@ -44,10 +51,18 @@ public class Player1Script : NetworkBehaviour
     {
         double x = Joueur.transform.position.x;
         double x2 = Screen.width/2;
-        if (move)
+        if (timecol-0.2 > Gamer1.TimeLeft)
+            timecol = 130;
+        if (timecol-0.2<= Gamer1.TimeLeft && Gamer1.TimeLeft < 120)
+        {
+
+        }
+        else if (move)
         {   
             double vert = Input.GetAxis("Vertical");
+            last_y = vert;
             double hori = Input.GetAxis("Horizontal");
+            last_x = hori;
             if (this.isServer && x <= x2)
             {
                 
@@ -64,6 +79,7 @@ public class Player1Script : NetworkBehaviour
                 transform.position = new Vector2((float)(x2/2),(float)(Screen.height/4));
             else
                 transform.position = new Vector2((float)(x2/2*3),(float)(Screen.height/4));
+            timecol = 130;
         }
         if (x <= x2)
         {
@@ -88,8 +104,8 @@ public class Player1Script : NetworkBehaviour
 	[ClientRpc]
 	private void OpponentMove(double x, double x2)
     {
-            transform.Translate(Vector3.up * 30f * Time.fixedDeltaTime * (float)x * Screen.height/385);
-            transform.Translate(Vector3.right * 30f * Time.fixedDeltaTime * (float)x2  * Screen.width/720);
+            transform.Translate(Vector3.up * 50f * Time.fixedDeltaTime * (float)x * Screen.height/385);
+            transform.Translate(Vector3.right * 50f * Time.fixedDeltaTime * (float)x2  * Screen.width/720);
     }
 
     [Command(requiresAuthority = false)]
@@ -98,42 +114,43 @@ public class Player1Script : NetworkBehaviour
 	[ClientRpc]
 	private void CollisionClient()
     {
-            double x = collision.transform.position.x;
-        double y = collision.transform.position.y;
+        double x = collision.gameObject.transform.position.x;
+        double y = collision.gameObject.transform.position.y;
         if  (collision.gameObject.name ==  "mur_bas")  
         {
-            transform.Translate(new Vector2(0,1) * 10);
+            transform.Translate(new Vector2(0,1) * 30 * Screen.height/385);
         }
         else if  (collision.gameObject.name ==  "mur_haut")  
         {
-            transform.Translate(new Vector2(0,-1) * 10);
+            transform.Translate(new Vector2(0,-1) * 30 * Screen.height/385);
         }
         else if  (collision.gameObject.name ==  "mur_droite")  
         {
-            transform.Translate(new Vector2(-1,0) * 10);
+            transform.Translate(new Vector2(-1,0) * 30 * Screen.width/720);
         }
         else if  (collision.gameObject.name ==  "mur_gauche" )  
         {
-            transform.Translate(new Vector2(1,0) * 10);
+            transform.Translate(new Vector2(1,0) * 30 * Screen.width/720);
         }
         else
         {
             double x2 = Joueur.transform.position.x;
             double y2 = Joueur.transform.position.y;
-            if (y < y2)
-                transform.Translate(new Vector2(0,1) * 1);
-            if (y > y2)
-                transform.Translate(new Vector2(0,-1) * 1);
-            if (x < x2)
-                transform.Translate(new Vector2(1,0) * 1);
-            if (x > x2)
-                transform.Translate(new Vector2(-1,0) * 1);
+            if (last_y < 0)
+                transform.Translate(new Vector2(0,1) * 1 * Screen.height/385);
+            if (last_y > 0)
+                transform.Translate(new Vector2(0,-1) * 1 * Screen.height/385);
+            if (last_x < 0)
+                transform.Translate(new Vector2(1,0) * 1 * Screen.width/720);
+            if (last_x > 0)
+                transform.Translate(new Vector2(-1,0) * 1 * Screen.width/720);
                 
         }
     }
 
     void OnCollisionEnter2D (Collision2D collision)
     {
+        timecol = Gamer1.TimeLeft;
         if (this.isServer)
             CollisionClient();
         else
@@ -179,6 +196,7 @@ public class Player1Script : NetworkBehaviour
                     TextActionJoueur1.action.color = Color.red;
                 else 
                     TextActionJoueur1.action.color = Color.green;
+              
             }
             else if (other.gameObject.CompareTag("item2"))
             {
@@ -190,6 +208,7 @@ public class Player1Script : NetworkBehaviour
                     TextActionJoueur1.action.color = Color.red;
                 else 
                     TextActionJoueur1.action.color = Color.green;
+             
             }
             else if (other.gameObject.CompareTag("item3"))
             {

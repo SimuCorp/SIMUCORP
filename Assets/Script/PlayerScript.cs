@@ -915,7 +915,7 @@ public class PlayerScript : NetworkBehaviour
 					Gamer2 = new Fleuriste("Fleuriste");
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
-					Primeur.SetActive(true);
+					Fleuriste.SetActive(true);
 					Fleuriste.transform.Translate(new Vector3(taille/2, 0, 0));
 				}
 				else

@@ -74,6 +74,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 			move = action.text == "" && gamer._button && !PlayerScript.pause && !FinDeTour.activeSelf;
 			if (Gamer1.TimeLeft <= 0 && this.isServer)
             {
+				action.text = "";
                 if (Gamer1._button && Gamer2._button)
                 {
 					CalCulus(true);

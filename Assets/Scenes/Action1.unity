@@ -25631,6 +25631,9 @@ MonoBehaviour:
   Amelioration1: {fileID: 21300000, guid: b491d6e93234e5b468e9456cc2eafb3f, type: 3}
   Amelioration2: {fileID: 21300000, guid: 398a2549650efad42b7708518570e717, type: 3}
   textaction: {fileID: 1560804616}
+  last_x: 0
+  last_y: 0
+  timecol: 0
 --- !u!114 &552396739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27296,6 +27299,9 @@ MonoBehaviour:
   Amelioration1: {fileID: 21300000, guid: 669934128d41fd74d88551424247e9dd, type: 3}
   Amelioration2: {fileID: 21300000, guid: 999ba8cc21dde434e965f688ad84ed75, type: 3}
   textaction: {fileID: 1423922404}
+  last_x: 0
+  last_y: 0
+  timecol: 0
 --- !u!114 &586748848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32265,6 +32271,9 @@ MonoBehaviour:
   Amelioration1: {fileID: 21300000, guid: 8e6273de8f0f76340bd61ddeed5b3064, type: 3}
   Amelioration2: {fileID: 21300000, guid: e6dd8c72a701f9d4a8decc3b02ff78c6, type: 3}
   textaction: {fileID: 1825238242}
+  last_x: 0
+  last_y: 0
+  timecol: 0
 --- !u!114 &710715489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32719,7 +32728,7 @@ GameObject:
   - component: {fileID: 721891054}
   m_Layer: 5
   m_Name: "am\xE9lioration2"
-  m_TagString: amelioration1
+  m_TagString: amelioration2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35425,6 +35434,9 @@ MonoBehaviour:
   Amelioration1: {fileID: 21300000, guid: 61c0296a2b58ea44f9860a769d59ba7b, type: 3}
   Amelioration2: {fileID: 21300000, guid: 773fdefeca5877747b06dc1fdc20f0fd, type: 3}
   textaction: {fileID: 1223512798}
+  last_x: 0
+  last_y: 0
+  timecol: 0
 --- !u!82 &786483073
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47431,7 +47443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.280624, y: 55.517014}
+  m_AnchoredPosition: {x: 0, y: 55.517014}
   m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1088620671
@@ -50079,6 +50091,9 @@ MonoBehaviour:
   Amelioration1: {fileID: 21300000, guid: c499d49c37f36e24a8a375f906b949df, type: 3}
   Amelioration2: {fileID: 21300000, guid: c6bc2aa93b023e442a7306cbbbb06986, type: 3}
   textaction: {fileID: 332009912}
+  last_x: 0
+  last_y: 0
+  timecol: 0
 --- !u!114 &1174338878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68387,6 +68402,9 @@ MonoBehaviour:
   Amelioration1: {fileID: 21300000, guid: c499d49c37f36e24a8a375f906b949df, type: 3}
   Amelioration2: {fileID: 21300000, guid: c6bc2aa93b023e442a7306cbbbb06986, type: 3}
   textaction: {fileID: 742591154}
+  last_x: 0
+  last_y: 0
+  timecol: 0
 --- !u!82 &1627935370
 AudioSource:
   m_ObjectHideFlags: 0
@@ -70049,6 +70067,9 @@ MonoBehaviour:
   Amelioration1: {fileID: 21300000, guid: c92e547e3c84a214f8be74b36b35d4e0, type: 3}
   Amelioration2: {fileID: 21300000, guid: 1f3177fb58bbe8241a03a7c7c50e18e9, type: 3}
   textaction: {fileID: 2104342474}
+  last_x: 0
+  last_y: 0
+  timecol: 0
 --- !u!114 &1650369930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72597,6 +72618,9 @@ MonoBehaviour:
   Amelioration1: {fileID: 21300000, guid: b491d6e93234e5b468e9456cc2eafb3f, type: 3}
   Amelioration2: {fileID: 21300000, guid: 398a2549650efad42b7708518570e717, type: 3}
   textaction: {fileID: 2041279516}
+  last_x: 0
+  last_y: 0
+  timecol: 0
 --- !u!114 &1709577788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73206,6 +73230,9 @@ MonoBehaviour:
   Amelioration1: {fileID: 21300000, guid: 5c769f0eae8f9304f81bdb43668201b4, type: 3}
   Amelioration2: {fileID: 21300000, guid: 8d000959ea87c0644be83c842cf12512, type: 3}
   textaction: {fileID: 255212825}
+  last_x: 0
+  last_y: 0
+  timecol: 0
 --- !u!114 &1715563583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73865,7 +73892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.280777, y: 55.516983}
+  m_AnchoredPosition: {x: 0, y: 55.516983}
   m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1726989304
@@ -74383,6 +74410,9 @@ MonoBehaviour:
   Amelioration1: {fileID: 21300000, guid: 0c7c162c5a6e0574eb8c111c7391b5e7, type: 3}
   Amelioration2: {fileID: 21300000, guid: f2e662fcbd9be094eb92ee45f0ece5cb, type: 3}
   textaction: {fileID: 1598850969}
+  last_x: 0
+  last_y: 0
+  timecol: 0
 --- !u!114 &1744130028
 MonoBehaviour:
   m_ObjectHideFlags: 0
