@@ -46,19 +46,19 @@ public class Player1Script : MonoBehaviour
 
         double x = collision.transform.position.x;
         double y = collision.transform.position.y;
-        if  (collision.gameObject.name ==  "mur_bas" )  
+        if(collision.gameObject.name=="mur_bas")
         {
             transform.Translate(new Vector2(0,1) * 10);
         }
-        else if  (collision.gameObject.name ==  "mur_haut" )  
+        else if(collision.gameObject.name=="mur_haut")
         {
             transform.Translate(new Vector2(0,-1) * 10);
         }
-        else if  (collision.gameObject.name ==  "mur_droite" )  
+        else if(collision.gameObject.name=="mur_droite")
         {
             transform.Translate(new Vector2(-1,0) * 10);
         }
-        else if  (collision.gameObject.name ==  "mur_gauche" )  
+        else if(collision.gameObject.name=="mur_gauche")
         {
             transform.Translate(new Vector2(1,0) * 10);
         }
@@ -106,7 +106,7 @@ public class Player1Script : MonoBehaviour
         else if (other.gameObject.CompareTag("item1"))
         {      
             (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[0]];
-            TextActionJoueur1.action.text = "Quantité de " + gamer._items[0] + $" : {n}";
+            TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[0] + $" : {n}";
             move = false;
             act = 0;
             if (j*5>gamer._money)
@@ -117,7 +117,7 @@ public class Player1Script : MonoBehaviour
         else if (other.gameObject.CompareTag("item2"))
         {
             (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[1]];
-            TextActionJoueur1.action.text = "Quantité de " + gamer._items[1] + $" : {n}";
+            TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[1] + $" : {n}";
             move = false;
             act = 1;
             if (j*5>gamer._money)
@@ -128,7 +128,7 @@ public class Player1Script : MonoBehaviour
         else if (other.gameObject.CompareTag("item3"))
         {
             (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[2]];
-            TextActionJoueur1.action.text = "Quantité de " + gamer._items[2] + $" : {n}";
+            TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[2] + $" : {n}";
             move = false;
             act = 2;
             if (j*5>gamer._money)
@@ -139,7 +139,7 @@ public class Player1Script : MonoBehaviour
         else if (other.gameObject.CompareTag("item4"))
         {
             (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[3]];
-            TextActionJoueur1.action.text = "Quantité de " + gamer._items[3] + $" : {n}";
+            TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[3] + $" : {n}";
             move = false;
             act = 3;
             if (j*5>gamer._money)
@@ -150,7 +150,7 @@ public class Player1Script : MonoBehaviour
         else if (other.gameObject.CompareTag("item5"))
         {
             (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[4]];
-            TextActionJoueur1.action.text = "Quantité de " + gamer._items[4] + $" : {n}";
+            TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[4] + $" : {n}";
             move = false;
             act = 4;
             if (j*5>gamer._money)
@@ -161,7 +161,7 @@ public class Player1Script : MonoBehaviour
         else if (other.gameObject.CompareTag("item6"))
         {
             (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[5]];
-            TextActionJoueur1.action.text = "Quantité de " + gamer._items[5] + $" : {n}";
+            TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[5] + $" : {n}";
             move = false;
             act = 5;
             if (j*5>gamer._money)
@@ -184,7 +184,7 @@ public class Player1Script : MonoBehaviour
             else
             {
                 (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[6]];
-                TextActionJoueur1.action.text = "Quantité de " + gamer._items[6] + $" : {n}";
+                TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[6] + $" : {n}";
                 move = false;
                 if (j*5>gamer._money)
                     TextActionJoueur1.action.color = Color.red;
@@ -207,7 +207,7 @@ public class Player1Script : MonoBehaviour
             else
             {
                 (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[7]];
-                TextActionJoueur1.action.text = "Quantité de " + gamer._items[7] + $" : {n}";
+                TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[7] + $" : {n}";
                 move = false;
                 if (j*5>gamer._money)
                     TextActionJoueur1.action.color = Color.red;
@@ -230,7 +230,7 @@ public class Player1Script : MonoBehaviour
             else
             {
                 (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[8]];
-                TextActionJoueur1.action.text = "Quantité de " + gamer._items[8] + $" : {n}";
+                TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[8] + $" : {n}";
                 move = false;
                 if (j*5>gamer._money)
                     TextActionJoueur1.action.color = Color.red;
@@ -253,7 +253,7 @@ public class Player1Script : MonoBehaviour
             else
             {
                 (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[9]];
-                TextActionJoueur1.action.text = "Quantité de " + gamer._items[9] + $" : {n}";
+                TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[9] + $" : {n}";
                 move = false;
                 if (j*5>gamer._money)
                     TextActionJoueur1.action.color = Color.red;
@@ -276,7 +276,7 @@ public class Player1Script : MonoBehaviour
             else
             {
                 (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[10]];
-                TextActionJoueur1.action.text = "Quantité de " + gamer._items[10] + $" : {n}";
+                TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[10] + $" : {n}";
                 move = false;
                 if (j*5>gamer._money)
                     TextActionJoueur1.action.color = Color.red;
@@ -299,7 +299,7 @@ public class Player1Script : MonoBehaviour
             else
             {
                 (int n, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[11]];
-                TextActionJoueur1.action.text = "Quantité de " + gamer._items[11] + $" : {n}";
+                TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[11] + $" : {n}";
                 if (j*5>gamer._money)
                     TextActionJoueur1.action.color = Color.red;
                 else 
@@ -310,13 +310,13 @@ public class Player1Script : MonoBehaviour
         else if (other.gameObject.CompareTag("Caisse"))
         {
             move = false;
-            TextActionJoueur1.action.text = $"Nombre d'employés : {gamer._stat["Employé"]}";
+            TextActionJoueur1.action.text = $"Nombre d'employï¿½s : {gamer._stat["Employï¿½"]}";
             TextActionJoueur1.action.color = Color.green;
         }
         else if (other.gameObject.CompareTag("promotion"))
         {
             move = false;
-            if (gamer.materiel[0] != "acheté")
+            if (gamer.materiel[0] != "achetï¿½")
             {
                 TextActionJoueur1.action.text = "Tableau de promotion : 300 $";
                 if (gamer._money < 300)
@@ -349,15 +349,15 @@ public class Player1Script : MonoBehaviour
         if (gamer._items[n] != "NaN")
         {
             (int m, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[n]];
-            if ((TextActionJoueur1.action.text.Contains("Quantité de") 
+            if ((TextActionJoueur1.action.text.Contains("Quantitï¿½ de") 
                 && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("de niveau") && Input.GetKeyDown(KeyCode.UpArrow)))
                     TextActionJoueur1.action.text = "Prix de " + gamer._items[n] + $" : {j} $";
-            else if ((TextActionJoueur1.action.text.Contains("Prix de") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Quantité de") && Input.GetKeyDown(KeyCode.UpArrow)))
+            else if ((TextActionJoueur1.action.text.Contains("Prix de") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Quantitï¿½ de") && Input.GetKeyDown(KeyCode.UpArrow)))
                 TextActionJoueur1.action.text = gamer._items[n] + " de niveau " +$"{d}"+$" : {50*Math.Pow(d, 2)} $";
             else if (
             (TextActionJoueur1.action.text.Contains("de niveau") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Prix de") && Input.GetKeyDown(KeyCode.UpArrow)))
             {
-                TextActionJoueur1.action.text = "Quantité de " + gamer._items[n] + $" : {m}";
+                TextActionJoueur1.action.text = "Quantitï¿½ de " + gamer._items[n] + $" : {m}";
 
             }
             else if ((TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.UpArrow)))
@@ -365,25 +365,25 @@ public class Player1Script : MonoBehaviour
             else if ((TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.UpArrow)))
                 TextActionJoueur1.action.text = $"Nombre de magasins : {gamer._stat["Magasin"]}";
             else if ((TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.UpArrow)))
-                TextActionJoueur1.action.text = "Prime : 1000 $/employé";
+                TextActionJoueur1.action.text = "Prime : 1000 $/employï¿½";
             else if ((TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.UpArrow)))
             {
-                TextActionJoueur1.action.text = "Cartes de fidélité : 100 $";
+                TextActionJoueur1.action.text = "Cartes de fidï¿½litï¿½ : 100 $";
             }
-            else if ((TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.UpArrow)))
+            else if ((TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Publicitï¿½") && Input.GetKeyDown(KeyCode.UpArrow)))
             {
                 TextActionJoueur1.action.text = "Cadeaux : 500 $";
             }
-            else if ((TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.UpArrow)))
+            else if ((TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("employï¿½s :") && Input.GetKeyDown(KeyCode.UpArrow)))
             {
-                TextActionJoueur1.action.text = "Publicité : 1000 $";
+                TextActionJoueur1.action.text = "Publicitï¿½ : 1000 $";
             }
-            else if ((TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.DownArrow)) ||(TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.UpArrow)))
+            else if ((TextActionJoueur1.action.text.Contains("Publicitï¿½") && Input.GetKeyDown(KeyCode.DownArrow)) ||(TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.UpArrow)))
             {
-                TextActionJoueur1.action.text = $"Nombre d'employés : {gamer._stat["Employé"]}";
+                TextActionJoueur1.action.text = $"Nombre d'employï¿½s : {gamer._stat["Employï¿½"]}";
                 TextActionJoueur1.action.color = Color.green;
             }
-             else if ((TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.UpArrow)))
+             else if ((TextActionJoueur1.action.text.Contains("employï¿½s :") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.UpArrow)))
              {
                  TextActionJoueur1.action.text = "Finir son tour";
                 TextActionJoueur1.action.color = Color.green;
@@ -391,4 +391,6 @@ public class Player1Script : MonoBehaviour
         }
             
     }
+
+   
 }
