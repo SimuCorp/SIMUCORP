@@ -62,6 +62,9 @@ public class PlayerClass : MonoBehaviour
 	public double last_attrat {get;set;}
     public PlayerClass(string name)
     {
+	    _total_pret = 0;
+	    _pret = false;
+	    _remboursement = 0;
         _name = name;
         _mounth = 0;
 		_button = true;
@@ -94,6 +97,30 @@ public class PlayerClass : MonoBehaviour
 		last_money = 1500;
 		last_attrat = 0;
     }
+    public double _total_pret { get; set; }
+    public bool _pret { get; set; }
+    public double _remboursement { get; set; }
+    public void do_pret(int montant_pret)
+    {
+	    if (!_pret)
+	    {
+		    _remboursement = (montant_pret*1.1) * 0.03714;
+		    _money += montant_pret;
+		    _total_pret = montant_pret;
+		    _pret = true;
+	    }
+    }
+    public void do_remboursement(int montant_remboursement)
+    {
+	    if (_pret)
+	    {
+		    _money -= montant_remboursement;
+		    _total_pret -= montant_remboursement;
+		    if (_total_pret == 0)
+			    _pret = false;
+	    }
+    }
+
     
     public bool AddMoney(double sum)
     {
