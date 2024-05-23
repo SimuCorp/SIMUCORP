@@ -39680,7 +39680,7 @@ GameObject:
   - component: {fileID: 917422942}
   m_Layer: 5
   m_Name: "am\xE9lioration2"
-  m_TagString: amelioration1
+  m_TagString: amelioration2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53854,7 +53854,7 @@ GameObject:
   - component: {fileID: 1268805523}
   m_Layer: 5
   m_Name: "am\xE9lioration2"
-  m_TagString: amelioration1
+  m_TagString: amelioration2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
