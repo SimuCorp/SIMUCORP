@@ -62,6 +62,35 @@ public class PlayerScript : NetworkBehaviour
 	public static Evenement evenement = new Evenement();
 	public int NbScene;
 	public static bool pause = false;
+
+	public Button? button = null;
+	public bool choice;
+	public static bool anim = true;
+	public Animator fondu;
+	[SerializeField] static private GameObject? deb;
+	[SerializeField] static private GameObject? fin;
+	[SerializeField] static private GameObject? fin2;
+	public static bool tour2 = true;
+	public static bool diffic = true;
+	IEnumerator attend()
+    {
+        fondu.Play("fin_tour");
+		Last = deb;
+        yield return new WaitForSeconds(1);
+        deb.SetActive(false);
+        fin.SetActive(true);
+ 
+    }
+	IEnumerator attend2()
+    {
+        fondu.Play("fin_tour");
+        yield return new WaitForSeconds(1);
+		Last = deb;
+        deb.SetActive(false);
+        fin.SetActive(true);
+		fin2.SetActive(true);
+ 
+    }
     void Start()
     {
 		verif = false;
@@ -69,10 +98,95 @@ public class PlayerScript : NetworkBehaviour
         Countdown = GetComponent<Text> ();
 		NbScene = 0;
     }
+	IEnumerator over()
+	{
+		fondu.Play("fin_tour");
+		yield return new WaitForSeconds(1);
+		fondu.Play("debut_tour");
+		anim = false;
+	}
+
 
     // Update is called once per frame
     void Update()
     {
+		/*
+		if(!Accueil.activeSelf && !ChoixTour.activeSelf && !Difficulte.activeSelf && !Perissable.activeSelf && NonPerissable.activeSelf && !Pause.activeSelf && !FinDeTour.activeSelf && !GameOver.activeSelf && !InfoTour.activeSelf && !Options.activeSelf && !Qualite.activeSelf && anim)
+		{
+			StartCoroutine("over");
+		}
+		else if (!(!Accueil.activeSelf && !ChoixTour.activeSelf && !Difficulte.activeSelf && !Perissable.activeSelf && NonPerissable.activeSelf && !Pause.activeSelf && !FinDeTour.activeSelf && !GameOver.activeSelf && !InfoTour.activeSelf && !Options.activeSelf && !Qualite.activeSelf))
+			anim = true;
+		*/
+		if (TextActionJoueur1.multi && NetworkServer.connections.Count == 1)
+		{
+			TextActionJoueur1.multi = false;
+			AI = new IntelligenceArtificielle();
+		}
+		if (!TextActionJoueur1.multi && NetworkServer.connections.Count == 2)
+		{
+			AI = null;
+			TextActionJoueur1.multi = true;
+			Last = Accueil;
+			if(!Accueil.activeSelf)
+			{
+				ChoixRetour();
+				Difficulte.SetActive(false);
+				Perissable.SetActive(false);
+				NonPerissable.SetActive(false);
+				Qualite.SetActive(false);
+				Tuto1.SetActive(false);
+				Tuto2.SetActive(false);
+				Pause.SetActive(false);
+				FinDeTour.SetActive(false);
+				InfoJoueur1.SetActive(false);
+				InfoJoueur2.SetActive(false);
+				InfoTour.SetActive(false);
+				pause = false;
+			}
+			
+		}
+		if(button != null)
+		{
+			if(choice)
+			{
+				string s = button.gameObject.name;
+				if (NetworkServer.active)
+				{
+					button.interactable = !Gamer1.ready || (Gamer1.ready && ((Gamer1 is Primeur && s == "Primeur") || (Gamer1 is Boucherie && s == "Boucherie") || (Gamer1 is Poissonier && s == "Poissonier") || (Gamer1 is Fleuriste && s == "Fleuriste") || (Gamer1 is Libraire && s == "Librairie") || (Gamer1 is Coiffeur && s == "Coiffeur") || (Gamer1 is Pret_a_porter && s == "Prêt à porter") || (Gamer1 is Bijouterie && s == "Bijouterie")));
+					if (Gamer2.ready)
+					{
+						if((Gamer2 is Primeur && s == "Primeur") || (Gamer2 is Boucherie && s == "Boucherie") || (Gamer2 is Poissonier && s == "Poissonier") || (Gamer2 is Fleuriste && s == "Fleuriste") || (Gamer2 is Libraire && s == "Librairie") || (Gamer2 is Coiffeur && s == "Coiffeur") || (Gamer2 is Pret_a_porter && s == "Prêt à porter") || (Gamer2 is Bijouterie && s == "Bijouterie"))
+							button.interactable = false;
+					}
+				}
+				else
+				{
+					button.interactable = !Gamer2.ready || (Gamer2.ready && ((Gamer2 is Primeur && s == "Primeur") || (Gamer2 is Boucherie && s == "Boucherie") || (Gamer2 is Poissonier && s == "Poissonier") || (Gamer2 is Fleuriste && s == "Fleuriste") || (Gamer2 is Libraire && s == "Librairie") || (Gamer2 is Coiffeur && s == "Coiffeur") || (Gamer2 is Pret_a_porter && s == "Prêt à porter") || (Gamer2 is Bijouterie && s == "Bijouterie")));
+					if (Gamer1.ready)
+					{
+						if((Gamer1 is Primeur && s == "Primeur") || (Gamer1 is Boucherie && s == "Boucherie") || (Gamer1 is Poissonier && s == "Poissonier") || (Gamer1 is Fleuriste && s == "Fleuriste") || (Gamer1 is Libraire && s == "Librairie") || (Gamer1 is Coiffeur && s == "Coiffeur") || (Gamer1 is Pret_a_porter && s == "Prêt à porter") || (Gamer1 is Bijouterie && s == "Bijouterie"))
+							button.interactable = false;
+					}
+				}
+			}
+			else
+			{
+				button.interactable = NetworkServer.active;
+				if (!Accueil.activeSelf)
+				{
+					if (ChoixTour.activeSelf)
+						button.interactable &= tour2;
+					else
+						tour2 = true;
+					if(Difficulte.activeSelf)
+						button.interactable &= diffic;
+					else
+						diffic = true;
+				}
+				
+			}
+        }
 		if (Input.GetKeyDown(KeyCode.Escape))
         { 
 			ChangementOptions();
@@ -89,7 +203,7 @@ public class PlayerScript : NetworkBehaviour
     }
 	public void ChangementOptions()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			ROptions();
 		else
 			OptionsServer();
@@ -166,7 +280,7 @@ public class PlayerScript : NetworkBehaviour
 	}
 	public void PauseTuto()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			MouvementT();
 		else
 			MouvementServerT();
@@ -179,11 +293,10 @@ public class PlayerScript : NetworkBehaviour
 	{
 		pause = !pause;
 		Pause.SetActive(pause);
-		Player1Script.move = pause;
 	}
 	public void ChangementPause()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			Mouvement();
 		else
 			MouvementServer();
@@ -198,12 +311,11 @@ public class PlayerScript : NetworkBehaviour
 		InfoTour.SetActive(pause);
 		pause = !pause;
 		Pause.SetActive(pause);
-		Player1Script.move = pause;
 	}
 
 	public void Tuto()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			TutoClient();
 		else
 			TutoServer();
@@ -219,9 +331,10 @@ public class PlayerScript : NetworkBehaviour
 		{
 			AI = new IntelligenceArtificielle();
 		}
-		Accueil.SetActive(false);
-		Tuto1.SetActive(true);
-		Tuto2.SetActive(true);
+		deb = Accueil;
+		fin = Tuto1;
+		fin2 = Tuto2;
+		StartCoroutine("attend2");
 		InfoJoueur1.SetActive(true);
 		InfoJoueur2.SetActive(true);
 	}
@@ -229,7 +342,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void calcul()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			if(Gamer1._button)
 			{
@@ -252,7 +365,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void OpponentCalcul(double gamer)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentCalculClientRpC(gamer);
 		}
@@ -290,7 +403,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void ExitAccueil()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			ExitAccueilAux();
 		}
@@ -299,52 +412,70 @@ public class PlayerScript : NetworkBehaviour
 	[ClientRpc]
 	public void ExitAccueilAux()
 	{
-		Accueil.SetActive(false);
-		ChoixTour.SetActive(true);
+		deb = Accueil;
+		fin = ChoixTour;
+		StartCoroutine("attend");
 	}
+
 	[Command(requiresAuthority = false)]
 	public void LastSceneServer() => LastSceneClient();
 
-
+	IEnumerator finOption()
+	{
+		fondu.Play("fin_tour");
+		yield return new WaitForSeconds(1);
+		Options.SetActive(false);
+		Qualite.SetActive(false);
+		Accueil.SetActive(true);
+	}
 	[ClientRpc]
 	private void LastSceneClient()
 	{
-		Options.SetActive(false);
-		Qualite.SetActive(false);
+		if (Options.activeSelf)
+		{
+			deb = Options;
+			Qualite.SetActive(false);
+		}
+		else
+		{
+			deb = Qualite;
+			Options.SetActive(false);
+		}
+		
 		if(Gamer1.ready && Gamer2.ready)
 		{
 			if (Gamer1._name == "Primeur")
-				Primeur.SetActive(true);
+				fin = Primeur;
 			else if (Gamer1._name == "Libraire")
-				Librairie.SetActive(true);
+				fin = Librairie;
 			else if (Gamer1._name == "Coiffeur")
-				Coiffeur.SetActive(true);
+				fin = Coiffeur;
 			else if (Gamer1._name == "Poissonier")
-				Poissonerie.SetActive(true);
+				fin = Poissonerie;
 			else if (Gamer1._name == "Bijoutier")
-				Bijouterie.SetActive(true);
+				fin = Bijouterie;
 			else if (Gamer1._name == "Prêt à porter")
-				Vetement.SetActive(true);
+				fin = Vetement;
 			else if (Gamer1._name == "Fleuriste")
-				Fleuriste.SetActive(true);
+				fin = Fleuriste;
 			else
-				Boucherie.SetActive(true);
+				fin = Boucherie;
 			if (Gamer2._name == "Primeur")
-				Primeur.SetActive(true);
+				fin2= Primeur;
 			else if (Gamer2._name == "Libraire")
-				Librairie.SetActive(true);
+				fin2 = Librairie;
 			else if (Gamer2._name == "Coiffeur")
-				Coiffeur.SetActive(true);
+				fin2 = Coiffeur;
 			else if (Gamer2._name == "Poissonier")
-				Poissonerie.SetActive(true);
+				fin2 = Poissonerie;
 			else if (Gamer2._name == "Bijoutier")
-				Bijouterie.SetActive(true);
+				fin2 = Bijouterie;
 			else if (Gamer2._name == "Prêt à porter")
-				Vetement.SetActive(true);
+				fin2 = Vetement;
 			else if (Gamer2._name == "Fleuriste")
-				Fleuriste.SetActive(true);
+				fin2 = Fleuriste;
 			else
-				Boucherie.SetActive(true);
+				fin2 = Boucherie;
 			if (Last == Pause || Last == GameOver)
 			{
 				InfoJoueur1.SetActive(true);
@@ -362,31 +493,36 @@ public class PlayerScript : NetworkBehaviour
 				InfoJoueur2.SetActive(true);
 				InfoTour.SetActive(true);
 			}
+			StartCoroutine("attend2");
 		}
 		else if (Last != null)
 		{
-			Last.SetActive(true);
+			fin = Last;
 			if (Last == Tuto1 || Last == Tuto2)
 			{
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
-				Tuto1.SetActive(true);
-				Tuto2.SetActive(true);
+				fin = Tuto1;
+				fin2 = Tuto2;
+				StartCoroutine("attend2");
 					
 			}
+			else
+				StartCoroutine("attend");
 		}
 		else
 		{
-			Accueil.SetActive(true);
+			fin = Accueil;
+			StartCoroutine("finOption");
 		}
 		Last = null;
 	}
 	public void LastScene()
 	{
-		if (this.isServer)
-			LastSceneServer();
-		else
+		if (NetworkServer.active)
 			LastSceneClient();
+		else
+			LastSceneServer();
 	}
 	public void Exit()
     {
@@ -432,7 +568,7 @@ public class PlayerScript : NetworkBehaviour
 
     public void ExitGestion()
     {
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			if(Gamer1.ready && Gamer1._button && Gamer2.ready)
 			{
@@ -461,7 +597,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void ExitCommercial()
     {
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			if (Gamer1.ready && Gamer1._button && Gamer2.ready)
 			{
@@ -477,7 +613,7 @@ public class PlayerScript : NetworkBehaviour
     }
 	public void ExitRH()
     {
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			if (Gamer1.ready && Gamer1._button && Gamer2.ready)
 			{
@@ -568,30 +704,34 @@ public class PlayerScript : NetworkBehaviour
 	
 	public void Simple()
 	{
-		if(this.isServer)
+		if(NetworkServer.active)
 			SimpleAux();
 	}
 	[ClientRpc]
 	public void SimpleAux()
 	{
-		Difficulte.SetActive(false);
-		NonPerissable.SetActive(true);
+		deb = Difficulte;
+		fin = NonPerissable;
+		diffic = false;
+		StartCoroutine("attend");
 	}
 
 	public void Difficile()
 	{
-		if(this.isServer)
+		if(NetworkServer.active)
 			DifficileAux();
 	}
 	[ClientRpc]
 	public void DifficileAux()
 	{
-		Difficulte.SetActive(false);
-		Perissable.SetActive(true);
+		deb = Difficulte;
+		fin = Perissable;
+		diffic = false;
+		StartCoroutine("attend");
 	}
 	private void ChangementClassOponent(string s)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			OpponentClassClientRpC(s);
 		else
 			OpponentClassServerRpC(s);
@@ -643,7 +783,7 @@ public class PlayerScript : NetworkBehaviour
 	
 	public void ChangementPrimeur()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			ExitPrimeur(true);
 		else
 			ChangementPrimeurServerRpC();
@@ -677,8 +817,9 @@ public class PlayerScript : NetworkBehaviour
 			Primeur.SetActive(true);
 			if (Gamer2.ready)
 			{
-				Perissable.SetActive(false);
-				InfoTour.SetActive(true);
+				deb = Perissable;
+				fin = InfoTour;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -694,11 +835,12 @@ public class PlayerScript : NetworkBehaviour
 			Primeur.transform.Translate(new Vector3(taille/2, 0, 0));
 			if (Gamer1.ready)
 			{
-				Perissable.SetActive(false);
 				if (!pause)
-					InfoTour.SetActive(true);
+					fin = InfoTour;
 				else
-					Pause.SetActive(true);
+					fin = Pause;
+				deb = Perissable;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -707,7 +849,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void ChangementBoucherie()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			ExitBoucherie(true);
 		else
 			ChangementBoucherieServerRpC();
@@ -741,8 +883,9 @@ public class PlayerScript : NetworkBehaviour
 			Boucherie.SetActive(true);
 			if (Gamer2.ready)
 			{
-				Perissable.SetActive(false);
-				InfoTour.SetActive(true);
+				deb = Perissable;
+				fin = InfoTour;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -758,8 +901,12 @@ public class PlayerScript : NetworkBehaviour
 			Boucherie.transform.Translate(new Vector3(taille/2, 0, 0));
 			if (Gamer1.ready)
 			{
-				Perissable.SetActive(false);
-				InfoTour.SetActive(true);
+				if (!pause)
+					fin = InfoTour;
+				else
+					fin = Pause;
+				deb = Perissable;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -769,7 +916,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void ChangementLibraire()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			ExitLibraire(true);
 		else
 			ChangementLibraireServerRpC();
@@ -802,8 +949,9 @@ public class PlayerScript : NetworkBehaviour
 			Librairie.transform.Translate(new Vector3(-taille/2, 0, 0));
 			if (Gamer2.ready)
 			{
-				NonPerissable.SetActive(false);
-				InfoTour.SetActive(true);
+				deb = NonPerissable;
+				fin = InfoTour;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -819,8 +967,12 @@ public class PlayerScript : NetworkBehaviour
 			Librairie.SetActive(true);
 			if (Gamer2.ready)
 			{
-				NonPerissable.SetActive(false);
-				InfoTour.SetActive(true);
+				if (!pause)
+					fin = InfoTour;
+				else
+					fin = Pause;
+				deb = NonPerissable;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -831,7 +983,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void ChangementCoiffeur()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			ExitCoiffeur(true);
 		else
 			ChangementCoiffeurServerRpC();
@@ -865,8 +1017,9 @@ public class PlayerScript : NetworkBehaviour
 			Coiffeur.transform.Translate(new Vector3(-taille/2, 0, 0));
 			if (Gamer2.ready)
 			{
-				NonPerissable.SetActive(false);
-				InfoTour.SetActive(true);
+				deb = NonPerissable;
+				fin = InfoTour;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -881,8 +1034,12 @@ public class PlayerScript : NetworkBehaviour
 			Coiffeur.SetActive(true);
 			if (Gamer1.ready)
 			{
-				NonPerissable.SetActive(false);
-				InfoTour.SetActive(true);
+				if (!pause)
+					fin = InfoTour;
+				else
+					fin = Pause;
+				deb = NonPerissable;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -892,7 +1049,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void ChangementPoisson()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			ExitPoisson(true);
 		else
 			ChangementPoissonServerRpC();
@@ -926,8 +1083,9 @@ public class PlayerScript : NetworkBehaviour
 			Poissonerie.SetActive(true);
 			if (Gamer2.ready)
 			{
-				Perissable.SetActive(false);
-				InfoTour.SetActive(true);
+				deb = Perissable;
+				fin = InfoTour;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -945,7 +1103,12 @@ public class PlayerScript : NetworkBehaviour
 			if (Gamer1.ready)
 			{
 				Perissable.SetActive(false);
-				InfoTour.SetActive(true);
+				if (!pause)
+					fin = InfoTour;
+				else
+					fin = Pause;
+				deb = Perissable;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -955,7 +1118,7 @@ public class PlayerScript : NetworkBehaviour
 	}
 	public void ChangementBijouterie()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			ExitBijouterie(true);
 		else
 			ChangementBijouterieServerRpC();
@@ -989,8 +1152,9 @@ public class PlayerScript : NetworkBehaviour
 			Bijouterie.transform.Translate(new Vector3(-taille/2, 0, 0));
 			if (Gamer2.ready)
 			{
-				NonPerissable.SetActive(false);
-				InfoTour.SetActive(true);
+				deb = NonPerissable;
+				fin = InfoTour;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1006,8 +1170,13 @@ public class PlayerScript : NetworkBehaviour
 			Bijouterie.SetActive(true);
 			if (Gamer1.ready)
 			{
-				NonPerissable.SetActive(false);
-				InfoTour.SetActive(true);
+
+				if (!pause)
+					fin = InfoTour;
+				else
+					fin = Pause;
+				deb = NonPerissable;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1017,7 +1186,7 @@ public class PlayerScript : NetworkBehaviour
 	}
 	public void ChangementVetement()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			ExitVetement(true);
 		else
 			ChangementVetementServerRpC();
@@ -1051,8 +1220,9 @@ public class PlayerScript : NetworkBehaviour
 			Vetement.transform.Translate(new Vector3(-taille/2, 0, 0));
 			if (Gamer2.ready)
 			{
-				NonPerissable.SetActive(false);
-				InfoTour.SetActive(true);
+				deb = NonPerissable;
+				fin = InfoTour;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1068,8 +1238,13 @@ public class PlayerScript : NetworkBehaviour
 			Vetement.SetActive(true);
 			if (Gamer1.ready)
 			{
-				NonPerissable.SetActive(false);
-				InfoTour.SetActive(true);
+		
+				if (!pause)
+					fin = InfoTour;
+				else
+					fin = Pause;
+				deb = NonPerissable;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1079,7 +1254,7 @@ public class PlayerScript : NetworkBehaviour
 	}
 	public void ChangementFleur()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			ExitFleur(true);
 		else
 			ChangementFleurServerRpC();
@@ -1112,9 +1287,9 @@ public class PlayerScript : NetworkBehaviour
 			Fleuriste.SetActive(true);
 			if (Gamer2.ready)
 			{
-				Perissable.SetActive(false);
-				
-				InfoTour.SetActive(true);
+				deb = Perissable;
+				fin = InfoTour;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1131,8 +1306,12 @@ public class PlayerScript : NetworkBehaviour
 			Fleuriste.transform.Translate(new Vector3(taille/2, 0, 0));
 			if (Gamer1.ready)
 			{
-				Perissable.SetActive(false);
-				InfoTour.SetActive(true);
+				if (!pause)
+					fin = InfoTour;
+				else
+					fin = Pause;
+				deb = Perissable;
+				StartCoroutine("attend");
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1143,7 +1322,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void ExitDure(int nb)
 	{
-		if(this.isServer)
+		if(NetworkServer.active)
 			ExitDureAux(nb);
 	}
 
@@ -1151,13 +1330,15 @@ public class PlayerScript : NetworkBehaviour
 	public void ExitDureAux(int nb)
 	{
 		MaxTurn = nb;
-		ChoixTour.SetActive(false);
-		Difficulte.SetActive(true);
+		deb = ChoixTour;
+		fin = Difficulte;
+		tour2 = false;
+		StartCoroutine("attend");
 	}
 
 	public void ChoixRetour()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Retour();
 		}
@@ -1174,8 +1355,18 @@ public class PlayerScript : NetworkBehaviour
 	public void Retour()
 	{
 		float taille = Screen.width;
-		Options.SetActive(false);
-		GameOver.SetActive(false);
+		if (TextActionJoueur1.action != null)
+			TextActionJoueur1.action.text = "";
+		if (Options.activeSelf)
+		{
+			deb = Options;
+			GameOver.SetActive(false);
+		}
+		else
+		{
+			Options.SetActive(false);
+			deb = GameOver;
+		}
 		if (Gamer2 is Primeur)
 		{
 			Primeur.transform.Translate(new Vector3(-taille/2, 0, 0));
@@ -1219,7 +1410,8 @@ public class PlayerScript : NetworkBehaviour
 		InfoTour.SetActive(false);
 		InfoJoueur1.SetActive(false);
 		InfoJoueur2.SetActive(false);
-		Accueil.SetActive(true);
+		fin = Accueil;
+		StartCoroutine("attend");
 		Last = Accueil;
 		TourCount.TurnValues = 1;
 		Gamer1 = new Primeur("Primeur");
@@ -1228,26 +1420,64 @@ public class PlayerScript : NetworkBehaviour
 
 	public void AOptions()
 	{
-		Accueil.SetActive(false);
-		Qualite.SetActive(false);
-		Last = Accueil;
+		if (NetworkServer.active)
+			AOptionsServer();
+		else
+			AOptionsClient();
+	}
+
+	[Command(requiresAuthority = false)]
+	private void AOptionsClient() => AOptionsServer();
+	IEnumerator attend01()
+	{
+		fondu.Play("fin_tour");
+		yield return new WaitForSeconds(1);
 		Options.SetActive(true);
+	}
+	[ClientRpc]
+	private void AOptionsServer()
+	{
+		if(Son.activeSelf && !Qualite.activeSelf  && !Accueil.activeSelf)
+		{
+			StartCoroutine("attend01");
+		}
+		else if (Qualite.activeSelf)
+		{
+			fin = Options;
+			deb = Qualite;
+			Last = Accueil;
+			Accueil.SetActive(false);
+			StartCoroutine("attend");
+		}
+		else
+		{
+			fin = Options;
+			deb = Accueil;
+			Qualite.SetActive(false);
+			StartCoroutine("attend");
+		}
 	}
 
 	public void AQualite()
 	{
-		Options.SetActive(false);
-		Qualite.SetActive(true);
+		deb = Options;
+		fin = Qualite;
+		StartCoroutine("attend");
 	}
-
+	IEnumerator attend0()
+	{
+		fondu.Play("fin_tour");
+		yield return new WaitForSeconds(1);
+		Options.SetActive(false);
+	}
 	public void ASon()
 	{
-		Options.SetActive(false);
+		StartCoroutine("attend0");
 	}
 	public void DoButtonPass()
     {
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -1391,7 +1621,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void PerimeOpponent(int p, bool joueur1)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentPerimeClientRpC(p, joueur1);
 		}
@@ -1925,7 +2155,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void RemovePerimeOpponent(int p, bool joueur1)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentRemovePerimeClientRpC(p, joueur1);
 		}
@@ -2037,7 +2267,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void RemovePerimeOpponentR(int p, bool joueur1)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentRemovePerimeClientRpCR(p, joueur1);
 		}
@@ -2230,7 +2460,7 @@ public class PlayerScript : NetworkBehaviour
     }
 	public void Vente(bool joueur1, double price, double quali)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			VenteClientRpC(joueur1, price, quali);
 		else
 			VenteServerRpC(joueur1, price, quali);
@@ -2264,7 +2494,7 @@ public class PlayerScript : NetworkBehaviour
 	}
 	public void CooefficientOpponent(bool joueur1, double attract, double sum, double benef)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			CooefficientOpponentClientRpC(joueur1, attract, sum, benef);
 		}
@@ -2298,7 +2528,7 @@ public class PlayerScript : NetworkBehaviour
 	}
 	public void RetourOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			RetourOpponentClientRpC();
 		}
@@ -2334,7 +2564,7 @@ public class PlayerScript : NetworkBehaviour
 	}
 	public void RetraitOpponent(double sum, bool joueur1)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			RetraitOpponentClientRpC(sum, joueur1);
 		}
@@ -2368,7 +2598,7 @@ public class PlayerScript : NetworkBehaviour
 	}
 	public void AjoutOpponent(double sum, bool joueur1)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			AjoutOpponentClientRpC(sum, joueur1);
 		}
@@ -2475,7 +2705,7 @@ public class PlayerScript : NetworkBehaviour
 	}
 	public void LessPriceOpponent(int p)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentLPriceClientRpC(p);
 		}
@@ -2556,7 +2786,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void MorePriceOpponent(int p)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentMPriceClientRpC(p);
 		}
@@ -2611,7 +2841,7 @@ public class PlayerScript : NetworkBehaviour
 	public void MoreApro(int n)
 	{
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -2676,7 +2906,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void MoreAproOpponent(int p)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentAproClientRpC(p);
 		}
@@ -2813,7 +3043,7 @@ public class PlayerScript : NetworkBehaviour
 	public void MoreQuali(int p)
 	{
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -2839,7 +3069,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void MoreQualiOpponent(int p)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentQualiClientRpC(p);
 		}
@@ -2896,7 +3126,7 @@ public class PlayerScript : NetworkBehaviour
 	public void Promotion()
     {
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -2913,7 +3143,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void PromoOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentPromoClientRpC();
 		}
@@ -2951,7 +3181,7 @@ public class PlayerScript : NetworkBehaviour
     public void Employe()
     {
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -2965,7 +3195,7 @@ public class PlayerScript : NetworkBehaviour
     }
 	public void EmployeOpponent(double p)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentEmployeClientRpC(p);
 		}
@@ -2987,7 +3217,7 @@ public class PlayerScript : NetworkBehaviour
 	public void Pub()
     {
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -2997,7 +3227,7 @@ public class PlayerScript : NetworkBehaviour
     }
 	public void pubOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentPubClientRpC();
 		}
@@ -3023,7 +3253,7 @@ public class PlayerScript : NetworkBehaviour
 	public void Salaire()
 	{
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -3033,7 +3263,7 @@ public class PlayerScript : NetworkBehaviour
 	}
 	public void salaireOpponent(double p)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentsalaireClientRpC(p);
 		}
@@ -3060,7 +3290,7 @@ public class PlayerScript : NetworkBehaviour
 	public void Carte()
     {
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -3070,7 +3300,7 @@ public class PlayerScript : NetworkBehaviour
     }
 	public void carteOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentcarteClientRpC();
 		}
@@ -3096,7 +3326,7 @@ public class PlayerScript : NetworkBehaviour
     public void Magasin()
     {
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -3119,7 +3349,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void magasinOpponent(double p)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentmagasinClientRpC(p);
 		}
@@ -3160,7 +3390,7 @@ public class PlayerScript : NetworkBehaviour
 	public void Cadeau()
     {
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -3171,7 +3401,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void cadeauOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentcadeauClientRpC();
 		}
@@ -3198,7 +3428,7 @@ public class PlayerScript : NetworkBehaviour
 	public void Prime()
 	{
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -3209,7 +3439,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void primeOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentprimeClientRpC();
 		}
@@ -3236,7 +3466,7 @@ public class PlayerScript : NetworkBehaviour
 	public void AMateriel1()
     {
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -3250,7 +3480,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void MoreMateriel1Opponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentMateriel1ClientRpC();
 		}
@@ -3285,7 +3515,7 @@ public class PlayerScript : NetworkBehaviour
    public void AMateriel(int p)
    {
 	  PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -3299,7 +3529,7 @@ public class PlayerScript : NetworkBehaviour
 
    public void MoreMaterielAOpponent(int p)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentMaterielAClientRpC(p);
 		}
@@ -3335,7 +3565,7 @@ public class PlayerScript : NetworkBehaviour
    public void MaterielG(int p)
 	{
 		PlayerClass gamer;
-		if (this.isServer)
+		if (NetworkServer.active)
 			gamer = Gamer1;
 		else
 			gamer = Gamer2;
@@ -3366,7 +3596,7 @@ public class PlayerScript : NetworkBehaviour
 
 	public void MoreMaterielGOpponent(int p)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			OpponentMaterielGClientRpC(p);
 		}

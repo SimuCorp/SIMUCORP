@@ -34,6 +34,8 @@ public class TextActionJoueur1 : NetworkBehaviour
 	public static double NbSalaire1;
 	public static double NbSalaire2;
 	public static double Collision;
+	public static bool multi;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -51,33 +53,53 @@ public class TextActionJoueur1 : NetworkBehaviour
 		TotalVente2 = 0;
 		NbSalaire1 = 0;
 		NbSalaire2 = 0;
+		multi = NetworkServer.connections.Count == 2;
     }
-
+	IEnumerator pause()
+	{
+		CalCulus(true);
+		yield return new WaitForSeconds(0.5f);
+		CalCulus(false);
+		yield return new WaitForSeconds(0.5f);
+		up();
+		
+	}
+	[ClientRpc]
+	public void up()
+	{
+		Gamer1._turn = true;
+		Gamer2._turn = true;
+		Gamer1._button = true;
+		Gamer2._button = true;
+	}
     // Update is called once per frame
     void Update()
     {	
 		double x = Text_action.transform.position.x;
 		double x2 = Screen.width/2;
+		if (multi && NetworkServer.connections.Count == 1)
+		{
+			multi = false;
+			AI = new IntelligenceArtificielle();
+		}
 		if (FinDeTour.activeSelf && Gamer1.TimeLeft < 120)
 		{
 			FinDeTour.SetActive(false);
 			Compteur1.SetActive(true);
 			Compteur2.SetActive(true);
-			move = true;
 		}
-
 			PlayerClass gamer;
-			if (this.isServer)
+			if (NetworkServer.active)
 				gamer = Gamer1;
 			else
 				gamer = Gamer2;
-			move = action.text == "" && gamer._button && !PlayerScript.pause && !FinDeTour.activeSelf;
-			if (Gamer1.TimeLeft <= 0 && this.isServer)
+			Player1Script.move = action.text == "" && gamer._button && !PlayerScript.pause && !FinDeTour.activeSelf;
+			if (Gamer1.TimeLeft <= 0 && NetworkServer.active)
             {
 				action.text = "";
                 if (Gamer1._button && Gamer2._button)
                 {
-					CalCulus(true);
+					
 					/*
 					bool verif2 = GameOver.activeSelf;
 					double money = Gamer1._money;
@@ -94,7 +116,9 @@ public class TextActionJoueur1 : NetworkBehaviour
 					if(NetworkServer.connections.Count == 2)
 						calcul(true, res_Vente1, res_TotalVente1, sum2, res_diff1, last_money, res_Quantity1, last_quantite, last_attrat, money, verif2);
 					*/
-					CalCulus(false);
+					StartCoroutine("pause");
+					
+							
 					/*
 					verif2 = GameOver.activeSelf;
 					money = Gamer2._money;
@@ -153,9 +177,10 @@ public class TextActionJoueur1 : NetworkBehaviour
 						calcul(true, res_Vente1, res_TotalVente1, sum2, res_diff1, last_money, res_Quantity1, last_quantite, last_attrat, money, verif2);
 						*/
                 }
+				musique();
             }
 			if (action.text.Length != 0)
-				ChangementText(Player1Script.act, this.isServer);
+				ChangementText(Player1Script.act, NetworkServer.active);
 			if (Input.GetKeyDown(KeyCode.Backspace))
 			{
 				Player1Script.move = gamer._button && Gamer1.TimeLeft < 120;
@@ -209,7 +234,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 				string item = gamer._items[Player1Script.act];
 				if (Input.GetKeyDown(KeyCode.Return))
 				{
-					MoreAproOpponent(item);
+					MoreAproOpponent(item, Player1Script.act);
 					if (action.color == Color.green)
 					{
 						audio.Play();
@@ -403,17 +428,32 @@ public class TextActionJoueur1 : NetworkBehaviour
 				if (Input.GetKeyDown(KeyCode.Return))
 				{
 					OpponentCalcul();
+					FinTour.Play();
 					action.text = "";
 					//Player1Script.move = !end;
 				}
 			}
 			else
 			{
-				ChangementText(Player1Script.act, this.isServer);
+				ChangementText(Player1Script.act, NetworkServer.active);
 			}
 	
 	
 	}
+
+	private void musique()
+	{
+		if (NetworkServer.active)
+			PlayServer();
+		else
+			PlayClient();
+	}
+
+	[Command(requiresAuthority = false)]
+	private void PlayClient() => PlayServer();
+
+	[ClientRpc]
+	private void PlayServer() => FinTour.Play();
 
 	public  void ChangementText(int n, bool verif)
     {
@@ -470,7 +510,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void MoreMaterielAOpponent(int p)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			AMateriel(p, true);
 		}
@@ -504,7 +544,7 @@ public class TextActionJoueur1 : NetworkBehaviour
    
 	public void MoreMaterielGOpponent(int p, string s)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			MaterielG(p, s, true);
 		}
@@ -547,23 +587,23 @@ public class TextActionJoueur1 : NetworkBehaviour
 		}
 	}
 
-	public void MoreAproOpponent(string item)
+	public void MoreAproOpponent(string item, int el)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
-			MoreApro(item, true);
+			MoreApro(item, true, el);
 		}
 		else
 		{
-			OpponentAproServerRpC(item);
+			OpponentAproServerRpC(item, el);
 		}
 	}
 
 	[Command(requiresAuthority = false)]
-	private void OpponentAproServerRpC(string item) => MoreApro(item, false);
+	private void OpponentAproServerRpC(string item, int el) => MoreApro(item, false, el);
 
 	[ClientRpc]
-	public void MoreApro(string item, bool joueur)
+	public void MoreApro(string item, bool joueur, int el)
 	{
 		PlayerClass gamer;
 		if (joueur)
@@ -571,10 +611,10 @@ public class TextActionJoueur1 : NetworkBehaviour
 		else
 			gamer = Gamer2;
 		(int i, double j, bool b, double d, int k)= gamer._marchandise[item];
-		if (b && gamer.AddMoney(-gamer.prix[Player1Script.act]*5))
+		if (b && gamer.AddMoney(-gamer.prix[el]*5))
 		{
 			gamer._marchandise[item] = (i+5, j, b, d, k);
-			switch (Player1Script.act+1)
+			switch (el+1)
 			{
 				case 1:
 					gamer.More1 += 5;
@@ -617,7 +657,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 	}
 	public void MorePriceOpponent(string item)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			MorePrice(item, true);
 		}
@@ -644,7 +684,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 	}
 	public void LessPriceOpponent(string item)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			LessPrice(item, true);
 		}
@@ -675,7 +715,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void MoreQualiOpponent(string item)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			MoreQuali(item, true);
 		}
@@ -704,7 +744,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void EmployeOpponent(bool verif)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Employe(verif, true);
 		}
@@ -739,7 +779,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void salaireOpponent(bool verif)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Salaire(verif, true);
 		}
@@ -777,7 +817,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void magasinOpponent(bool verif)
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Magasin(verif, true);
 		}
@@ -814,7 +854,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void primeOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Prime(true);
 		}
@@ -840,7 +880,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void PromoOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Promotion(true);
 		}
@@ -878,7 +918,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void carteOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Carte(true);
 		}
@@ -906,7 +946,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void cadeauOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Carte(true);
 		}
@@ -934,7 +974,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void pubOpponent()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Pub(true);
 		}
@@ -961,11 +1001,11 @@ public class TextActionJoueur1 : NetworkBehaviour
 
 	public void OpponentCalcul()
 	{
-			CalCulus(this.isServer);
+			CalCulus(NetworkServer.active);
 
 		/*
 		bool verif2 = GameOver.activeSelf;
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 				CalCulus(true);
 				double money = Gamer1._money;
@@ -1121,8 +1161,10 @@ public class TextActionJoueur1 : NetworkBehaviour
 				 gamer._stat["Attractivité"] *= attract;
 				 gamer.sum *= benef;
 	}
+
 	[Command(requiresAuthority = false)]
 	public void AchatProduitCommand(int key) => AchatProduitClient(false, key);
+
 	[ClientRpc]
 	public void AchatProduitClient(bool joueur, int key)
 	{
@@ -1141,7 +1183,25 @@ public class TextActionJoueur1 : NetworkBehaviour
 			gamer.sum += price + 0.1*price*(quali-1);
 	}
 	[Command(requiresAuthority = false)]
+	public void TurnClient() => Turn(false);
+
+	[ClientRpc]
+	public void Turn(bool verif)
+	{
+		if (verif)
+		{
+			Gamer1._turn = false;
+			Gamer1._button = false;
+		}
+		else
+		{
+			Gamer2._turn = false;
+			Gamer2._button = false;
+		}
+	}
+	[Command(requiresAuthority = false)]
 	public void FinaliteCommand() => Finalite(false);
+
 	[ClientRpc]
 	public void Finalite(bool joueur)
 	{
@@ -1201,8 +1261,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 			Gamer1.last_quantite = Gamer1.quantite;
 			
 			Gamer1.last_attrat = Gamer1._stat["Attractivité"];
-			
-			
+			FinTour.Play();
 			TourCount.AddTurn("");
 			Compteur1.SetActive(false);
 			Compteur2.SetActive(false);
@@ -1213,7 +1272,6 @@ public class TextActionJoueur1 : NetworkBehaviour
 			if (!(TourCount.TurnValues > TourCount.MaxTurn) && NetworkServer.connections.Count == 1)
 				AI.Act10();
 		}
-		FinTour.Play();
 		if (TourCount.TurnValues > TourCount.MaxTurn || b)
 		{
 			Player1Script.move = false;
@@ -1240,6 +1298,10 @@ public class TextActionJoueur1 : NetworkBehaviour
 		bool end = true;
         if (gamer._turn)
         {
+			if(NetworkServer.active)
+				Turn(verif);
+			else
+				TurnClient();
 			gamer._turn = false;
             for (int i = 0; i < nb_client*(gamer._stat["Magasin"]); ++i)
             {
@@ -1252,8 +1314,8 @@ public class TextActionJoueur1 : NetworkBehaviour
 						(int Quantity, double price, bool possible, double quali, int tour) = gamer._marchandise[gamer._items[key]];
 						if (Quantity > 0)
 						{
-							if(this.isServer)
-								AchatProduitClient(true, key);
+							if(NetworkServer.active)
+								AchatProduitClient(verif, key);
 							else
 								AchatProduitCommand(key);
 						}
@@ -1262,21 +1324,21 @@ public class TextActionJoueur1 : NetworkBehaviour
             }
 			if (TourCount.TurnValues % 4 == 0)
           	{
-				  if(this.isServer)
-					ImpactEvenementClient(true);
+				  if(NetworkServer.active)
+					ImpactEvenementClient(verif);
 				  else
 					ImpactEvenementCommand();
           	}
 
 			for (int i = 0; i < 12; ++i)
 			{
-				if(this.isServer)
-					Perime(true, i);
+				if(NetworkServer.active)
+					Perime(verif, i);
 				else
 					PerimeCommand(i);
 			}
-			if(this.isServer)
-				Finalite(true);
+			if(NetworkServer.active)
+				Finalite(verif);
 			else
 				FinaliteCommand();
         }
@@ -1288,6 +1350,7 @@ public class TextActionJoueur1 : NetworkBehaviour
     }
 	[Command(requiresAuthority = false)]
 	public void PerimeCommand(int key) => Perime(false, key);
+
 	[ClientRpc]
 	public void Perime(bool joueur, int key)
 	{

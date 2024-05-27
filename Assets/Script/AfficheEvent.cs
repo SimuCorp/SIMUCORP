@@ -53,6 +53,10 @@ public class AfficheEvent : NetworkBehaviour
         }
         else
         {
+    
+            if (!NetworkServer.active && texte == null)
+                texte = GetComponent<Text>();
+   
             texte.text = "";
             rentre = true;
             image.SetActive(false);
@@ -65,12 +69,12 @@ public class AfficheEvent : NetworkBehaviour
     void Update()
     {
 
-        if (!this.isServer && TourCount.TurnValues%4 >= 1)
+        if (!NetworkServer.active && TourCount.TurnValues%4 >= 1)
         {
             string event1 = PlayerScript.evenement._eventComing[TourCount.TurnValues/4];
             Transfert(event1);
         }
-        if (this.isServer)
+        if (NetworkServer.active)
             Affiche();
         else
             AfficheCommand();

@@ -35,7 +35,7 @@ public class Pret_a_porter : PlayerClass
        for (int i = 0; i < 6; ++i)
           _items.Add("NaN");
         _missingitems = new List<string> { "Robe", "Jean", "Manteau", "Chemisier", "Veste en cuir", "Costume"};
-        materiel = new List<string> { "tableau de promotion", "Pressinge", "Retouche", "nouveaux vêtements" };
+        materiel = new List<string> { "tableau de promotion", "Pressing", "Retouche", "nouveaux vêtements" };
         prix = new List<double> {10, 26.67, 20, 9.33, 13.33, 30.00, 20.00, 30, 133.67, 8.00, 220, 240};
        Perime1 = new List<int> {200};
        Perime2 = new List<int> {200};

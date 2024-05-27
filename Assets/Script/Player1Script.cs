@@ -28,7 +28,8 @@ public class Player1Script : NetworkBehaviour
     public double last_x;
     public double last_y;
     public double timecol;
- 
+    public float angle;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +43,7 @@ public class Player1Script : NetworkBehaviour
         amelioration2 = true;
         act = 0;
         collision = GetComponent<AudioSource>();
-
+        angle = 0;
         timecol = 130;
     }
 
@@ -57,18 +58,18 @@ public class Player1Script : NetworkBehaviour
         {
 
         }
-        else if (move)
+        else if (move && !PlayerScript.pause)
         {   
             double vert = Input.GetAxis("Vertical");
             last_y = vert;
             double hori = Input.GetAxis("Horizontal");
             last_x = hori;
-            if (this.isServer && x <= x2)
+            if (NetworkServer.active && x <= x2)
             {
                 
                     OpponentMove(vert, hori);
             }
-            else if (!this.isServer && x >= x2)
+            else if (!NetworkServer.active && x >= x2)
             {
                 OpponentMoveServerRpc(vert, hori);
             }
@@ -104,8 +105,57 @@ public class Player1Script : NetworkBehaviour
 	[ClientRpc]
 	private void OpponentMove(double x, double x2)
     {
-            transform.Translate(Vector3.up * 50f * Time.fixedDeltaTime * (float)x * Screen.height/385);
-            transform.Translate(Vector3.right * 50f * Time.fixedDeltaTime * (float)x2  * Screen.width/720);
+        /*
+            if (x < 0)
+            {
+                if (x2 == 0)
+                {
+                    transform.Rotate(new Vector3(0, 0, -angle));
+                    angle = 0;
+                }
+                else if (x2 > 0)
+                {
+                    transform.Rotate(new Vector3(0, 0, 45-angle));
+                    angle = 45;
+                }
+                else
+                {
+                    transform.Rotate(new Vector3(0, 0, -45-angle));
+                    angle = -45;
+                }
+
+            }
+            else if (x < 0)
+            {
+                if (x2 == 0)
+                {
+                    transform.Rotate(new Vector3(0, 0, 180-angle));
+                    angle = 180;
+                }
+                else if (x2 > 0)
+                {
+                    transform.Rotate(new Vector3(0, 0, 135-angle));
+                    angle = 135;
+                }
+                else
+                {
+                    transform.Rotate(new Vector3(0, 0, 225-angle));
+                    angle = 225;
+                }
+            }
+            else if (x2 > 0)
+            {
+                transform.Rotate(new Vector3(0, 0, 90-angle));
+                angle = 90;
+            }
+            else if (x2 < 0)
+            {
+                transform.Rotate(new Vector3(0, 0, -90-angle));
+                angle = -90;
+            }
+            */
+            transform.Translate(Vector3.up * 50f * Time.fixedDeltaTime * (float)x * Screen.height/600);
+            transform.Translate(Vector3.right * 50f * Time.fixedDeltaTime * (float)x2  * Screen.width/800);
     }
 
     [Command(requiresAuthority = false)]
@@ -118,32 +168,32 @@ public class Player1Script : NetworkBehaviour
         double y = collision.gameObject.transform.position.y;
         if  (collision.gameObject.name ==  "mur_bas")  
         {
-            transform.Translate(new Vector2(0,1) * 30 * Screen.height/385);
+            transform.Translate(new Vector2(0,1) * 30 * Screen.height/600);
         }
         else if  (collision.gameObject.name ==  "mur_haut")  
         {
-            transform.Translate(new Vector2(0,-1) * 30 * Screen.height/385);
+            transform.Translate(new Vector2(0,-1) * 30 * Screen.height/600);
         }
         else if  (collision.gameObject.name ==  "mur_droite")  
         {
-            transform.Translate(new Vector2(-1,0) * 30 * Screen.width/720);
+            transform.Translate(new Vector2(-1,0) * 30 * Screen.width/800);
         }
         else if  (collision.gameObject.name ==  "mur_gauche" )  
         {
-            transform.Translate(new Vector2(1,0) * 30 * Screen.width/720);
+            transform.Translate(new Vector2(1,0) * 30 * Screen.width/800);
         }
         else
         {
             double x2 = Joueur.transform.position.x;
             double y2 = Joueur.transform.position.y;
             if (last_y < 0)
-                transform.Translate(new Vector2(0,1) * 1 * Screen.height/385);
+                transform.Translate(new Vector2(0,1) * 5 * Screen.height/600);
             if (last_y > 0)
-                transform.Translate(new Vector2(0,-1) * 1 * Screen.height/385);
+                transform.Translate(new Vector2(0,-1) * 5 * Screen.height/600);
             if (last_x < 0)
-                transform.Translate(new Vector2(1,0) * 1 * Screen.width/720);
+                transform.Translate(new Vector2(1,0) * 5 * Screen.width/800);
             if (last_x > 0)
-                transform.Translate(new Vector2(-1,0) * 1 * Screen.width/720);
+                transform.Translate(new Vector2(-1,0) * 5 * Screen.width/800);
                 
         }
     }
@@ -151,7 +201,7 @@ public class Player1Script : NetworkBehaviour
     void OnCollisionEnter2D (Collision2D collision)
     {
         timecol = Gamer1.TimeLeft;
-        if (this.isServer)
+        if (NetworkServer.active)
             CollisionClient();
         else
             CollisionServer();
@@ -160,13 +210,13 @@ public class Player1Script : NetworkBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerClass gamer;
-        if (this.isServer)
+        if (NetworkServer.active)
             gamer = Gamer1;
         else
             gamer = Gamer2;
         double x = Joueur.transform.position.x;
 		double x2 = Screen.width/2;
-        if (this.isServer == (x <= x2))
+        if (NetworkServer.active == (x <= x2))
         {
             if (other.gameObject.CompareTag("amelioration1") && amelioration1)
             {
@@ -436,7 +486,35 @@ public class Player1Script : NetworkBehaviour
             gamer = Gamer1;
         else
             gamer = Gamer2;
-        if (gamer._items[n] != "NaN")
+        if ((TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.UpArrow)))
+            TextActionJoueur1.action.text = $"< Salaire : {gamer._stat["Salaire"]} $ >";
+        else if ((TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.UpArrow)))
+            TextActionJoueur1.action.text = $"< Nombre de magasins : {gamer._stat["Magasin"]} >";
+        else if ((TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.UpArrow)))
+            TextActionJoueur1.action.text = "Prime : 1000 $/employé";
+        else if ((TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            TextActionJoueur1.action.text = "Cartes de fidélité : 100 $";
+        }
+        else if ((TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            TextActionJoueur1.action.text = "Cadeaux : 500 $";
+        }
+        else if ((TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            TextActionJoueur1.action.text = "Publicité : 1000 $";
+        }
+        else if ((TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.DownArrow)) ||(TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            TextActionJoueur1.action.text = $"< Nombre d'employés : {gamer._stat["Employé"]} >";
+            TextActionJoueur1.action.color = Color.green;
+        }
+        else if ((TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            TextActionJoueur1.action.text = "Finir son tour";
+            TextActionJoueur1.action.color = Color.green;
+        }
+        else if (gamer._items[n] != "NaN")
         {
             (int m, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[n]];
             if ((TextActionJoueur1.action.text.Contains("Quantité de") 
@@ -450,34 +528,6 @@ public class Player1Script : NetworkBehaviour
                 TextActionJoueur1.action.text = "Quantité de " + gamer._items[n] + $" : {m}";
 
             }
-            else if ((TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.UpArrow)))
-                TextActionJoueur1.action.text = $"< Salaire : {gamer._stat["Salaire"]} $ >";
-            else if ((TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.UpArrow)))
-                TextActionJoueur1.action.text = $"< Nombre de magasins : {gamer._stat["Magasin"]} >";
-            else if ((TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.UpArrow)))
-                TextActionJoueur1.action.text = "Prime : 1000 $/employé";
-            else if ((TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.UpArrow)))
-            {
-                TextActionJoueur1.action.text = "Cartes de fidélité : 100 $";
-            }
-            else if ((TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.UpArrow)))
-            {
-                TextActionJoueur1.action.text = "Cadeaux : 500 $";
-            }
-            else if ((TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.UpArrow)))
-            {
-                TextActionJoueur1.action.text = "Publicité : 1000 $";
-            }
-            else if ((TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.DownArrow)) ||(TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.UpArrow)))
-            {
-                TextActionJoueur1.action.text = $"< Nombre d'employés : {gamer._stat["Employé"]} >";
-                TextActionJoueur1.action.color = Color.green;
-            }
-             else if ((TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.UpArrow)))
-             {
-                 TextActionJoueur1.action.text = "Finir son tour";
-                 TextActionJoueur1.action.color = Color.green;
-             }
         }
             
     }

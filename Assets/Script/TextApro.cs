@@ -23,7 +23,7 @@ public class TextApro : NetworkBehaviour
         int i = 1;
         string res = "";
         PlayerClass g;
-        if (this.isServer)
+        if (NetworkServer.active)
             g = PlayerScript.Gamer1;
         else
             g = PlayerScript.Gamer2;

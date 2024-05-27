@@ -145,6 +145,8 @@ public class IntelligenceArtificielle : NetworkBehaviour
 	}
 	public static void DoAction()
 	{
+		if(!metier._turn)
+			return;
 		if (act == 10 && NetworkServer.connections.Count == 1)
 	    {
 		    last_money = metier._money;

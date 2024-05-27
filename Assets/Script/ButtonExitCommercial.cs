@@ -8,10 +8,31 @@ using static MoneyCount;
 using static TourCount;
 using static IntelligenceArtificielle;
 using static PlayerScript;
+
 public class ButtonExitCommercial : NetworkBehaviour 
 {
 	public static bool changement = false;
 	public static bool changement2 = false;
+	public Animator anim;
+	IEnumerator pause()
+	{
+        anim.Play("fin_tour");
+        yield return new WaitForSeconds(1);
+		SceneManager.LoadScene("Credit");
+	}
+	public void Credit()
+	{
+		if (NetworkServer.active)
+			CreditServer();
+		else
+			CreditClient();
+	}
+	[Command(requiresAuthority = false)]
+	public void CreditClient() => CreditServer();
+	[ClientRpc]
+	public void CreditServer(){
+		StartCoroutine("pause");
+	}
 
     public void Exit()
     {
@@ -142,7 +163,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 	
 	public void ExitAccueil()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 			OpponentAccueilClientRpc();
 		else
 			OpponentAccueilServer();
@@ -172,7 +193,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitPrimeur()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Primeur("Primeur");
 			if (!(multijoueur))
@@ -195,7 +216,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitBoucherie()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Boucherie("Boucher");
 			if (!(multijoueur))
@@ -218,7 +239,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitLibraire()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Libraire("Libraire");
 			if (!(multijoueur))
@@ -241,7 +262,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitCoiffeur()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Coiffeur("Coiffeur");
 			if (!(multijoueur))
@@ -264,7 +285,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitPoisson()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Poissonier("Poissonier");
 			if (!(multijoueur))
@@ -287,7 +308,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitBijouterie()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Bijouterie("Bijoutier");
 			if (!(multijoueur))
@@ -310,7 +331,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitVetement()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Pret_a_porter("Prêt à porter");
 			if (!(multijoueur))
@@ -333,7 +354,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 
 	public void ExitFleur()
 	{
-		if (this.isServer)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Fleuriste("Fleuriste");
 			if (!(multijoueur))
@@ -413,7 +434,7 @@ public class ButtonExitCommercial : NetworkBehaviour
 	public void NewButton()
     {
         PlayerClass gamer;
-        if (this.isServer)
+        if (NetworkServer.active)
             gamer = Gamer1;
         else
             gamer = Gamer2;

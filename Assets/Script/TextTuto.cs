@@ -23,6 +23,7 @@ public class TextTuto : NetworkBehaviour
     [SerializeField] private GameObject Money1;
 	[SerializeField] private GameObject Money2;
     [SerializeField] private GameObject Accueil;
+    public Animator fondu;
     public static List<string> Script = new List<string> {
         "Bienvenue dans notre tutoriel. Pour commencer, réapprovisionnez votre magasin. Pour ce faire, touchez une case contenant un produit, puis seléctionner avec les flèches du haut et du bas l'onglet quantité, et enfin appuyer sur entrer pour réaliser l'action souhaitée. Attention certains objets ne sont pas directement à votre disposition. Cependant vous pourrez les achetés en cours de partie.",
         "Bien, de plus vous pouvez aussi modifier le prix et qualité de vos produits. Pour changer d'options, utilisez les flèches verticales. Attention, appuyer sur entrer sur un menu contenant des flèches ne modifira pas la statistique correspondante. A la place appuyez sur les flèches latérales. Attention, en mode difficile vos produits périmeront tout les 3 tours.",
@@ -45,21 +46,29 @@ public class TextTuto : NetworkBehaviour
         Info = GetComponent<Text>();
         double x = Info.transform.position.x;
 		double x2 = Screen.width/2;
-        //if (!this.isServer || x <= x2)
+        //if (!NetworkServer.active || x <= x2)
             Info.text = Script[0];
         /*
         else
             Info.text = "";
         */
     }
-
+    IEnumerator attend2()
+    {
+        fondu.Play("fin_tour");
+        yield return new WaitForSeconds(1);
+        Tuto1.SetActive(false);
+        Tuto2.SetActive(false);
+		Accueil.SetActive(true);
+ 
+    }
     // Update is called once per frame
     void Update()
     {
         double x = Info.transform.position.x;
 		double x2 = Screen.width/2;
         PlayerClass gamer;
-        if (this.isServer)
+        if (NetworkServer.active)
             gamer = Gamer1;
         else
             gamer = Gamer2;
@@ -162,11 +171,9 @@ public class TextTuto : NetworkBehaviour
                 }
                 if(TourCount.TurnValues >= 2)
                 {
-                    Tuto1.SetActive(false);
-                    Tuto2.SetActive(false);
                     Money1.SetActive(false);
                     Money2.SetActive(false);
-                    Accueil.SetActive(true);
+                    StartCoroutine("attend2");
                     Gamer1 = new Primeur("Primeur");
 	                Gamer2 = new Boucherie("Boucher");
                     TourCount.TurnValues = 1;

@@ -66,7 +66,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("ReglageG");
     }
     
-    public void Quitter()
+    public static void Quitter()
     {
         Application.Quit();
     }

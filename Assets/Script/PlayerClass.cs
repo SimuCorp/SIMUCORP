@@ -85,7 +85,7 @@ public class PlayerClass : MonoBehaviour
 		More11 = 0;
 		More12 = 0;
 
-		TimeLeft = 120;
+		TimeLeft = 120.9999f;
 		nbCount = 1;
 		ready = false;
 		sum = 0;
