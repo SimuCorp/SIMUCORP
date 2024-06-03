@@ -19,6 +19,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 	public GameObject Text_action;
 	public bool end;
 	[SerializeField] private GameObject GameOver;
+	[SerializeField] private GameObject Faillite;
 	[SerializeField] private GameObject FinDeTour;
 	[SerializeField] private GameObject ElementTour;
 	[SerializeField] private GameObject Compteur1;
@@ -35,6 +36,8 @@ public class TextActionJoueur1 : NetworkBehaviour
 	public static double NbSalaire2;
 	public static double Collision;
 	public static bool multi;
+	public static bool faill1;
+	public static bool faill2;
 	
     // Start is called before the first frame update
     void Start()
@@ -47,6 +50,8 @@ public class TextActionJoueur1 : NetworkBehaviour
 		Vente2 = 0;
 		diff1 = 0;
 		diff2 = 0;
+		faill1 = false;
+		faill2 = false;
 		Quantity1 = 0;
 		Quantity2 = 0;
 		TotalVente1 = 0;
@@ -77,6 +82,15 @@ public class TextActionJoueur1 : NetworkBehaviour
     {	
 		double x = Text_action.transform.position.x;
 		double x2 = Screen.width/2;
+		if (faill1 || faill2)
+		{
+			ElementTour.SetActive(false);
+			Faillite.SetActive(true);
+			FinDeTour.SetActive(false);
+			Compteur1.SetActive(false);
+			Compteur2.SetActive(false);
+			Gamer1.TimeLeft = 130;
+		}
 		if (multi && NetworkServer.connections.Count == 1)
 		{
 			multi = false;
@@ -93,7 +107,7 @@ public class TextActionJoueur1 : NetworkBehaviour
 				gamer = Gamer1;
 			else
 				gamer = Gamer2;
-			Player1Script.move = action.text == "" && gamer._button && !PlayerScript.pause && !FinDeTour.activeSelf;
+			Player1Script.move = action.text == "" && gamer._button && !PlayerScript.pause && !FinDeTour.activeSelf && !Faillite.activeSelf && !GameOver.activeSelf;
 			if (Gamer1.TimeLeft <= 0 && NetworkServer.active)
             {
 				action.text = "";
@@ -462,7 +476,35 @@ public class TextActionJoueur1 : NetworkBehaviour
             gamer = Gamer1;
         else
             gamer = Gamer2;
-        if (gamer._items[n] != "NaN")
+		if ((TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.UpArrow)))
+            TextActionJoueur1.action.text = $"< Salaire : {gamer._stat["Salaire"]} $ >";
+        else if ((TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.UpArrow)))
+            TextActionJoueur1.action.text = $"< Nombre de magasins : {gamer._stat["Magasin"]} >";
+        else if ((TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.UpArrow)))
+            TextActionJoueur1.action.text = "Prime : 1000 $/employé";
+        else if ((TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            TextActionJoueur1.action.text = "Cartes de fidélité : 100 $";
+        }
+        else if ((TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            TextActionJoueur1.action.text = "Cadeaux : 500 $";
+        }
+        else if ((TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            TextActionJoueur1.action.text = "Publicité : 1000 $";
+        }
+        else if ((TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.DownArrow)) ||(TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            TextActionJoueur1.action.text = $"< Nombre d'employés : {gamer._stat["Employé"]} >";
+            TextActionJoueur1.action.color = Color.green;
+        }
+            else if ((TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.UpArrow)))
+            {
+                TextActionJoueur1.action.text = "Finir son tour";
+                TextActionJoueur1.action.color = Color.green;
+            }
+        else if (gamer._items[n] != "NaN")
         {
             (int m, double j, bool b, double d, int k)= gamer._marchandise[gamer._items[n]];
             if ((TextActionJoueur1.action.text.Contains("Quantité de") 
@@ -476,34 +518,6 @@ public class TextActionJoueur1 : NetworkBehaviour
                 TextActionJoueur1.action.text = "Quantité de " + gamer._items[n] + $" : {m}";
 
             }
-            else if ((TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.UpArrow)))
-                TextActionJoueur1.action.text = $"< Salaire : {gamer._stat["Salaire"]} $ >";
-            else if ((TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.UpArrow)))
-                TextActionJoueur1.action.text = $"< Nombre de magasins : {gamer._stat["Magasin"]} >";
-            else if ((TextActionJoueur1.action.text.Contains("magasins") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.UpArrow)))
-                TextActionJoueur1.action.text = "Prime : 1000 $/employé";
-            else if ((TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.UpArrow)))
-            {
-                TextActionJoueur1.action.text = "Cartes de fidélité : 100 $";
-            }
-            else if ((TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Publicité") && Input.GetKeyDown(KeyCode.UpArrow)))
-            {
-                TextActionJoueur1.action.text = "Cadeaux : 500 $";
-            }
-            else if ((TextActionJoueur1.action.text.Contains("Cadeaux") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Cartes") && Input.GetKeyDown(KeyCode.UpArrow)))
-            {
-                TextActionJoueur1.action.text = "Publicité : 1000 $";
-            }
-            else if ((TextActionJoueur1.action.text.Contains("Prime") && Input.GetKeyDown(KeyCode.DownArrow)) ||(TextActionJoueur1.action.text.Contains("Finir") && Input.GetKeyDown(KeyCode.UpArrow)))
-            {
-                TextActionJoueur1.action.text = $"< Nombre d'employés : {gamer._stat["Employé"]} >";
-                TextActionJoueur1.action.color = Color.green;
-            }
-             else if ((TextActionJoueur1.action.text.Contains("employés :") && Input.GetKeyDown(KeyCode.DownArrow)) || (TextActionJoueur1.action.text.Contains("Salaire") && Input.GetKeyDown(KeyCode.UpArrow)))
-             {
-                 TextActionJoueur1.action.text = "Finir son tour";
-                 TextActionJoueur1.action.color = Color.green;
-             }
         }
             
     }
@@ -1222,7 +1236,16 @@ public class TextActionJoueur1 : NetworkBehaviour
 				b = (!gamer.AddMoney(-gamer._mounth/4) || !gamer.AddMoney(-gamer._stat["Employé"]*gamer._stat["Salaire"]));
 				if (b)
 				{
-					GameOver.SetActive(true);
+					if (joueur)
+						faill1 = true;
+					else
+						faill2 = true;
+					ElementTour.SetActive(false);
+					Faillite.SetActive(true);
+					FinDeTour.SetActive(false);
+					Compteur1.SetActive(false);
+					Compteur2.SetActive(false);
+					Gamer1.TimeLeft = 130;
 				}
 				else
 				{
@@ -1265,14 +1288,14 @@ public class TextActionJoueur1 : NetworkBehaviour
 			TourCount.AddTurn("");
 			Compteur1.SetActive(false);
 			Compteur2.SetActive(false);
-			if (TourCount.TurnValues <= TourCount.MaxTurn)
+			if (TourCount.TurnValues <= TourCount.MaxTurn && !faill1 && !faill2)
 			{
 				FinDeTour.SetActive(true);
 			}
 			if (!(TourCount.TurnValues > TourCount.MaxTurn) && NetworkServer.connections.Count == 1)
 				AI.Act10();
 		}
-		if (TourCount.TurnValues > TourCount.MaxTurn || b)
+		if (TourCount.TurnValues > TourCount.MaxTurn && !b  && !Faillite.activeSelf)
 		{
 			Player1Script.move = false;
 			ElementTour.SetActive(false);

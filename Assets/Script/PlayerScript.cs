@@ -49,6 +49,7 @@ public class PlayerScript : NetworkBehaviour
 	[SerializeField] private GameObject FinDeTour;
 	[SerializeField] private GameObject Tuto1;
 	[SerializeField] private GameObject Tuto2;
+	[SerializeField] private GameObject Faillite;
 	[SerializeField] static private GameObject? Last;
 	public static float ButtonLeft = 1;
     public bool TimerOn = false;
@@ -62,7 +63,6 @@ public class PlayerScript : NetworkBehaviour
 	public static Evenement evenement = new Evenement();
 	public int NbScene;
 	public static bool pause = false;
-
 	public Button? button = null;
 	public bool choice;
 	public static bool anim = true;
@@ -72,6 +72,19 @@ public class PlayerScript : NetworkBehaviour
 	[SerializeField] static private GameObject? fin2;
 	public static bool tour2 = true;
 	public static bool diffic = true;
+	IEnumerator attend100()
+    {
+        fondu.Play("fin_tour");
+		Last = deb;
+        yield return new WaitForSeconds(1);
+		TextActionJoueur1.faill1 = false;
+		TextActionJoueur1.faill2 = false;
+		Gamer1 = new Primeur("Primeur");
+		Gamer2 = new Boucherie("Boucher");
+        deb.SetActive(false);
+        fin.SetActive(true);
+ 
+    }
 	IEnumerator attend()
     {
         fondu.Play("fin_tour");
@@ -191,7 +204,7 @@ public class PlayerScript : NetworkBehaviour
         { 
 			ChangementOptions();
         }
-		if (Input.GetKeyDown(KeyCode.Space) && Gamer1.ready && Gamer2.ready)
+		if (Input.GetKeyDown(KeyCode.Space) && Gamer1.ready && Gamer2.ready && Gamer1.TimeLeft <= 120)
         { 
 			ChangementPause();
 		}
@@ -275,6 +288,9 @@ public class PlayerScript : NetworkBehaviour
 		if (Tuto2.activeSelf)
 			Last = Tuto2;
 		Tuto2.SetActive(false);
+		if(Faillite.activeSelf)
+			Last = Faillite;
+		Faillite.SetActive(false);
 		Options.SetActive(true);
 
 	}
@@ -327,6 +343,8 @@ public class PlayerScript : NetworkBehaviour
 	[ClientRpc]
 	private void TutoClient()
 	{
+		Gamer1 = new Primeur("Primeur");
+		Gamer2 = new Boucherie("Boucher");
 		if (NetworkServer.connections.Count == 1)
 		{
 			AI = new IntelligenceArtificielle();
@@ -334,6 +352,7 @@ public class PlayerScript : NetworkBehaviour
 		deb = Accueil;
 		fin = Tuto1;
 		fin2 = Tuto2;
+		Gamer1.TimeLeft = 119;
 		StartCoroutine("attend2");
 		InfoJoueur1.SetActive(true);
 		InfoJoueur2.SetActive(true);
@@ -450,7 +469,7 @@ public class PlayerScript : NetworkBehaviour
 				fin = Librairie;
 			else if (Gamer1._name == "Coiffeur")
 				fin = Coiffeur;
-			else if (Gamer1._name == "Poissonier")
+			else if (Gamer1._name == "Poissonnier")
 				fin = Poissonerie;
 			else if (Gamer1._name == "Bijoutier")
 				fin = Bijouterie;
@@ -466,7 +485,7 @@ public class PlayerScript : NetworkBehaviour
 				fin2 = Librairie;
 			else if (Gamer2._name == "Coiffeur")
 				fin2 = Coiffeur;
-			else if (Gamer2._name == "Poissonier")
+			else if (Gamer2._name == "Poissonnier")
 				fin2 = Poissonerie;
 			else if (Gamer2._name == "Bijoutier")
 				fin2 = Bijouterie;
@@ -745,8 +764,8 @@ public class PlayerScript : NetworkBehaviour
 			Gamer1 = new Libraire("Libraire");
 		else if (s == "Coiffeur")
 			Gamer1 = new Coiffeur("Coiffeur");
-		else if (s == "Poissonier")
-			Gamer1 = new Poissonier("Poissonier");
+		else if (s == "Poissonnier")
+			Gamer1 = new Poissonier("Poissonnier");
 		else if (s == "Bijoutier")
 			Gamer1 = new Bijouterie("Bijoutier");
 		else if (s == "Prêt à porter")
@@ -768,8 +787,8 @@ public class PlayerScript : NetworkBehaviour
 			Gamer2 = new Libraire("Libraire");
 		else if (s == "Coiffeur")
 			Gamer2 = new Coiffeur("Coiffeur");
-		else if (s == "Poissonier")
-			Gamer2 = new Poissonier("Poissonier");
+		else if (s == "Poissonnier")
+			Gamer2 = new Poissonier("Poissonnier");
 		else if (s == "Bijoutier")
 			Gamer2 = new Bijouterie("Bijoutier");
 		else if (s == "Prêt à porter")
@@ -840,7 +859,7 @@ public class PlayerScript : NetworkBehaviour
 				else
 					fin = Pause;
 				deb = Perissable;
-				StartCoroutine("attend");
+				change();
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -869,7 +888,7 @@ public class PlayerScript : NetworkBehaviour
 			Gamer1.ready = true;
 			if (NetworkServer.connections.Count == 1)
 				{
-					Gamer2 = new Poissonier("Poissonier");
+					Gamer2 = new Poissonier("Poissonnier");
 					AI = new IntelligenceArtificielle();
 					Gamer2.ready = true;
 					Poissonerie.SetActive(true);
@@ -906,7 +925,7 @@ public class PlayerScript : NetworkBehaviour
 				else
 					fin = Pause;
 				deb = Perissable;
-				StartCoroutine("attend");
+				change();
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -972,7 +991,7 @@ public class PlayerScript : NetworkBehaviour
 				else
 					fin = Pause;
 				deb = NonPerissable;
-				StartCoroutine("attend");
+				change();
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1039,7 +1058,7 @@ public class PlayerScript : NetworkBehaviour
 				else
 					fin = Pause;
 				deb = NonPerissable;
-				StartCoroutine("attend");
+				change();
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1062,10 +1081,10 @@ public class PlayerScript : NetworkBehaviour
 	{
 		verif = true;
 		float taille = Screen.width;
-		string s = "Poissonier";
-		if (joueur && (!Gamer2.ready || Gamer2._name != "Poissonier"))
+		string s = "Poissonnier";
+		if (joueur && (!Gamer2.ready || Gamer2._name != "Poissonnier"))
 		{
-			Gamer1 = new Poissonier("Poissonier");
+			Gamer1 = new Poissonier("Poissonnier");
 			Gamer1.ready = true;
 			if (NetworkServer.connections.Count == 1)
 				{
@@ -1092,9 +1111,9 @@ public class PlayerScript : NetworkBehaviour
 	
 
 		}
-		else if (!joueur && (!Gamer1.ready || Gamer1._name != "Poissonier"))
+		else if (!joueur && (!Gamer1.ready || Gamer1._name != "Poissonnier"))
 		{
-			Gamer2 = new Poissonier("Poissonier");
+			Gamer2 = new Poissonier("Poissonnier");
 			multijoueur = true;
 			Gamer2.ready = true;
 			TurnValues = 1;
@@ -1108,7 +1127,7 @@ public class PlayerScript : NetworkBehaviour
 				else
 					fin = Pause;
 				deb = Perissable;
-				StartCoroutine("attend");
+				change();
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1176,7 +1195,7 @@ public class PlayerScript : NetworkBehaviour
 				else
 					fin = Pause;
 				deb = NonPerissable;
-				StartCoroutine("attend");
+				change();
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1244,7 +1263,7 @@ public class PlayerScript : NetworkBehaviour
 				else
 					fin = Pause;
 				deb = NonPerissable;
-				StartCoroutine("attend");
+				change();
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
@@ -1311,12 +1330,19 @@ public class PlayerScript : NetworkBehaviour
 				else
 					fin = Pause;
 				deb = Perissable;
-				StartCoroutine("attend");
+				change();
 				InfoJoueur1.SetActive(true);
 				InfoJoueur2.SetActive(true);
 			}
 
 		}
+	}
+
+	public void change()
+	{
+		Last = deb;
+		deb.SetActive(false);
+        fin.SetActive(true);
 	}
 
 
@@ -1360,12 +1386,22 @@ public class PlayerScript : NetworkBehaviour
 		if (Options.activeSelf)
 		{
 			deb = Options;
+			Faillite.SetActive(false);
 			GameOver.SetActive(false);
+		}
+		else if (GameOver.activeSelf)
+		{
+			Faillite.SetActive(false);
+			Options.SetActive(false);
+			deb = GameOver;
+			
 		}
 		else
 		{
+			GameOver.SetActive(false);
 			Options.SetActive(false);
-			deb = GameOver;
+			deb = Faillite;
+			
 		}
 		if (Gamer2 is Primeur)
 		{
@@ -1411,11 +1447,9 @@ public class PlayerScript : NetworkBehaviour
 		InfoJoueur1.SetActive(false);
 		InfoJoueur2.SetActive(false);
 		fin = Accueil;
-		StartCoroutine("attend");
+		StartCoroutine("attend100");
 		Last = Accueil;
 		TourCount.TurnValues = 1;
-		Gamer1 = new Primeur("Primeur");
-		Gamer2 = new Boucherie("Boucher");
 	}
 
 	public void AOptions()

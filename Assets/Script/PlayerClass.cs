@@ -85,7 +85,7 @@ public class PlayerClass : MonoBehaviour
 		More11 = 0;
 		More12 = 0;
 
-		TimeLeft = 120.9999f;
+		TimeLeft = 120;
 		nbCount = 1;
 		ready = false;
 		sum = 0;
@@ -120,12 +120,12 @@ public class PlayerClass : MonoBehaviour
 			{
 				if (possible)
 				{
-					res += "\nDisponible ";
+					res += "\n";
 					res += $"{product}:\n Quantité: {quantity}\n Prix: {price} $\n Qualité: {level}";
 				}
 				else
 				{
-					res += "\nIndisponible " + product;
+					res += "\n" + product;
 				}
 				break;
 			}

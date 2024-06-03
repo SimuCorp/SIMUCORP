@@ -17,9 +17,10 @@ public class ButtonExitCommercial : NetworkBehaviour
 	IEnumerator pause()
 	{
         anim.Play("fin_tour");
-        yield return new WaitForSeconds(1);
-		SceneManager.LoadScene("Credit");
+        yield return new WaitForSeconds(0.92f);
+		SceneManager.LoadSceneAsync("Credit");
 	}
+
 	public void Credit()
 	{
 		if (NetworkServer.active)

@@ -11,12 +11,14 @@ public class Credit : MonoBehaviour
 		yield return new WaitForSeconds(88);
         anim.Play("fin_tour");
         yield return new WaitForSeconds(1);
+        Cursor.visible = true;
         MainMenu.Quitter();
         //SceneManager.LoadScene("Action1");
 	}
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
         StartCoroutine("pause");
     }
 

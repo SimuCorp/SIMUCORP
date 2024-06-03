@@ -362,6 +362,7 @@ public class MoneyCount : MonoBehaviour
 						TextActionJoueur1.NbSalaire2 += gamer._stat["Employé"];
 				if (b)
 				{
+					faill2 = true && TourCount.TurnValues != 1;
 					//SceneManager.LoadScene("GameOver",  LoadSceneMode.Additive);
 				}
 				else

@@ -20,6 +20,8 @@ public class Player1Script : NetworkBehaviour
     public AudioSource collision;
     public Image Emplacement1;
 	public Image Emplacement2;
+    public static Sprite im1;
+    public static Sprite im2;
     public static float position {get; set;}
     public Sprite fond;
     public Sprite Amelioration1;
@@ -27,8 +29,10 @@ public class Player1Script : NetworkBehaviour
     public GameObject textaction;
     public double last_x;
     public double last_y;
-    public double timecol;
+    public static double timecol;
     public float angle;
+
+    public Animator anim;
     
     // Start is called before the first frame update
     void Start()
@@ -45,6 +49,9 @@ public class Player1Script : NetworkBehaviour
         collision = GetComponent<AudioSource>();
         angle = 0;
         timecol = 130;
+        im1 = Emplacement1.sprite;
+        im2 = Emplacement2.sprite;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -54,7 +61,15 @@ public class Player1Script : NetworkBehaviour
         double x2 = Screen.width/2;
         if (timecol-0.2 > Gamer1.TimeLeft)
             timecol = 130;
-        if (timecol-0.2<= Gamer1.TimeLeft && Gamer1.TimeLeft < 120)
+        if (Gamer1.TimeLeft > 120 || (TourCount.TurnValues == 1 && Gamer1.TimeLeft >= 119.8 && Gamer1.ready && Gamer2.ready))
+        {
+            if (x <= x2)
+                transform.position = new Vector2((float)(x2/2),(float)(Screen.height/4));
+            else
+                transform.position = new Vector2((float)(x2/2*3),(float)(Screen.height/4));
+            timecol = 130;
+        }
+        else if (timecol-0.2<= Gamer1.TimeLeft && Gamer1.TimeLeft < 120)
         {
 
         }
@@ -74,27 +89,27 @@ public class Player1Script : NetworkBehaviour
                 OpponentMoveServerRpc(vert, hori);
             }
         }
-        else if (Gamer1.TimeLeft > 120 || (TourCount.TurnValues == 1 && Gamer1.TimeLeft >= 119.8 && Gamer1.ready && Gamer2.ready))
-        {
-            if (x <= x2)
-                transform.position = new Vector2((float)(x2/2),(float)(Screen.height/4));
-            else
-                transform.position = new Vector2((float)(x2/2*3),(float)(Screen.height/4));
-            timecol = 130;
-        }
         if (x <= x2)
         {
             if (Gamer1.materiel[1] == "acheté")
                 Emplacement1.sprite = Amelioration1;
+            else
+                Emplacement1.sprite = im1;
 			if (Gamer1.materiel[2] == "acheté")
 				Emplacement2.sprite = Amelioration2;
+            else
+                Emplacement2.sprite = im2;
         }
         else
         {
             if (Gamer2.materiel[1] == "acheté")
 				Emplacement1.sprite = Amelioration1;
+            else
+                Emplacement1.sprite = im1;
 			if (Gamer2.materiel[2] == "acheté")
 				Emplacement2.sprite = Amelioration2;
+            else
+                Emplacement2.sprite = im2;
         }
 
     }
@@ -154,15 +169,21 @@ public class Player1Script : NetworkBehaviour
                 angle = -90;
             }
             */
-            transform.Translate(Vector3.up * 50f * Time.fixedDeltaTime * (float)x * Screen.height/600);
-            transform.Translate(Vector3.right * 50f * Time.fixedDeltaTime * (float)x2  * Screen.width/800);
+            /*
+            if (x != 0 || x2 != 0)
+                anim.SetTrigger("Walk");
+            else
+                anim.SetTrigger("Stay");
+            */
+            transform.Translate(Vector3.up * 60f * Time.fixedDeltaTime * (float)x * Screen.height/600);
+            transform.Translate(Vector3.right * 60f * Time.fixedDeltaTime * (float)x2  * Screen.width/800);
     }
 
     [Command(requiresAuthority = false)]
-	private void CollisionServer() => CollisionClient();
+	private void CollisionServer(double x4, double y4) => CollisionClient(x4, y4);
 
 	[ClientRpc]
-	private void CollisionClient()
+	private void CollisionClient(double x4, double y4)
     {
         double x = collision.gameObject.transform.position.x;
         double y = collision.gameObject.transform.position.y;
@@ -186,13 +207,13 @@ public class Player1Script : NetworkBehaviour
         {
             double x2 = Joueur.transform.position.x;
             double y2 = Joueur.transform.position.y;
-            if (last_y < 0)
+            if (y4 < 0)
                 transform.Translate(new Vector2(0,1) * 5 * Screen.height/600);
-            if (last_y > 0)
+            if (y4 > 0)
                 transform.Translate(new Vector2(0,-1) * 5 * Screen.height/600);
-            if (last_x < 0)
+            if (x4 < 0)
                 transform.Translate(new Vector2(1,0) * 5 * Screen.width/800);
-            if (last_x > 0)
+            if (x4 > 0)
                 transform.Translate(new Vector2(-1,0) * 5 * Screen.width/800);
                 
         }
@@ -202,9 +223,9 @@ public class Player1Script : NetworkBehaviour
     {
         timecol = Gamer1.TimeLeft;
         if (NetworkServer.active)
-            CollisionClient();
+            CollisionClient(last_x, last_y);
         else
-            CollisionServer();
+            CollisionServer(last_x, last_y);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

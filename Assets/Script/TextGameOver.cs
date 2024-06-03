@@ -45,11 +45,11 @@ public class TextGameOver : MonoBehaviour
                   new System.Globalization.CultureInfo("en-US"))+"\n";
         */
         if (score1 < score2)
-            GameOver.text = $"Le {Gamer2._name} a gagné";
+            GameOver.text = $"Le {Gamer2._name.ToLower()} a gagné";
         else if (score1 == score2)
-            GameOver.text = $"Egalité parfaite entre le {Gamer1._name} et le {Gamer2._name}";
+            GameOver.text = $"Egalité parfaite entre le {Gamer1._name.ToLower()} et le {Gamer2._name.ToLower()}";
         else
-            GameOver.text = $"Le {Gamer1._name} a gagné";
+            GameOver.text = $"Le {Gamer1._name.ToLower()} a gagné";
     }
 
     private (double, int) Score(bool verif)

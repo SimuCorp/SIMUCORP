@@ -36,7 +36,8 @@ public class infoPause : NetworkBehaviour
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
                 n = (n+11)%12;
             Info.text = gamer.Display(n);
-            if (Info.text.Contains("Indisponible"))
+            bool b = gamer._items[n] != "NaN";
+            if (!b)
                 Info.color = Color.red;
             else
                 Info.color = Color.green;
@@ -50,7 +51,8 @@ public class infoPause : NetworkBehaviour
 			else
 				gamer = Gamer2;
             Info.text = gamer.Display(n);
-            if (Info.text.Contains("Indisponible"))
+            bool b = gamer._items[n] != "NaN";
+            if (!b)
                 Info.color = Color.red;
             else
                 Info.color = Color.green;
