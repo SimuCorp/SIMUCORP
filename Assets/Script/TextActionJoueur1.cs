@@ -949,12 +949,26 @@ public class TextActionJoueur1 : NetworkBehaviour
 	public void Carte(bool joueur)
     {
 		PlayerClass gamer;
+		PlayerClass gamer2;
 		if (joueur)
+		{
 			gamer = Gamer1;
+			gamer2 = Gamer2;
+		}
 		else
+		{
 			gamer = Gamer2;
+			gamer2 = Gamer1;
+		}
 		if(gamer.AddMoney(-100))
+		{
 			gamer._stat["Attractivité"] += 0.5;
+			if (gamer2._stat["Attractivité"] >= 1.5)
+				gamer2._stat["Attractivité"] -= 0.5;
+			else if(gamer2._stat["Attractivité"] >= 1)
+				gamer2._stat["Attractivité"] = 1;
+				
+		}
     }
 
 
@@ -977,12 +991,25 @@ public class TextActionJoueur1 : NetworkBehaviour
 	public void Cadeau(bool joueur)
     {
 		PlayerClass gamer;
+		PlayerClass gamer2;
 		if (joueur)
+		{
 			gamer = Gamer1;
+			gamer2 = Gamer2;
+		}
 		else
+		{
 			gamer = Gamer2;
+			gamer2 = Gamer1;
+		}
 		if( gamer.AddMoney(-500))
+		{
 			gamer._stat["Attractivité"] += 2.5;
+			if(gamer2._stat["Attractivité"] >= 3.5)
+				gamer2._stat["Attractivité"] -= 2.5;
+			else if(gamer2._stat["Attractivité"] >= 1)
+				gamer2._stat["Attractivité"] = 1;
+		}
     }
 
 
@@ -1005,12 +1032,25 @@ public class TextActionJoueur1 : NetworkBehaviour
 	public void Pub(bool joueur)
     {
 		PlayerClass gamer;
+		PlayerClass gamer2;
 		if (joueur)
+		{
 			gamer = Gamer1;
+			gamer2 = Gamer2;
+		}
 		else
+		{
 			gamer = Gamer2;
+			gamer2 = Gamer1;
+		}
 		if(gamer.AddMoney(-1000))
+		{
 			gamer._stat["Attractivité"] += 5;
+			if(gamer2._stat["Attractivité"] >= 6)
+				gamer2._stat["Attractivité"] -= 5;
+			else if(gamer2._stat["Attractivité"] >= 1)
+				gamer2._stat["Attractivité"] = 1;
+		}
     }
 
 	public void OpponentCalcul()

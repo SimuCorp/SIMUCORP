@@ -189,11 +189,27 @@ public class IntelligenceArtificielle : NetworkBehaviour
 			else if (metier._stat["Attractivité"] < 80 && metier._money > 5_000 && metier.AddMoney(-1000))
 			{
 				metier._stat["Attractivité"] += 5;
+				if(Gamer1._stat["Attractivité"] >= 6)
+					Gamer1._stat["Attractivité"] -= 5;
+				else if(Gamer1._stat["Attractivité"] >= 1)
+					Gamer1._stat["Attractivité"] = 1;
 			}
 			else if (metier._stat["Attractivité"] < 80 && metier._money > 2500 && metier.AddMoney(-500))
+			{
 				metier._stat["Attractivité"] += 2.5;
+				if(Gamer1._stat["Attractivité"] >= 3.5)
+					Gamer1._stat["Attractivité"] -= 2.5;
+				else if(Gamer1._stat["Attractivité"] >= 1)
+					Gamer1._stat["Attractivité"] = 1;
+			}
 			else if (metier._stat["Attractivité"] < 80 && metier._money > 1500 && metier.AddMoney(-100))
-				metier._stat["Attractivité"] += 0.5;	 
+			{
+				metier._stat["Attractivité"] += 0.5;
+				if(Gamer1._stat["Attractivité"] >= 1.5)
+					Gamer1._stat["Attractivité"] -= 0.5;
+				else if(Gamer1._stat["Attractivité"] >= 1)
+					Gamer1._stat["Attractivité"] = 1;
+			}
 			--act;
 		}
 		else if (act == 0)

@@ -61,7 +61,7 @@ public class Player1Script : NetworkBehaviour
         double x2 = Screen.width/2;
         if (timecol-0.2 > Gamer1.TimeLeft)
             timecol = 130;
-        if (Gamer1.TimeLeft > 120 || (TourCount.TurnValues == 1 && Gamer1.TimeLeft >= 119.8 && Gamer1.ready && Gamer2.ready))
+        if (Gamer1.TimeLeft > 125 || (TourCount.TurnValues == 1 && Gamer1.TimeLeft >= 119.8 && Gamer1.ready && Gamer2.ready))
         {
             if (x <= x2)
                 transform.position = new Vector2((float)(x2/2),(float)(Screen.height/4));
