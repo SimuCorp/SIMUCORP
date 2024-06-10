@@ -131,6 +131,7 @@ public class PlayerScript : NetworkBehaviour
 		else if (!(!Accueil.activeSelf && !ChoixTour.activeSelf && !Difficulte.activeSelf && !Perissable.activeSelf && NonPerissable.activeSelf && !Pause.activeSelf && !FinDeTour.activeSelf && !GameOver.activeSelf && !InfoTour.activeSelf && !Options.activeSelf && !Qualite.activeSelf))
 			anim = true;
 		*/
+		Cursor.visible = !InfoJoueur1.activeSelf && !FinDeTour.activeSelf;
 		if (TextActionJoueur1.multi && NetworkServer.connections.Count == 1)
 		{
 			TextActionJoueur1.multi = false;

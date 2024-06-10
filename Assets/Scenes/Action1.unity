@@ -16344,7 +16344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.63529414}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32601,7 +32601,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -53075,7 +53075,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -700, y: -140}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1175565304
 MonoBehaviour:
@@ -53093,17 +53093,20 @@ MonoBehaviour:
   s: '-'
   b1: 0
   b2: 0
-  b3: 1
-  b4: 0
-  b5: 0
+  b3: 0
+  b4: 1
+  b5: 1
   b6: 1
-  b7: 1
+  b7: 0
   b8: 1
   b9: 1
   b10: 1
-  b11: 0
+  b11: 1
   b12: 1
   b13: 1
+  b14: 1
+  b15: 1
+  b16: 1
 --- !u!114 &1175565305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53126,10 +53129,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -93522,7 +93525,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 50, y: -140}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2089897858
 MonoBehaviour:
@@ -93538,19 +93541,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Info: {fileID: 2089897859}
   s: +
-  b1: 0
-  b2: 1
-  b3: 0
-  b4: 0
+  b1: 1
+  b2: 0
+  b3: 1
+  b4: 1
   b5: 1
-  b6: 1
+  b6: 0
   b7: 1
   b8: 1
   b9: 1
-  b10: 0
+  b10: 1
   b11: 1
   b12: 1
-  b13: 0
+  b13: 1
+  b14: 1
+  b15: 1
+  b16: 0
 --- !u!114 &2089897859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93573,10 +93579,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0

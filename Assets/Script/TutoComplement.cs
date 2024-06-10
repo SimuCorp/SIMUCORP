@@ -29,6 +29,9 @@ public class TutoComplement : MonoBehaviour
     public bool b11;
     public bool b12;
     public bool b13;
+    public bool b14;
+    public bool b15;
+    public bool b16;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +82,15 @@ public class TutoComplement : MonoBehaviour
                 Info.text = s;
                 break;
             case(12) when b13:
+                Info.text = s;
+                break;
+            case(13) when b14:
+                Info.text = s;
+                break;
+            case(14) when b15:
+                Info.text = s;
+                break;
+            case(15) when b16:
                 Info.text = s;
                 break;
             default:

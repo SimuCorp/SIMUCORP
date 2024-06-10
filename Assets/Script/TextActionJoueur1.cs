@@ -1375,7 +1375,8 @@ public class TextActionJoueur1 : NetworkBehaviour
 					if (gamer._items[key] != "NaN")
 					{
 						(int Quantity, double price, bool possible, double quali, int tour) = gamer._marchandise[gamer._items[key]];
-						if (Quantity > 0)
+						double min_price = gamer.prix[key]*3/2;
+						if (Quantity > 0 && (price-quali+1 <= min_price || 100/(price-quali+2 - min_price) >= aleatoire.Next(0, 101)))
 						{
 							if(NetworkServer.active)
 								AchatProduitClient(verif, key);

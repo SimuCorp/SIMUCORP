@@ -124,6 +124,7 @@ public class IntelligenceArtificielle : NetworkBehaviour
 				{
 					metier.AddMoney(-prix);
 					++level;
+					price += 1;
 				}
 				metier._marchandise[metier._items[i]] = (Quantity, price, possible, level, tour);
 			}

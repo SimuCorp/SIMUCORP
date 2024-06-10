@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,19 +26,22 @@ public class TextTuto : NetworkBehaviour
     [SerializeField] private GameObject Accueil;
     public Animator fondu;
     public static List<string> Script = new List<string> {
-        "Bienvenue dans notre tutoriel. Pour commencer, réapprovisionnez votre magasin. Pour ce faire, touchez une case contenant un produit, puis seléctionnez avec les flèches du haut et du bas l'onglet quantité, et enfin appuyez sur entrée pour réaliser l'action souhaitée. Attention, certains objets ne sont pas directement à votre disposition. Cependant vous pourrez les acheter en cours de partie.",
-        "Bien, de plus vous pouvez aussi modifier le prix et la qualité de vos produits. Pour changer d'options, utilisez les flèches verticales. Attention, appuyez sur entrée sur un menu contenant des flèches ne modifira pas la statistique correspondante. A la place, appuyez sur les flèches latérales. Attention, en mode difficile vos produits périmeront tous les 3 tours.",
-        "Maintenant, pour quitter le menu d'action et pour pouvoir vous déplacer à nouveau, appuyez sur la touche effacer de votre clavier.",
-        "Bien joué !!! De plus, vous pouvez acheter des améliorations pour rendre votre magasin plus attractif. Pour ce faire, dirigez vous en direction d'un rectangle ayant une couleur différente comparée au reste du décor.",
-        "Comme vous pouvez le voir, cette fois-ci le texte est en rouge. Cela veux dire que vous n'avez pas assez d'argent pour faire cette action.",
-        "Cependant, vous avez d'autres améliorations comme le tableau de promotion, se trouvant vers l'entrée du magasin.",
-        "Vous avez aussi la possibilité de faire des actions commerciales pour améliorer votre attractivité, ainsi vous aurez plus de clients. Ces actions sont disponibles à la table ayant un cadeau. Contrairement aux améliorations, le joueur adverse recevra aussi un malus d'attractivité sauf si cette dernière est trop basse.",
-        "Les dernières actions possibles se trouvent à la caisse. Elles vous permettent la gestion de votre ou de vos magasins et de finir votre semaine de travail.",
-        "Vous pouvez par exemple embaucher des employés, augmenter leur salaire ou leur donner des primes, afin d'améliorer la qualité du magasin ou encore d'acheter de nouveau magasin pour avoir plus de clients. Cependant, pour acheter un magasin, il faut 5000 $ ainsi qu'au moins n-1 employés pour n magasins. Attention, vous devrez payer les salaires et vos impôts ainsi que faire face à des évènements aléatoires toutes les 4 semaines.",
-        "En complément à cela, vouz pouvez mettre le jeu en pause en appuyant sur la touche espace de votre clavier. A l'intérieur, vous aurez la possibilité de consulter les statiques liées à vos produits, ou services. Pour changer de produits appuyez sur les flèches latérales. Enfin, pour quitter le menu pause, réappuyer sur la barre d'espace.",
-        "Dans la même optique, vous pouvez aller sur le menu options en appuyant sur échap.",
-        "Toutes les actions que vous ferez lors de votre aventure auront un impact sur votre score final. En effet, le score final est calculé en fonction de vos ventes, de l'argent restant, de l'argent gagné, des marchandises restantes, de votre nombre d'améliorations, ainsi que de toutes vos autres statistiques.",
-        "Pour conclure ce tutoriel, finissez votre tour."
+        "Bienvenue dans notre tutoriel.",
+        "Pour rÃ©approvisionner :\n\n\t- touchez la case du produit.\n\t- sÃ©lectionnez le menu quantitÃ© par \u2191 ou \u2193.\n\t- appuyez sur entrÃ©e.",
+        "Attention, certains produits ne sont pas disponibles immÃ©diatement.", // 2
+        "Attention, en mode difficile, les produits pÃ©rimeront tout les trois tours.", // 3
+        "Pour modifier le prix ou la qualitÃ© :\n\n\t- sÃ©lectionnez le menu correspondant avec â¬†\u2191 ou \u2193.\n\t- appuyez sur entrÃ©e pour le menu qualitÃ©.\n\t- modifiez les paramÃ¨tres de prix avec < ou >.",
+        "Pour quitter le menu, appuyez sur la touche effacer.", // 5
+        "Pour augmenter l'attractivitÃ© afin d'avoir plus de clients et diminuer celle de l'adversaire :\n\n\t-allez vers la table Ã  l'entrÃ©e.\n\t- appuyez sur entrÃ©e.", // 6
+        "Pour faire des promotions et augmenter temporairement votre attractivitÃ© :\n\n\t- allez vers le trait noir sur le trottoir.\n\t- appuyer sur entrÃ©e pour l'acheter.\n\t- appuyer sur entrÃ©e pour l'activer ou le dÃ©sactiver.",
+        "Pour acheter d'autres amÃ©liorations augmentant dÃ©finitivement l'attractivitÃ© :\n\n\t- allez vers les cases ayant une couleur diffÃ©rente par rapport au dÃ©cors.\n\t- appuyez sur entrÃ©e pour l'acheter.\n\nAttention, les textes en rouge indique que l'on ne peut rÃ©aliser l'action souhaitÃ©e.",
+        "Pour la gestion du nombre de salariÃ©s :\n\n\t- allez Ã  la caisse.\n\t- sÃ©lectionnez le menu correspondant avec \u2191 ou \u2193.\n\t- appuyez sur < ou > afin de changer le nombre d'employÃ©s.\n\t- le nombre d'employÃ© joue sur la qualitÃ© gÃ©nÃ©rale du magasin. Cette statistiques est utilisÃ©es Ã  la fin de la partie pour calculer le score finale, tout comme vos autres statistiques.",
+        "Attention, renvoyer un employÃ© coÃ»te 700 $ et vous devrez payer vos employÃ©s tout les 4 tours.",
+        "Pour augmenter la qualite gÃ©nÃ©rale de votre magasin :\n\n\t- sÃ©lectionnez l'onglet prime\n\t- appuyez sur entrÃ©e pour valider l'action.",
+        "Pour la gestion des magasins :\n\n\t- sÃ©lectionnez le menu correspondant avec \u2191 ou \u2193.\n\t- appuyez sur < ou > afin de changer le nombre d'employÃ©s.\n\nAttention, pour acheter un magasin il faut avoir 5 000 $ et avoir au moins n employÃ©s pour n+1 magasin. Par exemple, pour acheter un troisiÃ¨me magasin, il nous faut au moins 2 employÃ©s. Vendre un magasin rapporte 2 500 $.",
+        "Pour allez sur le menu options, en cours de partie, appuyez sur Ã©chap. Pour en sortir faites de mÃªme.",
+        "De faÃ§on similaire, appuyez sur la barre d'espace pour mettre en pause le jeu. Vous pourrez consulter les statistiques de vos produits ou services ainsi que ceux de votre adversaire avec < ou >.",
+        "Pour finir votre tour :\n\n\t- sÃ©lectionnez finir son tour avec \u2191 ou \u2193.\n\t- appuyez sur entrÃ©e.",
                                                            };
     // Start is called before the first frame update
     void Start()
@@ -75,10 +78,29 @@ public class TextTuto : NetworkBehaviour
             gamer = Gamer1;
         else
             gamer = Gamer2;
+        if(TourCount.TurnValues >= 2)
+        {
+            Money1.SetActive(false);
+            Money2.SetActive(false);
+            StartCoroutine("attend2");
+            Gamer1 = new Primeur("Primeur");
+	        Gamer2 = new Boucherie("Boucher");
+            TourCount.TurnValues = 1;
+            i = 0;
+            Info.text = Script[i];
+            AI = null;
+        }
         switch(i)
         {
             case(0):
-                int j = 0;
+                if (Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
+                    ++i;
+                Info.text = Script[i];
+                break;
+            case(1):
+                
+                Info.text = Script[i];
+                  int j = 0;
                 (int q, _, _, _, _) = gamer._marchandise[gamer._items[j]];
                 while (j < 11 &&  q == 300)
                 {
@@ -86,38 +108,36 @@ public class TextTuto : NetworkBehaviour
                     if (gamer._items[j] != "NaN")
                         (q, _, _, _, _) = gamer._marchandise[gamer._items[j]];
                 }
-                if (q != 300)
+                if (q != 300 && q != 0)
                 {
                     Info.text = Script[1];
                     ++i;
                 }
                 break;
-            case(1):
+            case(2):
                 if (Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
                     ++i;
                 Info.text = Script[i];
                 break;
-            case(2):
-                if (Input.GetKeyDown(KeyCode.Backspace))
+            case(3):
+                if (Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
                     ++i;
-                if (Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
                     --i;
-                Info.text = Script[i];
-                break;
-            case(3) when TextActionJoueur1.action.text.Contains("2500 $"):
-                ++i;
                 Info.text = Script[i];
                 break;
             case(4):
                 if (Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
                     ++i;
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                    --i;
                 Info.text = Script[i];
               
                 break;
             case(5):
-                if (Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
+                if (Input.GetKeyDown(KeyCode.Backspace))
                     ++i;
-                if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
                     --i;
                 Info.text = Script[i];
               
@@ -125,15 +145,12 @@ public class TextTuto : NetworkBehaviour
             case(6):
                 if(Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
                     ++i;
-                if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
-                    --i;
                 Info.text = Script[i];
-          
                 break;
             case(7):
                 if(Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
                     ++i;
-                if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
                     --i;
                 Info.text = Script[i];
      
@@ -141,32 +158,55 @@ public class TextTuto : NetworkBehaviour
             case(8):
                 if(Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
                     ++i;
-                if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
                     --i;
                 Info.text = Script[i];
                 break;
             case(9):
-                if(Input.GetKeyDown(KeyCode.Space))
+                if(Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
                     ++i;
-                if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
                     --i;
                 Info.text = Script[i];
 
                 break;
             case(10):
                 if(Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
-                     ++i;
+                    ++i;
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                    --i;
                 Info.text = Script[i];
            
                 break;
             case(11):
                 if(Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
                     ++i;
-                if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
                     --i;
                 Info.text = Script[i];
                 break;
             case(12):
+                if(Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
+                    ++i;
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                    --i;
+                Info.text = Script[i];
+                break;
+            case(13):
+                if(Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
+                    ++i;
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                    --i;
+                Info.text = Script[i];
+                break;
+            case(14):
+                if(Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Equals))
+                    ++i;
+                else if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
+                    --i;
+                Info.text = Script[i];
+                break;
+            case(15):
                 if(Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Alpha6))
                 {
                     --i;
