@@ -1447,6 +1447,18 @@ public class PlayerScript : NetworkBehaviour
 		InfoTour.SetActive(false);
 		InfoJoueur1.SetActive(false);
 		InfoJoueur2.SetActive(false);
+		TextActionJoueur1.Vente1 = 0;
+		TextActionJoueur1.Vente2 = 0;
+		TextActionJoueur1.diff1 = 0;
+		TextActionJoueur1.diff2 = 0;
+		TextActionJoueur1.faill1 = false;
+		TextActionJoueur1.faill2 = false;
+		TextActionJoueur1.Quantity1 = 0;
+		TextActionJoueur1.Quantity2 = 0;
+		TextActionJoueur1.TotalVente1 = 0;
+		TextActionJoueur1.TotalVente2 = 0;
+		TextActionJoueur1.NbSalaire1 = 0;
+		TextActionJoueur1.NbSalaire2 = 0;
 		fin = Accueil;
 		StartCoroutine("attend100");
 		Last = Accueil;

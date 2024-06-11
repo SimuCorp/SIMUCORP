@@ -36092,7 +36092,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 130
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -78805,6 +78805,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fondu
       objectReference: {fileID: 0}
+    - target: {fileID: 6733724219135432851, guid: eccaa9a003163924c8c98f2e76ca8bab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8743219903650437820, guid: eccaa9a003163924c8c98f2e76ca8bab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -79638,7 +79642,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 130
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
