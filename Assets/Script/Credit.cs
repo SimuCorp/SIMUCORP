@@ -20,16 +20,15 @@ public class Credit : MonoBehaviour
     {
         Cursor.visible = false;
         StartCoroutine("pause");
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Cursor.visible = true;
-            MainMenu.Quitter();
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Cursor.visible = true;
+            MainMenu.Quitter();
+        }
     }
 }

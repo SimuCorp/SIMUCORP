@@ -51,7 +51,7 @@ public class FinDeTour : MonoBehaviour
                   new System.Globalization.CultureInfo("en-US"));
         string attrat = (Round(gamer.last_attrat, 2)).ToString("G",
                   new System.Globalization.CultureInfo("en-US"));
-        Information.text = $"Statistiques de la semaine {TourCount.TurnValues-1} du {gamer._name}\n Total des ventes : {vente} $\n Total des marchandises vendues : {Quantity}\n Bénéfices de la semaine : {diff} $\n Argent restant : {money} $";
+        Information.text = $"Statistiques de la semaine {TourCount.TurnValues-1} du {gamer._name.ToLower()}\n Total des ventes : {vente} $\n Total des marchandises vendues : {Quantity}\n Bénéfices de la semaine : {diff} $\n Argent restant : {money} $";
         Information.text += $"\n\n Statistiques générales\n Nombre d'employés : {gamer._stat["Employé"]}\n Nombre de magasin : {gamer._stat["Magasin"]}\n Attractivité de la franchise : {attrat}";
         Information.text += $"\nQualité générales de la franchise : {gamer._stat["Qualité"]}";
 
