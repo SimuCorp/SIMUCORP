@@ -35,7 +35,7 @@ public class Fleuriste : PlayerClass
         for (int i = 0; i < 6; ++i)
             _items.Add("NaN");
         _missingitems = new List<string> { "Iris", "Lys", "Bouquet de fleurs", "Cactus", "Camelia", "Couronne de fleurs"};
-        materiel = new List<string> { "tableau de promotion", "décoration végétale", "produits d'entretien", "nouvelles plantes" };
+        materiel = new List<string> { "tableau de promotion", "décoration végétale", "décoration végétale", "nouvelles plantes" };
         prix = new List<double> {2.50, 2.33, 6.67, 4.00, 3.20, 2.00, 6.66, 6.66, 30, 7.56, 7.33, 60.00};
         Perime1 = new List<int> {300};
         Perime2 = new List<int> {300};

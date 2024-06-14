@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using Mirror;
 using static MoneyCount;
 using static PlayerScript;
-public class TextSalaire : MonoBehaviour
+public class TextSalaire : NetworkBehaviour 
 {
     public TextMeshProUGUI Text1;
     private PlayerClass g;
@@ -16,9 +16,10 @@ public class TextSalaire : MonoBehaviour
     void Start()
     {
         Text1 = GetComponent<TextMeshProUGUI>();
-  
+        if (this.isServer)
             g = Gamer1;
-
+        else
+            g = Gamer2;
         n = g._stat["Salaire"];
     }
 

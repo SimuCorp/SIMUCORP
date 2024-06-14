@@ -3,15 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using Mirror;
 using static MoneyCount;
 using static TourCount;
 using static IntelligenceArtificielle;
 using static PlayerScript;
-public class ButtonExitCommercial : MonoBehaviour
+
+public class ButtonExitCommercial : NetworkBehaviour 
 {
 	public static bool changement = false;
 	public static bool changement2 = false;
+	public Animator anim;
+	IEnumerator pause()
+	{
+        anim.Play("fin_tour");
+        yield return new WaitForSeconds(0.92f);
+		SceneManager.LoadSceneAsync("Credit");
+	}
+
+	public void Credit()
+	{
+		if (NetworkServer.active)
+			CreditServer();
+		else
+			CreditClient();
+	}
+	[Command(requiresAuthority = false)]
+	public void CreditClient() => CreditServer();
+	[ClientRpc]
+	public void CreditServer(){
+		StartCoroutine("pause");
+	}
 
     public void Exit()
     {
@@ -142,17 +164,18 @@ public class ButtonExitCommercial : MonoBehaviour
 	
 	public void ExitAccueil()
 	{
-		
+		if (NetworkServer.active)
 			OpponentAccueilClientRpc();
-	
+		else
+			OpponentAccueilServer();
 	}
-	
+	[ClientRpc(includeOwner = false)]
 	public void OpponentAccueilClientRpc()
 	{
 		SceneManager.UnloadSceneAsync("EcranAccueil");
 		SceneManager.LoadSceneAsync("ChoixTour", LoadSceneMode.Additive);
 	}
-
+	[Command(requiresAuthority = false)]
 	public void OpponentAccueilServer()
 	{
 		SceneManager.UnloadSceneAsync("EcranAccueil");
@@ -171,7 +194,7 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void ExitPrimeur()
 	{
-		if (true)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Primeur("Primeur");
 			if (!(multijoueur))
@@ -194,7 +217,7 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void ExitBoucherie()
 	{
-		if (true)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Boucherie("Boucher");
 			if (!(multijoueur))
@@ -217,7 +240,7 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void ExitLibraire()
 	{
-		if (true)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Libraire("Libraire");
 			if (!(multijoueur))
@@ -240,7 +263,7 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void ExitCoiffeur()
 	{
-		if (true)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Coiffeur("Coiffeur");
 			if (!(multijoueur))
@@ -263,7 +286,7 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void ExitPoisson()
 	{
-		if (true)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Poissonier("Poissonier");
 			if (!(multijoueur))
@@ -286,7 +309,7 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void ExitBijouterie()
 	{
-		if (true)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Bijouterie("Bijoutier");
 			if (!(multijoueur))
@@ -309,7 +332,7 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void ExitVetement()
 	{
-		if (true)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Pret_a_porter("Prêt à porter");
 			if (!(multijoueur))
@@ -332,7 +355,7 @@ public class ButtonExitCommercial : MonoBehaviour
 
 	public void ExitFleur()
 	{
-		if (true)
+		if (NetworkServer.active)
 		{
 			Gamer1 = new Fleuriste("Fleuriste");
 			if (!(multijoueur))
@@ -412,9 +435,10 @@ public class ButtonExitCommercial : MonoBehaviour
 	public void NewButton()
     {
         PlayerClass gamer;
-   
+        if (NetworkServer.active)
             gamer = Gamer1;
-
+        else
+            gamer = Gamer2;
         if (gamer._button)
         {
             gamer._button = false;

@@ -15,7 +15,7 @@ public class Bijouterie : PlayerClass
             { "Chaine en or", (50, 90, true, 1, 500) },
             { "Bracelet en or", (50, 150, true, 1, 500) },
             { "Collier en saphir", (0, 300, false, 1, 0) },
-            { "Bague en or et saphir", (0, 200, false, 1, 0) },
+            { "Bague en saphir", (0, 200, false, 1, 0) },
             { "Montre en or", (0, 600, false, 1, 0) },
             { "Bague en diamant", (0, 1500, false, 1, 0) },
             { "Collier en diamant", (0, 4000, false, 1, 0) },
@@ -34,7 +34,7 @@ public class Bijouterie : PlayerClass
         _items = new List<string> { "Créoles en or", "Montre en argent", "Boucles d'oreilles fantaisie", "Pendentif", "Chaine en or", "Bracelet en or"};
        for (int i = 0; i < 6; ++i)
           _items.Add("NaN");
-        _missingitems = new List<string> { "Collier en saphir", "Bague en or et rubis", "Montre en or", "Bague en diamant", "Collier en diamant", "Alliances"};
+        _missingitems = new List<string> { "Collier en saphir", "Bague en saphir", "Montre en or", "Bague en diamant", "Collier en diamant", "Alliances"};
         materiel = new List<string> { "tableau de promotion", "Réparation", "Cameras", "nouveaux bijoux" };
         prix = new List<double> {39, 66, 16, 26, 60, 100, 200, 133.33, 400.00, 1000.00, 2666.66, 666.66};
        Perime1 = new List<int> {50};

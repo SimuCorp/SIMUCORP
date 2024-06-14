@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using Mirror;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static PlayerScript;
 using static MoneyCount;
 
-public class ButtonMateriel : MonoBehaviour
+public class ButtonMateriel : NetworkBehaviour 
 {
    public void Materiel1()
     {
 		PlayerClass gamer;
-
+		if (isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
         if (gamer.materiel[0] != "acheté" && gamer.AddMoney(-200))
         {
            gamer.materiel[0] = "acheté";
@@ -26,9 +27,10 @@ public class ButtonMateriel : MonoBehaviour
    public void Materiel2()
    {
 	  PlayerClass gamer;
-
+		if (isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
       if (gamer.materiel[1] != "acheté" && gamer.AddMoney(-2500))
       {
          gamer.materiel[1] = "acheté";
@@ -39,9 +41,10 @@ public class ButtonMateriel : MonoBehaviour
    public void Materiel3()
    {
       PlayerClass gamer;
-	
+		if (isServer)
 			gamer = Gamer1;
-		
+		else
+			gamer = Gamer2;
       if (gamer.materiel[2] != "acheté" && gamer.AddMoney(-2500))
       {
          gamer.materiel[2] = "acheté";
@@ -52,9 +55,10 @@ public class ButtonMateriel : MonoBehaviour
 	public void Materiel5()
 	{
 		PlayerClass gamer;
-	
+		if (isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
 		if(gamer._missingitems[0] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -82,9 +86,10 @@ public class ButtonMateriel : MonoBehaviour
 	public void Materiel6()
 	{
 		PlayerClass gamer;
-	
+		if (isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
 		if(gamer._missingitems[1] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -112,9 +117,10 @@ public class ButtonMateriel : MonoBehaviour
 	public void Materiel7()
 	{
 		PlayerClass gamer;
-	
+		if (isServer)
 			gamer = Gamer1;
-		
+		else
+			gamer = Gamer2;
 		if(gamer._missingitems[2] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -142,9 +148,10 @@ public class ButtonMateriel : MonoBehaviour
 	public void Materiel8()
 	{
 		PlayerClass gamer;
-	
+		if (isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
 		if(gamer._missingitems[3] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -172,9 +179,10 @@ public class ButtonMateriel : MonoBehaviour
 	public void Materiel9()
 	{
 		PlayerClass gamer;
-
+		if (isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
 		if(gamer._missingitems[4] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;
@@ -202,9 +210,10 @@ public class ButtonMateriel : MonoBehaviour
 	public void Materiel10()
 	{
 		PlayerClass gamer;
-	
+		if (isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
 		if(gamer._missingitems[5] != "acheté" && gamer.AddMoney(-300))
 		{
 			int i = 1;

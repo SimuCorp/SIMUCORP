@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: a523f900c51152843a6f8c47af9be680
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - image: {instanceID: 0}
+  - basic: {instanceID: 0}
+  - argent: {fileID: 21300000, guid: 1fbfdaff7e751d24fbec90d286f074ce, type: 3}
+  - blackfriday: {fileID: 21300000, guid: 3124fce60f9ee814e9a8e66856b2b844, type: 3}
+  - travaux: {fileID: 21300000, guid: d604c9ac5166cc84bbbd8a5c3c736a7e, type: 3}
+  - vacances: {fileID: 21300000, guid: 16ecbf508920a1b428bb9965145155df, type: 3}
+  - courants: {fileID: 21300000, guid: 4c0f0b0a30670ac44ab77a342e1c3ec8, type: 3}
+  - emeute: {fileID: 21300000, guid: 3fb796653e0a19240bfc35a999e7c75e, type: 3}
+  - exposition: {fileID: 21300000, guid: 0b49d7a299c427a49b0d15bc6d314919, type: 3}
+  - inondation: {fileID: 21300000, guid: ef5d3501c540eb84897129b5a779851e, type: 3}
+  - concert: {fileID: 21300000, guid: 6e3a2a168a46c394080900b97e3e14dc, type: 3}
+  - conference: {fileID: 21300000, guid: 1314611bc209a594a9994887c448bf67, type: 3}
+  - cambriolage: {fileID: 21300000, guid: 1c9723f009c450747b12907e86447418, type: 3}
+  - braderie: {fileID: 21300000, guid: a0c459d017528c644a684aaccd66773d, type: 3}
+  - inflation: {fileID: 21300000, guid: 783a82c2e973bb0428998c54d3af16a5, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using Mirror;
 using static TextGameOver;
 using static PlayerScript;
 using static TextActionJoueur1;
@@ -28,7 +28,8 @@ public class MoneyCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoneyInformation.text = $"{Math.Round(Gamer1._money, 2)} $";
+        MoneyInformation.text = (Math.Round(Gamer1._money, 2)).ToString("G",
+                  new System.Globalization.CultureInfo("en-US")) + " $";
 		  if (Gamer1._money >= 5000)
             MoneyInformation.color = Color.green;
         else if (Gamer1._money >= 1000)
@@ -325,6 +326,7 @@ public class MoneyCount : MonoBehaviour
 						if (Quantity > 0)
 						{
                     		gamer._marchandise[gamer._items[key]] = (--Quantity, price, possible, quali, tour);
+							++gamer.quantite;
 							RemovePerime(gamer, key);
 							if (gamer.promo)
 								sum += price*0.8 + 0.1*price*(quali-1);
@@ -344,6 +346,7 @@ public class MoneyCount : MonoBehaviour
 
 			for (int i = 0; i < 12; ++i)
 				Perime(gamer, i);
+			sum *= (1+gamer._stat["Qualité"]/100);
 			gamer.sum = sum;
             gamer.AddMoney(sum);
 			gamer._mounth += sum;
@@ -353,8 +356,13 @@ public class MoneyCount : MonoBehaviour
 				if (gamer._mounth < 4000)
 					gamer._mounth = 4000;
 				b = (!gamer.AddMoney(-gamer._mounth/4) || !gamer.AddMoney(-gamer._stat["Employé"]*gamer._stat["Salaire"]));
+				if (gamer == Gamer1)
+						TextActionJoueur1.NbSalaire1 += gamer._stat["Employé"];
+					else
+						TextActionJoueur1.NbSalaire2 += gamer._stat["Employé"];
 				if (b)
 				{
+					faill2 = true && TourCount.TurnValues != 1;
 					//SceneManager.LoadScene("GameOver",  LoadSceneMode.Additive);
 				}
 				else
@@ -362,7 +370,7 @@ public class MoneyCount : MonoBehaviour
 			}
 			if (Gamer1._turn == false && Gamer2._turn == false)
 			{
-				Gamer1.TimeLeft = 124*Gamer1.nbCount;
+				Gamer1.TimeLeft = 130*Gamer1.nbCount;
 				TourCount.AddTurn(Button);
 				Gamer1._turn = true;
 				Gamer2._turn = true;

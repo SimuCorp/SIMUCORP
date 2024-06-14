@@ -35,7 +35,7 @@ public class Libraire : PlayerClass
 		for (int i = 0; i < 6; ++i)
 			_items.Add("NaN");
         _missingitems = new List<string> { "Encyclopédie", "Livre de cuisine", "Bande Dessinée", "Documentaire", "Roman Horreur", "Livre Broché"};
-        materiel = new List<string> { "tableau de promotion", "Etagère verticale", "Etagère horizontale", "nouveaux livres" };
+        materiel = new List<string> { "tableau de promotion", "Lecture", "Présentoire", "nouveaux livres" };
         prix = new List<double> {5.13, 5.27, 5.07, 9.53, 5.55, 1.63, 10.36, 8.33, 7.27, 6.66, 9.53, 11.93};
 		Perime1 = new List<int> {200};
 		Perime2 = new List<int> {200};

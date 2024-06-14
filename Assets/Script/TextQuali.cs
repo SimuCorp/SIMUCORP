@@ -4,10 +4,10 @@ using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using Mirror;
 using static MoneyCount;
 using static PlayerScript;
-public class TextQuali : MonoBehaviour
+public class TextQuali : NetworkBehaviour 
 {
     public TextMeshProUGUI Quali;
     public int n;
@@ -24,9 +24,10 @@ public class TextQuali : MonoBehaviour
         int i = 1;
         string res = "";
         PlayerClass g;
-
+        if (this.isServer)
             g = PlayerScript.Gamer1;
-
+        else
+            g = PlayerScript.Gamer2;
         foreach (string s in g._marchandise.Keys)
         {
             if (i == n)

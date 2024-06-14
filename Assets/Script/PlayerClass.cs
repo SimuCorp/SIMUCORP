@@ -55,6 +55,11 @@ public class PlayerClass : MonoBehaviour
 	public bool tour {get; set;}
 	public double sum {get; set;}
 
+	public int quantite {get; set;}
+	public int last_quantite {get; set;}
+
+	public double last_money {get;set;}
+	public double last_attrat {get;set;}
     public PlayerClass(string name)
     {
         _name = name;
@@ -84,6 +89,10 @@ public class PlayerClass : MonoBehaviour
 		nbCount = 1;
 		ready = false;
 		sum = 0;
+		quantite = 0;
+		last_quantite = 0;
+		last_money = 1500;
+		last_attrat = 0;
     }
     
     public bool AddMoney(double sum)
@@ -111,12 +120,12 @@ public class PlayerClass : MonoBehaviour
 			{
 				if (possible)
 				{
-					res += "\nDisponible ";
+					res += "\n";
 					res += $"{product}:\n Quantité: {quantity}\n Prix: {price} $\n Qualité: {level}";
 				}
 				else
 				{
-					res += "\nIndisponible " + product;
+					res += "\n" + product;
 				}
 				break;
 			}

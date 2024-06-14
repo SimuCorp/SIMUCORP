@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-
+using Mirror;
 using static System.Math;
 using static MoneyCount;
 using static TextEmploye;
@@ -11,7 +11,7 @@ using static TextMagasin;
 using static PlayerScript;
 using static TextSalaire;
 
-public class MoreLess : MonoBehaviour
+public class MoreLess : NetworkBehaviour 
 {
     public void More(double value)
     {
@@ -59,9 +59,10 @@ public class MoreLess : MonoBehaviour
 	public void MorePrice(int p)
 	{
 		PlayerClass gamer;
-
+		if (isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
 		string res = "";
 		int i1 = 1;
 		foreach (string s in gamer._marchandise.Keys)
@@ -82,9 +83,10 @@ public class MoreLess : MonoBehaviour
 	public void LessPrice(int p)
 	{
 		PlayerClass gamer;
-	
+		if (isServer)
 			gamer = Gamer1;
-
+		else
+			gamer = Gamer2;
 		string res = "";
 		int i1 = 1;
 		foreach (string s in gamer._marchandise.Keys)
@@ -107,9 +109,10 @@ public class MoreLess : MonoBehaviour
 	public void MoreApro(int p)
 	{
 		PlayerClass gamer;
-	
+		if (isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
 		int i1 = 1;
         string res = "";
         foreach (string s in gamer._marchandise.Keys)
@@ -133,9 +136,10 @@ public class MoreLess : MonoBehaviour
 	public void MoreQuali(int p)
 	{
 		PlayerClass gamer;
-	
+		if (isServer)
 			gamer = Gamer1;
-	
+		else
+			gamer = Gamer2;
 		int i1 = 1;
 		string res = "";
 		foreach (string s in gamer._marchandise.Keys)

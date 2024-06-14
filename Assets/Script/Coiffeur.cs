@@ -8,12 +8,12 @@ public class Coiffeur : PlayerClass
     {
         _marchandise = new Dictionary<string, (int, double, bool, double, int)>()
         {
-            { "Coupe Homme", (200, 27, true, 1, 500) },
-            { "Coupe Femme", (200, 32.7, true, 1, 500) },
-            { "Mèches", (200, 130, true, 1, 500) },
-            { "Barbe", (200, 25, true, 1, 500) },
-            { "Soin", (200, 5, true, 1, 500) },
-            { "Frange", (200, 15, true, 1, 500) },
+            { "Coupe Homme", (100, 27, true, 1, 500) },
+            { "Coupe Femme", (100, 32.7, true, 1, 500) },
+            { "Mèches", (100, 130, true, 1, 500) },
+            { "Barbe", (100, 25, true, 1, 500) },
+            { "Soin", (100, 5, true, 1, 500) },
+            { "Frange", (100, 15, true, 1, 500) },
             { "Coloration", (0, 25, false, 1, 0) },
             { "Shampoing + Coupe", (0, 50, false, 1, 0) },
             { "Brushing", (0, 33, false, 1, 0) },
@@ -34,8 +34,8 @@ public class Coiffeur : PlayerClass
         _items = new List<string> { "Coupe Homme", "Coupe Femme", "Mèches", "Barbe", "Soin", "Frange"};
 		for (int i = 0; i < 6; ++i)
 			_items.Add("NaN");
-        _missingitems = new List<string> { "Coloration", "Shampoing + Coupe", "Brushing", "Permanente", "Shampoing + Coupe + Coloration", "Lissage brésilien"};
-        materiel = new List<string> { "tableau de promotion", "desserte", "casque", "nouvelles coupes" };
+        _missingitems = new List<string> { "Coloration", "Shampoing + Coupe", "Brushing", "Permanente", "Coupe + Coloration", "Lissage brésilien"};
+        materiel = new List<string> { "tableau de promotion", "présentoire", "casque", "nouvelles coupes" };
         prix = new List<double> {18, 21.8, 86.67, 16.67, 3.33, 10, 16.67, 33.33, 22, 56.67, 27.27, 66};
 		Perime1 = new List<int> {200};
 		Perime2 = new List<int> {200};

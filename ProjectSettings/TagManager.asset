@@ -21,6 +21,7 @@ TagManager:
   - Caisse
   - promotion
   - Mur
+  - commercial
   layers:
   - Default
   - TransparentFX
