@@ -29,18 +29,18 @@ public class TextTuto : NetworkBehaviour
         "Bienvenue dans notre tutoriel.",
         "Pour réapprovisionner :\n\n\t- touchez la case du produit.\n\t- sélectionnez le menu quantité par \u2191 ou \u2193.\n\t- appuyez sur entrée.",
         "Attention, certains produits ne sont pas disponibles immédiatement.", // 2
-        "Attention, en mode difficile, les produits périmeront tout les trois tours.", // 3
-        "Pour modifier le prix ou la qualité :\n\n\t- sélectionnez le menu correspondant avec ⬆\u2191 ou \u2193.\n\t- appuyez sur entrée pour le menu qualité.\n\t- modifiez les paramètres de prix avec < ou >.",
+        "Attention, en mode difficile, les produits périmeront tous les trois tours.", // 3
+        "Pour modifier le prix ou la qualité :\n\n\t- sélectionnez le menu correspondant avec ⬆\u2191 ou \u2193.\n\t- appuyez sur entrée pour le menu qualité.\n\t- modifiez les paramètres de prix avec <- ou ->.",
         "Pour quitter le menu, appuyez sur la touche effacer.", // 5
-        "Pour augmenter l'attractivité afin d'avoir plus de clients et diminuer celle de l'adversaire :\n\n\t-allez vers la table à l'entrée.\n\t- appuyez sur entrée.", // 6
-        "Pour faire des promotions et augmenter temporairement votre attractivité :\n\n\t- allez vers le trait noir sur le trottoir.\n\t- appuyer sur entrée pour l'acheter.\n\t- appuyer sur entrée pour l'activer ou le désactiver.",
-        "Pour acheter d'autres améliorations augmentant définitivement l'attractivité :\n\n\t- allez vers les cases ayant une couleur différente par rapport au décors.\n\t- appuyez sur entrée pour l'acheter.\n\nAttention, les textes en rouge indique que l'on ne peut réaliser l'action souhaitée.",
-        "Pour la gestion du nombre de salariés :\n\n\t- allez à la caisse.\n\t- sélectionnez le menu correspondant avec \u2191 ou \u2193.\n\t- appuyez sur < ou > afin de changer le nombre d'employés.\n\t- le nombre d'employé joue sur la qualité générale du magasin. Cette statistiques est utilisées à la fin de la partie pour calculer le score finale, tout comme vos autres statistiques.",
-        "Attention, renvoyer un employé coûte 700 $ et vous devrez payer vos employés tout les 4 tours.",
+        "Pour augmenter l'attractivité, afin d'avoir plus de clients et diminuer celle de l'adversaire :\n\n\t-allez vers la table à l'entrée.\n\t- appuyez sur entrée.", // 6
+        "Pour faire des promotions et augmenter temporairement votre attractivité :\n\n\t- allez vers le trait noir sur le trottoir.\n\t- appuyez sur entrée pour acheter le tableau de promotion.\n\t- appuyez sur entrée pour l'activer ou le désactiver.",
+        "Pour acheter d'autres améliorations augmentant définitivement l'attractivité :\n\n\t- allez vers les cases ayant une couleur différente par rapport au décor.\n\t- appuyez sur entrée pour les acheter.\n\nAttention, les textes en rouge indiquent que l'on ne peut pas réaliser l'action souhaitée.",
+        "Pour la gestion du nombre de salariés :\n\n\t- allez à la caisse.\n\t- sélectionnez le menu correspondant avec \u2191 ou \u2193.\n\t- appuyez sur <- ou -> afin de changer le nombre d'employés.\n\t- le nombre d'employés joue sur la qualité générale du magasin. Cette statistique est utilisée à la fin de la partie pour calculer le score final, tout comme vos autres statistiques.",
+        "Attention, renvoyer un employé coûte 700 $ et vous devrez payer vos employés tous les quatre tours.",
         "Pour augmenter la qualite générale de votre magasin :\n\n\t- sélectionnez l'onglet prime\n\t- appuyez sur entrée pour valider l'action.",
-        "Pour la gestion des magasins :\n\n\t- sélectionnez le menu correspondant avec \u2191 ou \u2193.\n\t- appuyez sur < ou > afin de changer le nombre d'employés.\n\nAttention, pour acheter un magasin il faut avoir 5 000 $ et avoir au moins n employés pour n+1 magasin. Par exemple, pour acheter un troisième magasin, il nous faut au moins 2 employés. Vendre un magasin rapporte 2 500 $.",
-        "Pour allez sur le menu options, en cours de partie, appuyez sur échap. Pour en sortir faites de même.",
-        "De façon similaire, appuyez sur la barre d'espace pour mettre en pause le jeu. Vous pourrez consulter les statistiques de vos produits ou services ainsi que ceux de votre adversaire avec < ou >.",
+        "Pour la gestion des magasins :\n\n\t- sélectionnez le menu correspondant avec \u2191 ou \u2193.\n\t- appuyez sur <- ou -> afin de changer le nombre d'employés.\n\nAttention, pour acheter un magasin, il faut avoir 5 000 $ et avoir au moins n employés pour n+1 magasin. Par exemple, pour acheter un troisième magasin, il vous faut au moins deux employés. Vendre un magasin rapporte 2 500 $.",
+        "Pour allez sur le menu options, en cours de partie, appuyez sur échap. Pour en sortir, faites de même.",
+        "De façon similaire, appuyez sur la barre d'espace pour mettre en pause le jeu. Vous pourrez consulter les statistiques de vos produits ou services, ainsi que ceux de votre adversaire avec <- ou ->.",
         "Pour finir votre tour :\n\n\t- sélectionnez finir son tour avec \u2191 ou \u2193.\n\t- appuyez sur entrée.",
                                                            };
     // Start is called before the first frame update
